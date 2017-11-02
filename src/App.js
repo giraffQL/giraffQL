@@ -15,19 +15,30 @@ class App extends Component {
 
 
   onAddTable = () => {
-    this.setState(prevState => {
-      return {
-        data: {
-          tables: prevState.data.tables.concat({
+    let newstate = this.state.data.tables.slice()
+    this.setState({
+      data:{
+        tables:newstate.concat({
             name: '',
             attributes: [
               { name: '', type: '' }
             ]
           })
-        }
-      }
-    })
-  }
+    // this.setState(prevState => {
+    //   return {
+    //     data: {
+    //       tables: prevState.data.tables.concat({
+    //         name: '',
+    //         attributes: [
+    //           { name: '', type: '' }
+    //         ]
+    //       })
+    //     }
+    //   }
+    // })
+    }
+  })
+}
 
   //this is not correct way to do because state has to be immutable (but it's working) 
   onAddRow = (index) => {
