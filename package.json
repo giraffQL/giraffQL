@@ -1,0 +1,19 @@
+{
+  "name": "schema-visualization",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "draggable": "^4.1.2",
+    "react": "^16.0.0",
+    "react-bootstrap-table": "^4.1.1",
+    "react-dom": "^16.0.0",
+    "react-draggable": "^3.0.3",
+    "react-scripts": "1.0.15"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
