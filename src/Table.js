@@ -6,7 +6,7 @@ import Draggable, {DraggableCore} from 'react-draggable';
 
 class Table extends React.Component {
     render() {
-        const {table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType} = this.props
+        const { table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType } = this.props
         return (
             <Draggable enableUserSelectHack={false}>
             <table className="table">
@@ -18,14 +18,14 @@ class Table extends React.Component {
                     </tr>
                     {table.attributes.map(({ name, type }, i) =>
                         <tr key={i}>
-                            <td><input type="text" placeholder="Property" value={name} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)}/></td>
-                            <td><input type="text" placeholder="Type" value={type} onChange={(e) => updateRowType(tableIndex, i, e.target.value)}/></td>
+                            <td><input type="text" placeholder="Property" value={name} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                            <td><input type="text" placeholder="Type" value={type} onChange={(e) => updateRowType(tableIndex, i, e.target.value)} /></td>
                         </tr>
                     )}
                     <tr>
                     <td colSpan={2}><button className="addRow" onClick={() => onAddRow(tableIndex)}> Add new field </button> </td>
                     </tr>
-                 </tbody>
+                </tbody>
             </table>
             </Draggable>
         )

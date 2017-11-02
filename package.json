@@ -15,5 +15,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "draft-js": "^0.10.4",
+    "draft-js-prism": "^1.0.5",
+    "prismjs": "^1.8.3"
   }
 }

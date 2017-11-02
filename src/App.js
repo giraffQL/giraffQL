@@ -1,6 +1,32 @@
 import React, { Component } from 'react';
 import './App.css';
-import Visualization from './Visualization'
+import Visualization from './Visualization';
+//DRAFT JS DEPENDENCIES
+import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
+import TextEditor from './Editor';
+//TEXT CSS
+import './index.css';
+import './prism.css';
+//PRISM DEPENDENCIES
+const PrismDecorator = require('draft-js-prism');
+const Prism = require('prismjs')
+
+//PRISM LIBRARY FOR SYNTAX HIGHLIGHTING//
+const decorator = new PrismDecorator({
+  defaultSyntax: 'javascript',
+  prism: Prism,
+});
+
+//contentState to provide raw text for code block
+const contentState = convertFromRaw({
+  entityMap: {},
+  blocks: [
+    {
+      type: 'code-block',
+      text: `const work = (doWork) =>  'now'`
+    }
+  ]
+});
 
 class App extends Component {
   constructor(props) {
@@ -9,8 +35,33 @@ class App extends Component {
       data: {
         tables: [
         ]
-      }
+      },
+      //DRAFTJS STATE//
+      editorState: EditorState.createWithContent(contentState, decorator),
+    };
+
+    this.onChange = (editorState) => {
+      this.setState({ editorState });
     }
+  };
+  //DRAFTJS METHODS//
+  handleKeyCommand = (command) => {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
+    }
+    return 'not handled';
+  }
+
+  onUnderlineClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+
+  onToggleCode = () => {
+    console.log('test');
+    this.onChange(RichUtils.toggleCode(this.state.editorState));
   }
 
 
@@ -66,7 +117,7 @@ class App extends Component {
     })
   }
 
-    updateRowType = (tableIndex, rowIndex, value) => {
+  updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
       let rowType = state.data.tables[tableIndex].attributes[rowIndex]
       rowType.type = value;
@@ -80,11 +131,15 @@ class App extends Component {
         <button onClick={this.onAddTable}> Create table </button>
         <button> Add relations </button>
 
-        <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable} 
-        updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-        updateRowType={this.updateRowType}/>
-
+        <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+          updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
+          updateRowType={this.updateRowType} />
+        {/* <div className="TextEditor">
+          <button onToggleCode={this.onToggleCode}>Code Block</button>
+          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
+        </div> */}
       </div>
+
     );
   }
 }
