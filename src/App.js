@@ -7,6 +7,8 @@ import TextEditor from './Editor';
 //TEXT CSS
 import './index.css';
 import './prism.css';
+//SCHEMA CODE COMPONENT//
+import SchemaCode from './SchemaCode';
 //PRISM DEPENDENCIES
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
@@ -72,7 +74,7 @@ class App extends Component {
         tables:newstate.concat({
             name: '',
             attributes: [
-              { name: '', type: '' }
+              { field: '', type: '' }
             ]
           })
     // this.setState(prevState => {
@@ -95,7 +97,7 @@ class App extends Component {
   onAddRow = (index) => {
     this.setState(state => {
       let tableObj = state.data.tables[index]
-      tableObj.attributes.push({ name: '', type: '' })
+      tableObj.attributes.push({ field: '', type: '' })
       return state
     })
   }
@@ -112,7 +114,7 @@ class App extends Component {
     this.setState(state => {
       // console.log(tableIndex, rowIndex, value)
       let rowProp = state.data.tables[tableIndex].attributes[rowIndex]
-      rowProp.name = value;
+      rowProp.field = value;
       return state;
     })
   }
@@ -138,6 +140,8 @@ class App extends Component {
           <button onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
         </div> */}
+        <SchemaCode code={this.state.data.tables}>
+        </SchemaCode>
       </div>
 
     );

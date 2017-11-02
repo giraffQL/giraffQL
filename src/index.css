@@ -47,3 +47,7 @@ pre > pre{
   border: none;
   padding: 0;
 }
+
+.schemaType{
+  color: white;
+}
