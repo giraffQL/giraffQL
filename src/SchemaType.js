@@ -2,27 +2,32 @@ import React, { Component } from 'react';
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 
 class SchemaType extends React.Component {
+    
+    componentDidUpdate(prevProps, prevState) {
+        
+    }
 
     render() {
-        const code = this.props.data;
-        const attr = code.attributes;
-        const field = [];
-        const fieldType = {};
-        console.log(`attributes: ${attr}`);
-        attr.forEach((x) => { 
-            fieldType.field = x.field,
-            fieldType.type = x.type
-            field.push(fieldType);
-        })
-        console.log(`fieldType: ${fieldType}`);
-        // console.log(`table: ${code}`);
+
+        const table = this.props.data;
+
+        let tableName = null;
+        if (table.name) {
+            tableName = <div>const {table.name} = new GraphQLObjectType<br /></div>
+        };
+        let result = [];
+        // if (this.attributes === []){ //this should be attribute instead of result
+            table.attributes.forEach((x) => {
+                result.push(<p>{x.field} <br /> {x.type}</p>)
+            });
+        // }
         return (
             <Draggable>
                 <div className="schemaType">
-                    <p>
-                        const {code.name} = new GraphQLObjectType<br />
-                        {JSON.stringify(field)}
-                    </p>
+                    <div>
+                        {tableName}
+                        {result}
+                    </div>
                 </div>
             </Draggable>
         )
