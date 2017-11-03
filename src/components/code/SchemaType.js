@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
-
+import RowData from './RowData';
 class SchemaType extends React.Component {
     
     componentDidUpdate(prevProps, prevState) {
@@ -10,23 +10,22 @@ class SchemaType extends React.Component {
     render() {
 
         const table = this.props.data;
-
+        
         let tableName = null;
+        let rightBracket = null;
+
         if (table.name) {
-            tableName = <div>const {table.name} = new GraphQLObjectType<br /></div>
-        };
-        let result = [];
-        // if (this.attributes === []){ //this should be attribute instead of result
-            table.attributes.forEach((x) => {
-                result.push(<p>{x.field} <br /> {x.type}</p>)
-            });
-        // }
+            tableName = <div> const {`${table.name}Type = new GraphQLObjectType({`}<br/>name: {table.name}</div>
+            rightBracket = `}`;
+            };
+
         return (
             <Draggable>
                 <div className="schemaType">
                     <div>
                         {tableName}
-                        {result}
+                        <RowData data={table}/>
+                        {rightBracket}
                     </div>
                 </div>
             </Draggable>
