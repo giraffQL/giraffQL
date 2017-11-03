@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import App from './App'
-import css from './css/Table.css'
+import App from '../App'
+import css from '../../css/Table.css'
 import Draggable, {DraggableCore} from 'react-draggable';
 
 class Table extends React.Component {

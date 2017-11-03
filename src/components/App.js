@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import Visualization from './Visualization';
+import '../css/App.css';
+import Visualization from './table/Visualization';
 //DRAFT JS DEPENDENCIES
 import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
 import TextEditor from './Editor';
 //TEXT CSS
-import './index.css';
-import './prism.css';
+import '../index.css';
+import '../css/prism.css';
 //SCHEMA CODE COMPONENT//
-import SchemaCode from './SchemaCode';
+import SchemaCode from './code/SchemaCode';
 //PRISM DEPENDENCIES
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
@@ -93,7 +93,7 @@ class App extends Component {
   })
 }
 
-  //this is not correct way to do because state has to be immutable (but it's working) 
+  //this is not correct way to do because state has to be immutable (but it's working)
   onAddRow = (index) => {
     this.setState(state => {
       let tableObj = state.data.tables[index]
