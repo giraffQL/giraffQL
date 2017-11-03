@@ -13,7 +13,6 @@ class RowData extends React.Component {
                 type: {x.type} <br /></div>)
         });
 
-
         return (
             <div>{result}</div>
         )
