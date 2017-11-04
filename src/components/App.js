@@ -173,14 +173,14 @@ class App extends Component {
         <SplitPane split="vertical" defaultSize="50%">
         <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
           updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow}/>
+          updateRowType={this.updateRowType} refreshRowPositions={this.refreshRowPositions} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow}/>
           <div className="TextEditor">
 
           <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
-          </div> */}
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
+          </div> 
         </SplitPane>
 
 

@@ -42,7 +42,8 @@ class Table extends React.Component {
                                 <input className='typeinput' type="text" placeholder="Type" value={type} onChange={(e) => updateRowType(tableIndex, i, e.target.value)} />
                                 {/*<td width="100px"><p> {table.tablePositionX}, {table.tablePositionY} </p></td>*/}
                                 <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,rowIndex)}>x</div>
-                            <td width="100px"><p> {Math.floor(x)}, {Math.floor(y)} </p></td>
+                            {/* <td width="100px"><p> {Math.floor(x)}, {Math.floor(y)} </p></td> */}
+                            </td>
                             </tr>
                     )}
                     <tr>

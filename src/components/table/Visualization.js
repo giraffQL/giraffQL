@@ -7,7 +7,7 @@ import Table from './Table'
 class Visualization extends React.Component {
     render() {
 
-        const { data, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, onDragTable, refreshRowPositions} = this.props
+        const { data, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, onDragTable, refreshRowPositions, dataEvent} = this.props
 
         return (
         <div className='visualization'>
