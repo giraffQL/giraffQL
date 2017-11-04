@@ -10,23 +10,22 @@ class SchemaType extends React.Component {
     render() {
 
         const table = this.props.data;
-
         let tableName = null;
         let rightBracket = null;
         let fieldsLine = null;
 
         if (table.name) {
-            tableName = <div> const {`${table.name}Type = new GraphQLObjectType({`}<br /> <span>name: {table.name},</span></div>
+            tableName = <div> const {`${table.name}Type = new GraphQLObjectType({`}<br /> <span className="tabspace">name: {table.name},</span></div>
             fieldsLine = `fields: () => ({`
-            rightBracket = `}`;
+            rightBracket = `})`;
         };
 
         return (
             <div className="schemaType">
                 <div>
                     {tableName}
-                    <span />{fieldsLine}
-                    <span /><span /><RowData data={table} />
+                    <span className="tabspace"/>{fieldsLine}
+                    <span className="tabspace"/><span className="tabspace"/><RowData data={table} />
                     {rightBracket}
                 </div>
             </div>

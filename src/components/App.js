@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import Visualization from './table/Visualization';
+import SplitPane from "react-split-pane"
 //DRAFT JS DEPENDENCIES
 import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
 import TextEditor from '../components/code/Editor';
@@ -12,6 +13,7 @@ import SchemaCode from './code/SchemaCode';
 //PRISM DEPENDENCIES
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
+
 
 //PRISM LIBRARY FOR SYNTAX HIGHLIGHTING//
 const decorator = new PrismDecorator({
@@ -41,7 +43,7 @@ class App extends Component {
       //DRAFTJS STATE//
       editorState: EditorState.createWithContent(contentState, decorator),
     };
-
+   
     this.onChange = (editorState) => {
       this.setState({ editorState });
     }
@@ -143,21 +145,25 @@ class App extends Component {
   }
 
   render() {
+
+
+    
     return (
       <div className="App">
-        <button onClick={this.onAddTable}> Create table </button>
-        <button> Add relations </button>
-        <button onClick={this.genCode}>Generate Code</button>
-
+        <SplitPane split="vertical" defaultSize="50%">
         <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
           updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} />
-        {/* <div className="TextEditor">
-          <button onToggleCode={this.onToggleCode}>Code Block</button> */}
-        <TextEditor toggleCode={this.onToggleCode} editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
-        {/* </div> */}
-        <SchemaCode code={this.state.data.tables}>
-        </SchemaCode>
+          updateRowType={this.updateRowType} onAddTable={this.onAddTable} />
+          {/* <div className="TextEditor">
+          <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
+          </div> */}
+          <SchemaCode code={this.state.data.tables}>
+          </SchemaCode>
+          </SplitPane>
+
+
+
       </div>
 
     );
