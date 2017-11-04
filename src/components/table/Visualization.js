@@ -6,7 +6,7 @@ import Table from './Table'
 
 class Visualization extends React.Component {
     render() {
-        const { data, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable} = this.props
+        const { data, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow} = this.props
         return (
         
         <div className='visualization'>
@@ -14,7 +14,7 @@ class Visualization extends React.Component {
         <button> Add relations </button>
                 {data.tables.map((table, i) =>
                     <Table key={i} tableIndex={i} table={table} onAddRow={onAddRow}  updateTableName={updateTableName}
-                    updateRowProp={updateRowProp} updateRowType={updateRowType}/>
+                    updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}/>
                 )}
             </div>
         )

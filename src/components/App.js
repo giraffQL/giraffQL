@@ -79,29 +79,15 @@ class App extends Component {
               { field: '', type: '' }
             ]
           })
-    // this.setState(prevState => {
-    //   return {
-    //     data: {
-    //       tables: prevState.data.tables.concat({
-    //         name: '',
-    //         attributes: [
-    //           { name: '', type: '' }
-    //         ]
-    //       })
-    //     }
-    //   }
-    // })
     }
   })
 }
 
   //this is not correct way to do because state has to be immutable (but it's working)
   onAddRow = (index) => {
-    this.setState(state => {
-      let tableObj = state.data.tables[index]
-      tableObj.attributes.push({ field: '', type: '' })
-      return state
-    })
+    let addit = Object.assign({}, this.state.data.tables[index])
+    addit.attributes.push({ field: '', type: '' })
+    this.setState({addit})
   }
 
   updateTableName = (tableIndex, value) => {
@@ -129,22 +115,30 @@ class App extends Component {
     })
   }
 
+  deleteRow = (tableindex,rowindex) => {
+    let spliceit = Object.assign({}, this.state.data.tables[tableindex])
+    spliceit.attributes.splice(rowindex,1);
+    this.setState({spliceit})
+  }
+
+  deleteTable = (index) => {
+    let spliceit = Object.assign({}, this.state.data)
+    spliceit.tables.splice(index,1);
+    this.setState({spliceit})
+  }
   render() {
-
-
     
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
         <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
           updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} onAddTable={this.onAddTable} />
+          updateRowType={this.updateRowType} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow}/>
           <div className="TextEditor">
           <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
         </div>
           </SplitPane>
-
 
         <SchemaCode code={this.state.data.tables}>
         </SchemaCode>
