@@ -38,6 +38,24 @@ class App extends Component {
     this.state = {
       data: {
         tables: [
+          {
+            id: 1,
+            name: 'Table 1',
+            tablePositionX: 0,
+            tablePositionY: 0,
+            attributes: [
+              { name: 'Baa', type: 'Blah', relatedToTableId: 2, x:0, y:77}
+            ]
+          },
+          {
+            id: 2,
+            name: 'Table 2',
+            tablePositionX: 0,
+            tablePositionY: 0,
+            attributes: [
+              { name: 'a', type: '1111', relatedToTableId: null, x:349, y:296}
+            ]
+          }
         ]
       },
       //DRAFTJS STATE//
@@ -89,23 +107,11 @@ class App extends Component {
     this.setState({
       data: {
         tables: newstate.concat({
-          name: '',
+          name: '', //make it to be random string
           attributes: [
             { field: '', type: '' }
           ]
         })
-        // this.setState(prevState => {
-        //   return {
-        //     data: {
-        //       tables: prevState.data.tables.concat({
-        //         name: '',
-        //         attributes: [
-        //           { name: '', type: '' }
-        //         ]
-        //       })
-        //     }
-        //   }
-        // })
       }
     })
   }
@@ -144,16 +150,39 @@ class App extends Component {
     })
   }
 
+  //TABLE POSITION
+  onDragTable = (tableIndex, e, dataEvent) => {
+    this.setState(state => {
+      let posX = state.data.tables[tableIndex]
+      posX.tablePositionX = dataEvent.x;
+      let posY = state.data.tables[tableIndex]
+      posY.tablePositionY = dataEvent.y;
+      // console.log(posX.tablePositionX, posY.tablePositionY)
+      return state;
+    })
+  }
+
+  //ROW POSITION
+  refreshRowPositions = (tableIndex, rowPositions) => {
+    this.setState(state => {
+      let attrs = state.data.tables[tableIndex].attributes
+      for (let i = 0; i < attrs.length; ++i) {
+        attrs[i].x = rowPositions[i].left
+        attrs[i].y = rowPositions[i].top
+      }
+      return state;
+    })
+  }
+
   render() {
-
-
     
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
         <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
           updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} onAddTable={this.onAddTable} />
+          updateRowType={this.updateRowType} onAddTable={this.onAddTable} 
+          onDragTable={this.onDragTable} refreshRowPositions={this.refreshRowPositions}/>
           {/* <div className="TextEditor">
           <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
