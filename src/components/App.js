@@ -43,7 +43,7 @@ class App extends Component {
       //DRAFTJS STATE//
       editorState: EditorState.createWithContent(contentState, decorator),
     };
-   
+
     this.onChange = (editorState) => {
       this.setState({ editorState });
     }
@@ -68,6 +68,7 @@ class App extends Component {
     this.onChange(RichUtils.toggleCode(this.state.editorState)).bind(this);
   }
 
+  //generate code from state function not working yet
   genCode = () => {
     console.log('generate code!');
     let data = this.state.data.tables;
@@ -76,11 +77,11 @@ class App extends Component {
       const codeBlock = {};
       codeBlock.name = x.name,
         x.attributes.forEach((y) => {
-            codeBlock.field = y.field,
+          codeBlock.field = y.field,
             codeBlock.type = y.type
         })
-        allCode.push(codeBlock);
-        console.log(allCode);
+      allCode.push(codeBlock);
+      console.log(allCode);
     })
   }
 
@@ -94,18 +95,6 @@ class App extends Component {
             { field: '', type: '' }
           ]
         })
-        // this.setState(prevState => {
-        //   return {
-        //     data: {
-        //       tables: prevState.data.tables.concat({
-        //         name: '',
-        //         attributes: [
-        //           { name: '', type: '' }
-        //         ]
-        //       })
-        //     }
-        //   }
-        // })
       }
     })
   }
@@ -147,20 +136,20 @@ class App extends Component {
   render() {
 
 
-    
+
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
-        <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-          updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} onAddTable={this.onAddTable} />
+          <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
+            updateRowType={this.updateRowType} onAddTable={this.onAddTable} />
           {/* <div className="TextEditor">
           <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
           </div> */}
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
-          </SplitPane>
+        </SplitPane>
 
 
 
