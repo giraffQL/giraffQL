@@ -51,4 +51,9 @@ pre > pre{
 .schemaType{
   color: white;
   text-align: left;
+  font-family: monospace;
+}
+
+span{
+  padding-left: 5em;
 }

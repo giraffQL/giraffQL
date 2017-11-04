@@ -8,9 +8,11 @@ class RowData extends React.Component {
         let leftBracket = `{`;
         let rightBracket = `}`;
         let result = [];
-        this.props.data.attributes.forEach((x) => {
-            result.push(<div>{x.field}: {leftBracket}<br /> 
-                type: {x.type} <br /></div>)
+        console.log(this.props.data.attributes);
+        this.props.data.attributes.forEach((x, i) => {
+            result.push(<div key={i}> <span/>{x.field}: {leftBracket}<br /> 
+            <span/><span/>type: {x.type} <br />
+            <span/>{rightBracket}</div>)
         });
 
         return (

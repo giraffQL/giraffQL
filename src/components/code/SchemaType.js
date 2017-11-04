@@ -2,33 +2,34 @@ import React, { Component } from 'react';
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 import RowData from './RowData';
 class SchemaType extends React.Component {
-    
+
     componentDidUpdate(prevProps, prevState) {
-        
+
     }
 
     render() {
 
         const table = this.props.data;
-        
+
         let tableName = null;
         let rightBracket = null;
+        let fieldsLine = null;
 
         if (table.name) {
-            tableName = <div> const {`${table.name}Type = new GraphQLObjectType({`}<br/>name: {table.name}</div>
+            tableName = <div> const {`${table.name}Type = new GraphQLObjectType({`}<br /> <span>name: {table.name},</span></div>
+            fieldsLine = `fields: () => ({`
             rightBracket = `}`;
-            };
+        };
 
         return (
-            <Draggable>
-                <div className="schemaType">
-                    <div>
-                        {tableName}
-                        <RowData data={table}/>
-                        {rightBracket}
-                    </div>
+            <div className="schemaType">
+                <div>
+                    {tableName}
+                    <span />{fieldsLine}
+                    <span /><span /><RowData data={table} />
+                    {rightBracket}
                 </div>
-            </Draggable>
+            </div>
         )
 
     }
