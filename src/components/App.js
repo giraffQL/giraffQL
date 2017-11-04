@@ -37,31 +37,12 @@ class App extends Component {
     super(props)
     this.state = {
       data: {
-        tables: [
-          {
-            id: 1,
-            name: 'Table 1',
-            tablePositionX: 0,
-            tablePositionY: 0,
-            attributes: [
-              { name: 'Baa', type: 'Blah', relatedToTableId: 2, x:0, y:77}
-            ]
-          },
-          {
-            id: 2,
-            name: 'Table 2',
-            tablePositionX: 0,
-            tablePositionY: 0,
-            attributes: [
-              { name: 'a', type: '1111', relatedToTableId: null, x:349, y:296}
-            ]
-          }
-        ]
+        tables: []
       },
       //DRAFTJS STATE//
       editorState: EditorState.createWithContent(contentState, decorator),
     };
-   
+
     this.onChange = (editorState) => {
       this.setState({ editorState });
     }
@@ -86,6 +67,7 @@ class App extends Component {
     this.onChange(RichUtils.toggleCode(this.state.editorState)).bind(this);
   }
 
+  //generate code from state function not working yet
   genCode = () => {
     console.log('generate code!');
     let data = this.state.data.tables;
@@ -94,11 +76,11 @@ class App extends Component {
       const codeBlock = {};
       codeBlock.name = x.name,
         x.attributes.forEach((y) => {
-            codeBlock.field = y.field,
+          codeBlock.field = y.field,
             codeBlock.type = y.type
         })
-        allCode.push(codeBlock);
-        console.log(allCode);
+      allCode.push(codeBlock);
+      console.log(allCode);
     })
   }
 
@@ -189,7 +171,7 @@ class App extends Component {
           </div> */}
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
-          </SplitPane>
+        </SplitPane>
 
 
 
