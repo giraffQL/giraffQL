@@ -4,7 +4,7 @@ import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
 //DRAFT JS DEPENDENCIES
 import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
-import TextEditor from './Editor';
+import TextEditor from '../components/code/Editor';
 //TEXT CSS
 import '../index.css';
 import '../css/prism.css';
@@ -27,7 +27,7 @@ const contentState = convertFromRaw({
   blocks: [
     {
       type: 'code-block',
-      text: `const work = (doWork) =>  'now'`
+      text: ''
     }
   ]
 });
@@ -37,13 +37,12 @@ class App extends Component {
     super(props)
     this.state = {
       data: {
-        tables: [
-        ]
+        tables: []
       },
       //DRAFTJS STATE//
       editorState: EditorState.createWithContent(contentState, decorator),
     };
-   
+
     this.onChange = (editorState) => {
       this.setState({ editorState });
     }
@@ -65,9 +64,25 @@ class App extends Component {
 
   onToggleCode = () => {
     console.log('test');
-    this.onChange(RichUtils.toggleCode(this.state.editorState));
+    this.onChange(RichUtils.toggleCode(this.state.editorState)).bind(this);
   }
 
+  //generate code from state function not working yet
+  genCode = () => {
+    console.log('generate code!');
+    let data = this.state.data.tables;
+    const allCode = [];
+    data.forEach((x) => {
+      const codeBlock = {};
+      codeBlock.name = x.name,
+        x.attributes.forEach((y) => {
+          codeBlock.field = y.field,
+            codeBlock.type = y.type
+        })
+      allCode.push(codeBlock);
+      console.log(allCode);
+    })
+  }
 
   onAddTable = () => {
     let newstate = this.state.data.tables.slice()
@@ -82,6 +97,7 @@ class App extends Component {
     }
   })
 }
+
 
   //this is not correct way to do because state has to be immutable (but it's working)
   onAddRow = (index) => {
@@ -126,6 +142,30 @@ class App extends Component {
     spliceit.tables.splice(index,1);
     this.setState({spliceit})
   }
+  //TABLE POSITION
+  onDragTable = (tableIndex, e, dataEvent) => {
+    this.setState(state => {
+      let posX = state.data.tables[tableIndex]
+      posX.tablePositionX = dataEvent.x;
+      let posY = state.data.tables[tableIndex]
+      posY.tablePositionY = dataEvent.y;
+      // console.log(posX.tablePositionX, posY.tablePositionY)
+      return state;
+    })
+  }
+
+  //ROW POSITION
+  refreshRowPositions = (tableIndex, rowPositions) => {
+    this.setState(state => {
+      let attrs = state.data.tables[tableIndex].attributes
+      for (let i = 0; i < attrs.length; ++i) {
+        attrs[i].x = rowPositions[i].left
+        attrs[i].y = rowPositions[i].top
+      }
+      return state;
+    })
+  }
+
   render() {
     
     return (
@@ -135,13 +175,14 @@ class App extends Component {
           updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
           updateRowType={this.updateRowType} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow}/>
           <div className="TextEditor">
+
           <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
-        </div>
-          </SplitPane>
+          </div> */}
+          <SchemaCode code={this.state.data.tables}>
+          </SchemaCode>
+        </SplitPane>
 
-        <SchemaCode code={this.state.data.tables}>
-        </SchemaCode>
 
       </div>
 

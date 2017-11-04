@@ -53,4 +53,10 @@ pre > pre{
 
 .schemaType{
   color: white;
+  text-align: left;
+  font-family: monospace;
+}
+
+.tabspace{
+  padding-left: 5em;
 }
