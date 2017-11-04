@@ -10,11 +10,14 @@ class SchemaType extends React.Component {
     render() {
 
         const table = this.props.data;
-
         let tableName = null;
+        let rightBracket = null;
+
         if (table.name) {
-            tableName = <div>const {table.name} = new GraphQLObjectType<br /></div>
-        };
+            tableName = <div> const {`${table.name}Type = new GraphQLObjectType({`}</div>
+            rightBracket = `}`;
+            };
+
         let result = [];
         // if (this.attributes === []){ //this should be attribute instead of result
             table.attributes.forEach((x) => {
@@ -22,14 +25,13 @@ class SchemaType extends React.Component {
             });
         // }
         return (
-            <Draggable>
                 <div className="schemaType">
                     <div>
                         {tableName}
                         {result}
+                        {rightBracket}
                     </div>
                 </div>
-            </Draggable>
         )
 
     }
