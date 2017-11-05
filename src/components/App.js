@@ -22,15 +22,27 @@ const decorator = new PrismDecorator({
 });
 
 //contentState to provide raw text for code block
-const contentState = convertFromRaw({
+// const contentState = convertFromRaw({
+//   entityMap: {},
+//   blocks: [
+//     {
+//       type: 'code-block',
+//       text: ''
+//     }
+//   ]
+// });
+const codeToRender = {
   entityMap: {},
   blocks: [
     {
       type: 'code-block',
-      text: ''
+      text: 'blah'
     }
   ]
-});
+}
+
+const contentState = convertFromRaw(codeToRender);
+
 
 class App extends Component {
   constructor(props) {
@@ -64,24 +76,37 @@ class App extends Component {
 
   onToggleCode = () => {
     console.log('test');
-    this.onChange(RichUtils.toggleCode(this.state.editorState)).bind(this);
+    this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
   }
 
+  renderEditor = () => {
+    console.log('renderEditor')
+  }
   //generate code from state function not working yet
   genCode = () => {
-    console.log('generate code!');
-    let data = this.state.data.tables;
-    const allCode = [];
-    data.forEach((x) => {
-      const codeBlock = {};
-      codeBlock.name = x.name,
-        x.attributes.forEach((y) => {
-          codeBlock.field = y.field,
-            codeBlock.type = y.type
-        })
-      allCode.push(codeBlock);
-      console.log(allCode);
-    })
+    // getTableName = () => {
+    //   let data = this.state.data.tables;
+    //   const allCode = [];
+    //   data.forEach((x) => {
+    //     const codeBlock = {};
+    //     codeBlock.name = x.name,
+    //       x.attributes.forEach((y) => {
+    //         codeBlock.field = y.field,
+    //           codeBlock.type = y.type
+    //       })
+    //     allCode.push(codeBlock);
+    //     console.log(allCode);
+    //   })
+    // },
+
+    // getRowData = () => {
+    //   console.log('getRowData');
+    // },
+
+    // compileCode = () => {
+    //   console.log('compileCode');
+    // }
+
   }
 
   onAddTable = () => {
@@ -172,9 +197,6 @@ class App extends Component {
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
         </SplitPane>
-
-
-
       </div>
 
     );
