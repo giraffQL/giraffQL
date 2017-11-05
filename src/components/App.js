@@ -22,23 +22,34 @@ const decorator = new PrismDecorator({
 });
 
 //contentState to provide raw text for code block
-const contentState = convertFromRaw({
+// const contentState = convertFromRaw({
+//   entityMap: {},
+//   blocks: [
+//     {
+//       type: 'code-block',
+//       text: ''
+//     }
+//   ]
+// });
+const codeToRender = {
   entityMap: {},
   blocks: [
     {
       type: 'code-block',
-      text: ''
+      text: 'blah'
     }
   ]
-});
+}
+
+const contentState = convertFromRaw(codeToRender);
+
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       data: {
-        tables: [
-        ]
+        tables: []
       },
       //DRAFTJS STATE//
       editorState: EditorState.createWithContent(contentState, decorator),
@@ -65,24 +76,37 @@ class App extends Component {
 
   onToggleCode = () => {
     console.log('test');
-    this.onChange(RichUtils.toggleCode(this.state.editorState)).bind(this);
+    this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
   }
 
+  renderEditor = () => {
+    console.log('renderEditor')
+  }
   //generate code from state function not working yet
   genCode = () => {
-    console.log('generate code!');
-    let data = this.state.data.tables;
-    const allCode = [];
-    data.forEach((x) => {
-      const codeBlock = {};
-      codeBlock.name = x.name,
-        x.attributes.forEach((y) => {
-          codeBlock.field = y.field,
-            codeBlock.type = y.type
-        })
-      allCode.push(codeBlock);
-      console.log(allCode);
-    })
+    // getTableName = () => {
+    //   let data = this.state.data.tables;
+    //   const allCode = [];
+    //   data.forEach((x) => {
+    //     const codeBlock = {};
+    //     codeBlock.name = x.name,
+    //       x.attributes.forEach((y) => {
+    //         codeBlock.field = y.field,
+    //           codeBlock.type = y.type
+    //       })
+    //     allCode.push(codeBlock);
+    //     console.log(allCode);
+    //   })
+    // },
+
+    // getRowData = () => {
+    //   console.log('getRowData');
+    // },
+
+    // compileCode = () => {
+    //   console.log('compileCode');
+    // }
+
   }
 
   onAddTable = () => {
@@ -135,24 +159,19 @@ class App extends Component {
 
   render() {
 
-
-
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
           <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable} />
-          {/* <div className="TextEditor">
-          <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
-          </div> */}
-          <SchemaCode code={this.state.data.tables}>
-          </SchemaCode>
+          {/* <div className="TextEditor"> */}
+          {/* <button className = 'gencode' onClick={this.genCode}>Change Code</button>
+          <button className = 'editorbutton' onClick={this.onToggleCode}>Code Block</button>
+          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
+          <SchemaCode code={this.state.data.tables}/>
+          {/* </div> */}
         </SplitPane>
-
-
-
       </div>
 
     );
