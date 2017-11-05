@@ -114,7 +114,7 @@ class App extends Component {
     this.setState({
       data: {
         tables: newstate.concat({
-          name: '',
+          name: '', //make it to be random string
           attributes: [
             { field: '', type: '' }
           ]
@@ -157,20 +157,45 @@ class App extends Component {
     })
   }
 
-  render() {
+  //TABLE POSITION
+  onDragTable = (tableIndex, e, dataEvent) => {
+    this.setState(state => {
+      let posX = state.data.tables[tableIndex]
+      posX.tablePositionX = dataEvent.x;
+      let posY = state.data.tables[tableIndex]
+      posY.tablePositionY = dataEvent.y;
+      // console.log(posX.tablePositionX, posY.tablePositionY)
+      return state;
+    })
+  }
 
+  //ROW POSITION
+  refreshRowPositions = (tableIndex, rowPositions) => {
+    this.setState(state => {
+      let attrs = state.data.tables[tableIndex].attributes
+      for (let i = 0; i < attrs.length; ++i) {
+        attrs[i].x = rowPositions[i].left
+        attrs[i].y = rowPositions[i].top
+      }
+      return state;
+    })
+  }
+
+  render() {
+    
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
-          <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable} />
-          {/* <div className="TextEditor"> */}
-          {/* <button className = 'gencode' onClick={this.genCode}>Change Code</button>
-          <button className = 'editorbutton' onClick={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
-          <SchemaCode code={this.state.data.tables}/>
-          {/* </div> */}
+        <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+          updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
+          updateRowType={this.updateRowType} onAddTable={this.onAddTable} 
+          onDragTable={this.onDragTable} refreshRowPositions={this.refreshRowPositions}/>
+          {/* <div className="TextEditor">
+          <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
+          </div> */}
+          <SchemaCode code={this.state.data.tables}>
+          </SchemaCode>
         </SplitPane>
       </div>
 
