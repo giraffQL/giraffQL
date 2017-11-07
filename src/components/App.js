@@ -6,7 +6,7 @@ import SplitPane from "react-split-pane"
 import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
 import TextEditor from '../components/code/Editor';
 //TEXT CSS
-import '../index.css';
+import '../css/index.css';
 import '../css/prism.css';
 //SCHEMA CODE COMPONENT//
 import SchemaCode from './code/SchemaCode';
