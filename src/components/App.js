@@ -6,7 +6,7 @@ import SplitPane from "react-split-pane"
 import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
 import TextEditor from '../components/code/Editor';
 //TEXT CSS
-import '../index.css';
+import '../css/index.css';
 import '../css/prism.css';
 //SCHEMA CODE COMPONENT//
 import SchemaCode from './code/SchemaCode';
@@ -22,15 +22,27 @@ const decorator = new PrismDecorator({
 });
 
 //contentState to provide raw text for code block
-const contentState = convertFromRaw({
+// const contentState = convertFromRaw({
+//   entityMap: {},
+//   blocks: [
+//     {
+//       type: 'code-block',
+//       text: ''
+//     }
+//   ]
+// });
+const codeToRender = {
   entityMap: {},
   blocks: [
     {
       type: 'code-block',
-      text: ''
+      text: 'blah'
     }
   ]
-});
+}
+
+const contentState = convertFromRaw(codeToRender);
+
 
 class App extends Component {
   constructor(props) {
@@ -64,24 +76,37 @@ class App extends Component {
 
   onToggleCode = () => {
     console.log('test');
-    this.onChange(RichUtils.toggleCode(this.state.editorState)).bind(this);
+    this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
   }
 
+  renderEditor = () => {
+    console.log('renderEditor')
+  }
   //generate code from state function not working yet
   genCode = () => {
-    console.log('generate code!');
-    let data = this.state.data.tables;
-    const allCode = [];
-    data.forEach((x) => {
-      const codeBlock = {};
-      codeBlock.name = x.name,
-        x.attributes.forEach((y) => {
-          codeBlock.field = y.field,
-            codeBlock.type = y.type
-        })
-      allCode.push(codeBlock);
-      console.log(allCode);
-    })
+    // getTableName = () => {
+    //   let data = this.state.data.tables;
+    //   const allCode = [];
+    //   data.forEach((x) => {
+    //     const codeBlock = {};
+    //     codeBlock.name = x.name,
+    //       x.attributes.forEach((y) => {
+    //         codeBlock.field = y.field,
+    //           codeBlock.type = y.type
+    //       })
+    //     allCode.push(codeBlock);
+    //     console.log(allCode);
+    //   })
+    // },
+
+    // getRowData = () => {
+    //   console.log('getRowData');
+    // },
+
+    // compileCode = () => {
+    //   console.log('compileCode');
+    // }
+
   }
 
   onAddTable = () => {
@@ -175,17 +200,13 @@ class App extends Component {
           updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
           updateRowType={this.updateRowType} refreshRowPositions={this.refreshRowPositions} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} onDragTable={this.onDragTable}/>
           <div className="TextEditor">
-
-          <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
+          {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
           </div> 
         </SplitPane>
-
-
       </div>
-
     );
   }
 }
