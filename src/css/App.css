@@ -129,3 +129,6 @@ border-color: transparent;
   float:right;
   cursor:pointer;
 }
+.select-input{
+  width:100px;
+}
