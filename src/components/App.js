@@ -69,7 +69,7 @@ class App extends Component {
 
   //generate code from state function not working yet
   genCode = () => {
-    console.log('generate code!');
+    // console.log('generate code!');
     let data = this.state.data.tables;
     const allCode = [];
     data.forEach((x) => {
@@ -80,7 +80,7 @@ class App extends Component {
             codeBlock.type = y.type
         })
       allCode.push(codeBlock);
-      console.log(allCode);
+      // console.log(allCode);
     })
   }
 
@@ -91,7 +91,7 @@ class App extends Component {
         tables:newstate.concat({
             name: '',
             attributes: [
-              { field: '', type: '' }
+              { field: '', type: '', value:null }
             ]
           })
     }
@@ -126,6 +126,7 @@ class App extends Component {
   updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
       let rowType = state.data.tables[tableIndex].attributes[rowIndex]
+      rowType.value = value;
       rowType.type = value;
       return state;
     })
@@ -166,6 +167,7 @@ class App extends Component {
     })
   }
 
+
   render() {
     
     return (
@@ -173,7 +175,7 @@ class App extends Component {
         <SplitPane split="vertical" defaultSize="50%">
         <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
           updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} refreshRowPositions={this.refreshRowPositions} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} onDragTable={this.onDragTable}/>
+          updateRowType={this.updateRowType} refreshRowPositions={this.refreshRowPositions} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} onDragTable={this.onDragTable} value={this.state.value}/>
           <div className="TextEditor">
 
           <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>

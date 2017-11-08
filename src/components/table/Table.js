@@ -3,6 +3,10 @@ import { render } from 'react-dom';
 import App from '../App'
 import css from '../../css/Table.css'
 import Draggable, { DraggableCore } from 'react-draggable';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
+
 
 class Table extends React.Component {
     constructor(props) {
@@ -24,9 +28,27 @@ class Table extends React.Component {
     }
 
     render() {
-        const { table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, deleteTable, deleteRow } = this.props
+        const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
+        
+        const {data, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, deleteTable, deleteRow, value} = this.props
+        let options = [
+            { value: 'GraphQLString', label:'GraphQLString' },
+            { value: 'GraphQLInt', label:'GraphQLInt' },   
+            { value: 'GraphQLFloat', label:'GraphQLFloat' },            
+            { value: 'GraphQLBoolean', label:'GraphQLBoolean' },            
+            { value: 'GraphQLID', label:'GraphQLID' },
+            { value: 'GraphQLList', label:'GraphQLList'}
+        ]
+            for(let i=0; i<data.tables.length; i++) {
+                let container = {}
+                container.value = data.tables[i].name
+                container.label = data.tables[i].name
+                options.push(container)
+            
+        }
         return (
-            <Draggable enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
+            <Draggable  bounds="parent"
+            enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <table className="table">
                 <tbody>
                     <tr>
@@ -35,14 +57,25 @@ class Table extends React.Component {
                             <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
                         </th>
                     </tr>
-                    {table.attributes.map(({ field, type,x,y }, i) =>
+                    {table.attributes.map(({field, type,x,y}, i) =>
                         <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }}>
-                            <td><input type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                            <td><input className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                             <td className ='typetd'>
-                                <input className='typeinput' type="text" placeholder="Type" value={type} onChange={(e) => updateRowType(tableIndex, i, e.target.value)} />
+                                 {/* <input className='typeinput' type="text" placeholder="Type" value={type} onChange={(e) => updateRowType(tableIndex, i, e.target.value)} /> */}
                                 {/*<td width="100px"><p> {table.tablePositionX}, {table.tablePositionY} </p></td>*/}
                                 <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,rowIndex)}>x</div>
                             {/* <td width="100px"><p> {Math.floor(x)}, {Math.floor(y)} </p></td> */}
+                            <div>
+                            <Select
+				        	onChange={(value) => updateRowType(tableIndex, i, value)}
+					        options={options}
+					        simpleValue
+                            autosize = {true}
+                            value ={data.tables[tableIndex].attributes[i].value}
+					        />
+                            </div>
+
+
                             </td>
                             </tr>
                     )}

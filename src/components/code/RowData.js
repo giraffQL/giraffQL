@@ -17,7 +17,7 @@ class RowData extends React.Component {
                     <span className="tabspace" />{rightBracket}</div>)
             }
         });
-        console.log(attr);
+        // console.log(attr);
         return (
             <div>{result}</div>
         )
