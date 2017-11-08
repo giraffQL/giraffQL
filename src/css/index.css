@@ -51,10 +51,29 @@ pre > pre{
   padding: 0;
 }
 
+.schemaCode{
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ccc;
+  background: gray;
+  border-radius: .2em;
+  padding: .5em;
+  margin: 10;
+  /* width:100% */
+}
+
 .schemaType{
-  color: white;
+  color: black;
   text-align: left;
   font-family: monospace;
+  font-size: 11px;
+  border-style: solid;
+  border: gray solid 2px;
+  background: #fff;
+  border-radius: .3em;
+  padding: 1em;
+  margin: auto;
+  width:100%;
 }
 
 .tabspace{
