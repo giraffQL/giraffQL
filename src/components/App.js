@@ -63,13 +63,13 @@ class App extends Component {
   }
 
   onToggleCode = () => {
-    console.log('test');
+    // console.log('test');
     this.onChange(RichUtils.toggleCode(this.state.editorState)).bind(this);
   }
 
   //generate code from state function not working yet
   genCode = () => {
-    console.log('generate code!');
+    // console.log('generate code!');
     let data = this.state.data.tables;
     const allCode = [];
     data.forEach((x) => {
@@ -80,7 +80,7 @@ class App extends Component {
             codeBlock.type = y.type
         })
       allCode.push(codeBlock);
-      console.log(allCode);
+      // console.log(allCode);
     })
   }
 
@@ -142,6 +142,19 @@ class App extends Component {
     spliceit.tables.splice(index,1);
     this.setState({spliceit})
   }
+
+  deleteAllTables = () => {
+    let stateNew = {};
+    let keys = Object.keys(this.state);
+    console.log(keys)
+    keys.forEach((key, i) => {
+      stateNew[key] = this.state[key];
+    })
+    console.log('stateNew', stateNew)
+    stateNew.data.tables = [];
+    this.setState(stateNew);
+  }
+
   //TABLE POSITION
   onDragTable = (tableIndex, e, dataEvent) => {
     this.setState(state => {
@@ -167,20 +180,21 @@ class App extends Component {
   }
 
   render() {
-    
+
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
-        <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-          updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} refreshRowPositions={this.refreshRowPositions} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} onDragTable={this.onDragTable}/>
+        <div class="displayWrapper">
+          <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
+            updateRowType={this.updateRowType} refreshRowPositions={this.refreshRowPositions} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteAllTables={this.deleteAllTables} deleteRow = {this.deleteRow} onDragTable={this.onDragTable}/>
+        </div>
           <div className="TextEditor">
-
-          <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
-          <SchemaCode code={this.state.data.tables}>
-          </SchemaCode>
-          </div> 
+            <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+            <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} />
+            <SchemaCode code={this.state.data.tables}>
+            </SchemaCode>
+          </div>
         </SplitPane>
 
 

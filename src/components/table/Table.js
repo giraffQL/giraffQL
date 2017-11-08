@@ -24,13 +24,13 @@ class Table extends React.Component {
     }
 
     render() {
-        const { table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, deleteTable, deleteRow } = this.props
+        const { table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, deleteTable, deleteRow, style } = this.props
         return (
-            <Draggable enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
+            <Draggable enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)} bounds={'parent'}>
             <table className="table">
                 <tbody>
                     <tr>
-                        <th colSpan={2}>
+                        <th colSpan={2} style={style}>
                             <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
                             <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
                         </th>
