@@ -25,6 +25,10 @@ body {
   top: 0;
   left: 0;
   z-index:1;
+  width: 100vw;
+  height: (height/width * 100)vw;
+  max-height: 100vh;
+  max-width: (width/height * 100)vh;
 }
 
 .tables {
@@ -175,4 +179,8 @@ border-color: transparent;
 .drawing {
   width: 100%;
   height: 100%;
+}
+
+.react-draggable {
+  width: 372px;
 }
