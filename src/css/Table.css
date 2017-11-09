@@ -1,10 +1,18 @@
+.tablesWrapper {
+    height: 10000px;
+    width: 100%;
+    overflow: scroll;
+}
+
 .table {
+    margin: 10px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    float:left;
 }
 
 .table td, .table th {
-    border: 1px solid #ddd;
+    border: 7px solid #F1EBDD;
     padding: 8px;
 }
 

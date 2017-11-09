@@ -71,7 +71,7 @@ class Table extends React.Component {
             <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
-                        <th colSpan={2}>
+                        <th colSpan={2} style={style}>
                             <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
                             {/*<div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>*/}
                             <div className='drag-handle'>H</div>

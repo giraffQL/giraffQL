@@ -208,6 +208,19 @@ class App extends Component {
     // spliceit.tables.splice(index,1);
     // this.setState({spliceit})
   }
+
+  deleteAllTables = () => {
+    let stateNew = {};
+    let keys = Object.keys(this.state);
+    console.log(keys)
+    keys.forEach((key, i) => {
+      stateNew[key] = this.state[key];
+    })
+    console.log('stateNew', stateNew)
+    stateNew.data.tables = [];
+    this.setState(stateNew);
+  }
+
   //TABLE POSITION
 refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
 
