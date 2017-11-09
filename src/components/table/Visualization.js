@@ -43,11 +43,12 @@ class Visualization extends React.Component {
 
     render() {
         const { start, end } = this.state
-        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
+        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
         return (
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
                 <div className='toolbar'>
                     <button onClick={onAddTable}> Create table </button>
+                    <button onClick={deleteAllTables}> Delete All </button>
                 </div>
                 <div>
                     <svg className="relations" >
