@@ -1,6 +1,10 @@
 .table {
+    float: left;
+    position: relative;
+    margin: 10px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    float:left;
 }
 
 .table td, .table th {

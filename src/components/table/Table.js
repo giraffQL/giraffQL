@@ -43,26 +43,27 @@ class Table extends React.Component {
         )
     }
 
- 
+
 
     render() {
-        const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
+        const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
-        const {data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value} = this.props
+        const { data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
+
         let options = [
-            { value: 'GraphQLString', label:'GraphQLString' },
-            { value: 'GraphQLInt', label:'GraphQLInt' },   
-            { value: 'GraphQLFloat', label:'GraphQLFloat' },            
-            { value: 'GraphQLBoolean', label:'GraphQLBoolean' },            
-            { value: 'GraphQLID', label:'GraphQLID' },
-            { value: 'GraphQLList', label:'GraphQLList'}
+            { value: 'GraphQLString', label: 'GraphQLString' },
+            { value: 'GraphQLInt', label: 'GraphQLInt' },
+            { value: 'GraphQLFloat', label: 'GraphQLFloat' },
+            { value: 'GraphQLBoolean', label: 'GraphQLBoolean' },
+            { value: 'GraphQLID', label: 'GraphQLID' },
+            { value: 'GraphQLList', label: 'GraphQLList' }
         ]
-            for(let i=0; i<data.tables.length; i++) {
-                let container = {}
-                container.value = data.tables[i].name
-                container.label = data.tables[i].name
-                options.push(container)
-            
+        for (let i = 0; i < data.tables.length; i++) {
+            let container = {}
+            container.value = data.tables[i].name
+            container.label = data.tables[i].name
+            options.push(container)
+
         }
         return (
             <Draggable bounds="parent" handle=".drag-handle"
@@ -109,6 +110,7 @@ class Table extends React.Component {
             </table>
             </div>
             </Draggable>
+
         )
     }
 }
