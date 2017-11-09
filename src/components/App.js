@@ -208,6 +208,19 @@ class App extends Component {
     spliceit.tables.splice(index,1);
     this.setState({spliceit})
   }
+
+  deleteAllTables = () => {
+    let stateNew = {};
+    let keys = Object.keys(this.state);
+    console.log(keys)
+    keys.forEach((key, i) => {
+      stateNew[key] = this.state[key];
+    })
+    console.log('stateNew', stateNew)
+    stateNew.data.tables = [];
+    this.setState(stateNew);
+  }
+
   //TABLE POSITION
 refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
 
@@ -229,7 +242,7 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
    onRowMouseDown = (tableIndex, rowIndex) => {
       this.setState({
         clickedRow: {
-          tableIndex, 
+          tableIndex,
           rowIndex
         }
       })
@@ -263,14 +276,14 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
         <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow}
+            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteAllTables={this.deleteAllTables} deleteRow = {this.deleteRow}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
           <div className="TextEditor">
           {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
-          </div> 
+          </div>
         </SplitPane>
       </div>
     );

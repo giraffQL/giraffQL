@@ -1,10 +1,14 @@
 .table {
+    float: left;
+    position: relative;
+    margin: 10px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    float:left;
 }
 
 .table td, .table th {
-    border: 1px solid #ddd;
+    border: 7px solid #F1EBDD;
     padding: 8px;
 }
 
@@ -59,8 +63,8 @@
   .deleterowbutton {
     width:7%;
     float:right;
-    cursor:pointer; 
-    margin-top:6px;   
+    cursor:pointer;
+    margin-top:6px;
   }
 .propertyinput {
     height:29px;
@@ -82,3 +86,8 @@ table {
 .dropdown {
     width:90%;
 }
+
+table {
+    position: relative;
+}
+
