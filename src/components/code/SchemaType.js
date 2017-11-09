@@ -22,12 +22,10 @@ class SchemaType extends React.Component {
 
         return (
             <div className="schemaType">
-                <div>
                     {tableName}
                     <span className="tabspace"/>{fieldsLine}
                     <span className="tabspace"/><span className="tabspace"/><RowData data={table} />
                     {rightBracket}
-                </div>
             </div>
         )
 

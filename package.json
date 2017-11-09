@@ -13,7 +13,9 @@
     "react-resizable": "^1.7.5",
     "react-resizable-component": "^1.1.0",
     "react-scripts": "1.0.15",
-    "react-split-pane": "^0.1.68"
+    "react-select": "^1.0.0-rc.10",
+    "react-split-pane": "^0.1.68",
+    "react-svg-pathline": "^0.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
