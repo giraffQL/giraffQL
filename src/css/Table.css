@@ -76,15 +76,18 @@
 }
 
 .drag {
-    width: 25px;
-    height: 25px;
-    float: right;
+    width: 35px;
+    height: 35px;
+    z-index: -1;
+}
+table {
+    position:relative
+}
+.dropdown {
+    width:90%;
 }
 
 table {
     position: relative;
 }
 
-.dropdown {
-    width: 90%;
-}

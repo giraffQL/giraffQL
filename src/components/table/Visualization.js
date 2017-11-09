@@ -50,7 +50,6 @@ class Visualization extends React.Component {
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
                 <div className='toolbar'>
                     <button onClick={onAddTable}> Create table </button>
-                    <button> Add relations </button>
                     <button onClick={deleteAllTables}> Delete All </button>
                 </div>
                 <div className="tablesWrapper">
