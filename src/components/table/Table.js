@@ -66,7 +66,7 @@ class Table extends React.Component {
 
         }
         return (
-
+            // remove bounds to switch back to prior changes
             <Draggable  className="react-draggable" handle=".drag-handle" bounds="parent"
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <div>

@@ -1,6 +1,5 @@
 .table {
     float: left;
-    position: absolute; /* changed from absolute */
     margin: 10px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
