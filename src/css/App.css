@@ -28,7 +28,7 @@ body {
   z-index:1;
 }
 
-.tablesWrapper {
+.tablesWrapper { /* changed name from .tables */
   border: 1px solid red;
   width: 100%;
   height: 100%;
