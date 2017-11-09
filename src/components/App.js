@@ -48,6 +48,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      clickedRow: null,
       data: {
         tables: []
       },
@@ -126,25 +127,48 @@ class App extends Component {
   }
 
   onAddTable = () => {
+    //function which is making random string for ID
+    function guid() {
+      function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1);
+      }
+      return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+    }
+
     let newstate = this.state.data.tables.slice()
     this.setState({
-      data:{
-        tables:newstate.concat({
-            name: '',
-            attributes: [
-              { field: '', type: '', value:null }
-            ]
-          })
-    }
-  })
-}
+      data: {
+        tables: newstate.concat({
+          id: guid(),
+          name: '',
+          attributes: [
+            { field: '', type: '' }
+          ]
+        })
+      }
+    })
+  }
 
 
   //this is not correct way to do because state has to be immutable (but it's working)
-  onAddRow = (index) => {
-    let addit = Object.assign({}, this.state.data.tables[index])
-    addit.attributes.push({ field: '', type: '' })
-    this.setState({addit})
+  //this is not correct way to do because state has to be immutable (but it's working)
+  onAddRow = (tableIndex) => {
+    this.setState(state => {
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex )
+              ? Object.assign({}, table, {
+                attributes: table.attributes.concat({ field: '', type: '' })
+              })
+              : table
+          )
+        }
+      }
+    })
   }
 
   updateTableName = (tableIndex, value) => {
@@ -174,49 +198,73 @@ class App extends Component {
   }
 
   deleteRow = (tableindex,rowindex) => {
-    let spliceit = Object.assign({}, this.state.data.tables[tableindex])
-    spliceit.attributes.splice(rowindex,1);
-    this.setState({spliceit})
+    // let spliceit = Object.assign({}, this.state.data.tables[tableindex])
+    // spliceit.attributes.splice(rowindex,1);
+    // this.setState({spliceit})
   }
 
   deleteTable = (index) => {
-    let spliceit = Object.assign({}, this.state.data)
-    spliceit.tables.splice(index,1);
-    this.setState({spliceit})
+    // let spliceit = Object.assign({}, this.state.data)
+    // spliceit.tables.splice(index,1);
+    // this.setState({spliceit})
   }
   //TABLE POSITION
-  onDragTable = (tableIndex, e, dataEvent) => {
-    this.setState(state => {
-      let posX = state.data.tables[tableIndex]
-      posX.tablePositionX = dataEvent.x;
-      let posY = state.data.tables[tableIndex]
-      posY.tablePositionY = dataEvent.y;
-      // console.log(posX.tablePositionX, posY.tablePositionY)
-      return state;
-    })
-  }
+refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
 
-  //ROW POSITION
-  refreshRowPositions = (tableIndex, rowPositions) => {
     this.setState(state => {
+      let table = state.data.tables[tableIndex]
+      table.tablePositionX = tablePosition.left
+      table.tablePositionY = tablePosition.top
+
       let attrs = state.data.tables[tableIndex].attributes
-      for (let i = 0; i < attrs.length; ++i) {
+      for (let i = 0; i < attrs.length; i += 1) {
         attrs[i].x = rowPositions[i].left
         attrs[i].y = rowPositions[i].top
       }
+
       return state;
     })
   }
 
+   onRowMouseDown = (tableIndex, rowIndex) => {
+      this.setState({
+        clickedRow: {
+          tableIndex, 
+          rowIndex
+        }
+      })
+  }
+
+    onTableMouseUp = (tableIndex) => {
+    const { clickedRow } = this.state
+    if (tableIndex === null || !clickedRow || clickedRow.tableIndex === tableIndex) {
+      this.setState({
+          clickedRow: null
+        })
+    } else {
+      this.setState(state => {
+        const table = state.data.tables[state.clickedRow.tableIndex]
+        table.attributes[state.clickedRow.rowIndex].relatedToTableId = state.data.tables[tableIndex].id
+        return {
+          clickedRow: null,
+          data: state.data
+        }
+      })
+    }
+  }
+
+
 
   render() {
-    
+    const { data } = this.state
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
-        <Visualization data={this.state.data} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-          updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-          updateRowType={this.updateRowType} refreshRowPositions={this.refreshRowPositions} onAddTable={this.onAddTable} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} onDragTable={this.onDragTable} value={this.state.value}/>
+        <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
+            updateRowType={this.updateRowType} onAddTable={this.onAddTable}
+            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow}
+            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
           <div className="TextEditor">
           {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}

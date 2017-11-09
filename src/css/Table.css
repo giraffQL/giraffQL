@@ -35,7 +35,7 @@
     text-align: center;
 }
 .deletetablebutton {
-    color: white;
+    /*color: white;
     border: none;
     background-color: rgb(83, 47, 6);
     border-radius: 20px;
@@ -49,7 +49,7 @@
     padding: 0;
     margin: 0;
     font-weight: bold;
-    cursor: pointer;
+    cursor: pointer;*/
   }
   .typeinput {
     width:80%;
@@ -57,10 +57,10 @@
     margin: 0 auto;
   }
   .deleterowbutton {
-    width:7%;
+    /*width:7%;
     float:right;
     cursor:pointer; 
-    margin-top:6px;   
+    margin-top:6px;   */
   }
 .propertyinput {
     height:29px;
@@ -69,4 +69,10 @@
     text-align: center;
     margin-top:1px;
     border-color: solid black;
+}
+
+.drag {
+    width: 25px;
+    height: 25px;
+    float: right;
 }
