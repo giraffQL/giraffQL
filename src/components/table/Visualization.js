@@ -53,7 +53,7 @@ class Visualization extends React.Component {
                     <button> Add relations </button>
                     <button onClick={deleteAllTables}> Delete All </button>
                 </div>
-                <div>
+                <div className="displayWrapper">
                     <svg className="relations" >
                         {start !== null && end !== null && clickedRow &&
                             <PathLine
@@ -69,7 +69,7 @@ class Visualization extends React.Component {
                                 const relatedTable = data.tables.find(t => t.id === attr.relatedToTableId)
                                 if (relatedTable) {
                                     return (
-                                        <PathLine 
+                                        <PathLine
                                             key={`${i}-${ai}`}
                                             points={[
                                                 { ...attr },
@@ -94,7 +94,6 @@ class Visualization extends React.Component {
                     </div>
                 </div>
             </div>
-        </div>
         )
     }
 }

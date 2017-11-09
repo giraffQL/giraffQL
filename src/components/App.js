@@ -198,15 +198,15 @@ class App extends Component {
   }
 
   deleteRow = (tableindex,rowindex) => {
-    // let spliceit = Object.assign({}, this.state.data.tables[tableindex])
-    // spliceit.attributes.splice(rowindex,1);
-    // this.setState({spliceit})
+    let spliceit = Object.assign({}, this.state.data.tables[tableindex])
+    spliceit.attributes.splice(rowindex,1);
+    this.setState({spliceit})
   }
 
   deleteTable = (index) => {
-    // let spliceit = Object.assign({}, this.state.data)
-    // spliceit.tables.splice(index,1);
-    // this.setState({spliceit})
+    let spliceit = Object.assign({}, this.state.data)
+    spliceit.tables.splice(index,1);
+    this.setState({spliceit})
   }
 
   deleteAllTables = () => {
@@ -242,7 +242,7 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
    onRowMouseDown = (tableIndex, rowIndex) => {
       this.setState({
         clickedRow: {
-          tableIndex, 
+          tableIndex,
           rowIndex
         }
       })
@@ -283,7 +283,7 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
-          </div> 
+          </div>
         </SplitPane>
       </div>
     );

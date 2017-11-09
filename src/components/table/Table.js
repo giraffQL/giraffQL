@@ -43,17 +43,18 @@ class Table extends React.Component {
         )
     }
 
- 
+
 
     render() {
         const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
 
-        const {data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value} = this.props
+        const {data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value, style} = this.props
+
         let options = [
             { value: 'GraphQLString', label:'GraphQLString' },
-            { value: 'GraphQLInt', label:'GraphQLInt' },   
-            { value: 'GraphQLFloat', label:'GraphQLFloat' },            
-            { value: 'GraphQLBoolean', label:'GraphQLBoolean' },            
+            { value: 'GraphQLInt', label:'GraphQLInt' },
+            { value: 'GraphQLFloat', label:'GraphQLFloat' },
+            { value: 'GraphQLBoolean', label:'GraphQLBoolean' },
             { value: 'GraphQLID', label:'GraphQLID' },
             { value: 'GraphQLList', label:'GraphQLList'}
         ]
@@ -62,7 +63,7 @@ class Table extends React.Component {
                 container.value = data.tables[i].name
                 container.label = data.tables[i].name
                 options.push(container)
-            
+
         }
         return (
             <Draggable  handle=".drag-handle"
@@ -73,7 +74,7 @@ class Table extends React.Component {
                     <tr>
                         <th colSpan={2} style={style}>
                             <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
-                            {/*<div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>*/}
+                            <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
                             <div className='drag-handle'>H</div>
                         </th>
                     </tr>
@@ -83,10 +84,10 @@ class Table extends React.Component {
                             <td className ='typetd'>
                                  {/* <input className='typeinput' type="text" placeholder="Type" value={type} onChange={(e) => updateRowType(tableIndex, i, e.target.value)} /> */}
                                 {/*<td width="100px"><p> {table.tablePositionX}, {table.tablePositionY} </p></td>*/}
-                                {/*<div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,rowIndex)}>x</div>*/}
+                                <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,rowIndex)}>x</div>
                             {/* <td width="100px"><p> {Math.floor(x)}, {Math.floor(y)} </p></td> */}
-                            <div>
-                            <Select
+                            <div >
+                            <Select className="dropdown"
 				        	onChange={(value) => updateRowType(tableIndex, i, value)}
 					        options={options}
 					        simpleValue

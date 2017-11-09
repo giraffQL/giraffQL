@@ -51,6 +51,8 @@ body {
 .displayWrapper {
   width: 100%;
   height: 5000px;
+  margin-top: 20px;
+  border: 1px solid red;
 }
 .editorbutton {
   text-align:center;
