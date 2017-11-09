@@ -67,7 +67,7 @@ class Table extends React.Component {
         }
         return (
 
-            <Draggable  handle=".drag-handle"
+            <Draggable  className="react-draggable" handle=".drag-handle" bounds="parent"
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <div>
             <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>

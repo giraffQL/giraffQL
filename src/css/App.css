@@ -28,7 +28,7 @@ body {
   z-index:1;
 }
 
-.tablesWrapper { /* changed name from .tables */
+.displayWrapper {
   border: 1px solid red;
   width: 100%;
   height: 100%;
@@ -37,6 +37,16 @@ body {
   left: 0;
   z-index:2;
   overflow: scroll;
+}
+
+.tablesWrapper { /* changed name from .tables */
+  border: 1px solid red;
+  width: 100%;
+  height: 50000px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:2;
 }
 
 .root {
@@ -50,7 +60,6 @@ body {
   height:5000px;
   border-right:1px solid white
 }
-
 
 .editorbutton {
   text-align:center;

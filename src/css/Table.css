@@ -1,10 +1,9 @@
 .table {
     float: left;
-    position: relative; /* changed from absolute */
+    position: absolute; /* changed from absolute */
     margin: 10px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    float:left;
 }
 
 .table td, .table th {
@@ -87,4 +86,8 @@ table {
 
 .dropdown {
     width: 90%;
+}
+
+.react-draggable {
+    width: 372px;
 }

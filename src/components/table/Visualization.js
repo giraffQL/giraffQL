@@ -53,7 +53,7 @@ class Visualization extends React.Component {
                     <button> Add relations </button>
                     <button onClick={deleteAllTables}> Delete All </button>
                 </div>
-                <div className="tablesWrapper">
+                <div className="displayWrapper">
                     <svg className="relations" >
                         {start !== null && end !== null && clickedRow &&
                             <PathLine
