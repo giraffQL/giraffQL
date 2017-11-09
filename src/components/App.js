@@ -152,8 +152,6 @@ class App extends Component {
     })
   }
 
-
-  //this is not correct way to do because state has to be immutable (but it's working)
   //this is not correct way to do because state has to be immutable (but it's working)
   onAddRow = (tableIndex) => {
     this.setState(state => {
@@ -258,6 +256,7 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
       this.setState(state => {
         const table = state.data.tables[state.clickedRow.tableIndex]
         table.attributes[state.clickedRow.rowIndex].relatedToTableId = state.data.tables[tableIndex].id
+        table.attributes[state.clickedRow.rowIndex].type = state.data.tables[tableIndex].name
         return {
           clickedRow: null,
           data: state.data

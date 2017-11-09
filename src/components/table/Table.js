@@ -48,7 +48,7 @@ class Table extends React.Component {
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
-        const { data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value, style } = this.props
+        const { data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
 
         let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
@@ -67,43 +67,48 @@ class Table extends React.Component {
         }
         return (
             <Draggable bounds="parent" handle=".drag-handle"
-                enableUserSelectHack={false} onDrag={(e, dataEvent) => this.onDragTable(e, dataEvent)}>
-                <div>
-                    <table className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
-                        <tbody>
-                            <tr>
-                                <th colSpan={2} style={style}>
-                                    <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
-                                    <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
-                                    <div className='drag-handle'>H</div>
-                                </th>
-                            </tr>
-                            {table.attributes.map(({ field, type, x, y }, i) =>
-                                <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
-                                    <td><input className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
-                                    <td className='typetd'>
-                                        {/*<input className='typeinput' type="text" placeholder="Type" value={type} onChange={(e) => updateRowType(tableIndex, i, e.target.value)} /> */}
-                                        {/*<td width="100px"><p> {table.tablePositionX}, {table.tablePositionY} </p></td>*/}
-                                        <div className='deleterowbutton' onClick={() => deleteRow(tableIndex, rowIndex)}>x</div>
-                                        {/* <td width="100px"><p> {Math.floor(x)}, {Math.floor(y)} </p></td> */}
-                                        <div>
-                                            <Select className="dropdown"
+            enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
+            <div>
+            <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+                <tbody>
+                    <tr>
+                        <th colSpan={2}>
+                            <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
+                            <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
+                            <div className='drag-handle'><img className="drag" src={"https://d30y9cdsu7xlg0.cloudfront.net/png/417776-200.png"}/></div>
+                        </th>
+                    </tr>
+                    {table.attributes.map(({field, type, x, y, relatedToTableId}, i) => {
+                        const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
+                        return (
+                            <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
+                                <td><input className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                                <td className ='typetd'>
+                                    <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,rowIndex)}>x</div>
+                                    <div>
+                                        {relatedTable &&
+                                            <span>{relatedTable.name}</span>
+                                        }
+                                        {!relatedTable &&
+                                            <Select className='dropdown'
                                                 onChange={(value) => updateRowType(tableIndex, i, value)}
                                                 options={options}
                                                 simpleValue
                                                 autosize={true}
                                                 value={data.tables[tableIndex].attributes[i].value}
                                             />
-                                        </div>
-                                    </td>
-                                </tr>
-                            )}
-                            <tr>
-                                <td colSpan={2}><button className="addRow" onClick={() => onAddRow(tableIndex)}> Add new field </button> </td>
+                                        }
+                                    </div>
+                                </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        )
+                    })}
+                    <tr>
+                    <td colSpan={2}><button className="addRow" onClick={() => onAddRow(tableIndex)}> Add new field </button> </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
             </Draggable>
 
         )
