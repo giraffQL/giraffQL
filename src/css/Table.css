@@ -1,10 +1,6 @@
-.tablesWrapper {
-    height: 10000px;
-    width: 100%;
-    overflow: scroll;
-}
-
 .table {
+    float: left;
+    position: relative;
     margin: 10px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;

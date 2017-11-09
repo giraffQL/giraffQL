@@ -53,7 +53,7 @@ class Visualization extends React.Component {
                     <button> Add relations </button>
                     <button onClick={deleteAllTables}> Delete All </button>
                 </div>
-                <div className="displayWrapper">
+                <div className="tablesWrapper">
                     <svg className="relations" >
                         {start !== null && end !== null && clickedRow &&
                             <PathLine
@@ -85,7 +85,7 @@ class Visualization extends React.Component {
                         )}
                     </svg>
 
-                    <div className="tables">
+                    <div className="tablesWrapper">
                         {data.tables.map((table, i) =>
                             <Table style={{"background-color": colors[i]}} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
                                 updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}

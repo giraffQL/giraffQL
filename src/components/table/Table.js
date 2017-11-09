@@ -66,9 +66,10 @@ class Table extends React.Component {
 
         }
         return (
-            <div className="tablesWrapper">
+
             <Draggable  handle=".drag-handle"
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
+            <div>
             <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
@@ -105,8 +106,8 @@ class Table extends React.Component {
                     </tr>
                 </tbody>
             </table>
-            </Draggable>
             </div>
+            </Draggable>
 
         )
     }
