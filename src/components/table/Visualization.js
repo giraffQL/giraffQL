@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import App from '../App'
 import Table from './Table'
 import { PathLine } from 'react-svg-pathline'
+import colors from './colors';
 
 class Visualization extends React.Component {
     constructor(props) {
@@ -82,7 +83,7 @@ class Visualization extends React.Component {
 
                     <div className="tables">
                         {data.tables.map((table, i) =>
-                            <Table key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
+                            <Table style={{"background-color": colors[i]}} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
                                 updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
                                 onDragTable={onDragTable} dataEvent={dataEvent} refreshTablePositions={refreshTablePositions} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
                         )}

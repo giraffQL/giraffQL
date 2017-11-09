@@ -5,6 +5,7 @@ import css from '../../css/Table.css'
 import Draggable, { DraggableCore } from 'react-draggable';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import colors from './colors';
 
 
 
@@ -48,7 +49,7 @@ class Table extends React.Component {
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
-        const { data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
+        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
 
         let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
@@ -69,7 +70,7 @@ class Table extends React.Component {
             <Draggable bounds="parent" handle=".drag-handle"
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <div>
-            <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+            <table style={style} className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
                         <th colSpan={2}>
