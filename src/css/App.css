@@ -30,6 +30,15 @@ body {
   z-index:1;
 }
 
+.relation {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:1;
+}
+
 .tables {
   padding-top: 50px;
   width: 100%;
@@ -232,11 +241,11 @@ border-color: transparent;
   -moz-transition: top 0.1s ease;
   top: -60px;
   border-radius:15px;
-  
+
 }
 
 .b02_slide_in div:nth-child(3) {
-  color: #977359;  
+  color: #977359;
   transition: opacity 0.1s ease;
   -webkit-transition: opacity 0.1s ease;
   -moz-transition: opacity 0.1s ease;
@@ -255,4 +264,8 @@ border-color: transparent;
   transition: opacity 0.1s ease;
   -webkit-transition: opacity 0.1s ease;
   -moz-transition: opacity 0.1s ease;
+}
+
+.force-select{
+  -webkit-user-select: all;
 }
