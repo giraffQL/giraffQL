@@ -4,9 +4,9 @@
 }
 
 .table td, .table th {
-    border: 7px solid #DAA520;
+    border: 7px solid #6F4A38;
     padding: 8px;
-    background-color: #f2f2f2;
+    background-color: #977359;
 }
 
 .table tr:hover {background-color: #ddd;}
@@ -15,7 +15,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #DAA520;
+    background-color: #EFD962;
     color: white;
 }
 
@@ -33,6 +33,9 @@
 .addRow {
     padding: 8px 90px;
     border-radius: 4px;
+    background-color:#1E824C
+    
+    
 }
 .typetd {
     width:152.5px;
@@ -64,7 +67,8 @@
     width:7%;
     float:right;
     cursor:pointer; 
-    margin-top:6px;   
+    margin-top:6px;  
+
   }
 .propertyinput {
     height:29px;
@@ -79,21 +83,46 @@
     position: fixed;
     left: 0;
     top: 0;
-    width:50px;
-    height: 50px;
+    margin-top:20px;
+    width:30px;
+    height: 29px;
+    margin-left:10px;
 }
-
 .drag {
     display: block;
-    margin: auto;
+    margin-top:21px;
     width: 30px;
-    height: 30px;
+    height: 29px;
 }
-
+.table {
+    position:relative
+}
 .dropdown {
     width:90%;
  }
+.Select-control {
+    width:90%;
+}
 
-table {
-    position: relative;
+.img {
+    width: 30px;
+    height: 29px;
+    border-radius: 50%;
+    pointer-events: none;
+    user-select:none;
+}
+.buttonone {
+    font-size:20px;
+    text-align: center;
+    margin:0;
+    margin-top:4px;
+}
+.buttontwo {
+    font-size:20px;
+    text-align: center;
+    margin:0;
+    margin-top:5px;
+}
+.select-placeholder {
+    margin-top:2px;
 }

@@ -198,6 +198,7 @@ class App extends Component {
   deleteRow = (tableindex,rowindex) => {
     let spliceit = Object.assign({}, this.state.data.tables[tableindex])
     spliceit.attributes.splice(rowindex,1);
+    console.log(spliceit)
     this.setState({spliceit})
   }
 
