@@ -5,6 +5,7 @@ import css from '../../css/Table.css'
 import Draggable, { DraggableCore } from 'react-draggable';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import colors from './colors';
 
 
 
@@ -45,7 +46,7 @@ class Table extends React.Component {
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
-        const { data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
+        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
 
         let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
@@ -69,7 +70,7 @@ class Table extends React.Component {
             <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
-                        <th colSpan={2}>
+                        <th colSpan={2} style={style}>
                             <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
                             <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
                             <div className='drag-handle'><img className="drag" src={"https://d30y9cdsu7xlg0.cloudfront.net/png/417776-200.png"}/></div>

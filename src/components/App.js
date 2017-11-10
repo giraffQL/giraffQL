@@ -205,7 +205,20 @@ class App extends Component {
     this.setState({ spliceit })
   }
 
-  refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
+  deleteAllTables = () => {
+    let stateNew = {};
+    let keys = Object.keys(this.state);
+    console.log(keys)
+    keys.forEach((key, i) => {
+      stateNew[key] = this.state[key];
+    })
+    console.log('stateNew', stateNew)
+    stateNew.data.tables = [];
+    this.setState(stateNew);
+  }
+
+  //TABLE POSITION
+refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     this.setState(state => {
       //table
       let table = state.data.tables[tableIndex]
@@ -257,8 +270,8 @@ class App extends Component {
           <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
+            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
+            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
           <div className="TextEditor">
             {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
