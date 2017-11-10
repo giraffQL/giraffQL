@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../css/App.css';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
 //DRAFT JS DEPENDENCIES
@@ -7,6 +6,7 @@ import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
 import TextEditor from '../components/code/Editor';
 //TEXT CSS
 import '../css/index.css';
+import '../css/App.css';
 import '../css/prism.css';
 //SCHEMA CODE COMPONENT//
 import SchemaCode from './code/SchemaCode';
