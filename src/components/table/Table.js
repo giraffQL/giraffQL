@@ -15,12 +15,6 @@ class Table extends React.Component {
         super(props)
         this.propertyRowRefs = [];
         this.propertyTableRefs = [];
-        this.state = {
-            position: {
-                x: 0,
-                y: 0
-            }
-        }
     }
 
     componentDidMount() {
@@ -41,7 +35,7 @@ class Table extends React.Component {
         this.props.refreshTablePositions(
             this.props.tableIndex,
             this.propertyTableRefs.getBoundingClientRect(),
-            this.propertyRowRefs.map(ref => ref.getBoundingClientRect())
+            this.propertyRowRefs.filter((el) => {return el !== null}).map(ref => ref.getBoundingClientRect())
         )
     }
 
