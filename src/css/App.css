@@ -6,6 +6,7 @@ body {
   width:100%;
   height:100%;
   padding:0;
+  background-color:#fbe4a1
 }
 
 .App {
@@ -169,3 +170,97 @@ border-color: transparent;
 .react-draggable {
  width: 372px;
  }
+ .back {
+  width: 33%;
+  height: 200px;
+  float: left;
+  background-color: #eeeeee;
+  border: 10px;
+  border-color: #ffffff;
+  border-style: solid;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  counter-increment: bc;
+  padding: 0px 5px 5px 5px;
+}
+
+.back:before {
+  content: counter(bc) "_";
+  position: absolute;
+  padding: 10px;
+}
+
+@media screen and (max-width: 1260px) {
+  .back {
+      width: 50%;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .back {
+      width: 100%;
+  }
+}
+.button_base {
+  border-color: solid #fbe4a1
+}
+.button_base:hover {
+  cursor: pointer;
+  border-color: solid #fbe4a1;
+}
+.b02_slide_in {
+  overflow: hidden;
+  border: #000000 solid 1px;
+}
+
+.b02_slide_in div {
+  position: absolute;
+  text-align: center;
+  width: 20%;
+  height: 55px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 10px;
+  border-radius:15px;
+}
+
+.b02_slide_in div:nth-child(1) {
+  margin-top:1px;
+  color:#F5ECB1	;
+  background-color: #6F4A38	;
+}
+
+.b02_slide_in div:nth-child(2) {
+  margin-top:2px;
+  background-color: #F0ECE1		;
+  transition: top 0.1s ease;
+  -webkit-transition: top 0.1s ease;
+  -moz-transition: top 0.1s ease;
+  top: -60px;
+  border-radius:15px;
+  
+}
+
+.b02_slide_in div:nth-child(3) {
+  color: #977359;  
+  transition: opacity 0.1s ease;
+  -webkit-transition: opacity 0.1s ease;
+  -moz-transition: opacity 0.1s ease;
+  opacity: 0;
+}
+
+.b02_slide_in:hover div:nth-child(2) {
+  top: 0px;
+  transition: top 0.1s ease;
+  -webkit-transition: top 0.1s ease;
+  -moz-transition: top 0.1s ease;
+}
+
+.b02_slide_in:hover div:nth-child(3) {
+  opacity: 1;
+  transition: opacity 0.1s ease;
+  -webkit-transition: opacity 0.1s ease;
+  -moz-transition: opacity 0.1s ease;
+}
