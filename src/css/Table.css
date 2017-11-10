@@ -1,6 +1,7 @@
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    margin: 10px;
 }
 
 .table td, .table th {
@@ -68,7 +69,6 @@
     float:right;
     cursor:pointer; 
     margin-top:6px;  
-
   }
 .propertyinput {
     height:29px;
@@ -100,6 +100,7 @@
 .dropdown {
     width:90%;
  }
+
 .Select-control {
     width:90%;
 }
@@ -126,3 +127,12 @@
 .select-placeholder {
     margin-top:2px;
 }
+
+.react-draggable {
+    width: 372px;
+}
+
+table {
+    position: relative;
+}
+
