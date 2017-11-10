@@ -84,7 +84,7 @@ class Table extends React.Component {
                         const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
                         return (
                             <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
-                                <td><FormControl className='propertyinput' type="text" placeholder={"Property " + tableIndex} value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                                <td><FormControl className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                 <td className ='typetd'>
                                     <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
                                     <div>
