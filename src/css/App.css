@@ -264,3 +264,7 @@ border-color: transparent;
   -webkit-transition: opacity 0.1s ease;
   -moz-transition: opacity 0.1s ease;
 }
+
+.force-select{
+  -webkit-user-select: all;
+}
