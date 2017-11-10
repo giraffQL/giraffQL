@@ -1,6 +1,7 @@
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    margin: 10px;
 }
 
 .table td, .table th {
@@ -63,8 +64,8 @@
   .deleterowbutton {
     width:7%;
     float:right;
-    cursor:pointer; 
-    margin-top:6px;   
+    cursor:pointer;
+    margin-top:6px;
   }
 .propertyinput {
     height:29px;
@@ -91,8 +92,12 @@
 }
 
 .dropdown {
-    width:90%;
- }
+    width: 90%;
+}
+
+.react-draggable {
+    width: 372px;
+}
 
 table {
     position: relative;

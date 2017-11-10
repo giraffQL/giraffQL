@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import App from '../App'
 import Table from './Table'
 import { PathLine } from 'react-svg-pathline'
+import colors from './colors';
 
 class Visualization extends React.Component {
     constructor(props) {
@@ -42,11 +43,12 @@ class Visualization extends React.Component {
 
     render() {
         const { start, end } = this.state
-        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
+        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
         return (
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
                 <div className='toolbar'>
                     <button onClick={onAddTable}> Create table </button>
+                    <button onClick={deleteAllTables}> Clear </button>
                 </div>
                 <div>
                     <svg className="relations" >
@@ -82,7 +84,7 @@ class Visualization extends React.Component {
 
                     <div className="tables">
                         {data.tables.map((table, i) =>
-                            <Table key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
+                            <Table style={{"background-color": colors[i]}} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
                                 updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
                                 onDragTable={onDragTable} dataEvent={dataEvent} refreshTablePositions={refreshTablePositions} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
                         )}
