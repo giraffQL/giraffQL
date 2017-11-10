@@ -76,7 +76,7 @@ class Table extends React.Component {
                         <th colSpan={2} style={style}>
                             <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
                             <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
-                            <div className='drag-handle'><img className="drag" src={"https://d30y9cdsu7xlg0.cloudfront.net/png/417776-200.png"}/></div>
+                            <div className='drag-handle'><img className ='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
                         </th>
                     </tr>
                     {table.attributes.map(({field, type, x, y, relatedToTableId}, i) => {
@@ -85,7 +85,7 @@ class Table extends React.Component {
                             <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
                                 <td><input className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                 <td className ='typetd'>
-                                    <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,rowIndex)}>x</div>
+                                    <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
                                     <div>
                                         {relatedTable &&
                                             <span>{relatedTable.name}</span>
@@ -105,7 +105,7 @@ class Table extends React.Component {
                         )
                     })}
                     <tr>
-                    <td colSpan={2}><button className="addRow" onClick={() => onAddRow(tableIndex)}> Add new field </button> </td>
+                    <td className = 'addbutton' colSpan={2}><button className="addRow" onClick={() => onAddRow(tableIndex)}> Add new field </button> </td>
                     </tr>
                 </tbody>
             </table>

@@ -47,8 +47,17 @@ class Visualization extends React.Component {
         return (
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
                 <div className='toolbar'>
-                    <button onClick={onAddTable}> Create table </button>
-                    <button onClick={deleteAllTables}> Clear </button>
+
+                    <div class="button_base b02_slide_in">
+                        <div onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
+                        <div></div>
+                        <div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>
+                    </div>
+                    {/* <button onClick={onAddTable}> Create table </button> */}
+
+          {/* <button onClick={onAddTable}> Create table </button> */}
+                    <button onClick={deleteAllTables}> Clear </button> 
+
                 </div>
                 <div>
                     <svg className="relations" >
