@@ -272,7 +272,7 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
-          <div className="TextEditor">
+          <div className="TextEditor force-select">
             {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
             <SchemaCode code={this.state.data.tables}>
