@@ -152,13 +152,12 @@ class App extends Component {
     })
   }
 
-  //this is not correct way to do because state has to be immutable (but it's working)
   onAddRow = (tableIndex) => {
     this.setState(state => {
       return {
         data: {
           tables: state.data.tables.map((table, i) =>
-            (i === tableIndex )
+            (i === tableIndex)
               ? Object.assign({}, table, {
                 attributes: table.attributes.concat({ field: '', type: '' })
               })
@@ -179,7 +178,6 @@ class App extends Component {
 
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      // console.log(tableIndex, rowIndex, value)
       let rowProp = state.data.tables[tableIndex].attributes[rowIndex]
       rowProp.field = value;
       return state;
@@ -195,17 +193,16 @@ class App extends Component {
     })
   }
 
-  deleteRow = (tableindex,rowindex) => {
+  deleteRow = (tableindex, rowindex) => {
     let spliceit = Object.assign({}, this.state.data.tables[tableindex])
-    spliceit.attributes.splice(rowindex,1);
-    console.log(spliceit)
-    this.setState({spliceit})
+    spliceit.attributes.splice(rowindex, 1);
+    this.setState({ spliceit })
   }
 
   deleteTable = (index) => {
     let spliceit = Object.assign({}, this.state.data)
-    spliceit.tables.splice(index,1);
-    this.setState({spliceit})
+    spliceit.tables.splice(index, 1);
+    this.setState({ spliceit })
   }
 
   deleteAllTables = () => {
@@ -222,37 +219,36 @@ class App extends Component {
 
   //TABLE POSITION
 refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
-
     this.setState(state => {
+      //table
       let table = state.data.tables[tableIndex]
       table.tablePositionX = tablePosition.left
       table.tablePositionY = tablePosition.top
-
+      //rows
       let attrs = state.data.tables[tableIndex].attributes
       for (let i = 0; i < attrs.length; i += 1) {
         attrs[i].x = rowPositions[i].left
         attrs[i].y = rowPositions[i].top
       }
-
       return state;
     })
   }
 
-   onRowMouseDown = (tableIndex, rowIndex) => {
-      this.setState({
-        clickedRow: {
-          tableIndex,
-          rowIndex
-        }
-      })
+  onRowMouseDown = (tableIndex, rowIndex) => {
+    this.setState({
+      clickedRow: {
+        tableIndex,
+        rowIndex
+      }
+    })
   }
 
-    onTableMouseUp = (tableIndex) => {
+  onTableMouseUp = (tableIndex) => {
     const { clickedRow } = this.state
     if (tableIndex === null || !clickedRow || clickedRow.tableIndex === tableIndex) {
       this.setState({
-          clickedRow: null
-        })
+        clickedRow: null
+      })
     } else {
       this.setState(state => {
         const table = state.data.tables[state.clickedRow.tableIndex]
@@ -266,23 +262,21 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     }
   }
 
-
-
   render() {
     const { data } = this.state
     return (
       <div className="App">
         <SplitPane split="vertical" defaultSize="50%">
-        <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+          <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
           <div className="TextEditor">
-          {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
-          <SchemaCode code={this.state.data.tables}>
-          </SchemaCode>
+            <SchemaCode code={this.state.data.tables}>
+            </SchemaCode>
           </div>
         </SplitPane>
       </div>
