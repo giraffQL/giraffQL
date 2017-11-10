@@ -25,7 +25,7 @@
 
 .tableName {
     display: block;
-    margin: 0 auto;
+    float:right;
     height:34px; /* changed from 29px to match select box*/
     width: 300px;
     padding:0px;
@@ -75,7 +75,7 @@
 }
 
 .typetd {
-    width:152.5px;
+    width:180px;
     text-align: center;
 }
 .deletetablebutton {
@@ -116,7 +116,6 @@
 
 .drag-handle {
     position: relative;
-
     width:30px;
     height: 29px;
     float:left;
