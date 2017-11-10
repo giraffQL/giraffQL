@@ -10,6 +10,7 @@ import { FormControl, Button } from 'react-bootstrap';
 
 
 
+
 class Table extends React.Component {
     constructor(props) {
         super(props)
@@ -45,8 +46,16 @@ class Table extends React.Component {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
         const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
+    //    let dropdownoption =['GraphQLString', 'GraphQLInt', 'GraphQLFloat', 'GraphQLBoolean', 'GraphQLID', 'GraphQLList']
+    //     for (let i = 0; i < data.tables.length; i++) {
+    //         dropdownoption.push(data.tables[i].name)
+    //     }
+    //    let options = dropdownoption.map((element,j) => {
+    //        return <MenuItem eventKey={j.toString()}>{element}></MenuItem>
+    //     })
 
-        let options = [
+
+        let options = [ 
             { value: 'GraphQLString', label: 'GraphQLString' },
             { value: 'GraphQLInt', label: 'GraphQLInt' },
             { value: 'GraphQLFloat', label: 'GraphQLFloat' },
@@ -59,10 +68,10 @@ class Table extends React.Component {
             container.value = data.tables[i].name
             container.label = data.tables[i].name
             options.push(container)
-
         }
         return (
             <Draggable bounds="parent" handle=".drag-handle"
+
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <div>
             <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
@@ -78,7 +87,7 @@ class Table extends React.Component {
                         const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
                         return (
                             <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
-                                <td><FormControl className='propertyinput' type="text" placeholder={"Property " + tableIndex} value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                                <td><FormControl className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                 <td className ='typetd'>
                                     <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
                                     <div>
@@ -107,7 +116,7 @@ class Table extends React.Component {
             </div>
             </Draggable>
 
-        )
+                )
     }
 }
 export default Table;
