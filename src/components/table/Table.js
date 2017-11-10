@@ -6,6 +6,7 @@ import Draggable, { DraggableCore } from 'react-draggable';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import colors from './colors';
+import { FormControl, Button } from 'react-bootstrap';
 
 
 
@@ -68,7 +69,7 @@ class Table extends React.Component {
                 <tbody>
                     <tr>
                         <th colSpan={2} style={style}>
-                            <input className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
+                            <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
                             <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
                             <div className='drag-handle'><img className ='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
                         </th>
@@ -77,7 +78,7 @@ class Table extends React.Component {
                         const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
                         return (
                             <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
-                                <td><input className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                                <td><FormControl className='propertyinput' type="text" placeholder={"Property " + tableIndex} value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                 <td className ='typetd'>
                                     <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
                                     <div>
@@ -99,7 +100,7 @@ class Table extends React.Component {
                         )
                     })}
                     <tr>
-                    <td className = 'addbutton' colSpan={2}><button className="addRow" onClick={() => onAddRow(tableIndex)}> Add new field </button> </td>
+                    <td className = 'addbutton' colSpan={2}><Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button> </td>
                     </tr>
                 </tbody>
             </table>
