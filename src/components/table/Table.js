@@ -13,12 +13,6 @@ class Table extends React.Component {
         super(props)
         this.propertyRowRefs = [];
         this.propertyTableRefs = [];
-        this.state = {
-            position: {
-                x: 0,
-                y: 0
-            }
-        }
     }
 
     componentDidMount() {
@@ -36,9 +30,12 @@ class Table extends React.Component {
     }
 
     refreshTablePositions = () => {
+        console.log(this.propertyRowRefs)
+       
         this.props.refreshTablePositions(
             this.props.tableIndex,
             this.propertyTableRefs.getBoundingClientRect(),
+            // this.propertyRowRefs.filter((el) => {return el !== null}).map(ref => ref.getBoundingClientRect())
             this.propertyRowRefs.map(ref => ref.getBoundingClientRect())
         )
     }
@@ -84,7 +81,7 @@ class Table extends React.Component {
                             <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
                                 <td><input className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                 <td className ='typetd'>
-                                    <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,rowIndex)}>x</div>
+                                    <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
                                     <div>
                                         {relatedTable &&
                                             <span>{relatedTable.name}</span>
