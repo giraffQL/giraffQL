@@ -231,11 +231,11 @@ border-color: transparent;
   -moz-transition: top 0.1s ease;
   top: -60px;
   border-radius:15px;
-  
+
 }
 
 .b02_slide_in div:nth-child(3) {
-  color: #977359;  
+  color: #977359;
   transition: opacity 0.1s ease;
   -webkit-transition: opacity 0.1s ease;
   -moz-transition: opacity 0.1s ease;

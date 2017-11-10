@@ -4,6 +4,8 @@ import App from '../App'
 import Table from './Table'
 import { PathLine } from 'react-svg-pathline'
 import colors from './colors';
+import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+import css from '../../css/Table.css'
 
 class Visualization extends React.Component {
     constructor(props) {
@@ -48,15 +50,17 @@ class Visualization extends React.Component {
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
                 <div className='toolbar'>
 
-                    <div class="button_base b02_slide_in">
-                        <div onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
+                    {/* <div class="button_base b02_slide_in">
+                        <div bsStyle="success" bsSize="large" onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
                         <div></div>
-                        <div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>
-                    </div>
-                    {/* <button onClick={onAddTable}> Create table </button> */}
+                        {<div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>}
+                    </div>*/}
+                    <Nav id="nav" bsStyle="pills">
+                        <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}> CREATE TABLE </Button>
 
-          {/* <button onClick={onAddTable}> Create table </button> */}
-                    <button onClick={deleteAllTables}> Clear </button> 
+                        {/* <button onClick={onAddTable}> Create table </button> */}
+                        <Button id="clearBtn" className="displayBtn" bsSize="large" onClick={deleteAllTables}> CLEAR </Button>
+                    </Nav>
 
                 </div>
                 <div>

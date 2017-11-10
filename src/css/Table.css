@@ -1,11 +1,14 @@
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
+    border-collapse: separate; /* changed from collapse to get border-radius to work */
     margin: 10px;
+    border-top: 10px solid #BD9A63; /* need border-top to even out top border */
+    border-radius: 15px; /* added border-radius */
+    position: relative;
 }
 
 .table td, .table th {
-    border: 7px solid #6F4A38;
+    border: 8px solid #BD9A63;
     padding: 8px;
     background-color: #977359;
 }
@@ -24,20 +27,50 @@
     text-align: center;
     display: block;
     margin: 0 auto;
-    height:29px;
+    height:34px; /* changed from 29px to match select box*/
     width: 300px;
     padding:0px;
     font-size:16px;
     border-color: solid black;
 }
 
+#nav { /* add a nav bar */
+    float: left;
+    top: 3px;
+    width: 100%;
+    background-color: rgba(207, 83, 0, .2); /* made translucent */
+}
+
+.addbutton {
+    border-bottom-left-radius: 20px; /* need this to round the bottom borders */
+    border-bottom-right-radius: 20px; /* need this to round the bottom borders */
+}
+
+.displayBtn {
+    float: left; /* moved nav buttons to the left */
+    margin: 0;
+    color: white;
+    font-weight: bold;
+}
+
+#createTableBtn {
+    background-color: rgba(30,130,76,0.6);
+}
+
+#clearBtn {
+    background-color: rgba(166,0,0,0.6);
+}
+
 .addRow {
     padding: 8px 90px;
     border-radius: 4px;
-    background-color:#1E824C
-    
-    
+    background-color: rgba(30,130,76,0.4); /* made green color translucent */
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
 }
+
 .typetd {
     width:152.5px;
     text-align: center;
@@ -45,7 +78,7 @@
 .deletetablebutton {
     color: white;
     border: none;
-    background-color: rgb(83, 47, 6);
+    background-color: rgb(83, 47, 6); /* made color translucent */
     border-radius: 20px;
     width: 20px;
     height: 20px;
@@ -67,11 +100,11 @@
   .deleterowbutton {
     width:7%;
     float:right;
-    cursor:pointer; 
-    margin-top:6px;  
+    cursor:pointer;
+    margin-top:6px;
   }
 .propertyinput {
-    height:29px;
+    height:34px; /*changed from 29px to match select box*/
     padding:0px;
     font-size:16px;
     text-align: center;
@@ -94,11 +127,12 @@
     width: 30px;
     height: 29px;
 }
-.table {
+/*.table {
     position:relative
-}
+}*/
 .dropdown {
     width:90%;
+    line-height: 1;
  }
 
 .Select-control {
