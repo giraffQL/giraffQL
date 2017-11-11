@@ -54,8 +54,8 @@ pre > pre{
 .schemaCode{
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid #ccc;
-  background: gray;
+  border: 1px solid #977359;
+  background: #977359;
   border-radius: .2em;
   padding: .5em;
   margin: 10;
