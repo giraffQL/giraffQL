@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "GiraffQL",
+  "name": "GiraffQL - Schema Visualization Tool",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "giraffe-icon.png",
       "sizes": "64x64",
       "type": "image/png"
     }

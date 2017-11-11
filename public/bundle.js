@@ -26371,7 +26371,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_App__["a" /* default */], null), document.getElementById('root'));
-Object(__WEBPACK_IMPORTED_MODULE_4__registerServiceWorker__["a" /* default */])();
 
 /***/ }),
 /* 205 */
@@ -46073,7 +46072,7 @@ exports = module.exports = __webpack_require__(41)(undefined);
 
 
 // module
-exports.push([module.i, "/* body {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif;\n} */\n\nbody {\n  margin: 0;\n  padding: 2em;\n  background: #333;\n  font-family: sans-serif;\n  width:100%;\n  height:100%;\n}\n\n.DraftEditor-root{\n  background: #fff;\n  border-radius: .3em;\n  padding: 1em;\n  width:100%;\n  height:100%;\n}\n\nbutton{\n  background: #999;\n  color: #fff;\n  border: none;\n  padding: .5em;\n  cursor: pointer;\n  margin-bottom: 1em;\n  margin-right: 1em;\n  border-radius: .2em;\n}\n\nbutton:hover{\n  background: #888;\n}\n\npre{\n  border: 1px solid #ccc;\n  background: #f0f0f0;\n  border-radius: .2em;\n  padding: .5em;\n  margin: 0;\n}\n\n\npre > pre{\n  background: none;\n  border: none;\n  padding: 0;\n}\n\n.schemaCode{\n  display: flex;\n  flex-wrap: wrap;\n  border: 1px solid #977359;\n  background: #977359;\n  border-radius: .2em;\n  padding: .5em;\n  margin: 10;\n  /* width:100% */\n}\n\n.schemaType{\n  color: black;\n  text-align: left;\n  font-family: monospace;\n  font-size: 11px;\n  border-style: solid;\n  border: gray solid 2px;\n  background: #fff;\n  border-radius: .3em;\n  padding: 1em;\n  margin: auto;\n  width:100%;\n}\n\n.tabspace{\n  padding-left: 5em;\n}", ""]);
+exports.push([module.i, "/* body {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif;\n} */\n\nbody {\n  margin: 0;\n  padding: 2em;\n  background: #333;\n  font-family: sans-serif;\n  width:100%;\n  height:100%;\n}\n\n.DraftEditor-root{\n  background: #fff;\n  border-radius: .3em;\n  padding: 1em;\n  width:100%;\n  height:100%;\n}\n\nbutton{\n  background: #999;\n  color: #fff;\n  border: none;\n  padding: .5em;\n  cursor: pointer;\n  margin-bottom: 1em;\n  margin-right: 1em;\n  border-radius: .2em;\n}\n\nbutton:hover{\n  background: #888;\n}\n\npre{\n  border: 1px solid #ccc;\n  background: #f0f0f0;\n  border-radius: .2em;\n  padding: .5em;\n  margin: 0;\n}\n\n\npre > pre{\n  background: none;\n  border: none;\n  padding: 0;\n}\n\n.schemaCode{\n  display: flex;\n  flex-wrap: wrap;\n  border: 1px solid #977359;\n  background: #977359;\n  border-radius: .2em;\n  padding: .5em;\n  margin: 10;\n  /* width:100% */\n}\n\n.schemaType{\n  color: black;\n  text-align: left;\n  font-family: monospace;\n  font-size: 14px;\n  border-style: solid;\n  border: gray solid 2px;\n  background: #fff;\n  border-radius: .3em;\n  padding: 1em;\n  margin: auto;\n  width:100%;\n}\n\n.tabspace{\n  padding-left: 5em;\n}", ""]);
 
 // exports
 
@@ -71161,7 +71160,7 @@ var RowData = function (_React$Component) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (immutable) */ __webpack_exports__["a"] = register;
+/* WEBPACK VAR INJECTION */(function(process) {/* unused harmony export default */
 /* unused harmony export unregister */
 // In production, we register a service worker to serve assets from local cache.
 

@@ -20,7 +20,7 @@
     "react-svg-pathline": "^0.4.0"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack -w",
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
