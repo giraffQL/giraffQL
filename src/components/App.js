@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
-//DRAFT JS DEPENDENCIES
-import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
-import DraftEditor from '../components/code/Editor';
+
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
-import '../css/prism.css';
-//SCHEMA CODE COMPONENT//
-import SchemaCode from './code/SchemaCode';
 
 //TEXT Editor
 import TextEditor from '../components/code/TextEditor'
-//PRISM DEPENDENCIES
-const PrismDecorator = require('draft-js-prism');
-const Prism = require('prismjs')
-
 
 
 class App extends Component {
@@ -44,14 +35,11 @@ class App extends Component {
         ],
 
       },
-      editorState: EditorState.createEmpty()
+    
     };
-    this.onChange = (editorState) => this.setState({ editorState });
+  
 
   };
-
-  //DRAFTJS METHODS//
-
 
 
   onAddTable = () => {
@@ -201,13 +189,7 @@ class App extends Component {
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
           <div className="TextEditor force-select">
-            {/*<button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor genCode={this.genCode} editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> 
-            <SchemaCode code={this.state.data.tables}>
-            </SchemaCode>*/}
-          
-            <TextEditor data={this.state.data} lang={this.state.lang} />
-
+            <TextEditor data={this.state.data} />
           </div>
         </SplitPane>
       </div>

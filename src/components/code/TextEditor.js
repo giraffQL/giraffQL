@@ -3,6 +3,15 @@ import { render } from 'react-dom';
 import App from '../App'
 import {Editor, EditorState, ContentState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+var Draft = require('draft-js');
+var PrismDecorator = require('draft-js-prism');
+var Prism = require('prismjs')
+
+var decorator = new PrismDecorator({
+  // Provide your own instance of PrismJS
+  prism: Prism,
+});
+var editorState = Draft.EditorState.createEmpty(decorator)
 
 class TextEditor extends React.Component {
     constructor (props) {
