@@ -6,25 +6,34 @@ class TextEditor extends React.Component {
 
     render() {
         let code = ''
-        for (let i = 0; i < this.props.data.tables.length; i+=1) {
+        for (let i = 0; i < this.props.data.tables.length; i += 1) {
             const table = this.props.data.tables[i]
-            for(let j=0; j<table.attributes.length; j+=1){
-                const attr = table.attributes[j]
-                code += `const ${table.name}Type = new GraphQLObjectType({\n`
+            if (table.name) {
+                 code += `const ${table.name}Type = new GraphQLObjectType({\n`
                         + `    name: ${table.name},\n`
-                         + `    fields: () => ({\n`
-                            + `         ${attr.field}: {\n`
-                                + `                 type: ${attr.type}\n`
-                                + `               }\n`
-                                + `     })\n`
-                        + `})\n\n`
+                        + `    fields: () => ({\n`
+                for (let j = 0; j < table.attributes.length; j += 1) {
+                    const attr = table.attributes[j]
+                    if(attr.field !== ''){
+                    code +=`         ${attr.field}: {\n`
+                        + `                 type: ${attr.type}\n`
+                        + `          }`
+                    }
+
+                        if(attr.field) {
+                            code += ',\n'
+                        }
+                    
+                }
+                code += `     })\n`  
+                    + `})\n\n`
                 
             }
         }
-    
+
         return (
-            <textarea value={code} cols={100} rows={30}>
-              
+            <textarea value={code} cols={70} rows={51} style={{"font-size":"25px"}}>
+
             </textarea>
         )
 

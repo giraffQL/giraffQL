@@ -61,7 +61,8 @@ class App extends Component {
             name: 'Jelena',
             tablePositionX: 0,
             tablePositionY: 7,
-            attributes: [{ field: 'hi', type: 'String', relatedToTableId: 2}]
+            attributes: [{ field: 'hi', type: 'String', relatedToTableId: 2},
+            { field: 'blah', type: '', relatedToTableId: null}]
           }, 
           {
             id: '2',
