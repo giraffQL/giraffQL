@@ -9,7 +9,7 @@ class TextEditor extends React.Component {
   render() {
     return (
       <div>
-        {/* <button onClick={() => this.props.toggleCode}>Code Block</button> */}
+         {/*<button onClick={() => this.props.toggleCode}>Code Block</button> */}
           <Editor
             editorState={this.props.editorState}
             handleKeyCommand={this.props.handleKeyCommand}

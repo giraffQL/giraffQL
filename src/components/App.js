@@ -2,24 +2,29 @@ import React, { Component } from 'react';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
 //DRAFT JS DEPENDENCIES
-import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
-import TextEditor from '../components/code/Editor';
+// import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
+// import TextEditor from '../components/code/Editor';
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
 import '../css/prism.css';
 //SCHEMA CODE COMPONENT//
 import SchemaCode from './code/SchemaCode';
+
+//TEXT Editor
+import TextEditor from '../components/code/TextEditor'
 //PRISM DEPENDENCIES
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
 
 
+
+
 //PRISM LIBRARY FOR SYNTAX HIGHLIGHTING//
-const decorator = new PrismDecorator({
-  defaultSyntax: 'javascript',
-  prism: Prism,
-});
+// const decorator = new PrismDecorator({
+//   defaultSyntax: 'javascript',
+//   prism: Prism,
+// });
 
 //contentState to provide raw text for code block
 // const contentState = convertFromRaw({
@@ -31,17 +36,17 @@ const decorator = new PrismDecorator({
 //     }
 //   ]
 // });
-const codeToRender = {
-  entityMap: {},
-  blocks: [
-    {
-      type: 'code-block',
-      text: 'blah'
-    }
-  ]
-}
+// const codeToRender = {
+//   entityMap: {},
+//   blocks: [
+//     {
+//       type: 'code-block',
+//       text: 'blah'
+//     }
+//   ]
+// }
 
-const contentState = convertFromRaw(codeToRender);
+// const contentState = convertFromRaw(codeToRender);
 
 
 class App extends Component {
@@ -50,55 +55,70 @@ class App extends Component {
     this.state = {
       clickedRow: null,
       data: {
-        tables: []
+        tables: [
+          {
+            id: '1',
+            name: 'Jelena',
+            tablePositionX: 0,
+            tablePositionY: 7,
+            attributes: [{ field: 'hi', type: 'String', relatedToTableId: 2}]
+          }, 
+          {
+            id: '2',
+            name: 'Ivan',
+            tablePositionX: 10,
+            tablePositionY: 10,
+            attributes: [{ field: 'odjebi', type: 'String', relatedToTableId: null}]
+          }
+        ]
       },
-      //DRAFTJS STATE//
-      editorState: EditorState.createWithContent(contentState, decorator),
-    };
+    //   //DRAFTJS STATE//
+    //   editorState: EditorState.createWithContent(contentState, decorator),
+    // };
 
-    this.onChange = (editorState) => {
-      this.setState({ editorState });
-    }
+    // this.onChange = (editorState) => {
+    //   this.setState({ editorState });
+    // }
   };
   //DRAFTJS METHODS//
-  handleKeyCommand = (command) => {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+  // handleKeyCommand = (command) => {
+  //   const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
 
-    if (newState) {
-      this.onChange(newState);
-      return 'handled';
-    }
-    return 'not handled';
-  }
+  //   if (newState) {
+  //     this.onChange(newState);
+  //     return 'handled';
+  //   }
+  //   return 'not handled';
+  // }
 
-  onUnderlineClick = () => {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  }
+  // onUnderlineClick = () => {
+  //   this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  // }
 
-  onToggleCode = () => {
-    console.log('test');
-    this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
-  }
+  // onToggleCode = () => {
+  //   console.log('test');
+  //   this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
+  // }
 
-  renderEditor = () => {
-    console.log('renderEditor')
-  }
-  //generate code from state function not working yet
-  genCode = () => {
+  // renderEditor = () => {
+  //   console.log('renderEditor')
+  // }
+  // //generate code from state function not working yet
+  // genCode = () => {
 
-    // console.log('generate code!');
-    let data = this.state.data.tables;
-    const allCode = [];
-    data.forEach((x) => {
-      const codeBlock = {};
-      codeBlock.name = x.name,
-        x.attributes.forEach((y) => {
-          codeBlock.field = y.field,
-            codeBlock.type = y.type
-        })
-      allCode.push(codeBlock);
-      // console.log(allCode);
-    })
+  //   // console.log('generate code!');
+  //   let data = this.state.data.tables;
+  //   const allCode = [];
+  //   data.forEach((x) => {
+  //     const codeBlock = {};
+  //     codeBlock.name = x.name,
+  //       x.attributes.forEach((y) => {
+  //         codeBlock.field = y.field,
+  //           codeBlock.type = y.type
+  //       })
+  //     allCode.push(codeBlock);
+  //     console.log(allCode);
+  //   })
 
     // getTableName = () => {
     //   let data = this.state.data.tables;
@@ -273,10 +293,11 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
           <div className="TextEditor force-select">
-            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
+             {/*<button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+          <TextEditor genCode={this.genCode} editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> 
             <SchemaCode code={this.state.data.tables}>
-            </SchemaCode>
+            </SchemaCode>*/}
+            <TextEditor data={this.state.data} />
           </div>
         </SplitPane>
       </div>
