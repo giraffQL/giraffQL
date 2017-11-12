@@ -1,13 +1,35 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import App from '../App'
+import {Editor, EditorState, ContentState} from 'draft-js';
+import 'draft-js/dist/Draft.css';
 
 class TextEditor extends React.Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            editorState: this.getEditorStateFromModel(props.data)
+        }
+    }
 
-    render() {
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            editorState: this.getEditorStateFromModel(nextProps.data)
+        })
+    }
+
+    onEditorChange = (editorState) => {
+        this.setState({editorState})
+    }
+
+    getEditorStateFromModel = (data) => {
+        return EditorState.createWithContent(ContentState.createFromText(this.getTextFromModel(data)))
+    }
+
+    getTextFromModel = (data) => {
         let code = ''
-        for (let i = 0; i < this.props.data.tables.length; i += 1) {
-            const table = this.props.data.tables[i]
+        for (let i = 0; i < data.tables.length; i += 1) {
+            const table = data.tables[i]
             if (table.name) {
                 code += `const ${table.name}Type = new GraphQLObjectType({\n`
                     + `                 name: ${table.name},\n`
@@ -27,16 +49,19 @@ class TextEditor extends React.Component {
                 code += `           \n`
                     + `                 })\n`
                     + ` })\n\n`
-
             }
         }
 
+        return code
+    }
+
+    render() {
+        
+
         return (
-            <textarea value={code} cols={70} rows={51} style={{ "font-size": "25px" }}>
-
-            </textarea>
+            <Editor editorState={this.state.editorState} onChange={this.onEditorChange} />
+            //<textarea value={code} cols={70} rows={51} style={{ "font-size": "25px" }}></textarea>
         )
-
     }
 }
 

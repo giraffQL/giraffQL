@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
 //DRAFT JS DEPENDENCIES
-// import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
-// import TextEditor from '../components/code/Editor';
+import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
+import DraftEditor from '../components/code/Editor';
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
@@ -19,36 +19,6 @@ const Prism = require('prismjs')
 
 
 
-
-//PRISM LIBRARY FOR SYNTAX HIGHLIGHTING//
-// const decorator = new PrismDecorator({
-//   defaultSyntax: 'javascript',
-//   prism: Prism,
-// });
-
-//contentState to provide raw text for code block
-// const contentState = convertFromRaw({
-//   entityMap: {},
-//   blocks: [
-//     {
-//       type: 'code-block',
-//       text: ''
-//     }
-//   ]
-// });
-// const codeToRender = {
-//   entityMap: {},
-//   blocks: [
-//     {
-//       type: 'code-block',
-//       text: 'blah'
-//     }
-//   ]
-// }
-
-// const contentState = convertFromRaw(codeToRender);
-
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -61,91 +31,28 @@ class App extends Component {
             name: 'One',
             tablePositionX: 0,
             tablePositionY: 7,
-            attributes: [{ field: 'hi', type: '', relatedToTableId: 2},
-            { field: 'blah', type: '', relatedToTableId: null}]
-          }, 
+            attributes: [{ field: 'hi', type: '', relatedToTableId: 2 },
+            { field: 'blah', type: '', relatedToTableId: null }]
+          },
           {
             id: '2',
             name: 'Two',
             tablePositionX: 10,
             tablePositionY: 10,
-            attributes: [{ field: 'jj', type: '', relatedToTableId: null}]
+            attributes: [{ field: 'jj', type: '', relatedToTableId: null }]
           }
-        ]
+        ],
+
       },
-    //   //DRAFTJS STATE//
-    //   editorState: EditorState.createWithContent(contentState, decorator),
-    // };
+      editorState: EditorState.createEmpty()
+    };
+    this.onChange = (editorState) => this.setState({ editorState });
 
-    // this.onChange = (editorState) => {
-    //   this.setState({ editorState });
-    // }
   };
+
   //DRAFTJS METHODS//
-  // handleKeyCommand = (command) => {
-  //   const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-
-  //   if (newState) {
-  //     this.onChange(newState);
-  //     return 'handled';
-  //   }
-  //   return 'not handled';
-  // }
-
-  // onUnderlineClick = () => {
-  //   this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  // }
-
-  // onToggleCode = () => {
-  //   console.log('test');
-  //   this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
-  // }
-
-  // renderEditor = () => {
-  //   console.log('renderEditor')
-  // }
-  // //generate code from state function not working yet
-  // genCode = () => {
-
-  //   // console.log('generate code!');
-  //   let data = this.state.data.tables;
-  //   const allCode = [];
-  //   data.forEach((x) => {
-  //     const codeBlock = {};
-  //     codeBlock.name = x.name,
-  //       x.attributes.forEach((y) => {
-  //         codeBlock.field = y.field,
-  //           codeBlock.type = y.type
-  //       })
-  //     allCode.push(codeBlock);
-  //     console.log(allCode);
-  //   })
-
-    // getTableName = () => {
-    //   let data = this.state.data.tables;
-    //   const allCode = [];
-    //   data.forEach((x) => {
-    //     const codeBlock = {};
-    //     codeBlock.name = x.name,
-    //       x.attributes.forEach((y) => {
-    //         codeBlock.field = y.field,
-    //           codeBlock.type = y.type
-    //       })
-    //     allCode.push(codeBlock);
-    //     console.log(allCode);
-    //   })
-    // },
-
-    // getRowData = () => {
-    //   console.log('getRowData');
-    // },
-
-    // compileCode = () => {
-    //   console.log('compileCode');
-    // }
 
 
-  }
 
   onAddTable = () => {
     //function which is making random string for ID
@@ -239,7 +146,7 @@ class App extends Component {
   }
 
   //TABLE POSITION
-refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
+  refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     this.setState(state => {
       //table
       let table = state.data.tables[tableIndex]
@@ -291,14 +198,16 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
           <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
+            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
           <div className="TextEditor force-select">
-             {/*<button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+            {/*<button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor genCode={this.genCode} editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> 
             <SchemaCode code={this.state.data.tables}>
             </SchemaCode>*/}
-            <TextEditor data={this.state.data} />
+          
+            <TextEditor data={this.state.data} lang={this.state.lang} />
+
           </div>
         </SplitPane>
       </div>
