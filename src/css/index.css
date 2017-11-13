@@ -15,13 +15,15 @@ body {
 }
 
 .DraftEditor-root{
-  background: #fff;
-  margin: 20px;
+  background: #ECECEC;
+  margin: 35px;
   border-radius: .3em;
-  padding: 1.5em;
-  font-size: 23px;
+  border: 10px solid #6F4A38;
+  font-size: 20px;
   max-height: 1000px;
   overflow: auto;
+  position: absolute;
+  font-family: 'Consolas', 'monaco', monospace;
 }
 
 button{
