@@ -11,13 +11,17 @@ body {
   font-family: sans-serif;
   width:100%;
   height:100%;
+  
 }
 
 .DraftEditor-root{
   background: #fff;
+  margin: 20px;
   border-radius: .3em;
-  padding: 1em;
-  width:100%;
+  padding: 1.5em;
+  font-size: 23px;
+  max-height: 1000px;
+  overflow: auto;
 }
 
 button{
