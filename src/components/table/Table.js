@@ -46,13 +46,6 @@ class Table extends React.Component {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
         const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
-    //    let dropdownoption =['GraphQLString', 'GraphQLInt', 'GraphQLFloat', 'GraphQLBoolean', 'GraphQLID', 'GraphQLList']
-    //     for (let i = 0; i < data.tables.length; i++) {
-    //         dropdownoption.push(data.tables[i].name)
-    //     }
-    //    let options = dropdownoption.map((element,j) => {
-    //        return <MenuItem eventKey={j.toString()}>{element}></MenuItem>
-    //     })
 
 
         let options = [ 

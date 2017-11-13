@@ -35,9 +35,9 @@ class App extends Component {
         ],
 
       },
-    
+
     };
-  
+
 
   };
 
@@ -86,26 +86,55 @@ class App extends Component {
 
   updateTableName = (tableIndex, value) => {
     this.setState(state => {
-      let table = state.data.tables[tableIndex]
-      table.name = value
-      return state
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, { name: value })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowProp = state.data.tables[tableIndex].attributes[rowIndex]
-      rowProp.field = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { field: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowType = state.data.tables[tableIndex].attributes[rowIndex]
-      rowType.value = value;
-      rowType.type = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { type: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
@@ -188,7 +217,7 @@ class App extends Component {
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-          <div className="TextEditor force-select">
+          <div className="TextEditor">
             <TextEditor data={this.state.data} />
           </div>
         </SplitPane>

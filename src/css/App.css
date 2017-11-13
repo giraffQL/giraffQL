@@ -266,8 +266,5 @@ border-color: transparent;
   -moz-transition: opacity 0.1s ease;
 }
 
-.force-select{
-  -webkit-user-select: all;
-}
 
 
