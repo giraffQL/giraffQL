@@ -6,6 +6,9 @@ import SplitPane from "react-split-pane"
 import '../css/index.css';
 import '../css/App.css';
 
+//FILE SERVER
+import FileSaver from 'file-saver';
+
 //TEXT Editor
 import TextEditor from '../components/code/TextEditor'
 
@@ -207,6 +210,15 @@ class App extends Component {
     }
   }
 
+
+
+  saveTextAsFile = () => {
+    console.log(this.state.data)
+    var text = this.code.getTextFromModel(this.state.data)
+    var blob = new Blob([text], {type: "text/javascript"});
+    FileSaver.saveAs(blob, 'schema.js')
+  }
+
   render() {
     const { data } = this.state
     return (
@@ -218,7 +230,8 @@ class App extends Component {
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
           <div className="TextEditor">
-            <TextEditor data={this.state.data} />
+            <button onClick={()=>this.saveTextAsFile()}> Save schema code </button>
+            <TextEditor data={this.state.data} onRef={ref => (this.code = ref)}  />
           </div>
         </SplitPane>
       </div>

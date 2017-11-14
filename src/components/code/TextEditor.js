@@ -46,6 +46,12 @@ class TextEditor extends React.Component {
         const contentState = ContentState.createFromText(this.getTextFromModel(data))
         return EditorState.createWithContent(contentState)
     }
+    componentDidMount() {
+        this.props.onRef(this)
+      }
+      componentWillUnmount() {
+        this.props.onRef(undefined)
+      }
 
     getTextFromModel = (data) => {
         let code = '\n'
