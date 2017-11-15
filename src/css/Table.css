@@ -36,8 +36,10 @@
 
 #nav { /* add a nav bar */
     float: left;
-    top: 3px;
+    margin-top: 3px;
     width: 100%;
+    height: 50px;
+    /*position: fixed; *//* changed position to fixed for scrollbar */
     /*background-color: rgba(207, 83, 0, .2); /* made translucent */
 }
 
@@ -56,6 +58,7 @@
 #createTableBtn {
     color: white;
     background-color: #9FA767; /* rgba(30,130,76,0.6);*/
+    margin-left: 0;
 }
 
 #createTableBtn:hover {
@@ -118,6 +121,7 @@
 }
 .deleterowbutton {
     width:7%;
+    font-size: 18px;
     float:right;
     cursor:pointer;
     margin-top:6px;
@@ -125,7 +129,7 @@
 }
 
 .deleterowbutton:hover { /* change color on hover */
-    color: red;
+    color: black;
 }
 
 .propertyinput {

@@ -20,6 +20,8 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
+import BottomNav from './BottomNav';
+
 
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
@@ -286,7 +288,7 @@ class App extends Component {
     const muiStyles = {
       appBar: {
         'background-color': '#9FA767',
-        'border-bottom': '3px solid #fbe4a1',
+        'border-bottom': '4px solid white',
         'line-height': '20px',
         color: '#fbe4a1'
       },
@@ -330,11 +332,14 @@ class App extends Component {
           {/*PRESS ESC TO EXIT*/}
 
         <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
+
+
         <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+
 
           <div className="TextEditor">
           {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
@@ -344,10 +349,10 @@ class App extends Component {
           </div>
 
         </SplitPane>
-
         </div>
         </Fullscreen>
       </div>
+
       </MuiThemeProvider>
     );
   }
