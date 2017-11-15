@@ -12252,42 +12252,34 @@ var App = function (_Component) {
     };
 
     _this.genCode = function () {
-
+      var closingBracket = '})})';
       // console.log('generate code!');
       var data = _this.state.data.tables;
       var allCode = [];
+      var result = [];
       data.forEach(function (x) {
-        var codeBlock = {};
-        codeBlock.name = x.name, x.attributes.forEach(function (y) {
-          codeBlock.field = y.field, codeBlock.type = y.type;
-        });
-        allCode.push(codeBlock);
-        // console.log(allCode);
+        var block = [];
+        block.push('const ' + x.name + 'Type = new GraphQLObjectType({name: \'' + x.name + '\', fields: () => ({\n          ' + x.attributes.forEach(function (y, i) {
+          block.push(y.field + ':{type: ' + y.type + ',},');
+        }) + '\n          ' + result.push(block) + '\n        })\n      })');
       });
 
-      // getTableName = () => {
-      //   let data = this.state.data.tables;
-      //   const allCode = [];
-      //   data.forEach((x) => {
-      //     const codeBlock = {};
-      //     codeBlock.name = x.name,
-      //       x.attributes.forEach((y) => {
-      //         codeBlock.field = y.field,
-      //           codeBlock.type = y.type
-      //       })
-      //     allCode.push(codeBlock);
-      //     console.log(allCode);
-      //   })
-      // },
+      console.log(result);
+    };
 
-      // getRowData = () => {
-      //   console.log('getRowData');
-      // },
+    _this.genCodev2 = function () {
+      var closingBracket = '})})';
+      // console.log('generate code!');
+      var data = _this.state.data.tables;
+      var result = [];
+      data.forEach(function (x) {
+        var block = '';
+        block.concat('const ' + x.name + 'Type = new GraphQLObjectType({name: \'' + x.name + '\', fields: () => ({\n          ' + x.attributes.forEach(function (y, i) {
+          block.concat(y.field + ':{type: ' + y.type + ',},');
+        }) + '\n          ' + result.push(block) + '\n        })\n      })');
+      });
 
-      // compileCode = () => {
-      //   console.log('compileCode');
-      // }
-
+      console.log(result);
     };
 
     _this.onAddTable = function () {
@@ -12444,7 +12436,8 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
-      var _React$createElement;
+      var _React$createElement,
+          _this2 = this;
 
       var data = this.state.data;
 
@@ -12460,6 +12453,13 @@ var App = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'TextEditor force-select' },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'button',
+              { onClick: function onClick() {
+                  return _this2.genCodev2();
+                } },
+              'Generate Code'
+            ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__code_SchemaCode__["a" /* default */], { code: this.state.data.tables })
           )
         )

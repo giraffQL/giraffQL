@@ -85,45 +85,42 @@ class App extends Component {
   }
   //generate code from state function not working yet
   genCode = () => {
-
+    const closingBracket = '})})'
     // console.log('generate code!');
     let data = this.state.data.tables;
     const allCode = [];
-    data.forEach((x) => {
-      const codeBlock = {};
-      codeBlock.name = x.name,
-        x.attributes.forEach((y) => {
-          codeBlock.field = y.field,
-            codeBlock.type = y.type
+    const result = [];
+      data.forEach((x) => {
+        const block = []
+        block.push(`const ${x.name}Type = new GraphQLObjectType({name: '${x.name}', fields: () => ({
+          ${x.attributes.forEach((y,i) => {
+            block.push(`${y.field}:{type: ${y.type},},`
+          )})}
+          ${result.push(block)}
         })
-      allCode.push(codeBlock);
-      // console.log(allCode);
-    })
+      })`
+      )})
 
-    // getTableName = () => {
-    //   let data = this.state.data.tables;
-    //   const allCode = [];
-    //   data.forEach((x) => {
-    //     const codeBlock = {};
-    //     codeBlock.name = x.name,
-    //       x.attributes.forEach((y) => {
-    //         codeBlock.field = y.field,
-    //           codeBlock.type = y.type
-    //       })
-    //     allCode.push(codeBlock);
-    //     console.log(allCode);
-    //   })
-    // },
+     console.log(result); 
+  }
 
-    // getRowData = () => {
-    //   console.log('getRowData');
-    // },
+  genCodev2 = () => {
+    const closingBracket = '})})'
+    // console.log('generate code!');
+    let data = this.state.data.tables;
+    const result = [];
+      data.forEach((x) => {
+        const block = '';
+        block.concat(`const ${x.name}Type = new GraphQLObjectType({name: '${x.name}', fields: () => ({
+          ${x.attributes.forEach((y,i) => {
+            block.concat(`${y.field}:{type: ${y.type},},`
+          )})}
+          ${result.push(block)}
+        })
+      })`
+      )})
 
-    // compileCode = () => {
-    //   console.log('compileCode');
-    // }
-
-
+     console.log(result); 
   }
 
   onAddTable = () => {
@@ -218,7 +215,7 @@ class App extends Component {
   }
 
   //TABLE POSITION
-refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
+  refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     this.setState(state => {
       //table
       let table = state.data.tables[tableIndex]
@@ -270,13 +267,14 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
           <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
+            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
           <div className="TextEditor force-select">
-            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
+            <button onClick={() => this.genCodev2()}>Generate Code</button>
             <SchemaCode code={this.state.data.tables}>
             </SchemaCode>
+            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
           </div>
         </SplitPane>
       </div>
