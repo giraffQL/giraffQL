@@ -47,6 +47,7 @@ body {
   top: 0;
   left: 0;
   z-index:2;
+  overflow: scroll;
 }
 
 .root {
@@ -266,6 +267,11 @@ border-color: transparent;
   -moz-transition: opacity 0.1s ease;
 }
 
-.force-select{
-  -webkit-user-select: all;
+.save {
+  background-color: rgba(30,130,76,0.6);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px
 }
+
+

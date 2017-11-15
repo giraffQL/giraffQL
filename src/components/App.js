@@ -1,47 +1,16 @@
 import React, { Component } from 'react';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
-//DRAFT JS DEPENDENCIES
-import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
-import TextEditor from '../components/code/Editor';
+
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
-import '../css/prism.css';
-//SCHEMA CODE COMPONENT//
-import SchemaCode from './code/SchemaCode';
-//PRISM DEPENDENCIES
-const PrismDecorator = require('draft-js-prism');
-const Prism = require('prismjs')
 
+//FILE SERVER
+import FileSaver from 'file-saver';
 
-//PRISM LIBRARY FOR SYNTAX HIGHLIGHTING//
-const decorator = new PrismDecorator({
-  defaultSyntax: 'javascript',
-  prism: Prism,
-});
-
-//contentState to provide raw text for code block
-// const contentState = convertFromRaw({
-//   entityMap: {},
-//   blocks: [
-//     {
-//       type: 'code-block',
-//       text: ''
-//     }
-//   ]
-// });
-const codeToRender = {
-  entityMap: {},
-  blocks: [
-    {
-      type: 'code-block',
-      text: 'blah'
-    }
-  ]
-}
-
-const contentState = convertFromRaw(codeToRender);
+//TEXT Editor
+import TextEditor from '../components/code/TextEditor'
 
 
 class App extends Component {
@@ -50,15 +19,10 @@ class App extends Component {
     this.state = {
       clickedRow: null,
       data: {
-        tables: []
+        tables: [
+        ],
       },
-      //DRAFTJS STATE//
-      editorState: EditorState.createWithContent(contentState, decorator),
     };
-
-    this.onChange = (editorState) => {
-      this.setState({ editorState });
-    }
   };
   //DRAFTJS METHODS//
   handleKeyCommand = (command) => {
@@ -123,6 +87,7 @@ class App extends Component {
      console.log(result); 
   }
 
+
   onAddTable = () => {
     //function which is making random string for ID
     function guid() {
@@ -167,26 +132,55 @@ class App extends Component {
 
   updateTableName = (tableIndex, value) => {
     this.setState(state => {
-      let table = state.data.tables[tableIndex]
-      table.name = value
-      return state
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, { name: value })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowProp = state.data.tables[tableIndex].attributes[rowIndex]
-      rowProp.field = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { field: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowType = state.data.tables[tableIndex].attributes[rowIndex]
-      rowType.value = value;
-      rowType.type = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { type: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
@@ -259,6 +253,14 @@ class App extends Component {
     }
   }
 
+
+
+  saveTextAsFile = () => {
+    let text = this.code.getTextFromModel(this.state.data)
+    let blob = new Blob([text], { type: "text/javascript" });
+    FileSaver.saveAs(blob, 'schema.js')
+  }
+
   render() {
     const { data } = this.state
     return (
@@ -266,15 +268,11 @@ class App extends Component {
         <SplitPane split="vertical" defaultSize="50%">
           <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
+            updateRowType={this.updateRowType} onAddTable={this.onAddTable} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-          <div className="TextEditor force-select">
-            <button onClick={() => this.genCodev2()}>Generate Code</button>
-            <SchemaCode code={this.state.data.tables}>
-            </SchemaCode>
-            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
+          <div className="TextEditor">
+            <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE </button>
+            <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
           </div>
         </SplitPane>
       </div>
@@ -283,3 +281,4 @@ class App extends Component {
 }
 
 export default App;
+
