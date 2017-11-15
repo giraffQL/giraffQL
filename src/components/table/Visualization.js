@@ -63,10 +63,11 @@ class Visualization extends React.Component {
         return (
 
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
-            <Scrollbars style={{ height: '100%', width: '100%' }}>
 
+            <Scrollbars style={{ height: '100%', width: '100%' }}>
                 <div className='toolbar'>
                         {/* <div class="button_base b02_slide_in">
+                    {/* <div class="button_base b02_slide_in">
                         <div bsStyle="success" bsSize="large" onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
                     <div className="button_base b02_slide_in">
                         <div onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
@@ -95,7 +96,7 @@ class Visualization extends React.Component {
                             <marker id="circle" markerWidth="5" markerHeight="5" refX="5" refY="5" orient="auto">
                                 <circle cx="5" cy="5" r="2" fill="red" />
                             </marker>
-                               
+
                         </defs>
 
                         {start !== null && end !== null && clickedRow &&

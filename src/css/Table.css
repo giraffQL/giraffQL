@@ -24,14 +24,17 @@
 }
 
 .tableName {
-    text-align: center;
     display: block;
-    margin: 0 auto;
+    float:right;
     height:34px; /* changed from 29px to match select box*/
     width: 300px;
     padding:0px;
     font-size:16px;
     border-color: solid black;
+}
+.form-group {
+    margin: auto 0;
+    text-align: center;
 }
 
 #nav { /* add a nav bar */
@@ -94,7 +97,7 @@
 }
 
 .typetd {
-    width:152.5px;
+    width:180px;
     text-align: center;
 }
 .deletetablebutton {
@@ -119,6 +122,7 @@
     float:left;
     margin: 0 auto;
 }
+
 .deleterowbutton {
     width:7%;
     font-size: 18px;
@@ -142,13 +146,10 @@
 }
 
 .drag-handle {
-    position: fixed;
-    left: 0;
-    top: 0;
-    margin-top:20px;
+    position: relative;
     width:30px;
     height: 29px;
-    margin-left:10px;
+    float:left;
 }
 .drag {
     display: block;
@@ -175,20 +176,9 @@
     pointer-events: none;
     user-select:none;
 }
-.buttonone {
-    font-size:20px;
-    text-align: center;
-    margin:0;
-    margin-top:4px;
-}
-.buttontwo {
-    font-size:20px;
-    text-align: center;
-    margin:0;
-    margin-top:5px;
-}
 .select-placeholder {
     margin-top:2px;
+    font-size:16px
 }
 
 .react-draggable {
@@ -198,4 +188,13 @@
 table {
     position: relative;
 }
-
+.createtable {
+    float:left;
+    margin-right:1px;
+}
+.deletealltable {
+    float:left;
+}
+.Select-input {
+    width:100px;
+}
