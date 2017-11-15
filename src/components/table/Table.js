@@ -8,9 +8,6 @@ import 'react-select/dist/react-select.css';
 import colors from './colors';
 import { FormControl, Button } from 'react-bootstrap';
 
-
-
-
 class Table extends React.Component {
     constructor(props) {
         super(props)
@@ -40,19 +37,10 @@ class Table extends React.Component {
         )
     }
 
-
-
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
         const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
-    //    let dropdownoption =['GraphQLString', 'GraphQLInt', 'GraphQLFloat', 'GraphQLBoolean', 'GraphQLID', 'GraphQLList']
-    //     for (let i = 0; i < data.tables.length; i++) {
-    //         dropdownoption.push(data.tables[i].name)
-    //     }
-    //    let options = dropdownoption.map((element,j) => {
-    //        return <MenuItem eventKey={j.toString()}>{element}></MenuItem>
-    //     })
 
 
         let options = [ 
@@ -63,13 +51,16 @@ class Table extends React.Component {
             { value: 'GraphQLID', label: 'GraphQLID' },
             { value: 'GraphQLList', label: 'GraphQLList' }
         ]
+        
         for (let i = 0; i < data.tables.length; i++) {
             let container = {}
             container.value = data.tables[i].name
             container.label = data.tables[i].name
             options.push(container)
         }
+
         return (
+            
             <Draggable bounds="parent" handle=".drag-handle"
 
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
@@ -100,7 +91,7 @@ class Table extends React.Component {
                                                 options={options}
                                                 simpleValue
                                                 autosize={true}
-                                                value={data.tables[tableIndex].attributes[i].value}
+                                                value={data.tables[tableIndex].attributes[i].type}
                                             />
                                         }
                                     </div>

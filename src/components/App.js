@@ -1,47 +1,16 @@
 import React, { Component } from 'react';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
-//DRAFT JS DEPENDENCIES
-import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
-import TextEditor from '../components/code/Editor';
+
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
-import '../css/prism.css';
-//SCHEMA CODE COMPONENT//
-import SchemaCode from './code/SchemaCode';
-//PRISM DEPENDENCIES
-const PrismDecorator = require('draft-js-prism');
-const Prism = require('prismjs')
 
+//FILE SERVER
+import FileSaver from 'file-saver';
 
-//PRISM LIBRARY FOR SYNTAX HIGHLIGHTING//
-const decorator = new PrismDecorator({
-  defaultSyntax: 'javascript',
-  prism: Prism,
-});
-
-//contentState to provide raw text for code block
-// const contentState = convertFromRaw({
-//   entityMap: {},
-//   blocks: [
-//     {
-//       type: 'code-block',
-//       text: ''
-//     }
-//   ]
-// });
-const codeToRender = {
-  entityMap: {},
-  blocks: [
-    {
-      type: 'code-block',
-      text: 'blah'
-    }
-  ]
-}
-
-const contentState = convertFromRaw(codeToRender);
+//TEXT Editor
+import TextEditor from '../components/code/TextEditor'
 
 
 class App extends Component {
@@ -50,81 +19,12 @@ class App extends Component {
     this.state = {
       clickedRow: null,
       data: {
-        tables: []
+        tables: [
+        ],
       },
-      //DRAFTJS STATE//
-      editorState: EditorState.createWithContent(contentState, decorator),
     };
-
-    this.onChange = (editorState) => {
-      this.setState({ editorState });
-    }
   };
-  //DRAFTJS METHODS//
-  handleKeyCommand = (command) => {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
 
-    if (newState) {
-      this.onChange(newState);
-      return 'handled';
-    }
-    return 'not handled';
-  }
-
-  onUnderlineClick = () => {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  }
-
-  onToggleCode = () => {
-    console.log('test');
-    this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
-  }
-
-  renderEditor = () => {
-    console.log('renderEditor')
-  }
-  //generate code from state function not working yet
-  genCode = () => {
-
-    // console.log('generate code!');
-    let data = this.state.data.tables;
-    const allCode = [];
-    data.forEach((x) => {
-      const codeBlock = {};
-      codeBlock.name = x.name,
-        x.attributes.forEach((y) => {
-          codeBlock.field = y.field,
-            codeBlock.type = y.type
-        })
-      allCode.push(codeBlock);
-      // console.log(allCode);
-    })
-
-    // getTableName = () => {
-    //   let data = this.state.data.tables;
-    //   const allCode = [];
-    //   data.forEach((x) => {
-    //     const codeBlock = {};
-    //     codeBlock.name = x.name,
-    //       x.attributes.forEach((y) => {
-    //         codeBlock.field = y.field,
-    //           codeBlock.type = y.type
-    //       })
-    //     allCode.push(codeBlock);
-    //     console.log(allCode);
-    //   })
-    // },
-
-    // getRowData = () => {
-    //   console.log('getRowData');
-    // },
-
-    // compileCode = () => {
-    //   console.log('compileCode');
-    // }
-
-
-  }
 
   onAddTable = () => {
     //function which is making random string for ID
@@ -170,26 +70,55 @@ class App extends Component {
 
   updateTableName = (tableIndex, value) => {
     this.setState(state => {
-      let table = state.data.tables[tableIndex]
-      table.name = value
-      return state
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, { name: value })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowProp = state.data.tables[tableIndex].attributes[rowIndex]
-      rowProp.field = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { field: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowType = state.data.tables[tableIndex].attributes[rowIndex]
-      rowType.value = value;
-      rowType.type = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { type: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
@@ -218,7 +147,7 @@ class App extends Component {
   }
 
   //TABLE POSITION
-refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
+  refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     this.setState(state => {
       //table
       let table = state.data.tables[tableIndex]
@@ -262,6 +191,14 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     }
   }
 
+
+
+  saveTextAsFile = () => {
+    let text = this.code.getTextFromModel(this.state.data)
+    let blob = new Blob([text], { type: "text/javascript" });
+    FileSaver.saveAs(blob, 'schema.js')
+  }
+
   render() {
     const { data } = this.state
     return (
@@ -269,14 +206,11 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
         <SplitPane split="vertical" defaultSize="50%">
           <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
-          <div className="TextEditor force-select">
-            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
-            <SchemaCode code={this.state.data.tables}>
-            </SchemaCode>
+            updateRowType={this.updateRowType} onAddTable={this.onAddTable} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
+            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
+          <div className="TextEditor">
+            <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE </button>
+            <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
           </div>
         </SplitPane>
       </div>
@@ -285,3 +219,4 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
 }
 
 export default App;
+
