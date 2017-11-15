@@ -215,7 +215,7 @@ class App extends Component {
   saveTextAsFile = () => {
     console.log(this.state.data)
     var text = this.code.getTextFromModel(this.state.data)
-    var blob = new Blob([text], {type: "text/javascript"});
+    var blob = new Blob([text], { type: "text/javascript" });
     FileSaver.saveAs(blob, 'schema.js')
   }
 
@@ -226,12 +226,11 @@ class App extends Component {
         <SplitPane split="vertical" defaultSize="50%">
           <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
+            updateRowType={this.updateRowType} onAddTable={this.onAddTable} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
           <div className="TextEditor">
-            <button onClick={()=>this.saveTextAsFile()}> Save schema code </button>
-            <TextEditor data={this.state.data} onRef={ref => (this.code = ref)}  />
+            <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE </button>
+            <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
           </div>
         </SplitPane>
       </div>
@@ -240,3 +239,4 @@ class App extends Component {
 }
 
 export default App;
+

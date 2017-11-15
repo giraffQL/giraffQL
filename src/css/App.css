@@ -267,5 +267,11 @@ border-color: transparent;
   -moz-transition: opacity 0.1s ease;
 }
 
+.save {
+  background-color: rgba(30,130,76,0.6);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px
+}
 
 
