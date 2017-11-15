@@ -14,17 +14,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
 // MENU COMPONENT
 import MenuComp from './Menu';
-
+//FILE SERVER
+import FileSaver from 'file-saver';
+//TEXT Editor
+import TextEditor from '../components/code/TextEditor'
 
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
 
-
-//FILE SERVER
-import FileSaver from 'file-saver';
-
-//TEXT Editor
-import TextEditor from '../components/code/TextEditor'
 
 
 class App extends Component {
@@ -212,6 +209,7 @@ class App extends Component {
 
   fullscreenToggle = () => {
     this.setState({isFullscreenEnabled: true})
+  }
 
   saveTextAsFile = () => {
     let text = this.code.getTextFromModel(this.state.data)
