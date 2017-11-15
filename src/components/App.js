@@ -12,18 +12,11 @@ import '../css/prism.css';
 import SchemaCode from './code/SchemaCode';
 //PRISM DEPENDENCIES
 import Fullscreen from 'react-full-screen';
-
+// MATERIAL UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
-import AppBar from 'material-ui/AppBar';
-
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-
-import BottomNav from './BottomNav';
-
+// REACT-BOOTSTRAP
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
-
+// MENU COMPONENT
 import MenuComp from './Menu';
 
 
