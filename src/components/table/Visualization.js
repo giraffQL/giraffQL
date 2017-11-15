@@ -7,6 +7,16 @@ import colors from './colors';
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
 import css from '../../css/Table.css'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
+
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+
+import { Scrollbars } from 'react-custom-scrollbars';
+
+
 class Visualization extends React.Component {
     constructor(props) {
         super(props)
@@ -51,10 +61,12 @@ class Visualization extends React.Component {
 
         const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
         return (
+
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
+
+            <Scrollbars style={{ height: '100%', width: '100%' }}>
                 <div className='toolbar'>
-
-
+                        {/* <div class="button_base b02_slide_in">
                     {/* <div class="button_base b02_slide_in">
                         <div bsStyle="success" bsSize="large" onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
                     <div className="button_base b02_slide_in">
@@ -63,6 +75,7 @@ class Visualization extends React.Component {
                         <div></div>
                         {<div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>}
                     </div>*/}
+
                     <Nav id="nav" bsStyle="pills">
                         <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}> CREATE TABLE </Button>
 
@@ -71,6 +84,8 @@ class Visualization extends React.Component {
                     </Nav>
 
                 </div>
+
+
                 <div>
                     <svg className="relations" >
                         <defs>
@@ -81,7 +96,7 @@ class Visualization extends React.Component {
                             <marker id="circle" markerWidth="5" markerHeight="5" refX="5" refY="5" orient="auto">
                                 <circle cx="5" cy="5" r="2" fill="red" />
                             </marker>
-                               
+
                         </defs>
 
                         {start !== null && end !== null && clickedRow &&
@@ -128,6 +143,7 @@ class Visualization extends React.Component {
                     </div>
 
                 </div>
+            </Scrollbars>
             </div>
         )
     }

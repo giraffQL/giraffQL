@@ -1,47 +1,27 @@
 import React, { Component } from 'react';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
-//DRAFT JS DEPENDENCIES
-import { Editor, EditorState, RichUtils, convertFromRaw } from 'draft-js';
-import TextEditor from '../components/code/Editor';
+
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
 import '../css/prism.css';
-//SCHEMA CODE COMPONENT//
-import SchemaCode from './code/SchemaCode';
 //PRISM DEPENDENCIES
+import Fullscreen from 'react-full-screen';
+// MATERIAL UI
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// REACT-BOOTSTRAP
+import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+// MENU COMPONENT
+import MenuComp from './Menu';
+//FILE SERVER
+import FileSaver from 'file-saver';
+//TEXT Editor
+import TextEditor from '../components/code/TextEditor'
+
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
 
-
-//PRISM LIBRARY FOR SYNTAX HIGHLIGHTING//
-const decorator = new PrismDecorator({
-  defaultSyntax: 'javascript',
-  prism: Prism,
-});
-
-//contentState to provide raw text for code block
-// const contentState = convertFromRaw({
-//   entityMap: {},
-//   blocks: [
-//     {
-//       type: 'code-block',
-//       text: ''
-//     }
-//   ]
-// });
-const codeToRender = {
-  entityMap: {},
-  blocks: [
-    {
-      type: 'code-block',
-      text: 'blah'
-    }
-  ]
-}
-
-const contentState = convertFromRaw(codeToRender);
 
 
 class App extends Component {
@@ -50,81 +30,12 @@ class App extends Component {
     this.state = {
       clickedRow: null,
       data: {
-        tables: []
+        tables: [
+        ],
       },
-      //DRAFTJS STATE//
-      editorState: EditorState.createWithContent(contentState, decorator),
     };
-
-    this.onChange = (editorState) => {
-      this.setState({ editorState });
-    }
   };
-  //DRAFTJS METHODS//
-  handleKeyCommand = (command) => {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
 
-    if (newState) {
-      this.onChange(newState);
-      return 'handled';
-    }
-    return 'not handled';
-  }
-
-  onUnderlineClick = () => {
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
-  }
-
-  onToggleCode = () => {
-    console.log('test');
-    this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
-  }
-
-  renderEditor = () => {
-    console.log('renderEditor')
-  }
-  //generate code from state function not working yet
-  genCode = () => {
-
-    // console.log('generate code!');
-    let data = this.state.data.tables;
-    const allCode = [];
-    data.forEach((x) => {
-      const codeBlock = {};
-      codeBlock.name = x.name,
-        x.attributes.forEach((y) => {
-          codeBlock.field = y.field,
-            codeBlock.type = y.type
-        })
-      allCode.push(codeBlock);
-      // console.log(allCode);
-    })
-
-    // getTableName = () => {
-    //   let data = this.state.data.tables;
-    //   const allCode = [];
-    //   data.forEach((x) => {
-    //     const codeBlock = {};
-    //     codeBlock.name = x.name,
-    //       x.attributes.forEach((y) => {
-    //         codeBlock.field = y.field,
-    //           codeBlock.type = y.type
-    //       })
-    //     allCode.push(codeBlock);
-    //     console.log(allCode);
-    //   })
-    // },
-
-    // getRowData = () => {
-    //   console.log('getRowData');
-    // },
-
-    // compileCode = () => {
-    //   console.log('compileCode');
-    // }
-
-
-  }
 
   onAddTable = () => {
     //function which is making random string for ID
@@ -170,26 +81,55 @@ class App extends Component {
 
   updateTableName = (tableIndex, value) => {
     this.setState(state => {
-      let table = state.data.tables[tableIndex]
-      table.name = value
-      return state
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, { name: value })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowProp = state.data.tables[tableIndex].attributes[rowIndex]
-      rowProp.field = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { field: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
   updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      let rowType = state.data.tables[tableIndex].attributes[rowIndex]
-      rowType.value = value;
-      rowType.type = value;
-      return state;
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ai) =>
+                  (ai === rowIndex)
+                    ? Object.assign({}, attr, { type: value })
+                    : attr
+                )
+              })
+              : table
+          )
+        }
+      }
     })
   }
 
@@ -218,7 +158,7 @@ class App extends Component {
   }
 
   //TABLE POSITION
-refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
+  refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     this.setState(state => {
       //table
       let table = state.data.tables[tableIndex]
@@ -262,26 +202,68 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     }
   }
 
+
+  menuToggle = () => this.setState({open: !this.state.open});
+
+  menuClose = () => this.setState({open: false});
+
+  fullscreenToggle = () => {
+    this.setState({isFullscreenEnabled: true})
+  }
+
+  saveTextAsFile = () => {
+    let text = this.code.getTextFromModel(this.state.data)
+    let blob = new Blob([text], { type: "text/javascript" });
+    FileSaver.saveAs(blob, 'schema.js')
+  }
+
   render() {
     const { data } = this.state
+    const muiStyles = {
+      appBar: {
+        'background-color': '#9FA767',
+        'border-bottom': '4px solid white',
+        'line-height': '20px',
+        color: '#fbe4a1'
+      },
+      drawer: {
+        'background-color': '#9FA767',
+        'color': 'white',
+      },
+      menuItem: {
+        'color': 'white',
+        'font-size': '20px'
+      }
+    }
+
     return (
+      <MuiThemeProvider>
       <div className="App">
-        <SplitPane split="vertical" defaultSize="50%">
-          <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
-          <div className="TextEditor force-select">
-            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
-            <SchemaCode code={this.state.data.tables}>
-            </SchemaCode>
-          </div>
-        </SplitPane>
+        <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
+        <Fullscreen
+          enabled={this.state.isFullscreenEnabled}
+          onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
+          >
+            <div className='full-screenable-node'>
+              {/*PRESS ESC TO EXIT*/}
+
+                <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
+                <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+
+                  <div className="TextEditor">
+                      <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE
+                      </button>
+                      <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
+                  </div>
+                </SplitPane>
+            </div>
+        </Fullscreen>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
 
 export default App;
+
