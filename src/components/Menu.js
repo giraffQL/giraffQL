@@ -48,7 +48,7 @@ class MenuComp extends Component {
               <MenuItem style={muiStyles.menuItem} onClick={menuClose}>APP</MenuItem>
               <MenuItem style={muiStyles.menuItem} onClick={menuClose}>ABOUT</MenuItem>
               <MenuItem style={muiStyles.menuItem} onClick={fullscreenToggle}>
-                VIEW FULLSCREEN
+                FULLSCREEN
               </MenuItem>
             </Drawer>
           </div>

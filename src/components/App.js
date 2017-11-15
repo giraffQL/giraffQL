@@ -298,7 +298,7 @@ class App extends Component {
       },
       drawer: {
         'background-color': '#9FA767',
-        'color': 'white'
+        'color': 'white',
       },
       menuItem: {
         'color': 'white',
@@ -308,61 +308,38 @@ class App extends Component {
 
     return (
       <MuiThemeProvider>
-        <div className="App">
-        {/*<div>
-            {console.log(' mui this is working')}
-            <AppBar style={muiStyles.appBar} className="appBar" title="Menu" onClick={this.menuToggle}>
-            </AppBar>
-            <Drawer
-              className='drawer'
-              containerStyle={muiStyles.drawer}
-              docked={false}
-              width={200}
-              open={this.state.open}
-              onRequestChange={(open) => this.setState({open})}
-            >
-              <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>HOME</MenuItem>
-              <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>APP</MenuItem>
-              <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>ABOUT</MenuItem>
-              <MenuItem style={muiStyles.menuItem} onClick={() => this.setState({isFullscreenEnabled: true})}>
-                FULLSCREEN
-              </MenuItem>
-            </Drawer>
-          </div>*/}
-
-          <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
-
+      <div className="App">
+        <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
         <Fullscreen
           enabled={this.state.isFullscreenEnabled}
           onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
           >
-        <div className='full-screenable-node'>
-          {/*PRESS ESC TO EXIT*/}
+            <div className='full-screenable-node'>
+              {/*PRESS ESC TO EXIT*/}
 
-        <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
+            <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
 
-        <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable}
-            onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+            <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
+                updateRowType={this.updateRowType} onAddTable={this.onAddTable}
+                onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
+                onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
 
-          <div className="TextEditor">
-          {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+              <div className="TextEditor">
+              {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
 
-          <div className="TextEditor force-select">
-            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+              <div className="TextEditor force-select">
+                {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
 
-          <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
-            <SchemaCode code={this.state.data.tables}>
-            </SchemaCode>
-          </div>
+              <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
+                <SchemaCode code={this.state.data.tables}>
+                </SchemaCode>
+              </div>
 
-        </SplitPane>
+            </SplitPane>
         </div>
         </Fullscreen>
       </div>
-
       </MuiThemeProvider>
     );
   }
