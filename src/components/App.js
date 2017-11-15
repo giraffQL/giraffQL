@@ -164,13 +164,12 @@ class App extends Component {
     })
   }
 
-  //this is not correct way to do because state has to be immutable (but it's working)
   onAddRow = (tableIndex) => {
     this.setState(state => {
       return {
         data: {
           tables: state.data.tables.map((table, i) =>
-            (i === tableIndex )
+            (i === tableIndex)
               ? Object.assign({}, table, {
                 attributes: table.attributes.concat({ field: '', type: '' })
               })
@@ -191,7 +190,6 @@ class App extends Component {
 
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
-      // console.log(tableIndex, rowIndex, value)
       let rowProp = state.data.tables[tableIndex].attributes[rowIndex]
       rowProp.field = value;
       return state;
@@ -207,17 +205,16 @@ class App extends Component {
     })
   }
 
-  deleteRow = (tableindex,rowindex) => {
+  deleteRow = (tableindex, rowindex) => {
     let spliceit = Object.assign({}, this.state.data.tables[tableindex])
-    spliceit.attributes.splice(rowindex,1);
-    console.log(spliceit)
-    this.setState({spliceit})
+    spliceit.attributes.splice(rowindex, 1);
+    this.setState({ spliceit })
   }
 
   deleteTable = (index) => {
     let spliceit = Object.assign({}, this.state.data)
-    spliceit.tables.splice(index,1);
-    this.setState({spliceit})
+    spliceit.tables.splice(index, 1);
+    this.setState({ spliceit })
   }
 
   deleteAllTables = () => {
@@ -250,20 +247,20 @@ class App extends Component {
     }
 
   onRowMouseDown = (tableIndex, rowIndex) => {
-      this.setState({
-        clickedRow: {
-          tableIndex,
-          rowIndex
-        }
-      })
+    this.setState({
+      clickedRow: {
+        tableIndex,
+        rowIndex
+      }
+    })
   }
 
   onTableMouseUp = (tableIndex) => {
     const { clickedRow } = this.state
     if (tableIndex === null || !clickedRow || clickedRow.tableIndex === tableIndex) {
       this.setState({
-          clickedRow: null
-        })
+        clickedRow: null
+      })
     } else {
       this.setState(state => {
         const table = state.data.tables[state.clickedRow.tableIndex]
@@ -277,10 +274,10 @@ class App extends Component {
     }
   }
 
+
   menuToggle = () => this.setState({open: !this.state.open});
 
   menuClose = () => this.setState({open: false});
-
 
 
   render() {
@@ -333,19 +330,21 @@ class App extends Component {
 
         <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
 
-
         <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
 
-
           <div className="TextEditor">
           {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+
+          <div className="TextEditor force-select">
+            {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
+
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
-          <SchemaCode code={this.state.data.tables}>
-          </SchemaCode>
+            <SchemaCode code={this.state.data.tables}>
+            </SchemaCode>
           </div>
 
         </SplitPane>

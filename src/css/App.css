@@ -48,6 +48,15 @@ body {
   z-index:1;
 }
 
+.relation {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:1;
+}
+
 .tables {
   margin-top: 50px;  /* changed from padding-top 50px to margin-top for scrollbar */
   width: 100%;
@@ -273,4 +282,8 @@ border-color: transparent;
   transition: opacity 0.1s ease;
   -webkit-transition: opacity 0.1s ease;
   -moz-transition: opacity 0.1s ease;
+}
+
+.force-select{
+  -webkit-user-select: all;
 }
