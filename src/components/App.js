@@ -5,12 +5,23 @@ import SplitPane from "react-split-pane"
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
-
+import '../css/prism.css';
+//PRISM DEPENDENCIES
+import Fullscreen from 'react-full-screen';
+// MATERIAL UI
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// REACT-BOOTSTRAP
+import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+// MENU COMPONENT
+import MenuComp from './Menu';
 //FILE SERVER
 import FileSaver from 'file-saver';
-
 //TEXT Editor
 import TextEditor from '../components/code/TextEditor'
+
+const PrismDecorator = require('draft-js-prism');
+const Prism = require('prismjs')
+
 
 
 class App extends Component {
@@ -192,6 +203,13 @@ class App extends Component {
   }
 
 
+  menuToggle = () => this.setState({open: !this.state.open});
+
+  menuClose = () => this.setState({open: false});
+
+  fullscreenToggle = () => {
+    this.setState({isFullscreenEnabled: true})
+  }
 
   saveTextAsFile = () => {
     let text = this.code.getTextFromModel(this.state.data)
@@ -201,19 +219,48 @@ class App extends Component {
 
   render() {
     const { data } = this.state
+    const muiStyles = {
+      appBar: {
+        'background-color': '#9FA767',
+        'border-bottom': '4px solid white',
+        'line-height': '20px',
+        color: '#fbe4a1'
+      },
+      drawer: {
+        'background-color': '#9FA767',
+        'color': 'white',
+      },
+      menuItem: {
+        'color': 'white',
+        'font-size': '20px'
+      }
+    }
+
     return (
+      <MuiThemeProvider>
       <div className="App">
-        <SplitPane split="vertical" defaultSize="50%">
-          <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-          <div className="TextEditor">
-            <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE </button>
-            <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
-          </div>
-        </SplitPane>
+        <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
+        <Fullscreen
+          enabled={this.state.isFullscreenEnabled}
+          onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
+          >
+            <div className='full-screenable-node'>
+              {/*PRESS ESC TO EXIT*/}
+
+                <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
+                <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+
+                  <div className="TextEditor">
+                      <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE
+                      </button>
+                      <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
+                  </div>
+                </SplitPane>
+            </div>
+        </Fullscreen>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
