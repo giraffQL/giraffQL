@@ -83,7 +83,16 @@ class Table extends React.Component {
                                     <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
                                     <div>
                                         {relatedTable &&
-                                            <span>{relatedTable.name}</span>
+                                            // <span>{relatedTable.name}</span>
+                                            <Select className='dropdown'
+                                            onChange={(value) => updateRowType(tableIndex, i, value)}
+                                            options={options}
+                                            simpleValue
+                                            autoload= {true}
+                                            value={data.tables[i].name}
+                                            autosize={true}
+                                            /* value={data.tables[tableIndex].attributes[i].value} */
+                                        />
                                         }
                                         {!relatedTable &&
                                             <Select className='dropdown'
