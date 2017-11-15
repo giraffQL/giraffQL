@@ -20,28 +20,9 @@ class App extends Component {
       clickedRow: null,
       data: {
         tables: [
-          {
-            id: '1',
-            name: 'One',
-            tablePositionX: 0,
-            tablePositionY: 7,
-            attributes: [{ field: 'hi', type: '', relatedToTableId: 2 },
-            { field: 'blah', type: '', relatedToTableId: null }]
-          },
-          {
-            id: '2',
-            name: 'Two',
-            tablePositionX: 10,
-            tablePositionY: 10,
-            attributes: [{ field: 'jj', type: '', relatedToTableId: null }]
-          }
         ],
-
       },
-
     };
-
-
   };
 
 
@@ -213,9 +194,8 @@ class App extends Component {
 
 
   saveTextAsFile = () => {
-    console.log(this.state.data)
-    var text = this.code.getTextFromModel(this.state.data)
-    var blob = new Blob([text], { type: "text/javascript" });
+    let text = this.code.getTextFromModel(this.state.data)
+    let blob = new Blob([text], { type: "text/javascript" });
     FileSaver.saveAs(blob, 'schema.js')
   }
 
