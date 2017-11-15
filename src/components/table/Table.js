@@ -106,7 +106,9 @@ class Table extends React.Component {
                         )
                     })}
                     <tr>
-                    <td className = 'addbutton' colSpan={2}><Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button> </td>
+                        <td className = 'addRowWrap' colSpan={2}>
+                          <Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

@@ -7,6 +7,14 @@ import colors from './colors';
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
 import css from '../../css/Table.css'
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
+
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+
+
 class Visualization extends React.Component {
     constructor(props) {
         super(props)

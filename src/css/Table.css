@@ -38,10 +38,10 @@
     float: left;
     top: 3px;
     width: 100%;
-    background-color: rgba(207, 83, 0, .2); /* made translucent */
+    /*background-color: rgba(207, 83, 0, .2); /* made translucent */
 }
 
-.addbutton {
+.addRowWrap {
     border-bottom-left-radius: 20px; /* need this to round the bottom borders */
     border-bottom-right-radius: 20px; /* need this to round the bottom borders */
 }
@@ -54,21 +54,40 @@
 }
 
 #createTableBtn {
-    background-color: rgba(30,130,76,0.6);
+    color: white;
+    background-color: #9FA767; /* rgba(30,130,76,0.6);*/
 }
+
+#createTableBtn:hover {
+    color: #9FA767;
+    background-color: white;
+    border-color: white;
+}
+
 
 #clearBtn {
     background-color: rgba(166,0,0,0.6);
 }
 
+#clearBtn:hover {
+    color: rgba(166,0,0,0.6);
+    background-color: white;
+    border-color: white;
+}
+
 .addRow {
     padding: 8px 90px;
     border-radius: 4px;
-    background-color: rgba(30,130,76,0.4); /* made green color translucent */
+    background-color: #9FA767; /*rgba(30,130,76,0.4); */ /* made green color translucent */
     border: none;
     font-weight: bold;
     font-size: 16px;
     color: white;
+}
+
+.addRow:hover {
+    background-color: white;
+    color: rgba(30,130,76,0.4);
 }
 
 .typetd {
@@ -92,17 +111,23 @@
     font-weight: bold;
     cursor: pointer;
   }
-  .typeinput {
+.typeinput {
     width:80%;
     float:left;
     margin: 0 auto;
-  }
-  .deleterowbutton {
+}
+.deleterowbutton {
     width:7%;
     float:right;
     cursor:pointer;
     margin-top:6px;
-  }
+    color: white;
+}
+
+.deleterowbutton:hover { /* change color on hover */
+    color: red;
+}
+
 .propertyinput {
     height:34px; /*changed from 29px to match select box*/
     padding:0px;

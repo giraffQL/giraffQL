@@ -11,6 +11,16 @@ import '../css/prism.css';
 //SCHEMA CODE COMPONENT//
 import SchemaCode from './code/SchemaCode';
 //PRISM DEPENDENCIES
+import Fullscreen from 'react-full-screen';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
+
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+
+
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
 
@@ -221,24 +231,23 @@ class App extends Component {
   }
 
   //TABLE POSITION
-refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
+  refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
+      this.setState(state => {
+        let table = state.data.tables[tableIndex]
+        table.tablePositionX = tablePosition.left
+        table.tablePositionY = tablePosition.top
 
-    this.setState(state => {
-      let table = state.data.tables[tableIndex]
-      table.tablePositionX = tablePosition.left
-      table.tablePositionY = tablePosition.top
+        let attrs = state.data.tables[tableIndex].attributes
+        for (let i = 0; i < attrs.length; i += 1) {
+          attrs[i].x = rowPositions[i].left
+          attrs[i].y = rowPositions[i].top
+        }
 
-      let attrs = state.data.tables[tableIndex].attributes
-      for (let i = 0; i < attrs.length; i += 1) {
-        attrs[i].x = rowPositions[i].left
-        attrs[i].y = rowPositions[i].top
-      }
+        return state;
+      })
+    }
 
-      return state;
-    })
-  }
-
-   onRowMouseDown = (tableIndex, rowIndex) => {
+  onRowMouseDown = (tableIndex, rowIndex) => {
       this.setState({
         clickedRow: {
           tableIndex,
@@ -247,7 +256,7 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
       })
   }
 
-    onTableMouseUp = (tableIndex) => {
+  onTableMouseUp = (tableIndex) => {
     const { clickedRow } = this.state
     if (tableIndex === null || !clickedRow || clickedRow.tableIndex === tableIndex) {
       this.setState({
@@ -266,26 +275,80 @@ refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     }
   }
 
+  menuToggle = () => this.setState({open: !this.state.open});
+
+  menuClose = () => this.setState({open: false});
+
 
 
   render() {
     const { data } = this.state
+    const muiStyles = {
+      appBar: {
+        'background-color': '#9FA767',
+        'border-bottom': '3px solid #fbe4a1',
+        'line-height': '20px',
+        color: '#fbe4a1'
+      },
+      drawer: {
+        'background-color': '#9FA767',
+        'color': 'white'
+      },
+      menuItem: {
+        'color': 'white',
+        'font-size': '20px'
+      }
+    }
+
     return (
+      <MuiThemeProvider>
       <div className="App">
-        <SplitPane split="vertical" defaultSize="50%">
+          <div>
+          <AppBar style={muiStyles.appBar} className="appBar" title="Menu" onClick={this.menuToggle}></AppBar>
+            <Drawer
+              className='drawer'
+              containerStyle={muiStyles.drawer}
+              docked={false}
+              width={200}
+              open={this.state.open}
+              onRequestChange={(open) => this.setState({open})}
+            >
+              <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>HOME</MenuItem>
+              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>APP</MenuItem>
+              <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>ABOUT</MenuItem>
+              <MenuItem style={muiStyles.menuItem} onClick={() => this.setState({isFullscreenEnabled: true})}>
+                FULLSCREEN
+              </MenuItem>
+            </Drawer>
+          </div>
+
+        <Fullscreen
+          enabled={this.state.isFullscreenEnabled}
+          onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
+          >
+        <div className='full-screenable-node'>
+          {/*PRESS ESC TO EXIT*/}
+
+        <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
         <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
             updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
             updateRowType={this.updateRowType} onAddTable={this.onAddTable}
             onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables}
             onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+
           <div className="TextEditor">
           {/* <button className = 'editorbutton' onToggleCode={this.onToggleCode}>Code Block</button>
           <TextEditor editorState={this.state.editorState} handleKeyCommand={this.handleKeyCommand} onChange={this.onChange} /> */}
           <SchemaCode code={this.state.data.tables}>
           </SchemaCode>
           </div>
+
         </SplitPane>
+
+        </div>
+        </Fullscreen>
       </div>
+      </MuiThemeProvider>
     );
   }
 }

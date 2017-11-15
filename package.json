@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "draggable": "^4.1.2",
+    "material-ui": "^0.19.4",
     "re-resizable": "^4.0.2",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
@@ -11,6 +12,7 @@
     "react-component-resizable": "^1.1.0-rc1",
     "react-dom": "^16.0.0",
     "react-draggable": "^3.0.3",
+    "react-full-screen": "0.0.2",
     "react-resizable": "^1.7.5",
     "react-resizable-component": "^1.1.0",
     "react-scripts": "1.0.15",
