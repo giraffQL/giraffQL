@@ -22,6 +22,10 @@ import MenuItem from 'material-ui/MenuItem';
 
 import BottomNav from './BottomNav';
 
+import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+
+import MenuComp from './Menu';
+
 
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
@@ -279,6 +283,9 @@ class App extends Component {
 
   menuClose = () => this.setState({open: false});
 
+  fullscreenToggle = () => {
+    this.setState({isFullscreenEnabled: true})
+  }
 
   render() {
     const { data } = this.state
@@ -301,9 +308,11 @@ class App extends Component {
 
     return (
       <MuiThemeProvider>
-      <div className="App">
-          <div>
-          <AppBar style={muiStyles.appBar} className="appBar" title="Menu" onClick={this.menuToggle}></AppBar>
+        <div className="App">
+        {/*<div>
+            {console.log(' mui this is working')}
+            <AppBar style={muiStyles.appBar} className="appBar" title="Menu" onClick={this.menuToggle}>
+            </AppBar>
             <Drawer
               className='drawer'
               containerStyle={muiStyles.drawer}
@@ -313,13 +322,15 @@ class App extends Component {
               onRequestChange={(open) => this.setState({open})}
             >
               <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>HOME</MenuItem>
-              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>APP</MenuItem>
+              <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>APP</MenuItem>
               <MenuItem style={muiStyles.menuItem} onClick={this.menuClose}>ABOUT</MenuItem>
               <MenuItem style={muiStyles.menuItem} onClick={() => this.setState({isFullscreenEnabled: true})}>
                 FULLSCREEN
               </MenuItem>
             </Drawer>
-          </div>
+          </div>*/}
+
+          <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
 
         <Fullscreen
           enabled={this.state.isFullscreenEnabled}
