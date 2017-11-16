@@ -6,7 +6,7 @@ module.exports = {
     './index.js',
   ],
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public/assets'),
     filename: 'bundle.js',
   },
   module: {
@@ -37,7 +37,8 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         loader: 'file-loader'
-      }
+      },
+      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' }
     ],
   },
   resolve: {
