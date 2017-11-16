@@ -219,22 +219,6 @@ class App extends Component {
 
   render() {
     const { data } = this.state
-    const muiStyles = {
-      appBar: {
-        'background-color': '#9FA767',
-        'border-bottom': '4px solid white',
-        'line-height': '20px',
-        color: '#fbe4a1'
-      },
-      drawer: {
-        'background-color': '#9FA767',
-        'color': 'white',
-      },
-      menuItem: {
-        'color': 'white',
-        'font-size': '20px'
-      }
-    }
 
     return (
       <MuiThemeProvider>
@@ -247,7 +231,7 @@ class App extends Component {
             <div className='full-screenable-node'>
               {/*PRESS ESC TO EXIT*/}
 
-                <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
+                <SplitPane style={{'background-color': '#fbe4a1'}}split="vertical" defaultSize="50%">
                 <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
                     updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
 

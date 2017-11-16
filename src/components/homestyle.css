@@ -11,7 +11,7 @@
     width:100%;
     height:100%;
     flex-direction:column;
-    align-items: center;    
+    align-items: center;
 }
 .header {
     width:100%;
@@ -19,16 +19,16 @@
     display:flex;
     justify-content: space-between;
     background-color: #86E2D5;
-    align-items: center;    
+    align-items: center;
     position:fixed;
-    
+
 }
 .navbutton {
-    align-items: center;    
-    
+    align-items: center;
+
 }
 .gitbutton {
-    align-items: center;    
+    align-items: center;
 }
 .mainimage{
     display:flex;
@@ -38,10 +38,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+
 }
 .coremain {
-    display: flex;    
+    display: flex;
     height:55%;
     width:50%;
     flex-direction:row;
@@ -49,7 +49,7 @@
 }
 .image {
     align-self:center;
-    
+
 
 }
 .text {
@@ -70,7 +70,7 @@
     justify-content:center;
     flex-direction:column;
     margin-top:0;
-    
+
 }
 .third {
     display:flex;
@@ -79,14 +79,14 @@
     height:500px;
     justify-content:space-around;
     align-items:center;
-    
+
 }
 .featurebox {
     width:30%;
     height:200px;
     justify-content:space-around;
     align-items:flex-start;
-    
+
 }
 img {
     max-width:100%;
