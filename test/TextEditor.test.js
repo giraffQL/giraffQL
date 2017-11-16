@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '../src/components/App';
 import TextEditor from '../src/components/code/TextEditor'
+import Editor from 'draft-js'
 
-import { shallow } from "enzyme";
+
+import { shallow, mount, render } from "enzyme";
 
 const dataProps = {
   data: {
@@ -19,4 +21,13 @@ it('TextEditor renders', () => {
   expect(inst).toBeTruthy();
 })
 
-it('Table fields render in Text Editor', () => {});
+it('TextEditor should mount in a full DOM', () => {
+  expect(mount(<TextEditor data={dataProps.data} onRef={() => console.log('hello')}/>)
+  .find('TextEditor').length).toBe(1);
+});
+
+it('TextEditor should contain TextEditor', () => {
+  const wrapper = mount(<TextEditor data={dataProps.data} onRef={() => console.log('hello')}/>);
+  expect(wrapper.find('TextEditor').exists()).toBe(true);
+});
+
