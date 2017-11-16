@@ -289,10 +289,16 @@ border-color: transparent;
 }
 
 .save {
-  background-color: rgba(30,130,76,0.6);
+  margin-top: 3px;
+  background-color: #9FA767; /*rgba(30,130,76,0.6);*/
   font-size: 18px;
   font-weight: bold;
   padding: 10px
+}
+
+.save:hover {
+  background-color: white;
+  color: #9FA767;
 }
 
 
