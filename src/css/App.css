@@ -6,7 +6,7 @@ body {
   width:100%;
   height:100%;
   padding:0;
-  background-color: /*#CCCDB7;*/#fbe4a1;
+  background-color:#fbe4a1;
   font-size:17px;
 }
 
@@ -16,8 +16,8 @@ body {
   height:100%;
 }
 
-.menuIcon {
-  align-items: center;
+.appBar h1 {
+  color: #fbe4a1;
 }
 
 .drawer {
@@ -30,6 +30,7 @@ body {
 }
 
 .full-screenable-node { /* make fullscreen background same color as body */
+  background-color: #fbe4a1;
   color: #9FA767;
   font-weight: 600;
 }

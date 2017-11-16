@@ -4,9 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import FlatButton from 'material-ui/FlatButton';
-import { Link } from 'react-router-dom'
-import './homestyle.css'
+
 
 class MenuComp extends Component {
   constructor(props) {
@@ -19,12 +17,9 @@ class MenuComp extends Component {
     const muiStyles = {
       appBar: {
         'background-color': '#9FA767',
+        'border-bottom': '4px solid white',
         'line-height': '20px',
-        color: '#fbe4a1',
-        width: '100%',
-        height: '58px',
-        position: 'relative',
-        'justify-content': 'space-between'
+        color: '#fbe4a1'
       },
       drawer: {
         'background-color': '#9FA767',
@@ -39,10 +34,7 @@ class MenuComp extends Component {
       <MuiThemeProvider>
       <div>
         {console.log(' mui this is working')}
-          <div style={muiStyles.appBar} className="header" title="Menu" onClick={menuToggle}>
-            <FlatButton style={{color: 'white'}} className='navbutton' onClick={menuToggle} icon={<i class="material-icons">list</i>}
-             />
-          </div>
+          <AppBar style={muiStyles.appBar} className="appBar" title="Menu" onClick={menuToggle}></AppBar>
             <Drawer
               className='drawer'
               containerStyle={muiStyles.drawer}
@@ -51,33 +43,12 @@ class MenuComp extends Component {
               open={state.open}
               onRequestChange={(open) => this.setState({open})}
             >
-              <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
-                Exit
-              </MenuItem>
-              <Link to='/'>
-                  <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
-                  Home
-                  </MenuItem>
-              </Link>
-              <Link to='/feature'>
-                  <MenuItem style={muiStyles.menuItem} onClick={menuClose}>Feature
-                  </MenuItem>
-              </Link>
-              <Link to='/app'>
-                  <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
-                  App
-                  </MenuItem>
-              </Link>
-              <Link to='/aboutus'>
-                  <MenuItem style={muiStyles.menuItem} onClick={menuClose}>About Us
-                  </MenuItem>
-              </Link>
-              <Link to='/download'>
-                  <MenuItem style={muiStyles.menuItem} onClick={menuClose}>Download
-                  </MenuItem>
-              </Link>
+              <MenuItem style={muiStyles.menuItem} onClick={menuClose}>EXIT</MenuItem>
+              <MenuItem style={muiStyles.menuItem} onClick={menuClose}>HOME</MenuItem>
+              <MenuItem style={muiStyles.menuItem} onClick={menuClose}>APP</MenuItem>
+              <MenuItem style={muiStyles.menuItem} onClick={menuClose}>ABOUT</MenuItem>
               <MenuItem style={muiStyles.menuItem} onClick={fullscreenToggle}>
-                Fullscreen
+                FULLSCREEN
               </MenuItem>
             </Drawer>
           </div>
