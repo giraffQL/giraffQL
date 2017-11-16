@@ -1,0 +1,105 @@
+#root {
+    width:100%;
+    height:1200px;;
+}
+#routed-component {
+    width:100%;
+    height:100%;
+}
+.mainpage {
+    display:flex;
+    width:100%;
+    height:100%;
+    flex-direction:column;
+    align-items: center;    
+}
+.header {
+    width:100%;
+    height:6%;
+    display:flex;
+    justify-content: space-between;
+    background-color: #86E2D5;
+    align-items: center;    
+    position:fixed;
+    
+}
+.navbutton {
+    align-items: center;    
+    
+}
+.gitbutton {
+    align-items: center;    
+}
+.mainimage{
+    display:flex;
+    width:100%;
+    height:33%;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.coremain {
+    display: flex;    
+    height:55%;
+    width:50%;
+    flex-direction:row;
+    align-items: center;
+}
+.image {
+    align-self:center;
+    
+
+}
+.text {
+    align-self:center;
+    justify-content: flex-end;
+}
+.maintext {
+    margin-top:20px;
+}
+.grafql {
+    font-size:70px;
+}
+.second {
+    width:100%;
+    height:20%;
+    background-color:#E9D460;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    margin-top:0;
+    
+}
+.third {
+    display:flex;
+    flex-direction: row;
+    width:70%;
+    height:500px;
+    justify-content:space-around;
+    align-items:center;
+    
+}
+.featurebox {
+    width:30%;
+    height:200px;
+    justify-content:space-around;
+    align-items:flex-start;
+    
+}
+img {
+    max-width:100%;
+}
+.bottompart {
+    background-color:black;
+    width:100%;
+    height:300px;
+}
+.secondtxt {
+    text-align:center;
+}
+.meetteam {
+    background-color:red;
+    width:100%;
+}
