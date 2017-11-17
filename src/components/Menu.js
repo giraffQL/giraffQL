@@ -30,13 +30,17 @@ class MenuComp extends Component {
       },
       menuItem: {
         'color': '#FFD300',
-        'font-size': '14px'
+        'font-size': '16px',
+        'text-align': 'left'
+      },
+      menuIcon: {
+        color: '#FFD300'
       }
     }
     return (
       <div>
           <div style={muiStyles.appBar} className="appBar">
-            <FlatButton style={muiStyles.menuItem} className='navbutton'
+            <FlatButton style={muiStyles.menuIcon} className='navbutton'
               onClick={menuToggle}
               icon={<i class="material-icons">list</i>}
                />

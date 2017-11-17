@@ -25,6 +25,11 @@ class Home extends Component {
 
 
   render() {
+    const muiStyles = {
+      menuItem: {
+        'color': '#FFD000'
+      }
+    }
 
     return (
       <div className='mainpage'>
@@ -34,16 +39,23 @@ class Home extends Component {
             icon={<i class="material-icons">list</i>}
              />
           <Drawer
+            containerStyle={{'background-color':'rgb(51,51,51'}}
             docked={false}
             width={200}
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
-            <Link to='/'><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>            
-            <MenuItem onClick={this.handleClose}>Feature</MenuItem>
-            <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
-            <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
-            <MenuItem onClick={this.handleClose}>Download</MenuItem>
+            <Link to='/'>
+              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem>
+            </Link>
+              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem>
+            <Link to='/app'>
+              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem>
+            </Link>
+            <Link to='/aboutus'>
+              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem>
+            </Link>
+            <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Download</MenuItem>
           </Drawer>
           <FlatButton className ='gitbutton'
             href="https://github.com/callemall/giraffql"
@@ -53,10 +65,10 @@ class Home extends Component {
        <div className='mainimage' style={{backgroundImage: `url(${main})`}}>
         <div className='coremain'>
           <img className ='image' src={graff} />
-           <h1 className ='grafql'>GiraffeQL</h1> 
+           <h1 className ='grafql'>GiraffeQL</h1>
         </div>
         <div className ='maintext'>
-          <p> A Set of React Components that Implement Google's Material Design DEMO</p> 
+          <p> A Set of React Components that Implement Google's Material Design DEMO</p>
         </div>
         </div>
         <div className ='second'>
