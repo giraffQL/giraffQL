@@ -76,12 +76,11 @@ class Visualization extends React.Component {
                         {<div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>}
                     </div>*/}
 
-                    <Nav id="nav" bsStyle="pills">
+                    {/*<Nav id="nav" bsStyle="pills">
                         <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}> CREATE TABLE </Button>
 
-                        {/* <button onClick={onAddTable}> Create table </button> */}
                         <Button id="clearBtn" className="displayBtn" bsSize="large" onClick={deleteAllTables}> CLEAR </Button>
-                    </Nav>
+                    </Nav>*/}
 
                 </div>
 

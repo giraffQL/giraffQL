@@ -16,9 +16,10 @@ body {
 
 .DraftEditor-root{
   background: rgb(51,51,51);
-  margin: 35px;
+  margin: 0px;
+  padding: 0 10px;
   border-radius: .3em;
-  border: 10px solid #BD9A63; /*#6F4A38;*/
+  /*border: 10px solid #BD9A63; #6F4A38;*/
   font-size: 20px;
   max-height: 1000px;
   overflow: auto;

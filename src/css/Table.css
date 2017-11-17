@@ -12,11 +12,15 @@
 
 .table td, .table th {
     border: 8px solid #BD9A63;
-    padding: 8px;
+    padding: 0px;
     background-color: #977359;
     width: 100%;
-    border-spacing: 0px;
+    border-spacing: 1px;
 
+}
+
+.table tr .propertyinput, .table tr .dropdown {
+    /*width: 100%;*/
 }
 
 .table tr:hover {background-color: #ddd;}
@@ -57,17 +61,25 @@
     border-bottom-right-radius: 20px; /* need this to round the bottom borders */
 }
 
+.toolPanel {
+    /*border: 2px solid red;*/
+    padding-top: 5px;
+}
+
 .displayBtn {
     float: left; /* moved nav buttons to the left */
-    margin: 0;
-    color: white;
+    margin-top: 8px;
+    margin-left: 0px;
+    color: rgb(51,51,51);
     font-weight: bold;
+    border: 2px solid rgb(51,51,51);
+    border-radius: 50%;
+    background-color: #FFD000; /*#FFBF00;*/
 }
 
 #createTableBtn {
-    color: white;
-    background-color: #9FA767; /* rgba(30,130,76,0.6);*/
-    margin-left: 0;
+    /*color: white;*/
+    background-color: rgba(30,130,76,1);
 }
 
 #createTableBtn:hover {
@@ -76,9 +88,8 @@
     border-color: white;
 }
 
-
 #clearBtn {
-    background-color: rgba(166,0,0,0.6);
+    background-color: rgba(166,0,0,1);
 }
 
 #clearBtn:hover {

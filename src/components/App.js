@@ -208,7 +208,10 @@ class App extends Component {
   menuClose = () => this.setState({open: false});
 
   fullscreenToggle = () => {
-    this.setState({isFullscreenEnabled: true})
+    this.setState({
+      isFullscreenEnabled: this.state.isFullscreenEnabled ? false : true,
+      open: false
+    })
   }
 
   saveTextAsFile = () => {
@@ -218,42 +221,26 @@ class App extends Component {
   }
 
   render() {
-    const { data } = this.state
-    const muiStyles = {
-      appBar: {
-        'background-color': '#9FA767',
-        'border-bottom': '4px solid white',
-        'line-height': '20px',
-        color: '#fbe4a1'
-      },
-      drawer: {
-        'background-color': '#9FA767',
-        'color': 'white',
-      },
-      menuItem: {
-        'color': 'white',
-        'font-size': '20px'
-      }
-    }
+    const { data } = this.state;
 
     return (
       <MuiThemeProvider>
       <div className="App">
-        <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
         <Fullscreen style = {{height: '10000px'}}
           enabled={this.state.isFullscreenEnabled}
           onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
           >
             <div className='full-screenable-node'>
               {/*PRESS ESC TO EXIT*/}
+              <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
 
-                <SplitPane split="vertical" defaultSize="50%">
+                <SplitPane style={{'background-color': 'rgb(51,51,51)'}} split="vertical" defaultSize="50%">
                 <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
                     updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
 
                   <div className="TextEditor">
-                      <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE
-                      </button>
+                      {/*<button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE
+                      </button>*/}
                       <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
                   </div>
                 </SplitPane>

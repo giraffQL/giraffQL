@@ -7,6 +7,9 @@ import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton';
 import './homestyle.css'
+// REACT-BOOTSTRAP
+import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+
 
 class MenuComp extends Component {
   constructor(props) {
@@ -14,31 +17,40 @@ class MenuComp extends Component {
   }
 
   render () {
-    const {state, menuToggle, menuClose, fullscreenToggle} = this.props;
+    const {state, menuToggle, menuClose, fullscreenToggle, onAddTable, deleteAllTables, saveTextAsFile} = this.props;
 
     const muiStyles = {
       appBar: {
-        'background-color': '#9FA767',
+        'background-color': 'rgb(51,51,51)',
         'line-height': '20px',
-        color: '#fbe4a1'
+        'border-bottom': '3px solid white'
       },
       drawer: {
-        'background-color': '#9FA767',
-        'color': 'white'
+        'background-color': 'rgb(51,51,51)',
       },
       menuItem: {
-        'color': 'white',
-        'font-size': '20px'
+        'color': '#FFD300',
+        'font-size': '14px'
       }
     }
     return (
-      <MuiThemeProvider>
       <div>
-          <div style={muiStyles.appBar} className="appBar" onClick={menuToggle}>
+          <div style={muiStyles.appBar} className="appBar">
             <FlatButton style={muiStyles.menuItem} className='navbutton'
-              onClick={this.handleToggle}
+              onClick={menuToggle}
               icon={<i class="material-icons">list</i>}
                />
+               <div className="toolPanel">
+                 <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}>
+                  +
+                 </Button>
+                 <Button id="clearBtn" className="displayBtn" bsSize="large" onClick={deleteAllTables}>
+                  x
+                 </Button>
+                 <button className="save" onClick={saveTextAsFile}>
+                  SAVE SCHEMA CODE
+                 </button>
+               </div>
           </div>
             <Drawer
               className='drawer'
@@ -81,7 +93,6 @@ class MenuComp extends Component {
               </MenuItem>
             </Drawer>
           </div>
-      </MuiThemeProvider>
     )
   }
 }

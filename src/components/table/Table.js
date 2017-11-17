@@ -43,7 +43,7 @@ class Table extends React.Component {
         const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
 
 
-        let options = [ 
+        let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
             { value: 'GraphQLInt', label: 'GraphQLInt' },
             { value: 'GraphQLFloat', label: 'GraphQLFloat' },
@@ -51,7 +51,7 @@ class Table extends React.Component {
             { value: 'GraphQLID', label: 'GraphQLID' },
             { value: 'GraphQLList', label: 'GraphQLList' }
         ]
-        
+
         for (let i = 0; i < data.tables.length; i++) {
             let container = {}
             container.value = data.tables[i].name
@@ -60,12 +60,12 @@ class Table extends React.Component {
         }
 
         return (
-            
+
             <Draggable bounds="parent" handle=".drag-handle"
 
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <div>
-            <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+            <table className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
                         <th colSpan={2} style={style}>
@@ -78,7 +78,8 @@ class Table extends React.Component {
                         const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
                         return (
                             <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
-                                <td><FormControl className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                                {/* changed from form control to input */}
+                                <td><input className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                 <td className ='typetd'>
                                     <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
                                     <div>
