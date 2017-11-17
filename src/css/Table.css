@@ -5,12 +5,18 @@
     border-top: 10px solid #BD9A63; /* need border-top to even out top border */
     border-radius: 15px; /* added border-radius */
     position: relative;
+    border-spacing: 0px;
+
+
 }
 
 .table td, .table th {
     border: 8px solid #BD9A63;
     padding: 8px;
     background-color: #977359;
+    width: 100%;
+    border-spacing: 0px;
+
 }
 
 .table tr:hover {background-color: #ddd;}

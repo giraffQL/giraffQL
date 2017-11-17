@@ -240,14 +240,14 @@ class App extends Component {
       <MuiThemeProvider>
       <div className="App">
         <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
-        <Fullscreen
+        <Fullscreen style = {{height: '10000px'}}
           enabled={this.state.isFullscreenEnabled}
           onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
           >
             <div className='full-screenable-node'>
               {/*PRESS ESC TO EXIT*/}
 
-                <SplitPane style={{'background-color': '#fbe4a1'}} split="vertical" defaultSize="50%">
+                <SplitPane split="vertical" defaultSize="50%">
                 <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
                     updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
 

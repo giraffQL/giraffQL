@@ -15,7 +15,7 @@ body {
 }
 
 .DraftEditor-root{
-  background: #ECECEC;
+  background: rgb(51,51,51);
   margin: 35px;
   border-radius: .3em;
   border: 10px solid #BD9A63; /*#6F4A38;*/
