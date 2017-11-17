@@ -75,7 +75,7 @@ class TextEditor extends React.Component {
 
                 code += `\n`
                     + `    })\n`
-                    + `})\n\n`
+                    + `});\n\n`
             }
         }
 

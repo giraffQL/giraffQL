@@ -35,6 +35,68 @@ class App extends Component {
       },
     };
   };
+  //DRAFTJS METHODS//
+  handleKeyCommand = (command) => {
+    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
+
+    if (newState) {
+      this.onChange(newState);
+      return 'handled';
+    }
+    return 'not handled';
+  }
+
+  onUnderlineClick = () => {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+
+  onToggleCode = () => {
+    console.log('test');
+    this.onChange(RichUtils.toggleCode(this.state.editorState))//.bind(this);
+  }
+
+  renderEditor = () => {
+    console.log('renderEditor')
+  }
+  //generate code from state function not working yet
+  genCode = () => {
+    const closingBracket = '})})'
+    // console.log('generate code!');
+    let data = this.state.data.tables;
+    const allCode = [];
+    const result = [];
+      data.forEach((x) => {
+        const block = []
+        block.push(`const ${x.name}Type = new GraphQLObjectType({name: '${x.name}', fields: () => ({
+          ${x.attributes.forEach((y,i) => {
+            block.push(`${y.field}:{type: ${y.type},},`
+          )})}
+          ${result.push(block)}
+        })
+      })`
+      )})
+
+     console.log(result); 
+  }
+
+  genCodev2 = () => {
+    const closingBracket = '})})'
+    // console.log('generate code!');
+    let data = this.state.data.tables;
+    const result = [];
+      data.forEach((x) => {
+        const block = '';
+        block.concat(`const ${x.name}Type = new GraphQLObjectType({name: '${x.name}', fields: () => ({
+          ${x.attributes.forEach((y,i) => {
+            block.concat(`${y.field}:{type: ${y.type},},`
+          )})}
+          ${result.push(block)}
+        })
+      })`
+      )})
+
+     console.log(result); 
+  }
 
 
   onAddTable = () => {
@@ -193,7 +255,7 @@ class App extends Component {
       this.setState(state => {
         const table = state.data.tables[state.clickedRow.tableIndex]
         table.attributes[state.clickedRow.rowIndex].relatedToTableId = state.data.tables[tableIndex].id
-        table.attributes[state.clickedRow.rowIndex].type = state.data.tables[tableIndex].name
+        table.attributes[state.clickedRow.rowIndex].type = state.data.tables[tableIndex].name+"Type"
         return {
           clickedRow: null,
           data: state.data
