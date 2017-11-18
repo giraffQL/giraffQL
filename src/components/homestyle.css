@@ -25,8 +25,12 @@
 }
 .navbutton {
     align-items: center;
-
 }
+
+.navbutton:hover {
+    color: white;
+}
+
 .gitbutton {
     align-items: center;
 }

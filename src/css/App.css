@@ -68,7 +68,7 @@ body {
 }
 
 .tables {
-  margin-top: 50px;  /* changed from padding-top 50px to margin-top for scrollbar */
+  /*margin-top: 50px;*/  /* changed from padding-top 50px to margin-top for scrollbar */
   width: 100%;
   height: 10000px;
   /*height: 100%;*/
