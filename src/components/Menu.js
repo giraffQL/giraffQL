@@ -71,7 +71,7 @@ class MenuComp extends Component {
               onRequestChange={onRequestChange}
             >
               <Link to="/">
-                <MenuItem style={muiStyles.menuItem}>
+                <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
                   Home
                 </MenuItem>
               </Link>

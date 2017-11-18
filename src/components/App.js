@@ -146,7 +146,13 @@ class App extends Component {
   }
 
   deleteAllTables = () => {
-    let stateNew = Object.assign({}, this.state);
+    let stateNew = {};
+    let keys = Object.keys(this.state);
+    console.log(keys)
+    keys.forEach((key, i) => {
+      stateNew[key] = this.state[key];
+    })
+    console.log('stateNew', stateNew)
     stateNew.data.tables = [];
     this.setState(stateNew);
   }
@@ -197,7 +203,7 @@ class App extends Component {
   }
 
 
-  menuToggle = () => this.setState({open: this.state.open ? false : true});
+  menuToggle = () => this.setState({open: !this.state.open});
 
   menuClose = () => this.setState({open: false});
 
