@@ -17,7 +17,7 @@ class MenuComp extends Component {
   }
 
   render () {
-    const {state, menuToggle, menuClose, fullscreenToggle, onAddTable, deleteAllTables, saveTextAsFile} = this.props;
+    const {state, menuToggle, menuClose, onRequestChange, fullscreenToggle, onAddTable, deleteAllTables, saveTextAsFile} = this.props;
 
     const muiStyles = {
       appBar: {
@@ -32,6 +32,12 @@ class MenuComp extends Component {
         'color': '#FFD300',
         'font-size': '16px',
         'text-align': 'left'
+      },
+      download: {
+        'color': '#FFD300',
+        'font-size': '16px',
+        'text-align': 'left',
+        'border-bottom': '1px dashed #FFD300'
       },
       menuIcon: {
         color: '#FFD300'
@@ -62,11 +68,8 @@ class MenuComp extends Component {
               docked={false}
               width={200}
               open={state.open}
-              onRequestChange={(open) => this.setState({open})}
+              onRequestChange={onRequestChange}
             >
-              <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
-                Exit
-              </MenuItem>
               <Link to="/">
                 <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
                   Home
@@ -88,7 +91,7 @@ class MenuComp extends Component {
                 </MenuItem>
               </Link>
               <Link to="/download">
-                <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
+                <MenuItem style={muiStyles.download} onClick={menuClose}>
                   Download
                 </MenuItem>
               </Link>

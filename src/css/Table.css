@@ -83,7 +83,7 @@
 }
 
 #createTableBtn:hover {
-    color: #9FA767;
+    color: rgba(30,130,76,1);
     background-color: white;
     border-color: white;
 }
@@ -93,7 +93,7 @@
 }
 
 #clearBtn:hover {
-    color: rgba(166,0,0,0.6);
+    color: rgba(166,0,0,1);
     background-color: white;
     border-color: white;
 }

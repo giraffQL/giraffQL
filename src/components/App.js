@@ -207,6 +207,8 @@ class App extends Component {
 
   menuClose = () => this.setState({open: false});
 
+  onRequestChange = (open) => this.setState({open});
+
   fullscreenToggle = () => {
     this.setState({
       isFullscreenEnabled: this.state.isFullscreenEnabled ? false : true,
@@ -232,7 +234,7 @@ class App extends Component {
           >
             <div className='full-screenable-node'>
               {/*PRESS ESC TO EXIT*/}
-              <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
+              <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
 
                 <SplitPane style={{'background-color': 'rgb(51,51,51)'}} split="vertical" defaultSize="50%">
                 <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
