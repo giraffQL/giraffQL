@@ -92,6 +92,7 @@ class Table extends React.Component {
                                             autoload= {true}
                                             value={data.tables[i].name}
                                             autosize={true}
+                                            clearable={false}
                                             /* value={data.tables[tableIndex].attributes[i].value} */
                                         />
                                         }
@@ -101,6 +102,7 @@ class Table extends React.Component {
                                                 options={options}
                                                 simpleValue
                                                 autosize={true}
+                                                clearable={false}
                                                 value={data.tables[tableIndex].attributes[i].type}
                                             />
                                         }

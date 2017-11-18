@@ -146,6 +146,7 @@
     float:right;
     cursor:pointer;
     margin-top:6px;
+    margin-left: 3px;
     color: white;
 }
 
@@ -160,7 +161,13 @@
     text-align: center;
     margin-top:1px;
     border-color: solid black;
+    width: 95%;
 }
+
+.dropdown {
+    width:90%;
+    line-height: 1;
+ }
 
 .drag-handle {
     position: relative;
@@ -177,10 +184,6 @@
 /*.table {
     position:relative
 }*/
-.dropdown {
-    width:90%;
-    line-height: 1;
- }
 
 .Select-control {
     width:90%;
