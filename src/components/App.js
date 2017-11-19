@@ -20,6 +20,25 @@ class App extends Component {
       clickedRow: null,
       data: {
         tables: [
+          {
+            id: '1',
+            name: 'One',
+            tablePositionX: 0,
+            tablePositionY: 7,
+            attributes: [
+              { field: 'hi', type: '', relatedToTableId: '2' },
+              { field: 'blah', type: '', relatedToTableId: null }
+            ]
+          },
+          {
+            id: '2',
+            name: 'Two',
+            tablePositionX: 100,
+            tablePositionY: 200,
+            attributes: [
+              { field: 'jj', type: '', relatedToTableId: null }
+            ]
+          }
         ],
       },
     };
@@ -151,13 +170,17 @@ class App extends Component {
     this.setState(state => {
       //table
       let table = state.data.tables[tableIndex]
-      table.tablePositionX = tablePosition.left
-      table.tablePositionY = tablePosition.top
+      table.tablePositionX = table.x = Math.floor(tablePosition.left)
+      table.tablePositionY = table.y = Math.floor(tablePosition.top)
+      table.w = Math.floor(tablePosition.width)
+      table.h = Math.floor(tablePosition.height)
       //rows
       let attrs = state.data.tables[tableIndex].attributes
       for (let i = 0; i < attrs.length; i += 1) {
-        attrs[i].x = rowPositions[i].left
-        attrs[i].y = rowPositions[i].top
+        attrs[i].x = Math.floor(rowPositions[i].left)
+        attrs[i].y = Math.floor(rowPositions[i].top)
+        attrs[i].w = Math.floor(rowPositions[i].width)
+        attrs[i].h = Math.floor(rowPositions[i].height)
       }
       return state;
     })
