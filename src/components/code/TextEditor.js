@@ -69,7 +69,7 @@ class TextEditor extends React.Component {
                             + `            type: ${attr.type}\n`
                             + `        }`
                     }
-                    if (j < table.attributes.length - 1) {
+                    if (j < table.attributes.length - 1 && attr.field !=='') {
                         code += `,\n`
                     }
                 }
