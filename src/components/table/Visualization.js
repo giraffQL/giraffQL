@@ -8,6 +8,7 @@ import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
 import css from '../../css/Table.css'
 import _ from 'lodash'
 
+// creating a grid because we have to have track what we visited before
 function createMatrix(n) {
     const rows = new Array(n)
     for (let i = 0; i < n; ++i) {
@@ -16,12 +17,13 @@ function createMatrix(n) {
     return rows
 }
 
+// this is not exact manhattanPath xD
 function manhattanPath(attribute, table, allTables) {
     if (attribute.x === undefined || attribute.y === undefined || attribute.w === undefined || attribute.h === undefined ||
         table.x === undefined || table.y === undefined || table.w === undefined || table.h === undefined) {
         return []
     }
-
+    // n is grid max
     const n = 2000
     const step = 30
     const destinations = [
@@ -31,40 +33,48 @@ function manhattanPath(attribute, table, allTables) {
         { x: table.x + table.w, y: table.y + table.h },
         { x: table.x + Math.floor(table.w / 2), y: table.y },
         { x: table.x + table.w, y: table.y + Math.floor(table.h / 2) },
-        { x: table.x, y: table.y + + Math.floor(table.h / 2) },
-        { x: table.x + + Math.floor(table.w / 2), y: table.y + table.h }
+        { x: table.x, y: table.y + Math.floor(table.h / 2) },
+        { x: table.x + Math.floor(table.w / 2), y: table.y + table.h }
     ]
+    // A star algorithm optimization- heuristic (create middle of all those points)
     const gravityCenter = {
         x: _.meanBy(destinations, p => p.x),
         y: _.meanBy(destinations, p => p.y)
     }
+    // taking middle of rows from left and right side to have at the end shortest path
     const starts = [
         { x: attribute.x, y: attribute.y + Math.floor(attribute.h / 2) },
         { x: attribute.x + attribute.w, y: attribute.y + Math.floor(attribute.h / 2) }
     ]
+    // list of where I can go next (recursive)
+    // taking starts that we can make line which is a offset
     let discovered = [
         { x: Math.max(0, starts[0].x - step), y: starts[0].y, px: starts[0].x, py: starts[0].y },
         { x: Math.min(n, starts[1].x + step), y: starts[1].y, px: starts[1].x, py: starts[1].y }
     ]
+    
     discovered.forEach(point => point.dist = heuristicDistance(point.x, point.y))
-
+    // for starts points previous is null because it doesnt exist
+    // storing a previous point (from where you came)
     const visited = createMatrix(n)    
     starts.forEach(point => visited[point.x][point.y] = { px: null, py: null })    
-
+    // check if point is overlapping other tables
     function isNotOverlappingTables(x, y) {
         return _.every(allTables, table => (x <= table.x) || ((table.x + table.w) <= x) || (y <= table.y) || ((table.y + table.h) <= y))
     }
-
+    // finds end points which satisfies the condition that's less than step afar from x and y
     function nearValidResult(x, y) {
         return _.find(destinations, point => Math.abs(x - point.x) <= step && Math.abs(y - point.y) <= step)
     }
 
+    // euclid distance between two points (finding distance between gravity centers)
     function heuristicDistance(x, y) {
         return Math.pow(gravityCenter.x - x, 2) + Math.pow(gravityCenter.y - y, 2)
     }
-
+    // start searching (BFS)
     let foundResult = null
     while (discovered.length > 0 && !foundResult) {
+        // every time we start we sort based on the distance property
         discovered = _.orderBy(discovered, ['dist'], ['desc'])
         const { x, y, px, py } = discovered.pop()
         //const { x, y, px, py } = discovered.shift()
@@ -87,7 +97,7 @@ function manhattanPath(attribute, table, allTables) {
                 { dx: 0, dy: step },
                 { dx: -step, dy: 0 },
                 { dx: 0, dy: -step },
-            ]
+            ]//for  each point see if that point is valid
             .forEach(({ dx, dy }) => {
                 if (0 < x + dx && x + dx < n && 
                     0 < y + dy && y + dy < n &&
@@ -103,7 +113,7 @@ function manhattanPath(attribute, table, allTables) {
     if (!foundResult) {
         return []
     }
-
+    // if we found result we have to rebuild the path
     const resultingPath = []
     for (
         let pointer = foundResult;
@@ -124,6 +134,7 @@ class Visualization extends React.Component {
         }
     }
 
+    // when we click on row we're taking row DOM cordinates
     handleMouseDown = (mouseEvent) => {
         this.setState({
             start: {
@@ -133,6 +144,7 @@ class Visualization extends React.Component {
         });
     }
 
+    // take the end coordinate
     handleMouseMove = (mouseEvent) => {
         if (this.state.start !== null) {
             this.setState({
@@ -143,7 +155,7 @@ class Visualization extends React.Component {
             });
         }
     }
-
+    
     handleMouseUp = (mouseEvent) => {
         if (this.state.start !== null) {
             this.setState({ start: null, end: null })
@@ -158,20 +170,8 @@ class Visualization extends React.Component {
         return (
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
                 <div className='toolbar'>
-
-
-                    {/* <div class="button_base b02_slide_in">
-                        <div bsStyle="success" bsSize="large" onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
-                    <div className="button_base b02_slide_in">
-                        <div onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
-
-                        <div></div>
-                        {<div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>}
-                    </div>*/}
                     <Nav id="nav" bsStyle="pills">
                         <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}> CREATE TABLE </Button>
-
-                        {/* <button onClick={onAddTable}> Create table </button> */}
                         <Button id="clearBtn" className="displayBtn" bsSize="large" onClick={deleteAllTables}> CLEAR </Button>
                     </Nav>
 
@@ -183,7 +183,7 @@ class Visualization extends React.Component {
                                 markerWidth="5" markerHeight="5" orient="auto">
                                 <path d="M 0 0 L 10 5 L 0 10 z" fill="red" />
                             </marker>
-                            <marker id="circle" markerWidth="5" markerHeight="5" refX="5" refY="5" orient="auto">
+                            <marker id="circle" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
                                 <circle cx="5" cy="5" r="2" fill="red" />
                             </marker>
                         </defs>
@@ -211,7 +211,7 @@ class Visualization extends React.Component {
                                             key={`${i}-${ai}`}
                                             points={_.reverse(pathPoints)}
                                             stroke="red"
-                                            strokeWidth="3"
+                                            strokeWidth="4"
                                             fill="none"
                                             r={10} 
                                             markerEnd="url(#triangle)" markerStart="url(#circle)" />

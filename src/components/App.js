@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
-
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
-
-//FILE SERVER
+//FILE SERVER (using for save schema code)
 import FileSaver from 'file-saver';
-
 //TEXT Editor
 import TextEditor from '../components/code/TextEditor'
-
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       clickedRow: null,
+      // our data have tables which is object of tables
+      // {
+      //   id: '1',
+      //   name: 'One',
+      //   tablePositionX: 0,
+      //   tablePositionY: 7,
+      //   attributes: [
+      //     { field: 'hi', type: '', relatedToTableId: '2' },
+      //     { field: 'blah', type: '', relatedToTableId: null }
+      //   ]
+      // }
+      // each table has these properties...attributes are rows and each row has field, type and table which
+      // is related to
       data: {
         tables: [
           {
@@ -45,6 +54,7 @@ class App extends Component {
   };
 
 
+  // when we click to make new table call this function
   onAddTable = () => {
     //function which is making random string for ID
     function guid() {
@@ -71,6 +81,7 @@ class App extends Component {
     })
   }
 
+  // function which is calling when we're adding new row
   onAddRow = (tableIndex) => {
     this.setState(state => {
       return {
@@ -87,6 +98,7 @@ class App extends Component {
     })
   }
 
+  // every time when we change or add table name we're setting up state with thoose new values
   updateTableName = (tableIndex, value) => {
     this.setState(state => {
       return {
@@ -100,7 +112,7 @@ class App extends Component {
       }
     })
   }
-
+  // same for row prop and row type
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
       return {
@@ -141,18 +153,21 @@ class App extends Component {
     })
   }
 
+  // function which is calling when we click for delete row
   deleteRow = (tableindex, rowindex) => {
     let spliceit = Object.assign({}, this.state.data.tables[tableindex])
     spliceit.attributes.splice(rowindex, 1);
     this.setState({ spliceit })
   }
 
+  // function which is calling when we click for delete table
   deleteTable = (index) => {
     let spliceit = Object.assign({}, this.state.data)
     spliceit.tables.splice(index, 1);
     this.setState({ spliceit })
   }
 
+  // function which is calling when we click for clear board
   deleteAllTables = () => {
     let stateNew = {};
     let keys = Object.keys(this.state);
@@ -165,7 +180,8 @@ class App extends Component {
     this.setState(stateNew);
   }
 
-  //TABLE POSITION
+  // function which is calling when we drag tables
+  // every time when we drag table we are keeping track of table position, and row position
   refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     this.setState(state => {
       //table
@@ -186,6 +202,8 @@ class App extends Component {
     })
   }
 
+  // clickedRow is null at the beginning but when we click on row we are setting state to
+  // know which row is clicked, in which table...
   onRowMouseDown = (tableIndex, rowIndex) => {
     this.setState({
       clickedRow: {
@@ -195,6 +213,7 @@ class App extends Component {
     })
   }
 
+  // storing to which table is row connected
   onTableMouseUp = (tableIndex) => {
     const { clickedRow } = this.state
     if (tableIndex === null || !clickedRow || clickedRow.tableIndex === tableIndex) {
@@ -214,8 +233,7 @@ class App extends Component {
     }
   }
 
-
-
+  // function which is called when you click for save schema code
   saveTextAsFile = () => {
     let text = this.code.getTextFromModel(this.state.data)
     let blob = new Blob([text], { type: "text/javascript" });

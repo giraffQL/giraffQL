@@ -13,6 +13,7 @@ import _ from 'lodash'
 //     defaultSyntax: 'javascript'
 // })
 
+// ---- commented code is prism.js for highlighting a code, but we can't use that because our app is really slow then
 class TextEditor extends React.Component {
     constructor(props) {
         super(props)
@@ -72,7 +73,6 @@ class TextEditor extends React.Component {
                         code += `,\n`
                     }
                 }
-
                 code += `\n`
                     + `    })\n`
                     + `})\n\n`

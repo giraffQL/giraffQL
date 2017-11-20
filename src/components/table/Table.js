@@ -11,29 +11,34 @@ import { FormControl, Button } from 'react-bootstrap';
 class Table extends React.Component {
     constructor(props) {
         super(props)
+        // references for DOM position elements
         this.propertyRowRefs = [];
         this.propertyTableRefs = [];
     }
 
+    // when page is loaded call refreshTablePositions()
     componentDidMount() {
         this.refreshTablePositions()
     }
-
+    // you don't need to refresh a table position if property is updated but there is no new row
+    // prevention for one of the cases to not get into infinite loop
     componentDidUpdate(oldProps) {
         if (this.props.table.attributes.length > oldProps.table.attributes.length) {
             this.refreshTablePositions()
         }
     }
 
+    // every time when you drag a table we have to make table coordinate different
     onDragTable = (e, dataEvent) => {
         this.refreshTablePositions()
     }
 
+    // sends the current position of tables and rows and sends that to the parent
     refreshTablePositions = () => {
         this.props.refreshTablePositions(
             this.props.tableIndex,
             this.propertyTableRefs.getBoundingClientRect(),
-            this.propertyRowRefs.filter((el) => {return el !== null}).map(ref => ref.getBoundingClientRect())
+            this.propertyRowRefs.filter((el) => { return el !== null }).map(ref => ref.getBoundingClientRect())
         )
     }
 
@@ -43,7 +48,7 @@ class Table extends React.Component {
         const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
 
 
-        let options = [ 
+        let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
             { value: 'GraphQLInt', label: 'GraphQLInt' },
             { value: 'GraphQLFloat', label: 'GraphQLFloat' },
@@ -51,7 +56,7 @@ class Table extends React.Component {
             { value: 'GraphQLID', label: 'GraphQLID' },
             { value: 'GraphQLList', label: 'GraphQLList' }
         ]
-        
+
         for (let i = 0; i < data.tables.length; i++) {
             let container = {}
             container.value = data.tables[i].name
@@ -60,54 +65,63 @@ class Table extends React.Component {
         }
 
         return (
-            
+
             <Draggable bounds="parent" handle=".drag-handle"
 
-            enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
-            <div>
-            <table className="table"  ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
-                <tbody>
-                    <tr>
-                        <th colSpan={2} style={style}>
-                            <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
-                            <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
-                            <div className='drag-handle'><img className ='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
-                        </th>
-                    </tr>
-                    {table.attributes.map(({field, type, x, y, relatedToTableId}, i) => {
-                        const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
-                        return (
-                            <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
-                                <td><FormControl className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
-                                <td className ='typetd'>
-                                    <div className='deleterowbutton' onClick={()=>deleteRow(tableIndex,i)}>x</div>
-                                    <div>
-                                        {relatedTable &&
-                                            <span>{relatedTable.name}</span>
-                                        }
-                                        {!relatedTable &&
-                                            <Select className='dropdown'
-                                                onChange={(value) => updateRowType(tableIndex, i, value)}
-                                                options={options}
-                                                simpleValue
-                                                autosize={true}
-                                                value={data.tables[tableIndex].attributes[i].type}
-                                            />
-                                        }
-                                    </div>
-                                </td>
+                enableUserSelectHack={false} onDrag={(e, dataEvent) => this.onDragTable(e, dataEvent)}>
+                <div>
+                    <table className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+                        <tbody>
+                            <tr>
+                                <th colSpan={2} style={style}>
+                                    <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
+                                    <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
+                                    <div className='drag-handle'><img className='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
+                                </th>
                             </tr>
-                        )
-                    })}
-                    <tr>
-                    <td className = 'addbutton' colSpan={2}><Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button> </td>
-                    </tr>
-                </tbody>
-            </table>
-            </div>
+                            {table.attributes.map(({ field, type, x, y, relatedToTableId }, i) => {
+                                const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
+                                return (
+                                    <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
+                                        <td><FormControl className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
+                                        <td className='typetd'>
+                                            <div className='deleterowbutton' onClick={() => deleteRow(tableIndex, i)}>x</div>
+                                            <div>
+                                                {relatedTable &&
+
+                                                    <Select className='dropdown'
+                                                        onChange={(value) => updateRowType(tableIndex, i, value)}
+                                                        options={options}
+                                                        simpleValue
+                                                        autoload={true}
+                                                        value={data.tables[i].name}
+                                                        autosize={true}
+
+                                                    />
+                                                }
+                                                {!relatedTable &&
+                                                    <Select className='dropdown'
+                                                        onChange={(value) => updateRowType(tableIndex, i, value)}
+                                                        options={options}
+                                                        simpleValue
+                                                        autosize={true}
+                                                        value={data.tables[tableIndex].attributes[i].type}
+                                                    />
+                                                }
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
+                            <tr>
+                                <td className='addbutton' colSpan={2}><Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </Draggable>
 
-                )
+        )
     }
 }
 export default Table;
