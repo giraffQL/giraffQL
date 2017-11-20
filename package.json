@@ -2,6 +2,7 @@
   "name": "schema-visualization",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
   "dependencies": {
     "babel-preset-es2015": "^6.24.1",
     "draggable": "^4.1.2",
@@ -59,6 +60,8 @@
     "draft-js": "^0.10.4",
     "draft-js-editor": "^1.11.1",
     "draft-js-prism": "^1.0.5",
+    "electron": "^1.7.9",
+    "prismjs": "^1.8.4"
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-to-json": "^3.2.2",

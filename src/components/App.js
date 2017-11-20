@@ -300,6 +300,7 @@ class App extends Component {
 
     return (
       <MuiThemeProvider>
+        
       <div className="App">
         <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
         <Fullscreen

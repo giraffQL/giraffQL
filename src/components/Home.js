@@ -5,13 +5,13 @@ import FlatButton from 'material-ui/FlatButton';
 import App from './App.js';
 import { Link } from 'react-router-dom';
 import FontIcon from 'material-ui/FontIcon';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
-import './homestyle.css';
+import './homestyle.css'
 import { Panel } from 'react-bootstrap';
-import graff from './graff.png';
-import main from './mainimage.png';
-import 'typeface-roboto';
-
+import graff from './graff.png'
+import main from './mainimage.png'
+import 'typeface-roboto'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import Octocat from './GitHub-Mark-32px.png';
 
@@ -44,6 +44,7 @@ class Home extends Component {
     }
 
     return (
+      <MuiThemeProvider>      
       <div className='mainpage'>
         <div className='header'>
           <FlatButton className='navbutton'
@@ -56,17 +57,24 @@ class Home extends Component {
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
+
+            <div className ='drawertop'>GiraffQL</div>
             <Link to='/'><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>
-            <MenuItem onClick={this.handleClose}>Feature</MenuItem>
+            <Link to='/feature'><MenuItem onClick={this.handleClose}>Feature</MenuItem></Link>
             <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
             <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
-            <MenuItem onClick={this.handleClose}>Download</MenuItem>
           </Drawer>
+
+       <div className='mainimage'>
+        <div className='coremain'>
+          <img className ='image' src={graff} />
+           <h1 className ='grafql'>GiraffQL</h1> 
           {/* <FlatButton className='gitbutton'
             href="https://github.com/giraffql/giraffql"
             // icon={<i class="material-icons">account_circle</i>}
           /> */}
           <a href='https://github.com/giraffql/giraffql'><img className='gitbutton' src={Octocat}/></a>
+
         </div>
         <div className='mainimage' style={{ backgroundImage: `url(${main})` }}>
           <div className='coremain'>
@@ -81,7 +89,10 @@ class Home extends Component {
           <p className='secondtxt'> ame about from our love of Reactl Design. We're currently using it on  </p>
           <p className='secondtxt'> Material-ogle's Material Design. We're currently using it on a project a] </p>
           <p className='secondtxt'> Material-UI came agn. We're currently using it on a project at Call-Em-All  </p>
-
+          <div className ='tryit'>
+            {/* <p className ='trytext'>Try it</p> */}
+            <Link to='/app'><RaisedButton className='tryitbutton' label="try it" labelColor='green' /></Link>          
+        </div>
         </div>
         <div className='third'>
           <Panel className='featurebox' header="Giraffql do this shit">
@@ -98,6 +109,8 @@ class Home extends Component {
 
         </div>
       </div>
+      </MuiThemeProvider>
+
     );
   }
 }
