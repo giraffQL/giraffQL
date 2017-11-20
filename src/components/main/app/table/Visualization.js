@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import App from '../App'
-import Table from './Table'
 import { PathLine } from 'react-svg-pathline'
 import colors from './colors';
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
-import css from '../../css/Table.css'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -15,6 +12,9 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
 import { Scrollbars } from 'react-custom-scrollbars';
+// COMPONENTS
+import App from '../App'
+import Table from './Table'
 
 
 class Visualization extends React.Component {

@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import App from './App.js'
 import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
-import './homestyle.css'
 import { Panel } from 'react-bootstrap';
 import 'typeface-roboto'
 
@@ -47,8 +45,8 @@ class Aboutus extends Component {
             icon={<i class="material-icons">account_circle</i>}
             />
         </div>
-        <div className='meetteam'> 
-            
+        <div className='meetteam'>
+
         </div>
       </div>
     );

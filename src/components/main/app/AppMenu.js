@@ -6,7 +6,6 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton';
-import './homestyle.css'
 // REACT-BOOTSTRAP
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
 

@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
-import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
-
-//TEXT CSS
-import '../css/index.css';
-import '../css/App.css';
-import '../css/prism.css';
 //PRISM DEPENDENCIES
 import Fullscreen from 'react-full-screen';
 // MATERIAL UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // REACT-BOOTSTRAP
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
-// MENU COMPONENT
-import MenuComp from './Menu';
 //FILE SERVER
 import FileSaver from 'file-saver';
-//TEXT Editor
-import TextEditor from '../components/code/TextEditor'
+//COMPONENTS
+import MenuComp from './AppMenu';
+import Visualization from './table/Visualization';
+import TextEditor from './code/TextEditor'
+
 
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')

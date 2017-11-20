@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import App from './App.js'
 import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
-import './homestyle.css'
 import { Panel } from 'react-bootstrap';
-import graff from './graff.png'
-import main from './mainimage.png'
 import 'typeface-roboto'
+//STATIC FILES
+import graff from '../../assets/graff.png'
+import main from '../../assets/mainimage.png'
 
 
 

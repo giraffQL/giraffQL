@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import App from '../App'
-import css from '../../css/Table.css'
 import Draggable, { DraggableCore } from 'react-draggable';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import colors from './colors';
 import { FormControl, Button } from 'react-bootstrap';
+// COMPONENTS
+import App from '../App'
+import colors from './colors';
+
 
 class Table extends React.Component {
     constructor(props) {
