@@ -2,6 +2,7 @@
   "name": "schema-visualization",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
   "dependencies": {
     "draft-js-editor": "^1.11.1",
     "draggable": "^4.1.2",
@@ -29,7 +30,7 @@
     "typeface-roboto": "0.0.45"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "electron .",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -37,6 +38,7 @@
   "devDependencies": {
     "draft-js": "^0.10.4",
     "draft-js-prism": "^1.0.5",
+    "electron": "^1.7.9",
     "prismjs": "^1.8.4"
   }
 }
