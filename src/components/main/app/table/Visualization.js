@@ -60,6 +60,7 @@ class Visualization extends React.Component {
         const { start, end } = this.state
 
         const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
+
         return (
 
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
@@ -102,35 +103,63 @@ class Visualization extends React.Component {
 
                     </svg>
                     <svg className="relation">
-                        {data.tables.map((table, i) =>
-                            table.attributes.map((attr, ai) => {
-                                const relatedTable = data.tables.find(t => t.id === attr.relatedToTableId)
-                                if (relatedTable) {
-                                    return (
-                                        <PathLine
-                                            id="svgId"
-                                            key={`${i}-${ai}`}
-                                            points={[
-                                                { ...attr },
-                                                { x: relatedTable.tablePositionX, y: relatedTable.tablePositionY }
-                                            ]}
-                                            stroke="red"
-                                            strokeWidth="3"
-                                            fill="none"
-                                            r={10}
-                                            markerEnd="url(#triangle)" markerStart="url(#circle)" />
-                                    )
+                        {
+                            data.tables.map((table, i) => {
+                                if (table) {
+                                    return table.attributes.map((attr, ai) => {
+                                        const relatedTable = data.tables.find(t => {
+                                            if (t) {
+                                                return t.id === attr.relatedToTableId
+                                            }
+                                        })
+                                        if (relatedTable) {
+                                            return (
+                                                <PathLine
+                                                    id="svgId"
+                                                    key={`${i}-${ai}`}
+                                                    points={[
+                                                        { ...attr },
+                                                        { x: relatedTable.tablePositionX, y: relatedTable.tablePositionY }
+                                                    ]}
+                                                    stroke="red"
+                                                    strokeWidth="3"
+                                                    fill="none"
+                                                    r={10}
+                                                    markerEnd="url(#triangle)" markerStart="url(#circle)" />
+                                            )
+                                        }
+                                    })
                                 }
                             })
-                        )}
+                        }
+
                     </svg>
 
                     <div className="tables">
-                        {data.tables.map((table, i) =>
-                            <Table style={{"backgroundColor": colors[i]}} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
-                                updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
-                                onDragTable={onDragTable} dataEvent={dataEvent} refreshTablePositions={refreshTablePositions} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
-                        )}
+                        {
+                            data.tables.map((table, i) => {
+                            if (table) {
+                                return (
+                                    <Table style={{"backgroundColor": colors[i]}} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
+                                                updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
+                                                onDragTable={onDragTable} dataEvent={dataEvent} refreshTablePositions={refreshTablePositions} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
+                                );
+                            } else {
+                                let tableInvis = (
+                                  <div class="tableInvisible">
+                                    {/*<tr><th><input class="inputInv" type="text"/></th></tr>
+                                    <tbody>
+                                    <tr>
+                                      <td><input class="inputInv" type="text"/></td>
+                                      <td><input class="inputInv" type="text"/></td>
+                                    </tr>
+                                    </tbody>*/}
+                                  </div>
+                                )
+                                return tableInvis;
+                            }
+                            })
+                        }
                     </div>
 
                 </div>

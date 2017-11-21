@@ -44,18 +44,27 @@ class App extends Component {
         s4() + '-' + s4() + s4() + s4();
     }
 
-    let newstate = this.state.data.tables.slice()
-    this.setState({
-      data: {
-        tables: newstate.concat({
+    let newstate = Object.assign({}, this.state);
+    newstate.data.tables.unshift({
           id: guid(),
           name: '',
           attributes: [
             { field: '', type: '' }
           ]
-        })
-      }
     })
+    this.setState(newstate)
+    // let newstate = this.state.data.tables.slice()
+    // this.setState({
+    //   data: {
+    //     tables: newstate.concat({
+    //       id: guid(),
+    //       name: '',
+    //       attributes: [
+    //         { field: '', type: '' }
+    //       ]
+    //     })
+    //   }
+    // })
   }
 
   onAddRow = (tableIndex) => {
@@ -136,7 +145,8 @@ class App extends Component {
 
   deleteTable = (index) => {
     let spliceit = Object.assign({}, this.state.data)
-    spliceit.tables.splice(index, 1);
+    // spliceit.tables.splice(index, 1);
+    spliceit.tables[index] = null;
     this.setState({ spliceit })
   }
 

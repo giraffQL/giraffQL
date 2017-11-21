@@ -54,10 +54,12 @@ class Table extends React.Component {
         ]
 
         for (let i = 0; i < data.tables.length; i++) {
-            let container = {}
-            container.value = data.tables[i].name
-            container.label = data.tables[i].name
-            options.push(container)
+            let container = {};
+            if (data.tables[i]) {
+                container.value = data.tables[i].name
+                container.label = data.tables[i].name
+                options.push(container)
+            }
         }
 
         return (
@@ -76,7 +78,11 @@ class Table extends React.Component {
                         </th>
                     </tr>
                     {table.attributes.map(({field, type, x, y, relatedToTableId}, i) => {
-                        const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
+                        const relatedTable = relatedToTableId && tables.find(t => {
+                            if (t) {
+                                t.id === relatedToTableId
+                            }
+                        })
                         return (
                             <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
                                 {/* changed from form control to input */}
