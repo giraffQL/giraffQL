@@ -64,7 +64,11 @@ class Home extends Component {
             <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
             <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
-
+          <FlatButton className='gitbutton'
+            href="https://github.com/giraffql/giraffql"
+            icon={<i class="material-icons">account_circle</i>}
+          />
+      </div>
        <div className='mainimage'>
         <div className='coremain'>
           <img className ='image' src={graff} />
@@ -73,14 +77,9 @@ class Home extends Component {
             href="https://github.com/giraffql/giraffql"
             // icon={<i class="material-icons">account_circle</i>}
           /> */}
-          <a href='https://github.com/giraffql/giraffql'><img className='gitbutton' src={Octocat}/></a>
+         
 
         </div>
-        <div className='mainimage' style={{ backgroundImage: `url(${main})` }}>
-          <div className='coremain'>
-            <img className='image' src={graff} />
-            <h1 className='grafql'>GiraffeQL</h1>
-          </div>
           <div className='maintext'>
             <p> A Set of React Components that Implement Google's Material Design DEMO</p>
           </div>
@@ -110,7 +109,6 @@ class Home extends Component {
         </div>
       </div>
       </MuiThemeProvider>
-
     );
   }
 }

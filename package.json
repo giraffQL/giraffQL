@@ -61,7 +61,7 @@
     "draft-js-editor": "^1.11.1",
     "draft-js-prism": "^1.0.5",
     "electron": "^1.7.9",
-    "prismjs": "^1.8.4"
+    "prismjs": "^1.8.4",
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "enzyme-to-json": "^3.2.2",
@@ -79,7 +79,6 @@
     "jest": "^21.2.1",
     "less-loader": "^4.0.5",
     "nodemon": "^1.12.1",
-    "prismjs": "^1.8.4",
     "raf": "^3.4.0",
     "react-bootstrap": "^0.31.5",
     "react-split-pane": "^0.1.68",
