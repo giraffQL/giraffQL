@@ -75,15 +75,7 @@ class Visualization extends React.Component {
                         <div></div>
                         {<div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>}
                     </div>*/}
-
-                    {/*<Nav id="nav" bsStyle="pills">
-                        <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}> CREATE TABLE </Button>
-
-                        <Button id="clearBtn" className="displayBtn" bsSize="large" onClick={deleteAllTables}> CLEAR </Button>
-                    </Nav>*/}
-
                 </div>
-
 
                 <div>
                     <svg className="relations" >

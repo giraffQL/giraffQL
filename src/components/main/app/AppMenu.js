@@ -50,10 +50,10 @@ class MenuComp extends Component {
               icon={<i class="material-icons">list</i>}
                />
                <div className="toolPanel">
-                 <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}>
+                 <Button id="createTableBtn" className="addAndClearBtns" bsSize="large" onClick={onAddTable}>
                   +
                  </Button>
-                 <Button id="clearBtn" className="displayBtn" bsSize="large" onClick={deleteAllTables}>
+                 <Button id="clearBtn" className="addAndClearBtns" bsSize="large" onClick={deleteAllTables}>
                   x
                  </Button>
                  <button className="save" onClick={saveTextAsFile}>

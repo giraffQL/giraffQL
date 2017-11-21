@@ -5,11 +5,14 @@ import Divider from './components/navigation/Divider.js';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter, Route } from 'react-router-dom'
 //CSS
-import './css/Home.css'
 import './css/index.css';
 import './css/App.css';
-import './css/prism.css';
+import './css/Home.css'
+import './css/AppMenu.css'
 import './css/Table.css'
+import './css/Relations.css';
+import './css/prism.css';
+
 
 ReactDOM.render(
     <BrowserRouter>

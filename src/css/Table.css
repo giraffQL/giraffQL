@@ -1,3 +1,16 @@
+/*tables container*/
+.tables {
+  /*margin-top: 50px;*/  /* changed from padding-top 50px to margin-top for scrollbar */
+  width: 100%;
+  height: 10000px;
+  /*height: 100%;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index:2;
+  /*overflow: scroll;*/
+}
+
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: separate; /* changed from collapse to get border-radius to work */
@@ -6,8 +19,6 @@
     border-radius: 15px; /* added border-radius */
     position: relative;
     border-spacing: 0px;
-
-
 }
 
 .table td, .table th {
@@ -17,10 +28,6 @@
     width: 100%;
     border-spacing: 1px;
 
-}
-
-.table tr .propertyinput, .table tr .dropdown {
-    /*width: 100%;*/
 }
 
 .table tr:hover {background-color: #ddd;}
@@ -42,60 +49,21 @@
     font-size:16px;
     border-color: solid black;
 }
+
 .form-group {
     margin: auto 0;
     text-align: center;
 }
 
-#nav { /* add a nav bar */
-    float: left;
-    margin-top: 3px;
-    width: 100%;
-    height: 50px;
-    /*position: fixed; *//* changed position to fixed for scrollbar */
-    /*background-color: rgba(207, 83, 0, .2); /* made translucent */
-}
-
-.addRowWrap {
-    border-bottom-left-radius: 20px; /* need this to round the bottom borders */
-    border-bottom-right-radius: 20px; /* need this to round the bottom borders */
-}
-
+/*add delete and save buttons*/
 .toolPanel {
     /*border: 2px solid red;*/
     padding-top: 5px;
 }
 
-.displayBtn {
-    float: left; /* moved nav buttons to the left */
-    margin-top: 8px;
-    margin-left: 0px;
-    color: rgb(51,51,51);
-    font-weight: bold;
-    border: 2px solid rgb(51,51,51);
-    border-radius: 50%;
-    background-color: #FFD000; /*#FFBF00;*/
-}
-
-#createTableBtn {
-    /*color: white;*/
-    background-color: rgba(30,130,76,1);
-}
-
-#createTableBtn:hover {
-    color: rgba(30,130,76,1);
-    background-color: white;
-    border-color: white;
-}
-
-#clearBtn {
-    background-color: rgba(166,0,0,1);
-}
-
-#clearBtn:hover {
-    color: rgba(166,0,0,1);
-    background-color: white;
-    border-color: white;
+.addRowWrap {
+    border-bottom-left-radius: 20px; /* need this to round the bottom borders */
+    border-bottom-right-radius: 20px; /* need this to round the bottom borders */
 }
 
 .addRow {
@@ -114,9 +82,10 @@
 }
 
 .typetd {
-    width:180px;
-    text-align: center;
+    /*width:180px;*/
+    /*text-align: center;*/
 }
+
 .deletetablebutton {
     color: rgb(166, 0, 0);
     border: none;
@@ -138,12 +107,6 @@
 .deletetablebutton:hover {
     color: white;
     background-color: rgb(166, 0, 0);
-}
-
-.typeinput {
-    width:80%;
-    float:left;
-    margin: 0 auto;
 }
 
 .deleterowbutton {
@@ -170,11 +133,26 @@
     width: 95%;
 }
 
+/*property type dropdown*/
 .dropdown {
     width:90%;
     line-height: 1;
  }
 
+.Select-control {
+    width:90%;
+}
+
+.Select-input {
+    width:100px;
+}
+
+.select-placeholder {
+    margin-top:2px;
+    font-size:16px
+}
+
+/*dragging feature*/
 .drag-handle {
     position: relative;
     width:30px;
@@ -187,14 +165,12 @@
     width: 30px;
     height: 29px;
 }
-/*.table {
-    position:relative
-}*/
 
-.Select-control {
-    width:90%;
+.react-draggable {
+    width: 372px;
 }
 
+/* giraffe icon */
 .img {
     width: 30px;
     height: 29px;
@@ -202,25 +178,68 @@
     pointer-events: none;
     user-select:none;
 }
-.select-placeholder {
-    margin-top:2px;
-    font-size:16px
+
+/*toolbar not currently used*/
+.button_base {
+  border-color: solid #fbe4a1
+}
+.button_base:hover {
+  cursor: pointer;
+  border-color: solid #fbe4a1;
+}
+.b02_slide_in {
+  overflow: hidden;
+  border: #000000 solid 1px;
 }
 
-.react-draggable {
-    width: 372px;
+.b02_slide_in div {
+  position: absolute;
+  text-align: center;
+  width: 20%;
+  height: 55px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 10px;
+  border-radius:15px;
 }
 
-table {
-    position: relative;
+.b02_slide_in div:nth-child(1) {
+  margin-top:1px;
+  color:#F5ECB1 ;
+  background-color: #6F4A38 ;
 }
-.createtable {
-    float:left;
-    margin-right:1px;
+
+.b02_slide_in div:nth-child(2) {
+  margin-top:2px;
+  background-color: #F0ECE1     ;
+  transition: top 0.1s ease;
+  -webkit-transition: top 0.1s ease;
+  -moz-transition: top 0.1s ease;
+  top: -60px;
+  border-radius:15px;
+
 }
-.deletealltable {
-    float:left;
+
+.b02_slide_in div:nth-child(3) {
+  color: #977359;
+  transition: opacity 0.1s ease;
+  -webkit-transition: opacity 0.1s ease;
+  -moz-transition: opacity 0.1s ease;
+  opacity: 0;
 }
-.Select-input {
-    width:100px;
+
+.b02_slide_in:hover div:nth-child(2) {
+  top: 0px;
+  transition: top 0.1s ease;
+  -webkit-transition: top 0.1s ease;
+  -moz-transition: top 0.1s ease;
 }
+
+.b02_slide_in:hover div:nth-child(3) {
+  opacity: 1;
+  transition: opacity 0.1s ease;
+  -webkit-transition: opacity 0.1s ease;
+  -moz-transition: opacity 0.1s ease;
+}
+
