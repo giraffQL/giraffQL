@@ -41,8 +41,9 @@ class Table extends React.Component {
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
-        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
+        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value, changeTableMargin } = this.props
 
+        let marginTop = 210 * tableIndex;
 
         let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
@@ -63,19 +64,17 @@ class Table extends React.Component {
         }
 
         return (
-
             <Draggable bounds="parent" handle=".drag-handle"
-
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <div>
-            <table className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+            <table style={{'margin-top': table.margin ? marginTop : 10}} className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
-                        <th colSpan={2} style={style}>
+                        <th colSpan={2} style={style} onMouseDown={(e) => changeTableMargin(tableIndex)}>
                             <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
-                            <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
                             <div className='drag-handle'><img className ='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
                         </th>
+                        <div className='deletetablebutton' onClick={()=>deleteTable(tableIndex)}>x</div>
                     </tr>
                     {table.attributes.map(({field, type, x, y, relatedToTableId}, i) => {
                         const relatedTable = relatedToTableId && tables.find(t => {

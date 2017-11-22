@@ -1,4 +1,8 @@
 const colors = [
+  '#c46210',
+  '#704214',
+  '#e3ab57',
+  '#ffdead',
   'Safari', // 0
   'Sienna', // 1
   'FireBrick', // 2
