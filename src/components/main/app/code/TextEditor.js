@@ -87,8 +87,6 @@ class TextEditor extends React.Component {
     }
 
     render() {
-
-
         return (
             <Editor editorState={this.state.editorState} onChange={this.onEditorChange} />
             //<textarea value={code} cols={70} rows={51} style={{ "font-size": "25px" }}></textarea>

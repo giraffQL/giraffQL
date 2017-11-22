@@ -41,7 +41,7 @@ class Table extends React.Component {
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
-        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value, changeTableMargin } = this.props
+        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
 
         let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
@@ -68,7 +68,7 @@ class Table extends React.Component {
             <table  className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
-                        <th colSpan={2} style={style} onMouseDown={(e) => changeTableMargin(tableIndex)}>
+                        <th colSpan={2} style={style}>
                             <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)}/>
                             <div className='drag-handle'><img className ='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
                         </th>
