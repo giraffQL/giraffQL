@@ -31,6 +31,12 @@ class App extends Component {
     };
   };
 
+  changeTableMargin = (tableIndex) => {
+    let newstate = Object.assign({}, this.state);
+    newstate.data.tables[tableIndex].margin = 10;
+    this.setState(newstate);
+    console.log('margin', this.state.data.tables)
+  }
 
   onAddTable = () => {
     //function which is making random string for ID
@@ -243,7 +249,7 @@ class App extends Component {
 
                 <SplitPane style={{'background-color': 'rgb(51,51,51)'}} split="vertical" defaultSize="50%">
                 <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown}/>
+                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable = {this.deleteTable} deleteRow = {this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} changeTableMargin={this.changeTableMargin} />
 
                   <div className="TextEditor">
                       {/*<button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE

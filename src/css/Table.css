@@ -17,7 +17,7 @@
     margin: 10px;
     border-top: 10px solid #BD9A63; /* need border-top to even out top border */
     border-radius: 15px; /* added border-radius */
-    position: relative;
+    position: absolute;
     border-spacing: 0px;
 }
 
@@ -52,9 +52,9 @@
 
 .tableInvisible {
   margin: 10px;
-  width: 373px;
-  height: 195px;
-  /*border: 3px solid orange;*/
+  width: 1px; /*373px;*/
+  height: 1px; /*195px;*/
+  border: 3px solid orange;
 }
 
 .form-group {
