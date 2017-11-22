@@ -54,15 +54,17 @@ class App extends Component {
     }
 
     let newstate = Object.assign({}, this.state);
-    newstate.data.tables.unshift({
+    let defaultPosition = newstate.data.tables.length * 210;
+    newstate.data.tables.push({
           id: guid(),
           name: '',
           attributes: [
             { field: '', type: '' }
           ],
-          margin: true
+          defaultPosition: defaultPosition
     })
     this.setState(newstate)
+
     // let newstate = this.state.data.tables.slice()
     // this.setState({
     //   data: {

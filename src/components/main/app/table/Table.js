@@ -43,8 +43,6 @@ class Table extends React.Component {
 
         const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value, changeTableMargin } = this.props
 
-        let marginTop = 210 * tableIndex;
-
         let options = [
             { value: 'GraphQLString', label: 'GraphQLString' },
             { value: 'GraphQLInt', label: 'GraphQLInt' },
@@ -64,10 +62,10 @@ class Table extends React.Component {
         }
 
         return (
-            <Draggable bounds="parent" handle=".drag-handle"
+            <Draggable bounds="parent" handle=".drag-handle" defaultPosition={{x: 0, y: table.defaultPosition}}
             enableUserSelectHack={false} onDrag={(e,dataEvent) => this.onDragTable(e, dataEvent)}>
             <div>
-            <table style={{'margin-top': table.margin ? marginTop : 10}} className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+            <table  className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                 <tbody>
                     <tr>
                         <th colSpan={2} style={style} onMouseDown={(e) => changeTableMargin(tableIndex)}>
