@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
-import Divider from './components/routing/Divider.js';
+import Divider from './components/navigation/Divider.js';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter, Route } from 'react-router-dom'
 //CSS
