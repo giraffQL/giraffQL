@@ -52,9 +52,9 @@
 
 .tableInvisible {
   margin: 10px;
-  width: 1px; /*373px;*/
-  height: 1px; /*195px;*/
-  border: 3px solid orange;
+  width: 373px;
+  height: 300px;
+  /*border: 3px solid orange;*/
 }
 
 .form-group {
