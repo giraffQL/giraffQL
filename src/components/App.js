@@ -29,26 +29,7 @@ class App extends Component {
       // is related to
       data: {
         tables: [
-          {
-            id: '1',
-            name: 'One',
-            tablePositionX: 0,
-            tablePositionY: 7,
-            attributes: [
-              { field: 'hi', type: '', relatedToTableId: '2' },
-              { field: 'blah', type: '', relatedToTableId: null }
-            ]
-          },
-          {
-            id: '2',
-            name: 'Two',
-            tablePositionX: 100,
-            tablePositionY: 200,
-            attributes: [
-              { field: 'jj', type: '', relatedToTableId: null }
-            ]
-          }
-        ],
+        ]
       },
     };
   };
@@ -105,8 +86,21 @@ class App extends Component {
         data: {
           tables: state.data.tables.map((table, i) =>
             (i === tableIndex)
-              ? Object.assign({}, table, { name: value })
-              : table
+              ? Object.assign({}, table, {
+                name: value,
+                attributes: table.attributes.map((attr, ia) =>
+                  (attr.relatedToTableId === state.data.tables[tableIndex].id)
+                    ? Object.assign({}, attr, { type: value })
+                    : attr
+                )
+              })
+              : Object.assign({}, table, {
+                attributes: table.attributes.map((attr, ia) =>
+                  (attr.relatedToTableId === state.data.tables[tableIndex].id)
+                    ? Object.assign({}, attr, { type: value })
+                    : attr
+                )
+              })
           )
         }
       }
@@ -154,30 +148,42 @@ class App extends Component {
   }
 
   // function which is calling when we click for delete row
-  deleteRow = (tableindex, rowindex) => {
-    let spliceit = Object.assign({}, this.state.data.tables[tableindex])
-    spliceit.attributes.splice(rowindex, 1);
-    this.setState({ spliceit })
+  deleteRow = (tableIndex, rowIndex) => {
+    this.setState(state => {
+      return {
+        data: {
+          tables: state.data.tables.map((table, i) =>
+            (i === tableIndex)
+              ? Object.assign({}, table, {
+                attributes: table.attributes.filter((attr, ai) => ai !== rowIndex)
+              })
+              : table
+          )
+        }
+      }
+    })
   }
 
   // function which is calling when we click for delete table
-  deleteTable = (index) => {
-    let spliceit = Object.assign({}, this.state.data)
-    spliceit.tables.splice(index, 1);
-    this.setState({ spliceit })
+  deleteTable = (tableIndex) => {
+    this.setState(state => {
+      return {
+        data: {
+          tables: state.data.tables.filter((table, i) => i !== tableIndex)
+        }
+      }
+    })
   }
 
   // function which is calling when we click for clear board
   deleteAllTables = () => {
-    let stateNew = {};
-    let keys = Object.keys(this.state);
-    console.log(keys)
-    keys.forEach((key, i) => {
-      stateNew[key] = this.state[key];
+    this.setState(state => {
+      return {
+        data: {
+          tables: []
+        }
+      }
     })
-    console.log('stateNew', stateNew)
-    stateNew.data.tables = [];
-    this.setState(stateNew);
   }
 
   // function which is calling when we drag tables

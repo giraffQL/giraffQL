@@ -13,39 +13,33 @@ class Table extends React.Component {
         super(props)
         // references for DOM position elements
         this.propertyRowRefs = [];
-        this.propertyTableRefs = [];
+        this.tableRef = null;
     }
 
     // when page is loaded call refreshTablePositions()
     componentDidMount() {
-        this.refreshTablePositions()
+        this.refreshTableRefs()
     }
-    // you don't need to refresh a table position if property is updated but there is no new row
-    // prevention for one of the cases to not get into infinite loop
+
     componentDidUpdate(oldProps) {
-        if (this.props.table.attributes.length > oldProps.table.attributes.length) {
-            this.refreshTablePositions()
+        if (this.props.table.attributes.length !== oldProps.table.attributes.length) {
+            this.refreshTableRefs()
         }
     }
 
-    // every time when you drag a table we have to make table coordinate different
-    onDragTable = (e, dataEvent) => {
-        this.refreshTablePositions()
-    }
-
     // sends the current position of tables and rows and sends that to the parent
-    refreshTablePositions = () => {
-        this.props.refreshTablePositions(
+    refreshTableRefs = () => {
+        this.props.refreshTableRefs(
             this.props.tableIndex,
-            this.propertyTableRefs.getBoundingClientRect(),
-            this.propertyRowRefs.filter((el) => { return el !== null }).map(ref => ref.getBoundingClientRect())
+            this.tableRef,
+            this.propertyRowRefs.filter((el) => { return el !== null })
         )
     }
 
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
-        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value } = this.props
+        const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value, onDragTable } = this.props
 
 
         let options = [
@@ -65,12 +59,10 @@ class Table extends React.Component {
         }
 
         return (
-
             <Draggable bounds="parent" handle=".drag-handle"
-
-                enableUserSelectHack={false} onDrag={(e, dataEvent) => this.onDragTable(e, dataEvent)}>
+                enableUserSelectHack={false} onDrag={(e, dataEvent) => onDragTable(tableIndex)}>
                 <div>
-                    <table className="table" ref={(e) => { this.propertyTableRefs = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+                    <table className="table" ref={(e) => { this.tableRef = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                         <tbody>
                             <tr>
                                 <th colSpan={2} style={style}>
@@ -80,34 +72,19 @@ class Table extends React.Component {
                                 </th>
                             </tr>
                             {table.attributes.map(({ field, type, x, y, relatedToTableId }, i) => {
-                                const relatedTable = relatedToTableId && tables.find(t => t.id === relatedToTableId)
                                 return (
                                     <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
                                         <td><FormControl className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                         <td className='typetd'>
                                             <div className='deleterowbutton' onClick={() => deleteRow(tableIndex, i)}>x</div>
                                             <div>
-                                                {relatedTable &&
-
-                                                    <Select className='dropdown'
-                                                        onChange={(value) => updateRowType(tableIndex, i, value)}
-                                                        options={options}
-                                                        simpleValue
-                                                        autoload={true}
-                                                        value={data.tables[i].name}
-                                                        autosize={true}
-
-                                                    />
-                                                }
-                                                {!relatedTable &&
-                                                    <Select className='dropdown'
-                                                        onChange={(value) => updateRowType(tableIndex, i, value)}
-                                                        options={options}
-                                                        simpleValue
-                                                        autosize={true}
-                                                        value={data.tables[tableIndex].attributes[i].type}
-                                                    />
-                                                }
+                                                <Select className='dropdown'
+                                                    onChange={(value) => updateRowType(tableIndex, i, value)}
+                                                    options={options}
+                                                    simpleValue
+                                                    autosize={true}
+                                                    value={tables[tableIndex].attributes[i].type}
+                                                />
                                             </div>
                                         </td>
                                     </tr>

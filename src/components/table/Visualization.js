@@ -9,12 +9,11 @@ import css from '../../css/Table.css'
 import _ from 'lodash'
 
 // creating a grid because we have to have track what we visited before
-function createMatrix(n) {
-    const rows = new Array(n)
-    for (let i = 0; i < n; ++i) {
-        rows[i] = new Array(n)
-    }
-    return rows
+const n = 2000
+const visited = new Array(n*n)  
+
+function matrixIndex(x, y) {
+    return x * n + y;
 }
 
 // this is not exact manhattanPath xD
@@ -24,8 +23,7 @@ function manhattanPath(attribute, table, allTables) {
         return []
     }
     // n is grid max
-    const n = 2000
-    const step = 30
+    const step = 50
     const destinations = [
         { x: table.x, y: table.y },
         { x: table.x + table.w, y: table.y },
@@ -56,8 +54,8 @@ function manhattanPath(attribute, table, allTables) {
     discovered.forEach(point => point.dist = heuristicDistance(point.x, point.y))
     // for starts points previous is null because it doesnt exist
     // storing a previous point (from where you came)
-    const visited = createMatrix(n)    
-    starts.forEach(point => visited[point.x][point.y] = { px: null, py: null })    
+    visited.fill(undefined)
+    starts.forEach(point => visited[matrixIndex(point.x, point.y)] = { px: null, py: null })    
     // check if point is overlapping other tables
     function isNotOverlappingTables(x, y) {
         return _.every(allTables, table => (x <= table.x) || ((table.x + table.w) <= x) || (y <= table.y) || ((table.y + table.h) <= y))
@@ -79,12 +77,12 @@ function manhattanPath(attribute, table, allTables) {
         const { x, y, px, py } = discovered.pop()
         //const { x, y, px, py } = discovered.shift()
 
-        if (!visited[x][y]) {
-            visited[x][y] = { px, py }
+        if (!visited[matrixIndex(x, y)]) {
+            visited[matrixIndex(x, y)] = { px, py }
 
             foundResult = nearValidResult(x, y)
             if (foundResult) {
-                visited[foundResult.x][foundResult.y] = { px: x, py: y }
+                visited[matrixIndex(foundResult.x, foundResult.y)] = { px: x, py: y }
                 break
             }
 
@@ -101,7 +99,7 @@ function manhattanPath(attribute, table, allTables) {
             .forEach(({ dx, dy }) => {
                 if (0 < x + dx && x + dx < n && 
                     0 < y + dy && y + dy < n &&
-                    !visited[x + dx][y + dy] &&
+                    !visited[matrixIndex(x + dx, y + dy)] &&
                     isNotOverlappingTables(x + dx, y + dy)) 
                 {
                     discovered.push({ x: x + dx, y: y + dy, px: x, py: y, dist: heuristicDistance(x + dx, y + dy) })
@@ -118,7 +116,7 @@ function manhattanPath(attribute, table, allTables) {
     for (
         let pointer = foundResult;
         pointer.x !== null && pointer.y !== null;
-        pointer = { x: visited[pointer.x][pointer.y].px, y: visited[pointer.x][pointer.y].py }
+        pointer = { x: visited[matrixIndex(pointer.x, pointer.y, n)].px, y: visited[matrixIndex(pointer.x, pointer.y, n)].py }
     ) {
         resultingPath.push(pointer)
     }
@@ -130,8 +128,9 @@ class Visualization extends React.Component {
         super(props)
         this.state = {
             start: null,
-            end: null
+            end: null,
         }
+        this.tableRefs = []
     }
 
     // when we click on row we're taking row DOM cordinates
@@ -163,10 +162,30 @@ class Visualization extends React.Component {
         this.props.onTableMouseUp(null)
     }
 
+    refreshTableRefs = (tableIndex, tableRef, rowRefs) => {
+        this.tableRefs[tableIndex] = { tableRef, rowRefs }
+
+        this.tableRefs.forEach((tableRef, tableIndex) => {
+            this.props.refreshTablePositions(
+                tableIndex, 
+                tableRef.tableRef.getBoundingClientRect(),
+                tableRef.rowRefs.map(ref => ref.getBoundingClientRect()),
+            )
+        })
+    }
+
+    onDragTable = (tableIndex) => {
+        this.props.refreshTablePositions(
+            tableIndex, 
+            this.tableRefs[tableIndex].tableRef.getBoundingClientRect(),
+            this.tableRefs[tableIndex].rowRefs.map(ref => ref.getBoundingClientRect()),
+        )
+    } 
+
     render() {
         const { start, end } = this.state
 
-        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
+        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, onTableMouseUp, onRowMouseDown, value } = this.props
         return (
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
                 <div className='toolbar'>
@@ -225,7 +244,7 @@ class Visualization extends React.Component {
                         {data.tables.map((table, i) =>
                             <Table style={{ "backgroundColor": colors[i] }} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
                                 updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
-                                onDragTable={onDragTable} dataEvent={dataEvent} refreshTablePositions={refreshTablePositions} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
+                                onDragTable={this.onDragTable} dataEvent={dataEvent} refreshTableRefs={this.refreshTableRefs} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
                         )}
                     </div>
 
