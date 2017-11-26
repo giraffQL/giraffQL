@@ -16,7 +16,6 @@ import FileSaver from 'file-saver';
 //TEXT Editor & ExpressCode
 import TextEditor from '../components/code/TextEditor'
 import ExpressCode from '../components/code/ExpressCode'
-import Draft, { Editor, EditorState, ContentState, convertFromHTML, convertFromRaw } from 'draft-js';
 
 class App extends Component {
   constructor(props) {
@@ -328,22 +327,34 @@ class App extends Component {
     post('/schemas', { schema: this.state.schemaCode })
   }
 
+  // function to check is input string contains number
+  isNumeric = (n) => {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  }
+
 
   // function which is creating text in schema text area
   getTextFromModel = (data) => {
     let code = '\n'
     code += 'type Query {\n'
+  
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-        if (table.name) {
-            code += `    ${table.name}: ${table.name}\n`
+        
+        if(this.isNumeric(data.tables[i].name)) {
+          alert('Table can not start with number')
         }
+
+        if (table.name && !this.isNumeric(data.tables[i].name)) {
+            code += `    ${table.name}: ${table.name}\n`
+        } 
     }
     code += `}\n\n`
 
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-        if (table.name) {
+       
+        if (table.name && !this.isNumeric(data.tables[i].name)) {
             code += `type ${table.name} {\n`
             for (let j = 0; j < table.attributes.length; j += 1) {
                 const attr = table.attributes[j]
@@ -352,7 +363,7 @@ class App extends Component {
                 }
             }
             code += `}\n\n`
-        }
+        } 
     }
 
     return code + '\n'
@@ -363,7 +374,8 @@ class App extends Component {
     let code = '\n'
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-        if (table.name) {
+        
+        if (table.name && !this.isNumeric(data.tables[i].name)) {
             code += `const ${table.name}Type = new GraphQLObjectType({\n`
                 + `    name: ${table.name},\n`
                 + `    fields: () => ({\n`
