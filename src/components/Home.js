@@ -81,7 +81,7 @@ class Home extends Component {
 
         </div>
           <div className='maintext'>
-            <p> A Set of React Components that Implement Google's Material Design DEMO</p>
+            <p> AAAAA Set of React Components that Implement Google's Material Design DEMO</p>
           </div>
         </div>
         <div className='second'>
