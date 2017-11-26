@@ -43,12 +43,11 @@ class Table extends React.Component {
 
 
         let options = [
-            { value: 'GraphQLString', label: 'GraphQLString' },
-            { value: 'GraphQLInt', label: 'GraphQLInt' },
-            { value: 'GraphQLFloat', label: 'GraphQLFloat' },
-            { value: 'GraphQLBoolean', label: 'GraphQLBoolean' },
-            { value: 'GraphQLID', label: 'GraphQLID' },
-            { value: 'GraphQLList', label: 'GraphQLList' }
+            { value: 'String', label: 'String' },
+            { value: 'Int', label: 'Int' },
+            { value: 'Float', label: 'Float' },
+            { value: 'Boolean', label: 'Boolean' },
+            { value: 'ID', label: 'ID' }
         ]
 
         for (let i = 0; i < data.tables.length; i++) {
@@ -95,7 +94,7 @@ class Table extends React.Component {
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div>      
             </Draggable>
 
         )

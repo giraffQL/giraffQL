@@ -16,6 +16,25 @@ body {
   height:100%;
 }
 
+.appBar h1 {
+  color: #fbe4a1;
+}
+
+.drawer {
+  font-size: '20px';
+  color: white;
+}
+
+.menuItem {
+  color: white;
+}
+
+.full-screenable-node { /* make fullscreen background same color as body */
+  background-color: #fbe4a1;
+  color: #9FA767;
+  font-weight: 600;
+}
+
 .toolbar {
   position: relative;
   z-index:3;
@@ -24,6 +43,7 @@ body {
 .relations {
   width: 100%;
   height: 100%;
+  /*height: 10000px;*/
   position: absolute;
   top: 0;
   left: 0;
@@ -32,7 +52,7 @@ body {
 
 .relation {
   width: 100%;
-  height: 100%;
+  height: 10000px;
   position: absolute;
   top: 0;
   left: 0;
@@ -40,14 +60,15 @@ body {
 }
 
 .tables {
-  padding-top: 50px;
+  margin-top: 50px;  /* changed from padding-top 50px to margin-top for scrollbar */
   width: 100%;
+  /*height: 10000px;*/
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   z-index:2;
-  overflow: scroll;
+  /*overflow: scroll;*/
 }
 
 .root {
@@ -273,5 +294,3 @@ border-color: transparent;
   font-weight: bold;
   padding: 10px
 }
-
-

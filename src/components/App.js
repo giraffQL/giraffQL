@@ -4,10 +4,18 @@ import SplitPane from "react-split-pane"
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
-//FILE SERVER (using for save schema code)
+import Fullscreen from 'react-full-screen';
+// MATERIAL UI
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// REACT-BOOTSTRAP
+import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+// MENU COMPONENT
+import MenuComp from './Menu';
+//FILE SERVER
 import FileSaver from 'file-saver';
-//TEXT Editor
+//TEXT Editor & ExpressCode
 import TextEditor from '../components/code/TextEditor'
+import ExpressCode from '../components/code/ExpressCode'
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +41,6 @@ class App extends Component {
       },
     };
   };
-
 
   // when we click to make new table call this function
   onAddTable = () => {
@@ -239,28 +246,96 @@ class App extends Component {
     }
   }
 
+
+  menuToggle = () => this.setState({ open: !this.state.open });
+
+  menuClose = () => this.setState({ open: false });
+
+  fullscreenToggle = () => {
+    this.setState({ isFullscreenEnabled: true })
+  }
+
   // function which is called when you click for save schema code
   saveTextAsFile = () => {
-    let text = this.code.getTextFromModel(this.state.data)
+    let text = this.code.getCode(this.state.data)
     let blob = new Blob([text], { type: "text/javascript" });
     FileSaver.saveAs(blob, 'schema.js')
   }
 
+  submitSchemaCode = () => {
+    function post(path, params, method) {
+      method = method || "post"; // Set method to post by default if not specified.
+
+      // The rest of this code assumes you are not using a library.
+      // It can be made less wordy if you use one.
+      var form = document.createElement("form");
+      form.setAttribute("method", method);
+      form.setAttribute("action", path);
+
+      for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+          var hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", key);
+          hiddenField.setAttribute("value", params[key]);
+
+          form.appendChild(hiddenField);
+        }
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+    }
+
+    post('/schemas', { schema: this.code.getTextFromModel(this.state.data) })
+  }
+
   render() {
     const { data } = this.state
+    const muiStyles = {
+      appBar: {
+        'background-color': '#9FA767',
+        'border-bottom': '4px solid white',
+        'line-height': '20px',
+        color: '#fbe4a1'
+      },
+      drawer: {
+        'background-color': '#9FA767',
+        'color': 'white',
+      },
+      menuItem: {
+        'color': 'white',
+        'font-size': '20px'
+      }
+    }
+
     return (
-      <div className="App">
-        <SplitPane split="vertical" defaultSize="50%">
-          <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-            updateTableName={this.updateTableName} updateRowProp={this.updateRowProp}
-            updateRowType={this.updateRowType} onAddTable={this.onAddTable} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables}
-            onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-          <div className="TextEditor">
-            <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE </button>
-            <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
-          </div>
-        </SplitPane>
-      </div>
+      <MuiThemeProvider>
+
+        <div className="App">
+          <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
+          <Fullscreen
+            enabled={this.state.isFullscreenEnabled}
+            onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
+          >
+            <div className='full-screenable-node'>
+              {/*PRESS ESC TO EXIT*/}
+
+              <SplitPane style={{ 'background-color': '#fbe4a1' }} split="vertical" defaultSize="50%">
+                <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                  updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
+
+                <div className="TextEditor">
+                  <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE</button>
+                  <button className="save" onClick={() => this.submitSchemaCode()}> TEST YOUR SCHEMA CODE</button>
+                  <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
+                  <ExpressCode data={this.state.data} onRef={ref => (this.code = ref)} />
+                </div>
+              </SplitPane>
+            </div>
+          </Fullscreen>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

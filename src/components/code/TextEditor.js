@@ -46,41 +46,44 @@ class TextEditor extends React.Component {
         // );
         const contentState = ContentState.createFromText(this.getTextFromModel(data))
         return EditorState.createWithContent(contentState)
+
     }
     componentDidMount() {
         this.props.onRef(this)
-      }
-      componentWillUnmount() {
+    }
+    componentWillUnmount() {
         this.props.onRef(undefined)
-      }
+    }
 
     getTextFromModel = (data) => {
         let code = '\n'
+        code += 'type Query {\n'
         for (let i = 0; i < data.tables.length; i += 1) {
             const table = data.tables[i]
             if (table.name) {
-                code += `const ${table.name}Type = new GraphQLObjectType({\n`
-                    + `    name: ${table.name},\n`
-                    + `    fields: () => ({\n`
+                code += `    ${table.name}: ${table.name}\n`
+            }
+        }
+        code += `}\n\n`
+
+        for (let i = 0; i < data.tables.length; i += 1) {
+            const table = data.tables[i]
+            if (table.name) {
+                code += `type ${table.name} {\n`
                 for (let j = 0; j < table.attributes.length; j += 1) {
                     const attr = table.attributes[j]
                     if (attr.field !== '') {
-                        code += `        ${attr.field}: {\n`
-                            + `            type: ${attr.type}\n`
-                            + `        }`
-                    }
-                    if (j < table.attributes.length - 1 && attr.field !=='') {
-                        code += `,\n`
+                        code += `    ${attr.field}: ${attr.type}\n`
                     }
                 }
-                code += `\n`
-                    + `    })\n`
-                    + `})\n\n`
+                code += `}\n\n`
             }
         }
 
         return code + '\n'
     }
+
+
 
     render() {
 
