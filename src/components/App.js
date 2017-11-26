@@ -282,12 +282,13 @@ class App extends Component {
     this.setState({ isFullscreenEnabled: true })
   }
 
-  // function which is called when you click for save schema code
+  // function which is called when you click for save schema js code
   saveTextAsFile = () => {
     let text = this.state.jsCode
     let blob = new Blob([text], { type: "text/javascript" });
     FileSaver.saveAs(blob, 'schema.js')
   }
+
 
   onSchemaCodeChange = (schemaCode) => {
     this.setState(state => ({
@@ -303,17 +304,15 @@ class App extends Component {
 
   submitSchemaCode = () => {
     function post(path, params, method) {
-      method = method || "post"; // Set method to post by default if not specified.
+      method = method || "post"; 
 
-      // The rest of this code assumes you are not using a library.
-      // It can be made less wordy if you use one.
-      var form = document.createElement("form");
+      let form = document.createElement("form");
       form.setAttribute("method", method);
       form.setAttribute("action", path);
 
-      for (var key in params) {
+      for (let key in params) {
         if (params.hasOwnProperty(key)) {
-          var hiddenField = document.createElement("input");
+          let hiddenField = document.createElement("input");
           hiddenField.setAttribute("type", "hidden");
           hiddenField.setAttribute("name", key);
           hiddenField.setAttribute("value", params[key]);
@@ -329,6 +328,8 @@ class App extends Component {
     post('/schemas', { schema: this.state.schemaCode })
   }
 
+
+  // function which is creating text in schema text area
   getTextFromModel = (data) => {
     let code = '\n'
     code += 'type Query {\n'
@@ -357,6 +358,7 @@ class App extends Component {
     return code + '\n'
   }
 
+  // function which is creating schema js code in textarea
   getExpressCode = (data) => {
     let code = '\n'
     for (let i = 0; i < data.tables.length; i += 1) {
