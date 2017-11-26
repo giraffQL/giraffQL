@@ -16,6 +16,7 @@ import FileSaver from 'file-saver';
 //TEXT Editor & ExpressCode
 import TextEditor from '../components/code/TextEditor'
 import ExpressCode from '../components/code/ExpressCode'
+import Draft, { Editor, EditorState, ContentState, convertFromHTML, convertFromRaw } from 'draft-js';
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +40,8 @@ class App extends Component {
         tables: [
         ]
       },
+      schemaCode: '',
+      jsCode: ''
     };
   };
 
@@ -56,32 +59,38 @@ class App extends Component {
     }
 
     let newstate = this.state.data.tables.slice()
+    const newData = {
+      tables: newstate.concat({
+        id: guid(),
+        name: '',
+        attributes: [
+          { field: '', type: '' }
+        ]
+      })
+    }
     this.setState({
-      data: {
-        tables: newstate.concat({
-          id: guid(),
-          name: '',
-          attributes: [
-            { field: '', type: '' }
-          ]
-        })
-      }
+      data: newData,
+      schemaCode: this.getTextFromModel(newData),
+      jsCode: this.getExpressCode(newData)
     })
   }
 
   // function which is calling when we're adding new row
   onAddRow = (tableIndex) => {
     this.setState(state => {
+      const newData = {
+        tables: state.data.tables.map((table, i) =>
+          (i === tableIndex)
+            ? Object.assign({}, table, {
+              attributes: table.attributes.concat({ field: '', type: '' })
+            })
+            : table
+        )
+      }
       return {
-        data: {
-          tables: state.data.tables.map((table, i) =>
-            (i === tableIndex)
-              ? Object.assign({}, table, {
-                attributes: table.attributes.concat({ field: '', type: '' })
-              })
-              : table
-          )
-        }
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
       }
     })
   }
@@ -89,67 +98,76 @@ class App extends Component {
   // every time when we change or add table name we're setting up state with thoose new values
   updateTableName = (tableIndex, value) => {
     this.setState(state => {
+      const newData = {
+        tables: state.data.tables.map((table, i) =>
+          (i === tableIndex)
+            ? Object.assign({}, table, {
+              name: value,
+              attributes: table.attributes.map((attr, ia) =>
+                (attr.relatedToTableId === state.data.tables[tableIndex].id)
+                  ? Object.assign({}, attr, { type: value })
+                  : attr
+              )
+            })
+            : Object.assign({}, table, {
+              attributes: table.attributes.map((attr, ia) =>
+                (attr.relatedToTableId === state.data.tables[tableIndex].id)
+                  ? Object.assign({}, attr, { type: value })
+                  : attr
+              )
+            })
+        )
+      }
       return {
-        data: {
-          tables: state.data.tables.map((table, i) =>
-            (i === tableIndex)
-              ? Object.assign({}, table, {
-                name: value,
-                attributes: table.attributes.map((attr, ia) =>
-                  (attr.relatedToTableId === state.data.tables[tableIndex].id)
-                    ? Object.assign({}, attr, { type: value })
-                    : attr
-                )
-              })
-              : Object.assign({}, table, {
-                attributes: table.attributes.map((attr, ia) =>
-                  (attr.relatedToTableId === state.data.tables[tableIndex].id)
-                    ? Object.assign({}, attr, { type: value })
-                    : attr
-                )
-              })
-          )
-        }
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
       }
     })
   }
   // same for row prop and row type
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
+      const newData = {
+        tables: state.data.tables.map((table, i) =>
+          (i === tableIndex)
+            ? Object.assign({}, table, {
+              attributes: table.attributes.map((attr, ai) =>
+                (ai === rowIndex)
+                  ? Object.assign({}, attr, { field: value })
+                  : attr
+              )
+            })
+            : table
+        )
+      }
       return {
-        data: {
-          tables: state.data.tables.map((table, i) =>
-            (i === tableIndex)
-              ? Object.assign({}, table, {
-                attributes: table.attributes.map((attr, ai) =>
-                  (ai === rowIndex)
-                    ? Object.assign({}, attr, { field: value })
-                    : attr
-                )
-              })
-              : table
-          )
-        }
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
       }
     })
   }
 
   updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
+      const newData = {
+        tables: state.data.tables.map((table, i) =>
+          (i === tableIndex)
+            ? Object.assign({}, table, {
+              attributes: table.attributes.map((attr, ai) =>
+                (ai === rowIndex)
+                  ? Object.assign({}, attr, { type: value })
+                  : attr
+              )
+            })
+            : table
+        )
+      }
       return {
-        data: {
-          tables: state.data.tables.map((table, i) =>
-            (i === tableIndex)
-              ? Object.assign({}, table, {
-                attributes: table.attributes.map((attr, ai) =>
-                  (ai === rowIndex)
-                    ? Object.assign({}, attr, { type: value })
-                    : attr
-                )
-              })
-              : table
-          )
-        }
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
       }
     })
   }
@@ -157,16 +175,19 @@ class App extends Component {
   // function which is calling when we click for delete row
   deleteRow = (tableIndex, rowIndex) => {
     this.setState(state => {
+    const newData = {
+      tables: state.data.tables.map((table, i) =>
+        (i === tableIndex)
+          ? Object.assign({}, table, {
+            attributes: table.attributes.filter((attr, ai) => ai !== rowIndex)
+          })
+          : table
+      )
+    }
       return {
-        data: {
-          tables: state.data.tables.map((table, i) =>
-            (i === tableIndex)
-              ? Object.assign({}, table, {
-                attributes: table.attributes.filter((attr, ai) => ai !== rowIndex)
-              })
-              : table
-          )
-        }
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
       }
     })
   }
@@ -174,10 +195,13 @@ class App extends Component {
   // function which is calling when we click for delete table
   deleteTable = (tableIndex) => {
     this.setState(state => {
+      const newData = {
+        tables: state.data.tables.filter((table, i) => i !== tableIndex)
+      }
       return {
-        data: {
-          tables: state.data.tables.filter((table, i) => i !== tableIndex)
-        }
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
       }
     })
   }
@@ -185,10 +209,13 @@ class App extends Component {
   // function which is calling when we click for clear board
   deleteAllTables = () => {
     this.setState(state => {
+      const newData = {
+        tables: []
+      }
       return {
-        data: {
-          tables: []
-        }
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
       }
     })
   }
@@ -257,9 +284,21 @@ class App extends Component {
 
   // function which is called when you click for save schema code
   saveTextAsFile = () => {
-    let text = this.code.getCode(this.state.data)
+    let text = this.state.jsCode
     let blob = new Blob([text], { type: "text/javascript" });
     FileSaver.saveAs(blob, 'schema.js')
+  }
+
+  onSchemaCodeChange = (schemaCode) => {
+    this.setState(state => ({
+      schemaCode
+    }))
+  }
+
+  onJsCodeChange = (jsCode) => {
+    this.setState(state => ({
+      jsCode
+    }))
   }
 
   submitSchemaCode = () => {
@@ -287,8 +326,64 @@ class App extends Component {
       form.submit();
     }
 
-    post('/schemas', { schema: this.code.getTextFromModel(this.state.data) })
+    post('/schemas', { schema: this.state.schemaCode })
   }
+
+  getTextFromModel = (data) => {
+    let code = '\n'
+    code += 'type Query {\n'
+    for (let i = 0; i < data.tables.length; i += 1) {
+        const table = data.tables[i]
+        if (table.name) {
+            code += `    ${table.name}: ${table.name}\n`
+        }
+    }
+    code += `}\n\n`
+
+    for (let i = 0; i < data.tables.length; i += 1) {
+        const table = data.tables[i]
+        if (table.name) {
+            code += `type ${table.name} {\n`
+            for (let j = 0; j < table.attributes.length; j += 1) {
+                const attr = table.attributes[j]
+                if (attr.field !== '') {
+                    code += `    ${attr.field}: ${attr.type}\n`
+                }
+            }
+            code += `}\n\n`
+        }
+    }
+
+    return code + '\n'
+  }
+
+  getExpressCode = (data) => {
+    let code = '\n'
+    for (let i = 0; i < data.tables.length; i += 1) {
+        const table = data.tables[i]
+        if (table.name) {
+            code += `const ${table.name}Type = new GraphQLObjectType({\n`
+                + `    name: ${table.name},\n`
+                + `    fields: () => ({\n`
+            for (let j = 0; j < table.attributes.length; j += 1) {
+                const attr = table.attributes[j]
+                if (attr.field !== '') {
+                    code += `        ${attr.field}: {\n`
+                    + `            type: GraphQL${attr.type}\n`
+                        + `        }`
+                }
+                if (j < table.attributes.length - 1 && attr.field !=='') {
+                    code += `,\n`
+                }
+            }
+            code += `\n`
+                + `    })\n`
+                + `})\n\n`
+        }
+    }
+
+    return code + '\n'
+}
 
   render() {
     const { data } = this.state
@@ -309,7 +404,8 @@ class App extends Component {
       }
     }
 
-    return (
+    return [
+      
       <MuiThemeProvider>
 
         <div className="App">
@@ -326,17 +422,17 @@ class App extends Component {
                   updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
 
                 <div className="TextEditor">
-                  <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA CODE</button>
+                  <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA JS CODE</button>
                   <button className="save" onClick={() => this.submitSchemaCode()}> TEST YOUR SCHEMA CODE</button>
-                  <TextEditor data={this.state.data} onRef={ref => (this.code = ref)} />
-                  <ExpressCode data={this.state.data} onRef={ref => (this.code = ref)} />
+                  <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
+                  <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
                 </div>
               </SplitPane>
             </div>
           </Fullscreen>
         </div>
       </MuiThemeProvider>
-    );
+    ];
   }
 }
 
