@@ -204,14 +204,16 @@ class App extends Component {
 
   // function which is calling when we click for delete table
   deleteTable = (tableIndex) => {
-    const newstate = Object.assign({}, this.state);
-    const newData = {
-      tables: newstate.data.tables.filter((table, i) => i !== tableIndex)
-    }
-    newstate.data.tables[tableIndex] = null;
-    newstate.schemaCode = this.getTextFromModel(newData);
-    newstate.jsCode = this.getExpressCode(newData);
-    this.setState(newstate);
+    this.setState(state => {
+      const newData = {
+        tables: state.data.tables.filter((table, i) => i !== tableIndex)
+      }
+      return {
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
+      }
+    })
   }
 
   // function which is calling when we click for clear board

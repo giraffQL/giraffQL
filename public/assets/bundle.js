@@ -2356,16 +2356,18 @@ var App = function (_Component) {
     };
 
     _this.deleteTable = function (tableIndex) {
-      var newstate = Object.assign({}, _this.state);
-      var newData = {
-        tables: newstate.data.tables.filter(function (table, i) {
-          return i !== tableIndex;
-        })
-        // newstate.data.tables.splice(tableIndex, 1);
-      };newstate.data.tables[tableIndex] = null;
-      newstate.schemaCode = _this.getTextFromModel(newData);
-      newstate.jsCode = _this.getExpressCode(newData);
-      _this.setState(newstate);
+      _this.setState(function (state) {
+        var newData = {
+          tables: state.data.tables.filter(function (table, i) {
+            return i !== tableIndex;
+          })
+        };
+        return {
+          data: newData,
+          schemaCode: _this.getTextFromModel(newData),
+          jsCode: _this.getExpressCode(newData)
+        };
+      });
     };
 
     _this.deleteAllTables = function () {
