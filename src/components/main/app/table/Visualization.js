@@ -59,7 +59,7 @@ class Visualization extends React.Component {
     render() {
         const { start, end } = this.state
 
-        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value, changeTableMargin } = this.props
+        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
 
         return (
 
@@ -142,21 +142,14 @@ class Visualization extends React.Component {
                                 return (
                                     <Table style={{"backgroundColor": colors[i]}} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
                                                 updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
-                                                onDragTable={onDragTable} dataEvent={dataEvent} refreshTablePositions={refreshTablePositions} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} changeTableMargin={changeTableMargin} />
+                                                onDragTable={onDragTable} dataEvent={dataEvent} refreshTablePositions={refreshTablePositions} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
                                 );
                             } else {
-                                let tableInvis = (
-                                  <div class="tableInvisible">
-                                    {/*<tr><th><input class="inputInv" type="text"/></th></tr>
-                                    <tbody>
-                                    <tr>
-                                      <td><input class="inputInv" type="text"/></td>
-                                      <td><input class="inputInv" type="text"/></td>
-                                    </tr>
-                                    </tbody>*/}
+                                let placeholder = (
+                                  <div>
                                   </div>
                                 )
-                                return tableInvis;
+                                return placeholder;
                             }
                             })
                         }

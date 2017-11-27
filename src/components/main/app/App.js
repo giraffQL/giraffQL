@@ -31,13 +31,6 @@ class App extends Component {
     };
   };
 
-  changeTableMargin = (tableIndex) => {
-    let newstate = Object.assign({}, this.state);
-    newstate.data.tables[tableIndex].margin = 10;
-    this.setState(newstate);
-    console.log('margin', this.state.data.tables)
-  }
-
   onAddTable = () => {
     //function which is making random string for ID
     function guid() {
@@ -51,12 +44,14 @@ class App extends Component {
     }
 
     let newstate = Object.assign({}, this.state);
-    newstate.data.tables.unshift({
+    let tables = newstate.data.tables;
+    newstate.data.tables.push({
           id: guid(),
           name: '',
           attributes: [
             { field: '', type: '' }
-          ]
+          ],
+          defaultPosition: 210 * tables.length
     })
     this.setState(newstate)
     // let newstate = this.state.data.tables.slice()
