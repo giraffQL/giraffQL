@@ -16,7 +16,7 @@ class MenuComp extends Component {
   }
 
   render () {
-    const {state, menuToggle, menuClose, onRequestChange, fullscreenToggle, onAddTable, deleteAllTables, saveTextAsFile} = this.props;
+    const {state, menuToggle, menuClose, onRequestChange, fullscreenToggle, onAddTable, deleteAllTables, saveTextAsFile, submitSchemaCode} = this.props;
 
     const muiStyles = {
       appBar: {
@@ -57,7 +57,7 @@ class MenuComp extends Component {
                   x
                  </Button>
                  <button className="save" onClick={saveTextAsFile}>
-                  SAVE SCHEMA CODE
+                  SAVE JS SCHEMA CODE
                  </button>
                </div>
           </div>

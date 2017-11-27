@@ -14,10 +14,8 @@ import FileSaver from 'file-saver';
 import MenuComp from './AppMenu';
 import Visualization from './table/Visualization';
 import TextEditor from './code/TextEditor'
-import ExpressCode from '../code/ExpressCode'
-//PRISM DEPENDENCIES
-const PrismDecorator = require('draft-js-prism');
-const Prism = require('prismjs')
+import ExpressCode from './code/ExpressCode'
+
 
 
 class App extends Component {
@@ -187,15 +185,15 @@ class App extends Component {
   // function which is calling when we click for delete row
   deleteRow = (tableIndex, rowIndex) => {
     this.setState(state => {
-    const newData = {
-      tables: state.data.tables.map((table, i) =>
-        (i === tableIndex)
-          ? Object.assign({}, table, {
-            attributes: table.attributes.filter((attr, ai) => ai !== rowIndex)
-          })
-          : table
-      )
-    }
+      const newData = {
+        tables: state.data.tables.map((table, i) =>
+          (i === tableIndex)
+            ? Object.assign({}, table, {
+              attributes: table.attributes.filter((attr, ai) => ai !== rowIndex)
+            })
+            : table
+        )
+      }
       return {
         data: newData,
         schemaCode: this.getTextFromModel(newData),
@@ -206,51 +204,30 @@ class App extends Component {
 
   // function which is calling when we click for delete table
   deleteTable = (tableIndex) => {
-    const newstate = Object.assign({}, this.state);
-    const newData = {
-      tables: newstate.data.tables.filter((table, i) => i !== tableIndex)
-    }
-    // newstate.data.tables.splice(tableIndex, 1);
-    newstate.data.tables[tableIndex] = null;
-    newstate.schemaCode = this.getTextFromModel(newData);
-    newstate.jsCode = this.getExpressCode(newData);
-    this.setState(newstate);
-    // this.setState(state => {
-    //   const newData = {
-    //     tables: state.data.tables.filter((table, i) => i !== tableIndex)
-    //   }
-    //   return {
-    //     data: newData,
-    //     schemaCode: this.getTextFromModel(newData),
-    //     jsCode: this.getExpressCode(newData)
-    //   }
-    // })
+    this.setState(state => {
+      const newData = {
+        tables: state.data.tables.filter((table, i) => i !== tableIndex)
+      }
+      return {
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
+      }
+    })
   }
 
   // function which is calling when we click for clear board
   deleteAllTables = () => {
-    // let stateNew = Object.assign({}, this.state);
-    // stateNew.data.tables = [];
-    // this.setState(stateNew);
-    const newstate = Object.assign({}, this.state);
-    const newData = {
-      tables: []
-    }
-    newstate.data = newData;
-    newstate.schemaCode = this.getTextFromModel(newData);
-    newstate.jsCode = this.getExpressCode(newData);
-    this.setState(newstate);
-
-    // this.setState(state => {
-    //   const newData = {
-    //     tables: []
-    //   }
-    //   return {
-    //     data: newData,
-    //     schemaCode: this.getTextFromModel(newData),
-    //     jsCode: this.getExpressCode(newData)
-    //   }
-    // })
+    this.setState(state => {
+      const newData = {
+        tables: []
+      }
+      return {
+        data: newData,
+        schemaCode: this.getTextFromModel(newData),
+        jsCode: this.getExpressCode(newData)
+      }
+    })
   }
 
   // function which is calling when we drag tables
@@ -308,15 +285,15 @@ class App extends Component {
 
 
   menuToggle = () => {
-    this.setState({open: !this.state.open});
+    this.setState({ open: !this.state.open });
   }
 
   menuClose = () => {
-    this.setState({open: false});
+    this.setState({ open: false });
   }
 
   onRequestChange = (open) => {
-    this.setState({open});
+    this.setState({ open });
   }
 
   fullscreenToggle = () => {
@@ -324,152 +301,151 @@ class App extends Component {
       isFullscreenEnabled: this.state.isFullscreenEnabled ? false : true,
       open: false
     })
-
-  // function which is called when you click for save schema js code
-  saveTextAsFile = () => {
-    let text = this.state.jsCode
-    let blob = new Blob([text], { type: "text/javascript" });
-    FileSaver.saveAs(blob, 'schema.js')
   }
 
+    // function which is called when you click for save schema js code
+    saveTextAsFile = () => {
+      let text = this.state.jsCode
+      let blob = new Blob([text], { type: "text/javascript" });
+      FileSaver.saveAs(blob, 'schema.js')
+    }
 
-  onSchemaCodeChange = (schemaCode) => {
-    this.setState(state => ({
-      schemaCode
-    }))
-  }
 
-  onJsCodeChange = (jsCode) => {
-    this.setState(state => ({
-      jsCode
-    }))
-  }
+    onSchemaCodeChange = (schemaCode) => {
+      this.setState(state => ({
+        schemaCode
+      }))
+    }
 
-  submitSchemaCode = () => {
-    function post(path, params, method) {
-      method = method || "post";
+    onJsCodeChange = (jsCode) => {
+      this.setState(state => ({
+        jsCode
+      }))
+    }
 
-      let form = document.createElement("form");
-      form.setAttribute("method", method);
-      form.setAttribute("action", path);
+    submitSchemaCode = () => {
+      function post(path, params, method) {
+        method = method || "post";
 
-      for (let key in params) {
-        if (params.hasOwnProperty(key)) {
-          let hiddenField = document.createElement("input");
-          hiddenField.setAttribute("type", "hidden");
-          hiddenField.setAttribute("name", key);
-          hiddenField.setAttribute("value", params[key]);
+        let form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
 
-          form.appendChild(hiddenField);
+        for (let key in params) {
+          if (params.hasOwnProperty(key)) {
+            let hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+          }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+      }
+
+      post('/schemas', { schema: this.state.schemaCode })
+    }
+
+    // function to check is input string contains number
+    startsWithNumber = (text) => {
+      return /^[0-9]/.test(text);
+    }
+
+    // function which is creating text in schema text area
+    getTextFromModel = (data) => {
+      let code = '\n'
+      code += 'type Query {\n'
+
+      for (let i = 0; i < data.tables.length; i += 1) {
+        const table = data.tables[i]
+
+        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
+          code += `    ${table.name}: ${table.name}\n`
+        }
+      }
+      code += `}\n\n`
+
+      for (let i = 0; i < data.tables.length; i += 1) {
+        const table = data.tables[i]
+
+        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
+          code += `type ${table.name} {\n`
+          for (let j = 0; j < table.attributes.length; j += 1) {
+            const attr = table.attributes[j]
+            if (attr.field !== '') {
+              code += `    ${attr.field}: ${attr.type}\n`
+            }
+          }
+          code += `}\n\n`
         }
       }
 
-      document.body.appendChild(form);
-      form.submit();
+      return code + '\n'
     }
 
-    post('/schemas', { schema: this.state.schemaCode })
-  }
-
-  // function to check is input string contains number
-  startsWithNumber = (text) => {
-    return /^[0-9]/.test(text);
-  }
-
-  // function which is creating text in schema text area
-  getTextFromModel = (data) => {
-    let code = '\n'
-    code += 'type Query {\n'
-
-    for (let i = 0; i < data.tables.length; i += 1) {
+    // function which is creating schema js code in textarea
+    getExpressCode = (data) => {
+      let code = '\n'
+      for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
 
         if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-            code += `    ${table.name}: ${table.name}\n`
-        }
-    }
-    code += `}\n\n`
-
-    for (let i = 0; i < data.tables.length; i += 1) {
-        const table = data.tables[i]
-
-        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-            code += `type ${table.name} {\n`
-            for (let j = 0; j < table.attributes.length; j += 1) {
-                const attr = table.attributes[j]
-                if (attr.field !== '') {
-                    code += `    ${attr.field}: ${attr.type}\n`
-                }
+          code += `const ${table.name}Type = new GraphQLObjectType({\n`
+            + `    name: ${table.name},\n`
+            + `    fields: () => ({\n`
+          for (let j = 0; j < table.attributes.length; j += 1) {
+            const attr = table.attributes[j]
+            if (attr.field !== '') {
+              code += `        ${attr.field}: {\n`
+                + `            type: GraphQL${attr.type}\n`
+                + `        }`
             }
-            code += `}\n\n`
-        }
-    }
-
-    return code + '\n'
-  }
-
-  // function which is creating schema js code in textarea
-  getExpressCode = (data) => {
-    let code = '\n'
-    for (let i = 0; i < data.tables.length; i += 1) {
-        const table = data.tables[i]
-
-        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-            code += `const ${table.name}Type = new GraphQLObjectType({\n`
-                + `    name: ${table.name},\n`
-                + `    fields: () => ({\n`
-            for (let j = 0; j < table.attributes.length; j += 1) {
-                const attr = table.attributes[j]
-                if (attr.field !== '') {
-                    code += `        ${attr.field}: {\n`
-                    + `            type: GraphQL${attr.type}\n`
-                        + `        }`
-                }
-                if (j < table.attributes.length - 1 && attr.field !=='') {
-                    code += `,\n`
-                }
+            if (j < table.attributes.length - 1 && attr.field !== '') {
+              code += `,\n`
             }
-            code += `\n`
-                + `    })\n`
-                + `})\n\n`
+          }
+          code += `\n`
+            + `    })\n`
+            + `})\n\n`
         }
+      }
+
+      return code + '\n'
     }
 
-    return code + '\n'
-}
+    render() {
+      const { data } = this.state;
+      return [
 
-  render() {
-    const { data } = this.state;
+        <MuiThemeProvider>
+          <div className="App">
+            <Fullscreen style={{ height: '100%' }}
+              enabled={this.state.isFullscreenEnabled}
+              onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
+            >
+              <div className='full-screenable-node'>
+                <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
 
-    return (
+                <SplitPane style={{ 'background-color': 'rgb(51,51,51)' }} split="vertical" defaultSize="50%">
+                  <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
 
-    <MuiThemeProvider>
-      <div className="App">
-        <Fullscreen style = {{height: '10000px'}}
-          enabled={this.state.isFullscreenEnabled}
-          onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
-          >
-            <div className='full-screenable-node'>
-              <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
-
-              <SplitPane style={{'background-color': 'rgb(51,51,51)'}} split="vertical" defaultSize="50%">
-                <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-                  updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-
-                <div className="TextEditor">
-                  <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA JS CODE</button>
-                  <button className="save" onClick={() => this.submitSchemaCode()}> TEST YOUR SCHEMA CODE</button>
-                  <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
-                  <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
-                </div>
-              </SplitPane>
-            </div>
-          </Fullscreen>
-        </div>
-      </MuiThemeProvider>
-    );
+                  <div className="TextEditor">
+                    <button className="test" onClick={() => this.submitSchemaCode()}> TEST YOUR SCHEMA CODE</button>
+                    <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
+                    <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
+                  </div>
+                </SplitPane>
+              </div>
+            </Fullscreen>
+          </div>
+        </MuiThemeProvider>
+      ];
+    }
   }
-}
 
-export default App;
+  export default App;
 
