@@ -42940,11 +42940,6 @@ var Table = function (_React$Component) {
 
     }, {
         key: 'render',
-
-
-        // added comment in table which is starting with number
-
-
         value: function render() {
             var _this2 = this;
 

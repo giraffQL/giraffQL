@@ -41,8 +41,6 @@ class Table extends React.Component {
         return /^[0-9]/.test(text);
     }
 
-    // added comment in table which is starting with number
-
 
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
