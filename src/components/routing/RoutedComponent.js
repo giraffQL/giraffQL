@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import App from '../main/app/App.js'
 import Home from '../main/Home.js'
 import Aboutus from '../main/Aboutus.js'
+import Feature from './Feature.js'
 
 
 class RoutedComponent extends Component {
@@ -17,6 +18,7 @@ class RoutedComponent extends Component {
           <Route exact path='/' component={Home}/>
           <Route exact path='/app' component={App}/>
           <Route exact path='/aboutus' component={Aboutus}/>
+          <Route exact path='/feature' component={Feature}/>
         </Switch>
       </div>
     )

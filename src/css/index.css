@@ -42,6 +42,45 @@ button:hover{
   background: #888;
 }
 
+pre{
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  border-radius: .2em;
+  padding: .5em;
+  margin: 0;
+}
+
+
+pre > pre{
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.schemaCode{
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #977359;
+  background: #977359;
+  border-radius: .2em;
+  padding: .5em;
+  margin: 10;
+  /* width:100% */
+}
+
+.schemaType{
+  color: black;
+  text-align: left;
+  font-family: monospace;
+  font-size: 14px;
+  border-style: solid;
+  border: gray solid 2px;
+  background: #fff;
+  border-radius: .3em;
+  padding: 1em;
+  margin: auto;
+  width:100%;
+}
 
 .tabspace{
   padding-left: 5em;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Draft, { Editor, EditorState, ContentState, convertFromHTML, convertFromRaw } from 'draft-js';
-import 'draft-js/dist/Draft.css';
+// import 'draft-js/dist/Draft.css';
 // import PrismDecorator from 'draft-js-prism'
 // import Prism from 'prismjs'
 import _ from 'lodash'
@@ -87,11 +87,8 @@ class TextEditor extends React.Component {
     }
 
     render() {
-
-
         return (
-            <Editor editorState={this.state.editorState} onChange={this.onEditorChange} />
-            //<textarea value={code} cols={70} rows={51} style={{ "font-size": "25px" }}></textarea>
+            <textarea className="schemaCode" value={this.props.code} onChange={e => this.props.onChange(e.target.value)} />
         )
     }
 }
