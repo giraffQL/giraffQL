@@ -8,7 +8,6 @@ import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
-import Octocat from './GitHub-Mark-32px.png';
 import { Panel } from 'react-bootstrap';
 import 'typeface-roboto'
 // COMPONENTS
@@ -16,6 +15,9 @@ import App from './app/App.js';
 //STATIC FILES
 import graff from '../../assets/graff.png'
 import main from '../../assets/mainimage.png'
+import Octocat from '../GitHub-Mark-32px.png';
+
+
 
 class Home extends Component {
   constructor(props) {
@@ -53,7 +55,7 @@ class Home extends Component {
         <div className='header'>
           <FlatButton className='navbutton'
             onClick={this.handleToggle}
-            icon={<i class="material-icons">list</i>}
+            icon={<i className="material-icons">list</i>}
           />
           <Drawer
             containerStyle={{'background-color':'rgb(51,51,51'}}
@@ -72,7 +74,7 @@ class Home extends Component {
 
           <FlatButton className='gitbutton'
             href="https://github.com/giraffql/giraffql"
-            icon={<i class="material-icons">account_circle</i>}
+            icon={<i className="material-icons">account_circle</i>}
           />
       </div>
        <div className='mainimage'>

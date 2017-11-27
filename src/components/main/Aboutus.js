@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
 import { Panel } from 'react-bootstrap';
 import 'typeface-roboto'
-import './../aboutusstyle/animate.css'
-import './../aboutusstyle/bootstrap.css'
-import './../aboutusstyle/bootstrap.min.css'
-import './../aboutusstyle/style.css'
-import picone from './../img/team/jelena.jpg'
+// import './../aboutusstyle/animate.css'
+// import './../aboutusstyle/bootstrap.css'
+// import './../aboutusstyle/bootstrap.min.css'
+// import './../aboutusstyle/style.css'
+import picone from '../../img/team/jelena.jpg'
 
 
 class Aboutus extends Component {
