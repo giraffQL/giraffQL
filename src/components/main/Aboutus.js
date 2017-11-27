@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
 import { Panel } from 'react-bootstrap';
 import 'typeface-roboto'
-// import './../aboutusstyle/animate.css'
-// import './../aboutusstyle/bootstrap.css'
-// import './../aboutusstyle/bootstrap.min.css'
-// import './../aboutusstyle/style.css'
+// import '../../aboutusstyle/animate.css'
+// import '../../aboutusstyle/bootstrap.css'
+// import '../../aboutusstyle/bootstrap.min.css'
+// import '../../aboutusstyle/style.css'
 import picone from '../../img/team/jelena.jpg'
 
 
@@ -24,6 +24,11 @@ class Aboutus extends Component {
 
 
   render() {
+    const muiStyles = {
+      menuItem: {
+        'color': '#FFD000'
+      }
+    }
 
     return (
       <div className='mainpage'>
@@ -33,16 +38,19 @@ class Aboutus extends Component {
             icon={<i class="material-icons">list</i>}
              />
           <Drawer className ='drawer'
+            containerStyle={{'background-color':'rgb(51,51,51'}}
             docked={false}
             width={200}
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
-            <div className ='drawertop'>GiraffQL</div>
-            <Link to='/'><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>
-            <Link to='/feature'><MenuItem onClick={this.handleClose}>Feature</MenuItem></Link>
-            <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
-            <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
+            <div className ='drawertop'>
+              GiraffQL
+            </div>
+            <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
+            <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
+            <Link to='/app'> <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem></Link>
+            <Link to='/aboutus'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
           <FlatButton className ='gitbutton'
             href="https://github.com/callemall/giraffql"
@@ -125,7 +133,7 @@ class Aboutus extends Component {
             </div>
           </section>
       </div>
-    );
+    )
   }
 }
 

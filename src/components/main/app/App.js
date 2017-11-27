@@ -14,7 +14,7 @@ import FileSaver from 'file-saver';
 import MenuComp from './AppMenu';
 import Visualization from './table/Visualization';
 import TextEditor from './code/TextEditor'
-import ExpressCode from '../code/ExpressCode'
+import ExpressCode from './code/ExpressCode'
 //PRISM DEPENDENCIES
 const PrismDecorator = require('draft-js-prism');
 const Prism = require('prismjs')
@@ -45,7 +45,7 @@ class App extends Component {
       schemaCode: '',
       jsCode: ''
     };
-  };
+  }
 
   // when we click to make new table call this function
   onAddTable = () => {
@@ -90,8 +90,9 @@ class App extends Component {
   // function which is calling when we're adding new row
   onAddRow = (tableIndex) => {
     this.setState(state => {
+      const tablesNotNull = state.data.tables.filter((table, i) => table !== null);
       const newData = {
-        tables: state.data.tables.map((table, i) =>
+        tables: tablesNotNull.map((table, i) =>
           (i === tableIndex)
             ? Object.assign({}, table, {
               attributes: table.attributes.concat({ field: '', type: '' })
@@ -110,8 +111,9 @@ class App extends Component {
   // every time when we change or add table name we're setting up state with thoose new values
   updateTableName = (tableIndex, value) => {
     this.setState(state => {
+      const tablesNotNull = state.data.tables.filter((table, i) => table !== null);
       const newData = {
-        tables: state.data.tables.map((table, i) =>
+        tables: tablesNotNull.map((table, i) =>
           (i === tableIndex)
             ? Object.assign({}, table, {
               name: value,
@@ -122,7 +124,7 @@ class App extends Component {
               )
             })
             : Object.assign({}, table, {
-              attributes: table.attributes.map((attr, ia) =>
+              attributes: tablesNotNull.map((attr, ia) =>
                 (attr.relatedToTableId === state.data.tables[tableIndex].id)
                   ? Object.assign({}, attr, { type: value })
                   : attr
@@ -140,8 +142,9 @@ class App extends Component {
   // same for row prop and row type
   updateRowProp = (tableIndex, rowIndex, value) => {
     this.setState(state => {
+      const tablesNotNull = state.data.tables.filter((table, i) => table !== null);
       const newData = {
-        tables: state.data.tables.map((table, i) =>
+        tables: tablesNotNull.map((table, i) =>
           (i === tableIndex)
             ? Object.assign({}, table, {
               attributes: table.attributes.map((attr, ai) =>
@@ -163,8 +166,9 @@ class App extends Component {
 
   updateRowType = (tableIndex, rowIndex, value) => {
     this.setState(state => {
+      const tablesNotNull = state.data.tables.filter((table, i) => table !== null);
       const newData = {
-        tables: state.data.tables.map((table, i) =>
+        tables: tablesNotNull.map((table, i) =>
           (i === tableIndex)
             ? Object.assign({}, table, {
               attributes: table.attributes.map((attr, ai) =>
@@ -187,8 +191,9 @@ class App extends Component {
   // function which is calling when we click for delete row
   deleteRow = (tableIndex, rowIndex) => {
     this.setState(state => {
+    const tablesNotNull = state.data.tables.filter((table, i) => table !== null);
     const newData = {
-      tables: state.data.tables.map((table, i) =>
+      tables: tablesNotNull.map((table, i) =>
         (i === tableIndex)
           ? Object.assign({}, table, {
             attributes: table.attributes.filter((attr, ai) => ai !== rowIndex)
@@ -258,18 +263,20 @@ class App extends Component {
   refreshTablePositions = (tableIndex, tablePosition, rowPositions) => {
     this.setState(state => {
       //table
-      let table = state.data.tables[tableIndex]
-      table.tablePositionX = table.x = Math.floor(tablePosition.left)
-      table.tablePositionY = table.y = Math.floor(tablePosition.top)
-      table.w = Math.floor(tablePosition.width)
-      table.h = Math.floor(tablePosition.height)
+      let table = state.data.tables[tableIndex];
+      if (table) {
+        table.tablePositionX = table.x = Math.floor(tablePosition.left)
+        table.tablePositionY = table.y = Math.floor(tablePosition.top)
+        table.w = Math.floor(tablePosition.width)
+        table.h = Math.floor(tablePosition.height)
       //rows
-      let attrs = state.data.tables[tableIndex].attributes
-      for (let i = 0; i < attrs.length; i += 1) {
-        attrs[i].x = Math.floor(rowPositions[i].left)
-        attrs[i].y = Math.floor(rowPositions[i].top)
-        attrs[i].w = Math.floor(rowPositions[i].width)
-        attrs[i].h = Math.floor(rowPositions[i].height)
+        let attrs = state.data.tables[tableIndex].attributes
+        for (let i = 0; i < attrs.length; i += 1) {
+          attrs[i].x = Math.floor(rowPositions[i].left)
+          attrs[i].y = Math.floor(rowPositions[i].top)
+          attrs[i].w = Math.floor(rowPositions[i].width)
+          attrs[i].h = Math.floor(rowPositions[i].height)
+        }
       }
       return state;
     })
@@ -295,7 +302,8 @@ class App extends Component {
       })
     } else {
       this.setState(state => {
-        const table = state.data.tables[state.clickedRow.tableIndex]
+        const tablesNotNull = state.data.tables.filter((table, i) => table !== null);
+        const table = tablesNotNull[state.clickedRow.tableIndex]
         table.attributes[state.clickedRow.rowIndex].relatedToTableId = state.data.tables[tableIndex].id
         table.attributes[state.clickedRow.rowIndex].type = state.data.tables[tableIndex].name
         return {
@@ -324,6 +332,7 @@ class App extends Component {
       isFullscreenEnabled: this.state.isFullscreenEnabled ? false : true,
       open: false
     })
+  }
 
   // function which is called when you click for save schema js code
   saveTextAsFile = () => {
@@ -383,16 +392,17 @@ class App extends Component {
 
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-
-        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-            code += `    ${table.name}: ${table.name}\n`
+        if (table) {
+          if (table.name && !this.startsWithNumber(data.tables[i].name)) {
+              code += `    ${table.name}: ${table.name}\n`
+          }
         }
     }
     code += `}\n\n`
 
     for (let i = 0; i < data.tables.length; i += 1) {
-        const table = data.tables[i]
-
+      const table = data.tables[i]
+      if (table) {
         if (table.name && !this.startsWithNumber(data.tables[i].name)) {
             code += `type ${table.name} {\n`
             for (let j = 0; j < table.attributes.length; j += 1) {
@@ -403,6 +413,7 @@ class App extends Component {
             }
             code += `}\n\n`
         }
+      }
     }
 
     return code + '\n'
@@ -413,61 +424,61 @@ class App extends Component {
     let code = '\n'
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-
-        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-            code += `const ${table.name}Type = new GraphQLObjectType({\n`
-                + `    name: ${table.name},\n`
-                + `    fields: () => ({\n`
-            for (let j = 0; j < table.attributes.length; j += 1) {
-                const attr = table.attributes[j]
-                if (attr.field !== '') {
-                    code += `        ${attr.field}: {\n`
-                    + `            type: GraphQL${attr.type}\n`
-                        + `        }`
-                }
-                if (j < table.attributes.length - 1 && attr.field !=='') {
-                    code += `,\n`
-                }
-            }
-            code += `\n`
-                + `    })\n`
-                + `})\n\n`
+        if (table) {
+          if (table.name && !this.startsWithNumber(data.tables[i].name)) {
+              code += `const ${table.name}Type = new GraphQLObjectType({\n`
+                  + `    name: ${table.name},\n`
+                  + `    fields: () => ({\n`
+              for (let j = 0; j < table.attributes.length; j += 1) {
+                  const attr = table.attributes[j]
+                  if (attr.field !== '') {
+                      code += `        ${attr.field}: {\n`
+                      + `            type: GraphQL${attr.type}\n`
+                          + `        }`
+                  }
+                  if (j < table.attributes.length - 1 && attr.field !=='') {
+                      code += `,\n`
+                  }
+              }
+              code += `\n`
+                  + `    })\n`
+                  + `})\n\n`
+          }
         }
     }
 
     return code + '\n'
-}
+  }
 
   render() {
     const { data } = this.state;
 
     return (
+      <MuiThemeProvider>
+        <div className="App">
+          <Fullscreen style = {{height: '10000px'}}
+            enabled={this.state.isFullscreenEnabled}
+            onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
+            >
+              <div className='full-screenable-node'>
+                <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
 
-    <MuiThemeProvider>
-      <div className="App">
-        <Fullscreen style = {{height: '10000px'}}
-          enabled={this.state.isFullscreenEnabled}
-          onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
-          >
-            <div className='full-screenable-node'>
-              <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
+                <SplitPane style={{'background-color': 'rgb(51,51,51)'}} split="vertical" defaultSize="50%">
+                  <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
 
-              <SplitPane style={{'background-color': 'rgb(51,51,51)'}} split="vertical" defaultSize="50%">
-                <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-                  updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-
-                <div className="TextEditor">
-                  <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA JS CODE</button>
-                  <button className="save" onClick={() => this.submitSchemaCode()}> TEST YOUR SCHEMA CODE</button>
-                  <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
-                  <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
-                </div>
-              </SplitPane>
-            </div>
-          </Fullscreen>
-        </div>
-      </MuiThemeProvider>
-    );
+                  <div className="TextEditor">
+                    <button className="save" onClick={() => this.saveTextAsFile()}> SAVE SCHEMA JS CODE</button>
+                    <button className="save" onClick={() => this.submitSchemaCode()}> TEST YOUR SCHEMA CODE</button>
+                    <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
+                    <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
+                  </div>
+                </SplitPane>
+              </div>
+            </Fullscreen>
+          </div>
+        </MuiThemeProvider>
+    )
   }
 }
 
