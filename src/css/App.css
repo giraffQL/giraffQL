@@ -45,14 +45,6 @@ body {
 }
 
 
-/*.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}*/
-
-
 .Resizer {
   background: #000;
   opacity: .2;
@@ -134,18 +126,6 @@ body {
   position: absolute;
   padding: 10px;
 }
-
-/*@media screen and (max-width: 1260px) {
-  .back {
-      width: 50%;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .back {
-      width: 100%;
-  }
-}*/
 
 .schemaCode {
   background: #ECECEC;
