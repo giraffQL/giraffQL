@@ -28,6 +28,11 @@
     background-color: #977359;
 }
 
+.alert {
+    font-size:20px;
+    color:red
+}
+
 
 .table tr:hover {background-color: #ddd;}
 

@@ -73,13 +73,24 @@ class Table extends React.Component {
                 <div>
                     <table className={className} ref={(e) => { this.tableRef = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                         <tbody>
+                        {this.startsWithNumber(table.name) ? 
+                        <tr>
+                        <th colSpan={2} style={style}>
+                            <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
+                            <p className='alert'> Table name can not start with number </p>
+                            <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
+                            <div className='drag-handle'><img className='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
+                            </th>
+                        </tr>
+                        :
                             <tr>
                                 <th colSpan={2} style={style}>
-                                    <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
+                                     <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
                                     <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
                                     <div className='drag-handle'><img className='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
-                                </th>
+                                    </th>
                             </tr>
+                        }
                             {table.attributes.map(({ field, type, x, y, relatedToTableId }, i) => {
                                 return (
                                     <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
