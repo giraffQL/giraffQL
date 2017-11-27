@@ -17,13 +17,13 @@
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: separate; /* changed from collapse to get border-radius to work */
     margin: 10px;
-    border-top: 8px solid red;
+    border-top:3px solid red;
     border-radius: 15px; /* added border-radius */
     position: relative;
 }
 
 .redTable td, .redTable th {
-    border: 8px solid red;
+    border: 1px solid red;
     padding: 8px;
     background-color: #977359;
 }
