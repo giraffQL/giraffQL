@@ -36,6 +36,14 @@ class Table extends React.Component {
         )
     }
 
+    // function to check is input string contains number
+    startsWithNumber = (text) => {
+        return /^[0-9]/.test(text);
+    }
+
+    // added comment in table which is starting with number
+
+
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
 
@@ -57,11 +65,13 @@ class Table extends React.Component {
             options.push(container)
         }
 
+        const className = this.startsWithNumber(table.name) ? 'table redTable' : 'table'
+
         return (
             <Draggable bounds="parent" handle=".drag-handle"
                 enableUserSelectHack={false} onDrag={(e, dataEvent) => onDragTable(tableIndex)}>
                 <div>
-                    <table className="table" ref={(e) => { this.tableRef = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
+                    <table className={className} ref={(e) => { this.tableRef = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                         <tbody>
                             <tr>
                                 <th colSpan={2} style={style}>
@@ -94,7 +104,7 @@ class Table extends React.Component {
                             </tr>
                         </tbody>
                     </table>
-                </div>      
+                </div>
             </Draggable>
 
         )

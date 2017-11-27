@@ -328,10 +328,9 @@ class App extends Component {
   }
 
   // function to check is input string contains number
-  isNumeric = (n) => {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+  startsWithNumber = (text) => {
+    return /^[0-9]/.test(text);
   }
-
 
   // function which is creating text in schema text area
   getTextFromModel = (data) => {
@@ -340,12 +339,8 @@ class App extends Component {
   
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-        
-        if(this.isNumeric(data.tables[i].name)) {
-          alert('Table can not start with number')
-        }
 
-        if (table.name && !this.isNumeric(data.tables[i].name)) {
+        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
             code += `    ${table.name}: ${table.name}\n`
         } 
     }
@@ -354,7 +349,7 @@ class App extends Component {
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
        
-        if (table.name && !this.isNumeric(data.tables[i].name)) {
+        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
             code += `type ${table.name} {\n`
             for (let j = 0; j < table.attributes.length; j += 1) {
                 const attr = table.attributes[j]
@@ -374,8 +369,8 @@ class App extends Component {
     let code = '\n'
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-        
-        if (table.name && !this.isNumeric(data.tables[i].name)) {
+      
+        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
             code += `const ${table.name}Type = new GraphQLObjectType({\n`
                 + `    name: ${table.name},\n`
                 + `    fields: () => ({\n`

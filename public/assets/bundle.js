@@ -2373,8 +2373,9 @@ var App = function (_Component) {
       post('/schemas', { schema: _this.state.schemaCode });
     };
 
-    _this.isNumeric = function (n) {
-      return !isNaN(parseFloat(n)) && isFinite(n);
+    _this.startsWithNumber = function (text) {
+      return (/^[0-9]/.test(text)
+      );
     };
 
     _this.getTextFromModel = function (data) {
@@ -2384,11 +2385,7 @@ var App = function (_Component) {
       for (var i = 0; i < data.tables.length; i += 1) {
         var table = data.tables[i];
 
-        if (_this.isNumeric(data.tables[i].name)) {
-          alert('Table can not start with number');
-        }
-
-        if (table.name && !_this.isNumeric(data.tables[i].name)) {
+        if (table.name && !_this.startsWithNumber(data.tables[i].name)) {
           code += '    ' + table.name + ': ' + table.name + '\n';
         }
       }
@@ -2397,7 +2394,7 @@ var App = function (_Component) {
       for (var _i = 0; _i < data.tables.length; _i += 1) {
         var _table = data.tables[_i];
 
-        if (_table.name && !_this.isNumeric(data.tables[_i].name)) {
+        if (_table.name && !_this.startsWithNumber(data.tables[_i].name)) {
           code += 'type ' + _table.name + ' {\n';
           for (var j = 0; j < _table.attributes.length; j += 1) {
             var attr = _table.attributes[j];
@@ -2417,7 +2414,7 @@ var App = function (_Component) {
       for (var i = 0; i < data.tables.length; i += 1) {
         var table = data.tables[i];
 
-        if (table.name && !_this.isNumeric(data.tables[i].name)) {
+        if (table.name && !_this.startsWithNumber(data.tables[i].name)) {
           code += 'const ' + table.name + 'Type = new GraphQLObjectType({\n' + ('    name: ' + table.name + ',\n') + '    fields: () => ({\n';
           for (var j = 0; j < table.attributes.length; j += 1) {
             var attr = table.attributes[j];
@@ -42910,6 +42907,11 @@ var Table = function (_React$Component) {
             }));
         };
 
+        _this.startsWithNumber = function (text) {
+            return (/^[0-9]/.test(text)
+            );
+        };
+
         _this.propertyRowRefs = [];
         _this.tableRef = null;
         return _this;
@@ -42933,8 +42935,16 @@ var Table = function (_React$Component) {
 
         // sends the current position of tables and rows and sends that to the parent
 
+
+        // function to check is input string contains number
+
     }, {
         key: 'render',
+
+
+        // added comment in table which is starting with number
+
+
         value: function render() {
             var _this2 = this;
 
@@ -42970,6 +42980,8 @@ var Table = function (_React$Component) {
                 options.push(container);
             }
 
+            var className = this.startsWithNumber(table.name) ? 'table redTable' : 'table';
+
             return _react2.default.createElement(
                 _reactDraggable2.default,
                 { bounds: 'parent', handle: '.drag-handle',
@@ -42981,7 +42993,7 @@ var Table = function (_React$Component) {
                     null,
                     _react2.default.createElement(
                         'table',
-                        { className: 'table', ref: function ref(e) {
+                        { className: className, ref: function ref(e) {
                                 _this2.tableRef = e;
                             }, onMouseUp: function onMouseUp(e) {
                                 return onTableMouseUp(tableIndex);
@@ -43096,7 +43108,7 @@ exports = module.exports = __webpack_require__(24)(undefined);
 
 
 // module
-exports.push([module.i, ".table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    margin: 10px;\n    border-top: 10px solid #BD9A63; /* need border-top to even out top border */\n    border-radius: 15px; /* added border-radius */\n    position: relative;\n}\n\n.table td, .table th {\n    border: 8px solid #BD9A63;\n    padding: 8px;\n    background-color: #977359;\n}\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n#nav { /* add a nav bar */\n    float: left;\n    margin-top: 3px;\n    width: 100%;\n    height: 50px;\n    /*position: fixed; *//* changed position to fixed for scrollbar */\n    /*background-color: rgba(207, 83, 0, .2); /* made translucent */\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 20px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 20px; /* need this to round the bottom borders */\n}\n\n.displayBtn {\n    float: left; /* moved nav buttons to the left */\n    margin: 0;\n    color: white;\n    font-weight: bold;\n}\n\n#createTableBtn {\n    color: white;\n    background-color: #9FA767; /* rgba(30,130,76,0.6);*/\n    margin-left: 0;\n}\n\n#createTableBtn:hover {\n    color: #9FA767;\n    background-color: white;\n    border-color: white;\n}\n\n\n#clearBtn {\n    background-color: rgba(166,0,0,0.6);\n}\n\n#clearBtn:hover {\n    color: rgba(166,0,0,0.6);\n    background-color: white;\n    border-color: white;\n}\n\n.addRow {\n    padding: 8px 90px;\n    border-radius: 4px;\n    background-color: #9FA767; /*rgba(30,130,76,0.4); */ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: white;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgba(30,130,76,0.4);\n}\n\n.typetd {\n    width:180px;\n    text-align: center;\n}\n.deletetablebutton {\n    color: white;\n    border: none;\n    background-color: rgb(83, 47, 6); /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n.typeinput {\n    width:80%;\n    float:left;\n    margin: 0 auto;\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    color: white;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: black;\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n}\n\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n/*.table {\n    position:relative\n}*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n.react-draggable {\n    width: 372px;\n}\n\ntable {\n    position: relative;\n}\n.createtable {\n    float:left;\n    margin-right:1px;\n}\n.deletealltable {\n    float:left;\n}\n.Select-input {\n    width:100px;\n}", ""]);
+exports.push([module.i, ".table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    margin: 10px;\n    border-top: 10px solid #BD9A63; /* need border-top to even out top border */\n    border-radius: 15px; /* added border-radius */\n    position: relative;\n}\n\n.table td, .table th {\n    border: 8px solid #BD9A63;\n    padding: 8px;\n    background-color: #977359;\n} \n\n.redTable {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    margin: 10px;\n    border-top: 8px solid red;\n    border-radius: 15px; /* added border-radius */\n    position: relative;\n}\n\n.redTable td, .redTable th {\n    border: 8px solid red;\n    padding: 8px;\n    background-color: #977359;\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n#nav { /* add a nav bar */\n    float: left;\n    margin-top: 3px;\n    width: 100%;\n    height: 50px;\n    /*position: fixed; *//* changed position to fixed for scrollbar */\n    /*background-color: rgba(207, 83, 0, .2); /* made translucent */\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 20px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 20px; /* need this to round the bottom borders */\n}\n\n.displayBtn {\n    float: left; /* moved nav buttons to the left */\n    margin: 0;\n    color: white;\n    font-weight: bold;\n}\n\n#createTableBtn {\n    color: white;\n    background-color: #9FA767; /* rgba(30,130,76,0.6);*/\n    margin-left: 0;\n}\n\n#createTableBtn:hover {\n    color: #9FA767;\n    background-color: white;\n    border-color: white;\n}\n\n\n#clearBtn {\n    background-color: rgba(166,0,0,0.6);\n}\n\n#clearBtn:hover {\n    color: rgba(166,0,0,0.6);\n    background-color: white;\n    border-color: white;\n}\n\n.addRow {\n    padding: 8px 90px;\n    border-radius: 4px;\n    background-color: #9FA767; /*rgba(30,130,76,0.4); */ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: white;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgba(30,130,76,0.4);\n}\n\n.typetd {\n    width:180px;\n    text-align: center;\n}\n.deletetablebutton {\n    color: white;\n    border: none;\n    background-color: rgb(83, 47, 6); /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n.typeinput {\n    width:80%;\n    float:left;\n    margin: 0 auto;\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    color: white;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: black;\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n}\n\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n/*.table {\n    position:relative\n}*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n.react-draggable {\n    width: 372px;\n}\n\ntable {\n    position: relative;\n}\n.createtable {\n    float:left;\n    margin-right:1px;\n}\n.deletealltable {\n    float:left;\n}\n.Select-input {\n    width:100px;\n}", ""]);
 
 // exports
 
