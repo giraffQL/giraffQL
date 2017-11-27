@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { PathLine } from 'react-svg-pathline'
+import _ from 'lodash'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+import { Scrollbars } from 'react-custom-scrollbars';
+// COMPONENTS
 import App from '../App'
 import Table from './Table'
-import { PathLine } from 'react-svg-pathline'
 import colors from './colors';
-import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
-import css from '../../css/Table.css'
-import _ from 'lodash'
+// import css from '../../css/Table.css'
+
 
 // creating a grid because we have to have track what we visited before
 const n = 2000
-const visited = new Array(n*n)  
+const visited = new Array(n*n)
 
 function matrixIndex(x, y) {
     return x * n + y;
@@ -50,12 +58,12 @@ function manhattanPath(attribute, table, allTables) {
         { x: Math.max(0, starts[0].x - step), y: starts[0].y, px: starts[0].x, py: starts[0].y },
         { x: Math.min(n, starts[1].x + step), y: starts[1].y, px: starts[1].x, py: starts[1].y }
     ]
-    
+
     discovered.forEach(point => point.dist = heuristicDistance(point.x, point.y))
     // for starts points previous is null because it doesnt exist
     // storing a previous point (from where you came)
     visited.fill(undefined)
-    starts.forEach(point => visited[matrixIndex(point.x, point.y)] = { px: null, py: null })    
+    starts.forEach(point => visited[matrixIndex(point.x, point.y)] = { px: null, py: null })
     // check if point is overlapping other tables
     function isNotOverlappingTables(x, y) {
         return _.every(allTables, table => (x <= table.x) || ((table.x + table.w) <= x) || (y <= table.y) || ((table.y + table.h) <= y))
@@ -97,10 +105,10 @@ function manhattanPath(attribute, table, allTables) {
                 { dx: 0, dy: -step },
             ]//for  each point see if that point is valid
             .forEach(({ dx, dy }) => {
-                if (0 < x + dx && x + dx < n && 
+                if (0 < x + dx && x + dx < n &&
                     0 < y + dy && y + dy < n &&
                     !visited[matrixIndex(x + dx, y + dy)] &&
-                    isNotOverlappingTables(x + dx, y + dy)) 
+                    isNotOverlappingTables(x + dx, y + dy))
                 {
                     discovered.push({ x: x + dx, y: y + dy, px: x, py: y, dist: heuristicDistance(x + dx, y + dy) })
                 }
@@ -123,14 +131,6 @@ function manhattanPath(attribute, table, allTables) {
     return resultingPath
 }
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
-import AppBar from 'material-ui/AppBar';
-
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-
-import { Scrollbars } from 'react-custom-scrollbars';
 
 
 class Visualization extends React.Component {
@@ -164,7 +164,7 @@ class Visualization extends React.Component {
             });
         }
     }
-    
+
     handleMouseUp = (mouseEvent) => {
         if (this.state.start !== null) {
             this.setState({ start: null, end: null })
@@ -177,7 +177,7 @@ class Visualization extends React.Component {
 
         this.tableRefs.forEach((tableRef, tableIndex) => {
             this.props.refreshTablePositions(
-                tableIndex, 
+                tableIndex,
                 tableRef.tableRef.getBoundingClientRect(),
                 tableRef.rowRefs.map(ref => ref.getBoundingClientRect()),
             )
@@ -186,26 +186,32 @@ class Visualization extends React.Component {
 
     onDragTable = (tableIndex) => {
         this.props.refreshTablePositions(
-            tableIndex, 
+            tableIndex,
             this.tableRefs[tableIndex].tableRef.getBoundingClientRect(),
             this.tableRefs[tableIndex].rowRefs.map(ref => ref.getBoundingClientRect()),
         )
-    } 
+    }
 
     render() {
         const { start, end } = this.state
 
-        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, onTableMouseUp, onRowMouseDown, value } = this.props
+
+        const { clickedRow, data, dataEvent, onAddRow, updateTableName, updateRowProp, updateRowType, onAddTable, deleteTable, deleteRow, deleteAllTables, onDragTable, refreshTablePositions, onTableMouseUp, onRowMouseDown, value } = this.props
+
         return (
 
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
             <Scrollbars style={{ height: '100%', width: '100%' }}>
                 <div className='toolbar'>
-                    <Nav id="nav" bsStyle="pills">
-                        <Button id="createTableBtn" className="displayBtn" bsSize="large" onClick={onAddTable}> CREATE TABLE </Button>
-                        <Button id="clearBtn" className="displayBtn" bsSize="large" onClick={deleteAllTables}> CLEAR </Button>
-                    </Nav>
+                        {/* <div class="button_base b02_slide_in">
+                    {/* <div class="button_base b02_slide_in">
+                        <div bsStyle="success" bsSize="large" onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
+                    <div className="button_base b02_slide_in">
+                        <div onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
 
+                        <div></div>
+                        {<div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>}
+                    </div>*/}
                 </div>
 
                 <div>
@@ -233,33 +239,55 @@ class Visualization extends React.Component {
 
                     </svg>
                     <svg className="relation">
-                        {data.tables.map((table, i) =>
-                            table.attributes.map((attr, ai) => {
-                                const relatedTable = data.tables.find(t => t.id === attr.relatedToTableId)
-                                if (relatedTable) {
-                                    const pathPoints = manhattanPath(attr, relatedTable, data.tables)
-                                    return (pathPoints.length &&
-                                        <PathLine
-                                            id="svgId"
-                                            key={`${i}-${ai}`}
-                                            points={_.reverse(pathPoints)}
-                                            stroke="red"
-                                            strokeWidth="4"
-                                            fill="none"
-                                            r={10} 
-                                            markerEnd="url(#triangle)" markerStart="url(#circle)" />
-                                    )
+                        {
+                            data.tables.map((table, i) => {
+                                if (table) {
+                                    return table.attributes.map((attr, ai) => {
+                                        const relatedTable = data.tables.find(t => {
+                                            if (t) {
+                                                return t.id === attr.relatedToTableId
+                                            }
+                                        })
+                                        if (relatedTable) {
+                                            const pathPoints = manhattanPath(attr, relatedTable, data.tables)
+                                            return (
+                                                pathPoints.length &&
+                                                <PathLine
+                                                    id="svgId"
+                                                    key={`${i}-${ai}`}
+                                                    points={_.reverse(pathPoints)}
+                                                    stroke="red"
+                                                    strokeWidth="4"
+                                                    fill="none"
+                                                    r={10}
+                                                    markerEnd="url(#triangle)" markerStart="url(#circle)" />
+                                            )
+                                        }
+                                    })
                                 }
                             })
-                        )}
+                        }
+
                     </svg>
 
                     <div className="tables">
-                        {data.tables.map((table, i) =>
-                            <Table style={{ "backgroundColor": colors[i] }} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
-                                updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
-                                onDragTable={this.onDragTable} dataEvent={dataEvent} refreshTableRefs={this.refreshTableRefs} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
-                        )}
+                        {
+                            data.tables.map((table, i) => {
+                                if (table) {
+                                    return (
+                                        <Table style={{ "backgroundColor": colors[i] }} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
+                                            updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
+                                            onDragTable={this.onDragTable} dataEvent={dataEvent} refreshTableRefs={this.refreshTableRefs} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
+                                    );
+                                } else {
+                                    let placeholder = (
+                                      <div>
+                                      </div>
+                                    )
+                                    return placeholder;
+                                }
+                            })
+                        }
                     </div>
 
                 </div>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import App from '../App'
-import css from '../../css/Table.css'
 import Draggable, { DraggableCore } from 'react-draggable';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import colors from './colors';
 import { FormControl, Button } from 'react-bootstrap';
+// COMPONENTS
+import App from '../App'
+import colors from './colors';
+
 
 class Table extends React.Component {
     constructor(props) {
@@ -44,7 +45,6 @@ class Table extends React.Component {
 
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
-
         const { style, data, tables, dataEvent, table, tableIndex, onAddRow, rowIndex, updateTableName, updateRowProp, updateRowType, handleRowClick, deleteTable, deleteRow, onTableMouseUp, onRowMouseDown, value, onDragTable } = this.props
 
 
@@ -57,21 +57,24 @@ class Table extends React.Component {
         ]
 
         for (let i = 0; i < data.tables.length; i++) {
-            let container = {}
-            container.value = data.tables[i].name
-            container.label = data.tables[i].name
-            options.push(container)
+            let container = {};
+            if (data.tables[i]) {
+                container.value = data.tables[i].name
+                container.label = data.tables[i].name
+                options.push(container)
+            }
         }
 
         const className = this.startsWithNumber(table.name) ? 'table redTable' : 'table'
 
         return (
-            <Draggable bounds="parent" handle=".drag-handle"
+
+            <Draggable bounds="parent" handle=".drag-handle" defaultPosition={{x: 0, y: table.defaultPosition}}
                 enableUserSelectHack={false} onDrag={(e, dataEvent) => onDragTable(tableIndex)}>
                 <div>
                     <table className={className} ref={(e) => { this.tableRef = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                         <tbody>
-                        {this.startsWithNumber(table.name) ? 
+                        {this.startsWithNumber(table.name) ?
                         <tr>
                         <th colSpan={2} style={style}>
                             <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />

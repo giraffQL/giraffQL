@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import Visualization from './table/Visualization';
 import SplitPane from "react-split-pane"
 //TEXT CSS
-import '../css/index.css';
-import '../css/App.css';
+// import '../css/index.css';
+// import '../css/App.css';
 import Fullscreen from 'react-full-screen';
 // MATERIAL UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // REACT-BOOTSTRAP
 import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
-// MENU COMPONENT
-import MenuComp from './Menu';
 //FILE SERVER
 import FileSaver from 'file-saver';
-//TEXT Editor & ExpressCode
-import TextEditor from '../components/code/TextEditor'
-import ExpressCode from '../components/code/ExpressCode'
+//COMPONENTS
+import MenuComp from './AppMenu';
+import Visualization from './table/Visualization';
+import TextEditor from './code/TextEditor'
+import ExpressCode from '../code/ExpressCode'
+//PRISM DEPENDENCIES
+const PrismDecorator = require('draft-js-prism');
+const Prism = require('prismjs')
+
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +60,15 @@ class App extends Component {
         s4() + '-' + s4() + s4() + s4();
     }
 
+    // let newstate = Object.assign({}, this.state);
+    // let tables = newstate.data.tables;
+    // newstate.data.tables.push({
+    //       id: guid(),
+    //       name: '',
+    //       attributes: [
+    //         { field: '', type: '' }
+    //       ],
+    //       defaultPosition: 210 * tables.length
     let newstate = this.state.data.tables.slice()
     const newData = {
       tables: newstate.concat({
@@ -64,7 +76,8 @@ class App extends Component {
         name: '',
         attributes: [
           { field: '', type: '' }
-        ]
+        ],
+        defaultPosition: 210 * newstate.length
       })
     }
     this.setState({
@@ -193,30 +206,51 @@ class App extends Component {
 
   // function which is calling when we click for delete table
   deleteTable = (tableIndex) => {
-    this.setState(state => {
-      const newData = {
-        tables: state.data.tables.filter((table, i) => i !== tableIndex)
-      }
-      return {
-        data: newData,
-        schemaCode: this.getTextFromModel(newData),
-        jsCode: this.getExpressCode(newData)
-      }
-    })
+    const newstate = Object.assign({}, this.state);
+    const newData = {
+      tables: newstate.data.tables.filter((table, i) => i !== tableIndex)
+    }
+    // newstate.data.tables.splice(tableIndex, 1);
+    newstate.data.tables[tableIndex] = null;
+    newstate.schemaCode = this.getTextFromModel(newData);
+    newstate.jsCode = this.getExpressCode(newData);
+    this.setState(newstate);
+    // this.setState(state => {
+    //   const newData = {
+    //     tables: state.data.tables.filter((table, i) => i !== tableIndex)
+    //   }
+    //   return {
+    //     data: newData,
+    //     schemaCode: this.getTextFromModel(newData),
+    //     jsCode: this.getExpressCode(newData)
+    //   }
+    // })
   }
 
   // function which is calling when we click for clear board
   deleteAllTables = () => {
-    this.setState(state => {
-      const newData = {
-        tables: []
-      }
-      return {
-        data: newData,
-        schemaCode: this.getTextFromModel(newData),
-        jsCode: this.getExpressCode(newData)
-      }
-    })
+    // let stateNew = Object.assign({}, this.state);
+    // stateNew.data.tables = [];
+    // this.setState(stateNew);
+    const newstate = Object.assign({}, this.state);
+    const newData = {
+      tables: []
+    }
+    newstate.data = newData;
+    newstate.schemaCode = this.getTextFromModel(newData);
+    newstate.jsCode = this.getExpressCode(newData);
+    this.setState(newstate);
+
+    // this.setState(state => {
+    //   const newData = {
+    //     tables: []
+    //   }
+    //   return {
+    //     data: newData,
+    //     schemaCode: this.getTextFromModel(newData),
+    //     jsCode: this.getExpressCode(newData)
+    //   }
+    // })
   }
 
   // function which is calling when we drag tables
@@ -273,13 +307,23 @@ class App extends Component {
   }
 
 
-  menuToggle = () => this.setState({ open: !this.state.open });
+  menuToggle = () => {
+    this.setState({open: !this.state.open});
+  }
 
-  menuClose = () => this.setState({ open: false });
+  menuClose = () => {
+    this.setState({open: false});
+  }
+
+  onRequestChange = (open) => {
+    this.setState({open});
+  }
 
   fullscreenToggle = () => {
-    this.setState({ isFullscreenEnabled: true })
-  }
+    this.setState({
+      isFullscreenEnabled: this.state.isFullscreenEnabled ? false : true,
+      open: false
+    })
 
   // function which is called when you click for save schema js code
   saveTextAsFile = () => {
@@ -303,7 +347,7 @@ class App extends Component {
 
   submitSchemaCode = () => {
     function post(path, params, method) {
-      method = method || "post"; 
+      method = method || "post";
 
       let form = document.createElement("form");
       form.setAttribute("method", method);
@@ -336,19 +380,19 @@ class App extends Component {
   getTextFromModel = (data) => {
     let code = '\n'
     code += 'type Query {\n'
-  
+
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
 
         if (table.name && !this.startsWithNumber(data.tables[i].name)) {
             code += `    ${table.name}: ${table.name}\n`
-        } 
+        }
     }
     code += `}\n\n`
 
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-       
+
         if (table.name && !this.startsWithNumber(data.tables[i].name)) {
             code += `type ${table.name} {\n`
             for (let j = 0; j < table.attributes.length; j += 1) {
@@ -358,7 +402,7 @@ class App extends Component {
                 }
             }
             code += `}\n\n`
-        } 
+        }
     }
 
     return code + '\n'
@@ -369,7 +413,7 @@ class App extends Component {
     let code = '\n'
     for (let i = 0; i < data.tables.length; i += 1) {
         const table = data.tables[i]
-      
+
         if (table.name && !this.startsWithNumber(data.tables[i].name)) {
             code += `const ${table.name}Type = new GraphQLObjectType({\n`
                 + `    name: ${table.name},\n`
@@ -395,38 +439,20 @@ class App extends Component {
 }
 
   render() {
-    const { data } = this.state
-    const muiStyles = {
-      appBar: {
-        'background-color': '#9FA767',
-        'border-bottom': '4px solid white',
-        'line-height': '20px',
-        color: '#fbe4a1'
-      },
-      drawer: {
-        'background-color': '#9FA767',
-        'color': 'white',
-      },
-      menuItem: {
-        'color': 'white',
-        'font-size': '20px'
-      }
-    }
+    const { data } = this.state;
 
-    return [
-      
-      <MuiThemeProvider>
+    return (
 
-        <div className="App">
-          <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} fullscreenToggle={this.fullscreenToggle} />
-          <Fullscreen
-            enabled={this.state.isFullscreenEnabled}
-            onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
+    <MuiThemeProvider>
+      <div className="App">
+        <Fullscreen style = {{height: '10000px'}}
+          enabled={this.state.isFullscreenEnabled}
+          onChange={isFullscreenEnabled => this.setState({isFullscreenEnabled})}
           >
             <div className='full-screenable-node'>
-              {/*PRESS ESC TO EXIT*/}
+              <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
 
-              <SplitPane style={{ 'background-color': '#fbe4a1' }} split="vertical" defaultSize="50%">
+              <SplitPane style={{'background-color': 'rgb(51,51,51)'}} split="vertical" defaultSize="50%">
                 <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
                   updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
 
@@ -441,7 +467,7 @@ class App extends Component {
           </Fullscreen>
         </div>
       </MuiThemeProvider>
-    ];
+    );
   }
 }
 

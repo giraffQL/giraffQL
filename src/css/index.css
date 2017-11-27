@@ -11,14 +11,15 @@ body {
   font-family: sans-serif;
   width:100%;
   height:100%;
-  
+
 }
 
 .DraftEditor-root{
-  background: #ECECEC;
-  margin: 35px;
+  background: rgb(51,51,51);
+  margin: 0px;
+  padding: 0 10px;
   border-radius: .3em;
-  border: 10px solid #6F4A38;
+  /*border: 10px solid #BD9A63; #6F4A38;*/
   font-size: 20px;
   max-height: 1000px;
   overflow: auto;

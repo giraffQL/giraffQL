@@ -6,7 +6,7 @@ body {
   width:100%;
   height:100%;
   padding:0;
-  background-color:#fbe4a1;
+  background-color: rgb(51,51,51); /*#fbe4a1;*/
   font-size:17px;
 }
 
@@ -16,21 +16,7 @@ body {
   height:100%;
 }
 
-.appBar h1 {
-  color: #fbe4a1;
-}
-
-.drawer {
-  font-size: '20px';
-  color: white;
-}
-
-.menuItem {
-  color: white;
-}
-
 .full-screenable-node { /* make fullscreen background same color as body */
-  background-color: #fbe4a1;
   color: #9FA767;
   font-weight: 600;
 }
@@ -40,42 +26,7 @@ body {
   z-index:3;
 }
 
-.relations {
-  width: 100%;
-  height: 100%;
-  /*height: 10000px;*/
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index:1;
-}
-
-.relation {
-  width: 100%;
-  height: 10000px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index:1;
-}
-
-.tables {
-  margin-top: 50px;  /* changed from padding-top 50px to margin-top for scrollbar */
-  width: 100%;
-  /*height: 10000px;*/
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index:2;
-  /*overflow: scroll;*/
-}
-
-.root {
-  width:100%;
-  height:100%;
-}
-
+/*includes relations, tables, and scrollbar*/
 .visualization {
   width:100%;
   height:100%;
@@ -87,33 +38,20 @@ body {
 }
 
 .TextEditor{
-  height:50%;
+  height:100%;
   text-align:center;
-}
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  background-color: rgb(51,51,51);
 }
 
-.App-header {
+
+/*.App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
-}
+}*/
 
-.App-title {
-  font-size: 1.5em;
-}
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 .Resizer {
   background: #000;
   opacity: .2;
@@ -157,43 +95,25 @@ body {
   border-left: 5px solid rgba(0, 0, 0, 0.5);
   border-right: 5px solid rgba(0, 0, 0, 0.5);
 }
+
 .Resizer.disabled {
-cursor: not-allowed;
-}
-.Resizer.disabled:hover {
-border-color: transparent;
+  cursor: not-allowed;
 }
 
-.typeinput {
+.Resizer.disabled:hover {
+  border-color: transparent;
+}
+
+/*.typeinput {
   width:80%;
   float:left;
-}
-
-.drawArea {
-  width: 400px;
-  height: 400px;
-  border: 1px solid black;
-  float: left;
-  cursor: crosshair;
-}
-
-.path {
-  fill: none;
-  stroke-width: 1px;
-  stroke: black;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-}
-
-.drawing {
-  width: 100%;
-  height: 100%;
-}
+}*/
 
 .react-draggable {
  width: 372px;
  }
- .back {
+
+.back {
   width: 33%;
   height: 200px;
   float: left;
@@ -214,7 +134,7 @@ border-color: transparent;
   padding: 10px;
 }
 
-@media screen and (max-width: 1260px) {
+/*@media screen and (max-width: 1260px) {
   .back {
       width: 50%;
   }
@@ -224,76 +144,7 @@ border-color: transparent;
   .back {
       width: 100%;
   }
-}
-.button_base {
-  border-color: solid #fbe4a1
-}
-.button_base:hover {
-  cursor: pointer;
-  border-color: solid #fbe4a1;
-}
-.b02_slide_in {
-  overflow: hidden;
-  border: #000000 solid 1px;
-}
-
-.b02_slide_in div {
-  position: absolute;
-  text-align: center;
-  width: 20%;
-  height: 55px;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  padding: 10px;
-  border-radius:15px;
-}
-
-.b02_slide_in div:nth-child(1) {
-  margin-top:1px;
-  color:#F5ECB1	;
-  background-color: #6F4A38	;
-}
-
-.b02_slide_in div:nth-child(2) {
-  margin-top:2px;
-  background-color: #F0ECE1		;
-  transition: top 0.1s ease;
-  -webkit-transition: top 0.1s ease;
-  -moz-transition: top 0.1s ease;
-  top: -60px;
-  border-radius:15px;
-
-}
-
-.b02_slide_in div:nth-child(3) {
-  color: #977359;
-  transition: opacity 0.1s ease;
-  -webkit-transition: opacity 0.1s ease;
-  -moz-transition: opacity 0.1s ease;
-  opacity: 0;
-}
-
-.b02_slide_in:hover div:nth-child(2) {
-  top: 0px;
-  transition: top 0.1s ease;
-  -webkit-transition: top 0.1s ease;
-  -moz-transition: top 0.1s ease;
-}
-
-.b02_slide_in:hover div:nth-child(3) {
-  opacity: 1;
-  transition: opacity 0.1s ease;
-  -webkit-transition: opacity 0.1s ease;
-  -moz-transition: opacity 0.1s ease;
-}
-
-.save {
-  background-color: rgba(30,130,76,0.6);
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px
-}
+}*/
 
 .schemaCode {
   background: #ECECEC;

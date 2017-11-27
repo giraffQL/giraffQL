@@ -2,17 +2,15 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import App from './App.js'
 import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
-import './homestyle.css'
 import { Panel } from 'react-bootstrap';
 import 'typeface-roboto'
-import './../aboutusstyle/animate.css'
-import './../aboutusstyle/bootstrap.css'
-import './../aboutusstyle/bootstrap.min.css'
-import './../aboutusstyle/style.css'
-import picone from './../img/team/jelena.jpg'
+// import './../aboutusstyle/animate.css'
+// import './../aboutusstyle/bootstrap.css'
+// import './../aboutusstyle/bootstrap.min.css'
+// import './../aboutusstyle/style.css'
+import picone from '../../img/team/jelena.jpg'
 
 
 class Aboutus extends Component {
@@ -51,6 +49,11 @@ class Aboutus extends Component {
             icon={<i class="material-icons">account_circle</i>}
             />
         </div>
+
+        <div className='meetteam'>
+
+        </div>
+
           <section id="about" class="home-section text-center">
             <div class="heading-about">
               <div class="container">
@@ -65,7 +68,7 @@ class Aboutus extends Component {
               </div>
             </div>
             <div class="container">
-        
+
               <div class="row">
                 <div class="col-lg-2 col-lg-offset-5">
                 </div>
@@ -90,7 +93,7 @@ class Aboutus extends Component {
                         <h5>Scott Rosen</h5>
                         <p class="subtitle">Ruby on Rails</p>
                         <div class="avatar"><img src="./../img/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
-        
+
                       </div>
                     </div>
                   </div>
@@ -113,7 +116,7 @@ class Aboutus extends Component {
                         <h5>Woojun Choi</h5>
                         <p class="subtitle">Typographer</p>
                         <div class="avatar"><img src="./../img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
-        
+
                       </div>
                     </div>
                   </div>
