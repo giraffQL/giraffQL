@@ -147,6 +147,7 @@ img {
 .features {
     margin-top:3%;
 }
+
 @media all and (max-width:1000px) {
     .mainimage {
         width:100%;

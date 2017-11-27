@@ -1,22 +1,31 @@
+// IMPORT REACT
 import React, { Component } from 'react';
+// DRAWER FROM MATERIAL UI 
 import Drawer from 'material-ui/Drawer';
+// MENU FOR DRAWER
 import MenuItem from 'material-ui/MenuItem';
+// BUTTON FOR DRAWER
 import FlatButton from 'material-ui/FlatButton';
+// IMPORT APP
 import App from './App.js'
+// IMPORT LINK PROP FROM REACT ROUTER
 import { Link } from 'react-router-dom'
+// IMPORT ICON FOR GITHUB BUTTON
 import FontIcon from 'material-ui/FontIcon';
+// CSS
 import './homestyle.css'
+// PANEL FROM REACT-BOOTSTRAP (FEATURE PART)
 import { Panel } from 'react-bootstrap';
-import 'typeface-roboto'
-
-import picone from './../img/team/jelena.jpg'
 
 
 class Feature extends Component {
   constructor(props) {
     super(props)
+    // STATE FOR DRAWER
     this.state = { open: false };
   }
+  
+    // METHOD FOR DRAWER 
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
@@ -26,41 +35,50 @@ class Feature extends Component {
 
     return (
       <div className='mainpage'>
+
+      {/* header and drawer button */}
         <div className='header'>
           <FlatButton className='navbutton'
             onClick={this.handleToggle}
-            icon={<i class="material-icons">list</i>}
-             />
-          <Drawer className ='drawer'
+            icon={<i className="material-icons">list</i>}
+          />
+
+         {/* DRAWER */}
+          <Drawer
             docked={false}
             width={200}
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
+
+          {/* DRAWER MENU WITH REACT ROUTER */}
             <div className ='drawertop'>GiraffQL</div>
             <Link to='/'><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>
-            <Link to='/feature'><MenuItem onClick={this.handleClose}>Feature</MenuItem></Link>
+            <Link to ='/feature'><MenuItem onClick={this.handleClose}>Feature</MenuItem></Link>
             <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
             <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
-            <MenuItem onClick={this.handleClose}>Download</MenuItem>
           </Drawer>
-          <FlatButton className ='gitbutton'
-            href="https://github.com/callemall/giraffql"
-            icon={<i class="material-icons">account_circle</i>}
-            />
-        </div>
-        <section class="features" id="features">
-    <div class="container">
-      <h2 class="text-center">
+
+        {/* GITHUB BUTTON */}
+          <FlatButton className='gitbutton'
+            href="https://github.com/giraffql/giraffql"
+            icon={<i className="material-icons">account_circle</i>}
+          />
+      </div>
+
+
+        <section className="features" id="features">
+    <div className="container">
+      <h2 className="text-center">
           FEATURES
         </h2>
 
-      <div class="row">
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+      <div className="row">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-rocket"></span>
+              <div className="feature-icon">
+                <span className="fa fa-rocket"></span>
               </div>
             </div>
 
@@ -76,11 +94,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-envelope"></span>
+              <div className="feature-icon">
+                <span className="fa fa-envelope"></span>
               </div>
             </div>
 
@@ -96,11 +114,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-bell"></span>
+              <div className="feature-icon">
+                <span className="fa fa-bell"></span>
               </div>
             </div>
 
@@ -117,12 +135,12 @@ class Feature extends Component {
         </div>
       </div>
 
-      <div class="row">
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+      <div className="row">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-database"></span>
+              <div className="feature-icon">
+                <span className="fa fa-database"></span>
               </div>
             </div>
 
@@ -138,11 +156,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-cutlery"></span>
+              <div className="feature-icon">
+                <span className="fa fa-cutlery"></span>
               </div>
             </div>
 
@@ -158,11 +176,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-dashboard"></span>
+              <div className="feature-icon">
+                <span className="fa fa-dashboard"></span>
               </div>
             </div>
 

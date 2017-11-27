@@ -14,7 +14,9 @@ const graphQLHTTP = require('express-graphql');
 const schema = require('./src/components/graphql/mockSchema');
 
 app.use(express.static(__dirname + '/public'));
- 
+// app.use('/img', express.static(__dirname + '/src/img'));
+
+
 app.use(webpackDevMiddleware(compiler, {
   hot: true,
   filename: 'bundle.js',

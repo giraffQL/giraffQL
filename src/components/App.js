@@ -5,7 +5,6 @@ import SplitPane from "react-split-pane"
 //TEXT CSS
 import '../css/index.css';
 import '../css/App.css';
-import '../css/prism.css';
 //PRISM DEPENDENCIES
 import Fullscreen from 'react-full-screen';
 // MATERIAL UI
@@ -18,9 +17,6 @@ import MenuComp from './Menu';
 import FileSaver from 'file-saver';
 //TEXT Editor
 import TextEditor from '../components/code/TextEditor'
-
-const PrismDecorator = require('draft-js-prism');
-const Prism = require('prismjs')
 
 
 
