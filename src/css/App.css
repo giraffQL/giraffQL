@@ -20,6 +20,7 @@ body {
 .full-screenable-node { /* make fullscreen background same color as body */
   color: #9FA767;
   font-weight: 600;
+  height: 100%;
 }
 
 .toolbar {
@@ -129,11 +130,11 @@ body {
 
 .schemaCode {
   background: #ECECEC;
-  margin-top: 35px;
+  margin-top: 5px;
   border-radius: .3em;
   font-size: 20px;
   width:100%;
-  height: 50%;
+  height: 45%;
   overflow: auto;
   position: relative;
   font-family: 'Consolas', 'monaco', monospace;
@@ -146,7 +147,7 @@ body {
   margin-top: 20px;
   font-size: 20px;
   width:100%;
-  height: 50%;
+  height: 45%;
   overflow: auto;
   position: relative;
   font-family: 'Consolas', 'monaco', monospace;
