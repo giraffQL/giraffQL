@@ -2491,11 +2491,9 @@ var App = function (_Component) {
             form.appendChild(hiddenField);
           }
         }
-
         document.body.appendChild(form);
         form.submit();
       }
-
       post('/schemas', { schema: _this.state.schemaCode });
     };
 
@@ -2640,7 +2638,7 @@ var App = function (_Component) {
           { className: 'App' },
           _react2.default.createElement(
             _reactFullScreen2.default,
-            { style: { height: '100%' },
+            { style: { height: '2000px', backgroundColor: 'rgb(51,51,51)' },
               enabled: this.state.isFullscreenEnabled,
               onChange: function onChange(isFullscreenEnabled) {
                 return _this2.setState({ isFullscreenEnabled: isFullscreenEnabled });
@@ -2649,22 +2647,15 @@ var App = function (_Component) {
             _react2.default.createElement(
               'div',
               { className: 'full-screenable-node' },
-              _react2.default.createElement(_AppMenu2.default, { state: this.state, menuToggle: this.menuToggle, menuClose: this.menuClose, onRequestChange: this.onRequestChange, fullscreenToggle: this.fullscreenToggle, onAddTable: this.onAddTable, deleteAllTables: this.deleteAllTables, saveTextAsFile: this.saveTextAsFile }),
+              _react2.default.createElement(_AppMenu2.default, { state: this.state, menuToggle: this.menuToggle, menuClose: this.menuClose, onRequestChange: this.onRequestChange, fullscreenToggle: this.fullscreenToggle, onAddTable: this.onAddTable, deleteAllTables: this.deleteAllTables, saveTextAsFile: this.saveTextAsFile, submitSchemaCode: this.submitSchemaCode }),
               _react2.default.createElement(
                 _reactSplitPane2.default,
-                { style: { 'background-color': 'rgb(51,51,51)' }, split: 'vertical', defaultSize: '50%' },
+                { style: { 'backgroundColor': 'rgb(51,51,51)' }, split: 'vertical', defaultSize: '50%' },
                 _react2.default.createElement(_Visualization2.default, { data: this.state.data, clickedRow: this.state.clickedRow, onAddRow: this.onAddRow, onAddTable: this.onAddTable,
                   updateTableName: this.updateTableName, updateRowProp: this.updateRowProp, updateRowType: this.updateRowType, onDragTable: this.onDragTable, refreshTablePositions: this.refreshTablePositions, deleteTable: this.deleteTable, deleteRow: this.deleteRow, deleteAllTables: this.deleteAllTables, onTableMouseUp: this.onTableMouseUp, onRowMouseDown: this.onRowMouseDown }),
                 _react2.default.createElement(
                   'div',
                   { className: 'TextEditor' },
-                  _react2.default.createElement(
-                    'button',
-                    { className: 'test', onClick: function onClick() {
-                        return _this2.submitSchemaCode();
-                      } },
-                    ' TEST YOUR SCHEMA CODE'
-                  ),
                   _react2.default.createElement(_TextEditor2.default, { code: this.state.schemaCode, onChange: this.onSchemaCodeChange }),
                   _react2.default.createElement(_ExpressCode2.default, { code: this.state.jsCode, onChange: this.onJsCodeChange })
                 )
@@ -55956,6 +55947,11 @@ var MenuComp = function (_Component) {
               'button',
               { className: 'save', onClick: saveTextAsFile },
               'SAVE JS SCHEMA CODE'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'test', onClick: submitSchemaCode },
+              'TEST YOUR SCHEMA CODE'
             )
           )
         ),
@@ -88344,7 +88340,7 @@ exports = module.exports = __webpack_require__(21)(undefined);
 
 
 // module
-exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: rgb(51,51,51); /*#fbe4a1;*/\n  font-size:17px;\n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: #9FA767;\n  font-weight: 600;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  text-align:center;\n  background-color: rgb(51,51,51);\n}\n\n\n/*.App-header {\n  background-color: #222;\n  height: 150px;\n  padding: 20px;\n  color: white;\n}*/\n\n\n.Resizer {\n  background: #000;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid rgba(255, 255, 255, 0);\n  border-bottom: 5px solid rgba(255, 255, 255, 0);\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid rgba(0, 0, 0, 0.5);\n  border-bottom: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid rgba(255, 255, 255, 0);\n  border-right: 5px solid rgba(255, 255, 255, 0);\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid rgba(0, 0, 0, 0.5);\n  border-right: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n/*@media screen and (max-width: 1260px) {\n  .back {\n      width: 50%;\n  }\n}\n\n@media screen and (max-width: 840px) {\n  .back {\n      width: 100%;\n  }\n}*/\n\n.schemaCode {\n  background: #ECECEC;\n  margin-top: 35px;\n  border-radius: .3em;\n  font-size: 20px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n}\n\n\n.expressCode {\n  background: #ECECEC;\n  border-radius: .3em;\n  margin-top: 20px;\n  font-size: 20px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n}", ""]);
+exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: rgb(51,51,51); /*#fbe4a1;*/\n  font-size:17px;\n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n  background-color: rgb(51,51,51);\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: #9FA767;\n  font-weight: 600;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  text-align:center;\n  background-color: rgb(51,51,51);\n}\n\n\n/*.App-header {\n  background-color: #222;\n  height: 150px;\n  padding: 20px;\n  color: white;\n}*/\n\n\n.Resizer {\n  background: #000;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid rgba(255, 255, 255, 0);\n  border-bottom: 5px solid rgba(255, 255, 255, 0);\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid rgba(0, 0, 0, 0.5);\n  border-bottom: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid rgba(255, 255, 255, 0);\n  border-right: 5px solid rgba(255, 255, 255, 0);\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid rgba(0, 0, 0, 0.5);\n  border-right: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n/*@media screen and (max-width: 1260px) {\n  .back {\n      width: 50%;\n  }\n}\n\n@media screen and (max-width: 840px) {\n  .back {\n      width: 100%;\n  }\n}*/\n\n.schemaCode {\n  background: #ECECEC;\n  margin-top: 35px;\n  border-radius: .3em;\n  font-size: 20px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n}\n\n\n.expressCode {\n  background: #ECECEC;\n  border-radius: .3em;\n  margin-top: 20px;\n  font-size: 20px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n}", ""]);
 
 // exports
 

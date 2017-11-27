@@ -14,7 +14,7 @@ class MenuComp extends Component {
   constructor(props) {
     super(props)
   }
-
+ 
   render () {
     const {state, menuToggle, menuClose, onRequestChange, fullscreenToggle, onAddTable, deleteAllTables, saveTextAsFile, submitSchemaCode} = this.props;
 
@@ -58,6 +58,9 @@ class MenuComp extends Component {
                  </Button>
                  <button className="save" onClick={saveTextAsFile}>
                   SAVE JS SCHEMA CODE
+                 </button>
+                 <button className="test" onClick={submitSchemaCode}> 
+                 TEST YOUR SCHEMA CODE
                  </button>
                </div>
           </div>

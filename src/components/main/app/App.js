@@ -341,11 +341,9 @@ class App extends Component {
             form.appendChild(hiddenField);
           }
         }
-
         document.body.appendChild(form);
         form.submit();
       }
-
       post('/schemas', { schema: this.state.schemaCode })
     }
 
@@ -422,19 +420,18 @@ class App extends Component {
 
         <MuiThemeProvider>
           <div className="App">
-            <Fullscreen style={{ height: '100%' }}
+            <Fullscreen style={{ height: '2000px', backgroundColor: 'rgb(51,51,51)'}}
               enabled={this.state.isFullscreenEnabled}
               onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
             >
               <div className='full-screenable-node'>
-                <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} />
+                <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} submitSchemaCode={this.submitSchemaCode} />
 
-                <SplitPane style={{ 'background-color': 'rgb(51,51,51)' }} split="vertical" defaultSize="50%">
+                <SplitPane style={{ 'backgroundColor': 'rgb(51,51,51)' }} split="vertical" defaultSize="50%">
                   <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
                     updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
 
                   <div className="TextEditor">
-                    <button className="test" onClick={() => this.submitSchemaCode()}> TEST YOUR SCHEMA CODE</button>
                     <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
                     <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
                   </div>
