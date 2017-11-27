@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import App from '../App'
 import Draft, { Editor, EditorState, ContentState, convertFromHTML, convertFromRaw } from 'draft-js';
-import 'draft-js/dist/Draft.css';
+// import 'draft-js/dist/Draft.css';
 // import PrismDecorator from 'draft-js-prism'
 // import Prism from 'prismjs'
 import _ from 'lodash'
-// import '../../css/prism.css'
+// COMPONENTS
+import App from '../App'
+
+
 
 // var decorator = new PrismDecorator({
 //     prism: Prism,
@@ -32,7 +34,7 @@ class TextEditor extends React.Component {
     // onEditorChange = (editorState) => {
     //     const content = editorState.getCurrentContent()
 
-    //     this.setState({ 
+    //     this.setState({
     //         editorState: EditorState.set(editorState, { decorator })
     //     })
     // }
@@ -57,25 +59,27 @@ class TextEditor extends React.Component {
         let code = '\n'
         for (let i = 0; i < data.tables.length; i += 1) {
             const table = data.tables[i]
-            if (table.name) {
-                code += `const ${table.name}Type = new GraphQLObjectType({\n`
-                    + `    name: ${table.name},\n`
-                    + `    fields: () => ({\n`
-                for (let j = 0; j < table.attributes.length; j += 1) {
-                    const attr = table.attributes[j]
-                    if (attr.field !== '') {
-                        code += `        ${attr.field}: {\n`
-                            + `            type: ${attr.type}\n`
-                            + `        }`
+            if (table) {
+                if (table.name) {
+                    code += `const ${table.name}Type = new GraphQLObjectType({\n`
+                        + `    name: ${table.name},\n`
+                        + `    fields: () => ({\n`
+                    for (let j = 0; j < table.attributes.length; j += 1) {
+                        const attr = table.attributes[j]
+                        if (attr.field !== '') {
+                            code += `        ${attr.field}: {\n`
+                                + `            type: ${attr.type}\n`
+                                + `        }`
+                        }
+                        if (j < table.attributes.length - 1) {
+                            code += `,\n`
+                        }
                     }
-                    if (j < table.attributes.length - 1) {
-                        code += `,\n`
-                    }
-                }
 
-                code += `\n`
-                    + `    })\n`
-                    + `})\n\n`
+                    code += `\n`
+                        + `    })\n`
+                        + `})\n\n`
+                }
             }
         }
 
@@ -83,11 +87,8 @@ class TextEditor extends React.Component {
     }
 
     render() {
-
-
         return (
-            <Editor editorState={this.state.editorState} onChange={this.onEditorChange} />
-            //<textarea value={code} cols={70} rows={51} style={{ "font-size": "25px" }}></textarea>
+            <textarea className="schemaCode" value={this.props.code} onChange={e => this.props.onChange(e.target.value)} />
         )
     }
 }
