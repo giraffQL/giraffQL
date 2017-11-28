@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 // import fonticon for github icon
 import FontIcon from 'material-ui/FontIcon';
 // import css for Home component
-import '../../css/home.css'
+// import '../../css/home.css'
 // import panel from react-bootstrap
 import { Panel } from 'react-bootstrap';
 //import materail ui 
