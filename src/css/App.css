@@ -14,11 +14,13 @@ body {
   text-align: center;
   width:100%;
   height:100%;
+  background-color: rgb(51,51,51);
 }
 
 .full-screenable-node { /* make fullscreen background same color as body */
   color: #9FA767;
   font-weight: 600;
+  height: 100%;
 }
 
 .toolbar {
@@ -30,7 +32,8 @@ body {
 .visualization {
   width:100%;
   height:100%;
-  border-right:1px solid white
+  border-right:1px solid white;
+  overflow: scroll;
 }
 
 .editorbutton {
@@ -41,15 +44,8 @@ body {
   height:100%;
   text-align:center;
   background-color: rgb(51,51,51);
+  overflow: scroll;
 }
-
-
-/*.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}*/
 
 
 .Resizer {
@@ -134,25 +130,14 @@ body {
   padding: 10px;
 }
 
-/*@media screen and (max-width: 1260px) {
-  .back {
-      width: 50%;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .back {
-      width: 100%;
-  }
-}*/
-
 .schemaCode {
-  background: #ECECEC;
-  margin-top: 35px;
+  background-color: rgb(51,51,51);
+  color: white;
+  margin-top: 5px;
   border-radius: .3em;
-  font-size: 20px;
+  font-size: 16px;
   width:100%;
-  height: 100%;
+  height: 45%;
   overflow: auto;
   position: relative;
   font-family: 'Consolas', 'monaco', monospace;
@@ -160,12 +145,13 @@ body {
 
 
 .expressCode {
-  background: #ECECEC;
+  background-color: rgb(51,51,51);
+  color: white;
   border-radius: .3em;
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 16px;
   width:100%;
-  height: 100%;
+  height: 45%;
   overflow: auto;
   position: relative;
   font-family: 'Consolas', 'monaco', monospace;

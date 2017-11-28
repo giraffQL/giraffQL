@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import Draggable, { DraggableCore } from 'react-draggable';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-import { FormControl, Button } from 'react-bootstrap';
+import { FormControl, Button, Popover, Tooltip, OverlayTrigger } from 'react-bootstrap';
 // COMPONENTS
 import App from '../App'
 import colors from './colors';
@@ -42,8 +42,10 @@ class Table extends React.Component {
         return /^[0-9]/.test(text);
     }
 
-    // added comment in table which is starting with number
-
+    isDuplicateTableName = (tableIndex, tables) => {
+        const tableName = tables[tableIndex].name
+        return tableName && !!tables.find((table, index) => table.name === tableName && index !== tableIndex)
+    }
 
     render() {
         const dragHandlers = { onStart: this.onStart, onStop: this.onStop };
@@ -67,45 +69,72 @@ class Table extends React.Component {
             }
         }
 
+
         const className = this.startsWithNumber(table.name) ? 'table redTable' : 'table'
 
+        const ttDeleteTable = (
+            <Tooltip id="tooltip"> Delete table</Tooltip>
+        )
+
+        const ttDeleteRow = (
+            <Tooltip id="tooltip"> Delete row </Tooltip>
+        )
+    
         return (
 
-            <Draggable bounds="parent" handle=".drag-handle" defaultPosition={{x: 0, y: table.defaultPosition}}
+            <Draggable bounds="parent" handle=".drag-handle" defaultPosition={{ x: 0, y: table.defaultPosition }}
                 enableUserSelectHack={false} onDrag={(e, dataEvent) => onDragTable(tableIndex)}>
                 <div>
                     <table className={className} ref={(e) => { this.tableRef = e }} onMouseUp={(e) => onTableMouseUp(tableIndex)}>
                         <tbody>
-                        {this.startsWithNumber(table.name) ?
-                        <tr>
-                        <th colSpan={2} style={style}>
-                            <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
-                            <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
-                            <div className='drag-handle'><img className='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
-                            <p className='alert'> Table name can not start with number </p>
-                            </th>
-                        </tr>
-                        :
                             <tr>
                                 <th colSpan={2} style={style}>
-                                     <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
-                                    <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
+                                    <FormControl className="tableName" type="text" value={table.name} placeholder="Table Name" onChange={(e) => updateTableName(tableIndex, e.target.value)} />
+                                    <OverlayTrigger placement="right" overlay={ttDeleteTable}>
+                                        <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
+                                    </OverlayTrigger>
+                
                                     <div className='drag-handle'><img className='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
-                                    </th>
+                   
+                                    {this.startsWithNumber(table.name) &&
+                                        <Popover
+                                            id="popover-basic"
+                                            className="alert"
+                                            positionLeft={300}
+                                            title="ERROR"
+                                        >
+                                            Table name can not start with number
+                                  </Popover>
+                                        // <p className='alert'> Table name can not start with number </p>
+                                    }
+                                    {this.isDuplicateTableName(tableIndex, tables) &&
+                                        <Popover
+                                            id="popover-basic"
+                                            className="alert"
+                                            positionLeft={300}
+                                            title="ERROR"
+                                        >
+                                            Tables can not have the same name
+                                    </Popover>
+                                        // <p className='alert'> Tables can not have the same name </p>
+                                    }
+                                </th>
                             </tr>
-                        }
                             {table.attributes.map(({ field, type, x, y, relatedToTableId }, i) => {
                                 return (
                                     <tr key={i} ref={(e) => { this.propertyRowRefs[i] = e }} onMouseDown={(e) => onRowMouseDown(tableIndex, i)}>
                                         <td><FormControl className='propertyinput' type="text" placeholder="Property" value={field} onChange={(e) => updateRowProp(tableIndex, i, e.target.value)} /></td>
                                         <td className='typetd'>
-                                            <div className='deleterowbutton' onClick={() => deleteRow(tableIndex, i)}>x</div>
+                                            <OverlayTrigger placement="right" overlay={ttDeleteRow}>
+                                                <div className='deleterowbutton' onClick={() => deleteRow(tableIndex, i)}>x</div>
+                                            </OverlayTrigger>
                                             <div>
                                                 <Select className='dropdown'
                                                     onChange={(value) => updateRowType(tableIndex, i, value)}
                                                     options={options}
                                                     simpleValue
                                                     autosize={true}
+                                                    clearable={false}
                                                     value={tables[tableIndex].attributes[i].type}
                                                 />
                                             </div>
@@ -114,7 +143,9 @@ class Table extends React.Component {
                                 )
                             })}
                             <tr>
-                                <td className='addbutton' colSpan={2}><Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button> </td>
+                                <td className='addRowWrap' colSpan={2}>
+                                    <Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

@@ -11,11 +11,10 @@ import './css/Home.css'
 import './css/AppMenu.css'
 import './css/Table.css'
 import './css/Relations.css';
-import './css/prism.css';
-import './aboutusstyle/animate.css'
-import './aboutusstyle/bootstrap.css'
-import './aboutusstyle/bootstrap.min.css'
-import './aboutusstyle/style.css'
+// import './aboutusstyle/animate.css'
+// // import './aboutusstyle/bootstrap.css'
+// // import './aboutusstyle/bootstrap.min.css'
+// import './aboutusstyle/style.css'
 
 
 ReactDOM.render(
@@ -23,15 +22,3 @@ ReactDOM.render(
         <Divider />
     </BrowserRouter>,
     document.getElementById('root'));
-// import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// import Contact from './components/Contact'
-
-
-// ReactDOM.render((
-//   <BrowserRouter>
-//   <div>
-//     <Route exact path="/" component={App}/>
-//     <Route path="/contact" component={Contact}/>
-//   </div>
-//   </BrowserRouter>
-//   ), document.getElementById('root'));
