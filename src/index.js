@@ -10,8 +10,10 @@ import './css/Home.css'
 import './css/AppMenu.css'
 import './css/Table.css'
 import './css/Relations.css';
-import './aboutusstyle/bootstrap.min.css'
-import './aboutusstyle/style.css'
+// import './aboutusstyle/animate.css'
+// // import './aboutusstyle/bootstrap.css'
+// // import './aboutusstyle/bootstrap.min.css'
+// import './aboutusstyle/style.css'
 
 
 ReactDOM.render(

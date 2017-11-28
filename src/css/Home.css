@@ -117,9 +117,8 @@
 }
 .featurebox {
     width:30%;
-    height:200px;
+    height:400px;
     justify-content:space-around;
-    align-items:flex-start;
 }
 img {
     max-width:100%;

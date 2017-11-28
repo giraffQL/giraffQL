@@ -20,26 +20,26 @@ class MenuComp extends Component {
 
     const muiStyles = {
       appBar: {
-        'background-color': 'rgb(51,51,51)',
-        'line-height': '20px',
-        'border-bottom': '3px solid white'
+        'backgroundColor': 'rgb(51,51,51)',
+        'lineHeight': '20px',
+        'borderBottom': '3px solid white'
       },
       drawer: {
-        'background-color': 'rgb(51,51,51)',
+        'backgroundColor': 'rgb(51,51,51)',
       },
       menuItem: {
         'color': '#FFD300',
-        'font-size': '16px',
-        'text-align': 'left'
+        'fontSize': '16px',
+        'textAlign': 'left'
       },
       download: {
         'color': '#FFD300',
-        'font-size': '16px',
-        'text-align': 'left',
-        'border-bottom': '1px dashed #FFD300'
+        'fontSize': '16px',
+        'textAlign': 'left',
+        'borderBottom': '1px dashed #FFD300'
       },
       menuIcon: {
-        color: '#FFD300'
+        'color': '#FFD300'
       }
     }
     return (
@@ -47,7 +47,7 @@ class MenuComp extends Component {
           <div style={muiStyles.appBar} className="appBar">
             <FlatButton style={muiStyles.menuIcon} className='navbutton'
               onClick={menuToggle}
-              icon={<i class="material-icons">list</i>}
+              icon={<i className="material-icons">list</i>}
                />
                <div className="toolPanel">
                  <Button id="createTableBtn" className="addAndClearBtns" bsSize="large" onClick={onAddTable}>
@@ -56,11 +56,11 @@ class MenuComp extends Component {
                  <Button id="clearBtn" className="addAndClearBtns" bsSize="large" onClick={deleteAllTables}>
                   x
                  </Button>
-                 <button className="save" onClick={saveTextAsFile}>
-                  SAVE JS SCHEMA CODE
-                 </button>
                  <button className="test" onClick={submitSchemaCode}> 
                  TEST YOUR SCHEMA CODE
+                 </button>
+                 <button className="save" onClick={saveTextAsFile}>
+                  SAVE JS SCHEMA CODE
                  </button>
                </div>
           </div>
@@ -72,6 +72,8 @@ class MenuComp extends Component {
               open={state.open}
               onRequestChange={onRequestChange}
             >
+              <div className ='drawertop'>GiraffQL</div>
+
               <Link to="/">
                 <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
                   Home

@@ -44,18 +44,18 @@ class Home extends Component {
       // menuItem: {
       //   'color': '#FFD000',
       appBar: {
-        'background-color': '#9FA767',
-        'border-bottom': '4px solid white',
-        'line-height': '20px',
-        color: '#fbe4a1'
+        'backgroundColor': '#9FA767',
+        'borderBottom': '4px solid white',
+        'lineHeight': '20px',
+        'color': '#fbe4a1'
       },
       drawer: {
-        'background-color': '#9FA767',
+        'backgroundColor': '#9FA767',
         'color': 'white'
       },
       menuItem: {
         'color': 'white',
-        'font-size': '20px'
+        'fontSize': '20px'
       }
     }
 
@@ -72,7 +72,7 @@ class Home extends Component {
 
          {/* adding drawer */}
           <Drawer
-            containerStyle={{'background-color':'rgb(51,51,51'}}
+            containerStyle={{'backgroundColor':'rgb(51,51,51'}}
             docked={false}
             width={200}
             open={this.state.open}
