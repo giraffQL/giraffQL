@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import App from './App.js';
-import { Link } from 'react-router-dom';
-import FontIcon from 'material-ui/FontIcon';
-import './homestyle.css'
-import { Panel } from 'react-bootstrap';
-import graff from './graff.png'
-import main from './mainimage.png'
-import 'typeface-roboto'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
-import Octocat from './GitHub-Mark-32px.png';
+import { Link } from 'react-router-dom'
+import FontIcon from 'material-ui/FontIcon';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import { Panel } from 'react-bootstrap';
+import 'typeface-roboto'
+// COMPONENTS
+import App from './app/App.js';
+//STATIC FILES
+import graff from '../../assets/graff.png'
+import main from '../../assets/mainimage.png'
+import Octocat from '../GitHub-Mark-32px.png';
+
+
 
 class Home extends Component {
   constructor(props) {
@@ -27,31 +31,34 @@ class Home extends Component {
 
   render() {
     const muiStyles = {
+      // menuItem: {
+      //   'color': '#FFD000',
       appBar: {
-        'background-color': '#9FA767',
-        'border-bottom': '4px solid white',
-        'line-height': '20px',
-        color: '#fbe4a1'
+        'backgroundColor': '#9FA767',
+        'borderBottom': '4px solid white',
+        'lineHeight': '20px',
+        'color': '#fbe4a1'
       },
       drawer: {
-        'background-color': '#9FA767',
+        'backgroundColor': '#9FA767',
         'color': 'white'
       },
       menuItem: {
         'color': 'white',
-        'font-size': '20px'
+        'fontSize': '20px'
       }
     }
 
     return (
-      <MuiThemeProvider>      
+      <MuiThemeProvider>
       <div className='mainpage'>
         <div className='header'>
           <FlatButton className='navbutton'
             onClick={this.handleToggle}
-            icon={<i class="material-icons">list</i>}
+            icon={<i className="material-icons">list</i>}
           />
           <Drawer
+            containerStyle={{'backgroundColor':'rgb(51,51,51'}}
             docked={false}
             width={200}
             open={this.state.open}
@@ -64,21 +71,20 @@ class Home extends Component {
             <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
             <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
+
           <FlatButton className='gitbutton'
             href="https://github.com/giraffql/giraffql"
-            icon={<i class="material-icons">account_circle</i>}
+            icon={<i className="material-icons">account_circle</i>}
           />
       </div>
        <div className='mainimage'>
         <div className='coremain'>
           <img className ='image' src={graff} />
-           <h1 className ='grafql'>GiraffQL</h1> 
+           <h1 className ='grafql'>GiraffQL</h1>
           {/* <FlatButton className='gitbutton'
             href="https://github.com/giraffql/giraffql"
             // icon={<i class="material-icons">account_circle</i>}
           /> */}
-         
-
         </div>
           <div className='maintext'>
             <p> AAAAA Set of React Components that Implement Google's Material Design DEMO</p>
@@ -90,7 +96,7 @@ class Home extends Component {
           <p className='secondtxt'> Material-UI came agn. We're currently using it on a project at Call-Em-All  </p>
           <div className ='tryit'>
             {/* <p className ='trytext'>Try it</p> */}
-            <Link to='/app'><RaisedButton className='tryitbutton' label="try it" labelColor='green' /></Link>          
+            <Link to='/app'><RaisedButton className='tryitbutton' label="try it" labelColor='green' /></Link>
         </div>
         </div>
         <div className='third'>

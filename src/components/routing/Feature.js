@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import App from './App.js'
 import { Link } from 'react-router-dom'
 import FontIcon from 'material-ui/FontIcon';
-import './homestyle.css'
 import { Panel } from 'react-bootstrap';
 import 'typeface-roboto'
-
-import picone from './../img/team/jelena.jpg'
+// COMPONENTS
+import App from '../main/app/App.js'
+// STATIC FILES
+import picone from '../../img/team/jelena.jpg'
+// import './homestyle.css'
 
 
 class Feature extends Component {
@@ -180,7 +181,7 @@ class Feature extends Component {
       </div>
     </div>
   </section>
-         
+
       </div>
     );
   }
