@@ -55918,13 +55918,13 @@ var MenuComp = function (_Component) {
             ),
             _react2.default.createElement(
               'button',
-              { className: 'save', onClick: saveTextAsFile },
-              'SAVE JS SCHEMA CODE'
+              { className: 'test', onClick: submitSchemaCode },
+              'TEST YOUR SCHEMA CODE'
             ),
             _react2.default.createElement(
               'button',
-              { className: 'test', onClick: submitSchemaCode },
-              'TEST YOUR SCHEMA CODE'
+              { className: 'save', onClick: saveTextAsFile },
+              'SAVE JS SCHEMA CODE'
             )
           )
         ),
@@ -64476,7 +64476,7 @@ function manhattanPath(attribute, table, allTables) {
                 return 'break';
             }
 
-            [{ dx: step, dy: step }, { dx: step, dy: -step }, { dx: -step, dy: step }, { dx: -step, dy: -step }, { dx: step, dy: 58 }, { dx: 58, dy: step }, { dx: -step, dy: 58 }, { dx: 58, dy: -step }] //for  each point see if that point is valid
+            [{ dx: step, dy: step }, { dx: step, dy: -step }, { dx: -step, dy: step }, { dx: -step, dy: -step }, { dx: step, dy: 0 }, { dx: 0, dy: step }, { dx: -step, dy: 0 }, { dx: 0, dy: -step }] //for  each point see if that point is valid
             .forEach(function (_ref) {
                 var dx = _ref.dx,
                     dy = _ref.dy;

@@ -56,11 +56,11 @@ class MenuComp extends Component {
                  <Button id="clearBtn" className="addAndClearBtns" bsSize="large" onClick={deleteAllTables}>
                   x
                  </Button>
-                 <button className="save" onClick={saveTextAsFile}>
-                  SAVE JS SCHEMA CODE
-                 </button>
                  <button className="test" onClick={submitSchemaCode}> 
                  TEST YOUR SCHEMA CODE
+                 </button>
+                 <button className="save" onClick={saveTextAsFile}>
+                  SAVE JS SCHEMA CODE
                  </button>
                </div>
           </div>
