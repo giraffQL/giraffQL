@@ -236,17 +236,19 @@ class App extends Component {
     this.setState(state => {
       //table
       let table = state.data.tables[tableIndex]
-      table.tablePositionX = table.x = Math.floor(tablePosition.left)
-      table.tablePositionY = table.y = Math.floor(tablePosition.top)
-      table.w = Math.floor(tablePosition.width)
-      table.h = Math.floor(tablePosition.height)
-      //rows
-      let attrs = state.data.tables[tableIndex].attributes
-      for (let i = 0; i < attrs.length; i += 1) {
-        attrs[i].x = Math.floor(rowPositions[i].left)
-        attrs[i].y = Math.floor(rowPositions[i].top)
-        attrs[i].w = Math.floor(rowPositions[i].width)
-        attrs[i].h = Math.floor(rowPositions[i].height)
+      if (table) {
+        table.tablePositionX = table.x = Math.floor(tablePosition.left)
+        table.tablePositionY = table.y = Math.floor(tablePosition.top)
+        table.w = Math.floor(tablePosition.width)
+        table.h = Math.floor(tablePosition.height)
+        //rows
+        let attrs = state.data.tables[tableIndex].attributes
+        for (let i = 0; i < attrs.length; i += 1) {
+          attrs[i].x = Math.floor(rowPositions[i].left)
+          attrs[i].y = Math.floor(rowPositions[i].top)
+          attrs[i].w = Math.floor(rowPositions[i].width)
+          attrs[i].h = Math.floor(rowPositions[i].height)
+        }
       }
       return state;
     })
@@ -303,146 +305,146 @@ class App extends Component {
     })
   }
 
-    // function which is called when you click for save schema js code
-    saveTextAsFile = () => {
-      let text = this.state.jsCode
-      let blob = new Blob([text], { type: "text/javascript" });
-      FileSaver.saveAs(blob, 'schema.js')
-    }
-
-
-    onSchemaCodeChange = (schemaCode) => {
-      this.setState(state => ({
-        schemaCode
-      }))
-    }
-
-    onJsCodeChange = (jsCode) => {
-      this.setState(state => ({
-        jsCode
-      }))
-    }
-
-    submitSchemaCode = () => {
-      function post(path, params, method) {
-        method = method || "post";
-
-        let form = document.createElement("form");
-        form.setAttribute("method", method);
-        form.setAttribute("action", path);
-
-        for (let key in params) {
-          if (params.hasOwnProperty(key)) {
-            let hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-          }
-        }
-        document.body.appendChild(form);
-        form.submit();
-      }
-      post('/schemas', { schema: this.state.schemaCode })
-    }
-
-    // function to check is input string contains number
-    startsWithNumber = (text) => {
-      return /^[0-9]/.test(text);
-    }
-
-    // function which is creating text in schema text area
-    getTextFromModel = (data) => {
-      let code = '\n'
-      code += 'type Query {\n'
-
-      for (let i = 0; i < data.tables.length; i += 1) {
-        const table = data.tables[i]
-
-        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-          code += `    ${table.name}: ${table.name}\n`
-        }
-      }
-      code += `}\n\n`
-
-      for (let i = 0; i < data.tables.length; i += 1) {
-        const table = data.tables[i]
-
-        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-          code += `type ${table.name} {\n`
-          for (let j = 0; j < table.attributes.length; j += 1) {
-            const attr = table.attributes[j]
-            if (attr.field !== '') {
-              code += `    ${attr.field}: ${attr.type}\n`
-            }
-          }
-          code += `}\n\n`
-        }
-      }
-
-      return code + '\n'
-    }
-
-    // function which is creating schema js code in textarea
-    getExpressCode = (data) => {
-      let code = '\n'
-      for (let i = 0; i < data.tables.length; i += 1) {
-        const table = data.tables[i]
-
-        if (table.name && !this.startsWithNumber(data.tables[i].name)) {
-          code += `const ${table.name}Type = new GraphQLObjectType({\n`
-            + `    name: ${table.name},\n`
-            + `    fields: () => ({\n`
-          for (let j = 0; j < table.attributes.length; j += 1) {
-            const attr = table.attributes[j]
-            if (attr.field !== '') {
-              code += `        ${attr.field}: {\n`
-                + `            type: GraphQL${attr.type}\n`
-                + `        }`
-            }
-            if (j < table.attributes.length - 1 && attr.field !== '') {
-              code += `,\n`
-            }
-          }
-          code += `\n`
-            + `    })\n`
-            + `})\n\n`
-        }
-      }
-
-      return code + '\n'
-    }
-
-    render() {
-      const { data } = this.state;
-      return [
-
-        <MuiThemeProvider>
-          <div className="App">
-            <Fullscreen style={{ height: '2000px', backgroundColor: 'rgb(51,51,51)'}}
-              enabled={this.state.isFullscreenEnabled}
-              onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
-            >
-              <div className='full-screenable-node'>
-                <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} submitSchemaCode={this.submitSchemaCode} />
-
-                <SplitPane style={{ 'backgroundColor': 'rgb(51,51,51)' }} split="vertical" defaultSize="50%">
-                  <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-
-                  <div className="TextEditor">
-                    <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
-                    <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
-                  </div>
-                </SplitPane>
-              </div>
-            </Fullscreen>
-          </div>
-        </MuiThemeProvider>
-      ];
-    }
+  // function which is called when you click for save schema js code
+  saveTextAsFile = () => {
+    let text = this.state.jsCode
+    let blob = new Blob([text], { type: "text/javascript" });
+    FileSaver.saveAs(blob, 'schema.js')
   }
 
-  export default App;
+
+  onSchemaCodeChange = (schemaCode) => {
+    this.setState(state => ({
+      schemaCode
+    }))
+  }
+
+  onJsCodeChange = (jsCode) => {
+    this.setState(state => ({
+      jsCode
+    }))
+  }
+
+  submitSchemaCode = () => {
+    function post(path, params, method) {
+      method = method || "post";
+
+      let form = document.createElement("form");
+      form.setAttribute("method", method);
+      form.setAttribute("action", path);
+
+      for (let key in params) {
+        if (params.hasOwnProperty(key)) {
+          let hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", key);
+          hiddenField.setAttribute("value", params[key]);
+
+          form.appendChild(hiddenField);
+        }
+      }
+      document.body.appendChild(form);
+      form.submit();
+    }
+    post('/schemas', { schema: this.state.schemaCode })
+  }
+
+  // function to check is input string contains number
+  startsWithNumber = (text) => {
+    return /^[0-9]/.test(text);
+  }
+
+  // function which is creating text in schema text area
+  getTextFromModel = (data) => {
+    let code = '\n'
+    code += 'type Query {\n'
+
+    for (let i = 0; i < data.tables.length; i += 1) {
+      const table = data.tables[i]
+
+      if (table.name && !this.startsWithNumber(data.tables[i].name)) {
+        code += `    ${table.name}: ${table.name}\n`
+      }
+    }
+    code += `}\n\n`
+
+    for (let i = 0; i < data.tables.length; i += 1) {
+      const table = data.tables[i]
+
+      if (table.name && !this.startsWithNumber(data.tables[i].name)) {
+        code += `type ${table.name} {\n`
+        for (let j = 0; j < table.attributes.length; j += 1) {
+          const attr = table.attributes[j]
+          if (attr.field !== '') {
+            code += `    ${attr.field}: ${attr.type}\n`
+          }
+        }
+        code += `}\n\n`
+      }
+    }
+
+    return code + '\n'
+  }
+
+  // function which is creating schema js code in textarea
+  getExpressCode = (data) => {
+    let code = '\n'
+    for (let i = 0; i < data.tables.length; i += 1) {
+      const table = data.tables[i]
+
+      if (table.name && !this.startsWithNumber(data.tables[i].name)) {
+        code += `const ${table.name}Type = new GraphQLObjectType({\n`
+          + `    name: ${table.name},\n`
+          + `    fields: () => ({\n`
+        for (let j = 0; j < table.attributes.length; j += 1) {
+          const attr = table.attributes[j]
+          if (attr.field !== '') {
+            code += `        ${attr.field}: {\n`
+              + `            type: GraphQL${attr.type}\n`
+              + `        }`
+          }
+          if (j < table.attributes.length - 1 && attr.field !== '') {
+            code += `,\n`
+          }
+        }
+        code += `\n`
+          + `    })\n`
+          + `})\n\n`
+      }
+    }
+
+    return code + '\n'
+  }
+
+  render() {
+    const { data } = this.state;
+    return [
+
+      <MuiThemeProvider>
+        <div className="App">
+          <Fullscreen style={{ height: '2000px', backgroundColor: 'rgb(51,51,51)' }}
+            enabled={this.state.isFullscreenEnabled}
+            onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
+          >
+            <div className='full-screenable-node'>
+              <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} submitSchemaCode={this.submitSchemaCode} />
+
+              <SplitPane style={{ 'backgroundColor': 'rgb(51,51,51)' }} split="vertical" defaultSize="50%">
+                <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                  updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
+
+                <div className="TextEditor">
+                  <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
+                  <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
+                </div>
+              </SplitPane>
+            </div>
+          </Fullscreen>
+        </div>
+      </MuiThemeProvider>
+    ];
+  }
+}
+
+export default App;
 

@@ -104,6 +104,7 @@ class Table extends React.Component {
                                                     options={options}
                                                     simpleValue
                                                     autosize={true}
+                                                    clearable={false}
                                                     value={tables[tableIndex].attributes[i].type}
                                                 />
                                             </div>
@@ -112,7 +113,7 @@ class Table extends React.Component {
                                 )
                             })}
                             <tr>
-                                <td className='addbutton' colSpan={2}><Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button> </td>
+                                <td className='addRowWrap' colSpan={2}><Button className="addRow" onClick={() => onAddRow(tableIndex)}> ADD FIELD </Button> </td>
                             </tr>
                         </tbody>
                     </table>
