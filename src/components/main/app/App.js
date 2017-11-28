@@ -441,7 +441,7 @@ class App extends Component {
                   <Popover
                     id="popover-basic"
                     placement="right"
-                    positionLeft={300}
+                    positionLeft={600}
                     positionTop={500}
                     title="Express code"
                   >

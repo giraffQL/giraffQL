@@ -29,25 +29,10 @@
     border-spacing: 1px;
 }
 
-
-.redTable {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: separate;
-    border-top:3px solid red;
-    border-radius: 15px;
-    position: relative;
-}
-
-.redTable td, .redTable th {
-    border: 1px solid red;
-    padding: 8px;
-    background-color: #977359;
-}
-
-
 .alert {
     font-size:20px;
-    color:red
+    color:red;
+    width:300px;
 }
 
 
