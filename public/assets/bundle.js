@@ -2545,7 +2545,7 @@ var App = function (_Component) {
           for (var j = 0; j < table.attributes.length; j += 1) {
             var attr = table.attributes[j];
             if (attr.field !== '') {
-              code += '        ' + attr.field + ': {\n' + ('            type: GraphQL' + attr.type + '\n') + '        }';
+              code += '        ' + attr.field + ': {\n' + ('            type: ' + (!attr.relatedToTableId ? 'GraphQL' : '') + attr.type + (attr.relatedToTableId ? 'Type' : '') + '\n') + '        }';
             }
             if (j < table.attributes.length - 1 && attr.field !== '') {
               code += ',\n';
@@ -16468,18 +16468,6 @@ _reactDom2.default.render(_react2.default.createElement(
     null,
     _react2.default.createElement(_Divider2.default, null)
 ), document.getElementById('root'));
-// import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// import Contact from './components/Contact'
-
-
-// ReactDOM.render((
-//   <BrowserRouter>
-//   <div>
-//     <Route exact path="/" component={App}/>
-//     <Route path="/contact" component={Contact}/>
-//   </div>
-//   </BrowserRouter>
-//   ), document.getElementById('root'));
 
 /***/ }),
 /* 212 */
@@ -64411,7 +64399,7 @@ function manhattanPath(attribute, table, allTables) {
         return [];
     }
     // n is grid max
-    var step = 50;
+    var step = 20;
     var destinations = [{ x: table.x, y: table.y }, { x: table.x + table.w, y: table.y }, { x: table.x, y: table.y + table.h }, { x: table.x + table.w, y: table.y + table.h }, { x: table.x + Math.floor(table.w / 2), y: table.y }, { x: table.x + table.w, y: table.y + Math.floor(table.h / 2) }, { x: table.x, y: table.y + Math.floor(table.h / 2) }, { x: table.x + Math.floor(table.w / 2), y: table.y + table.h }];
     // A star algorithm optimization- heuristic (create middle of all those points)
     var gravityCenter = {
@@ -64556,11 +64544,26 @@ var Visualization = function (_React$Component) {
             }));
         };
 
+        _this.translateSvgPoints = function (points) {
+            return points.map(function (point) {
+                return {
+                    x: point.x - _this.svgPosition.left,
+                    y: point.y - _this.svgPosition.top
+                };
+            });
+        };
+
         _this.state = {
             start: null,
             end: null
         };
         _this.tableRefs = [];
+        _this.svgPosition = {
+            top: 0,
+            left: 0,
+            width: 0,
+            height: 0
+        };
         return _this;
     }
 
@@ -64609,7 +64612,9 @@ var Visualization = function (_React$Component) {
                         null,
                         _react2.default.createElement(
                             'svg',
-                            { className: 'relations' },
+                            { className: 'relations', ref: function ref(e) {
+                                    _this2.svgPosition = e && e.getBoundingClientRect();
+                                } },
                             _react2.default.createElement(
                                 'defs',
                                 null,
@@ -64626,16 +64631,12 @@ var Visualization = function (_React$Component) {
                                 )
                             ),
                             start !== null && end !== null && clickedRow && _react2.default.createElement(_reactSvgPathline.PathLine, {
-                                points: [start, end],
+                                points: this.translateSvgPoints([start, end]),
                                 stroke: 'red',
                                 strokeWidth: '3',
                                 fill: 'none',
                                 r: 10,
-                                markerEnd: 'url(#triangle)', markerStart: 'url(#circle)' })
-                        ),
-                        _react2.default.createElement(
-                            'svg',
-                            { className: 'relation' },
+                                markerEnd: 'url(#triangle)', markerStart: 'url(#circle)' }),
                             data.tables.map(function (table, i) {
                                 if (table) {
                                     return table.attributes.map(function (attr, ai) {
@@ -64649,7 +64650,7 @@ var Visualization = function (_React$Component) {
                                             return pathPoints.length && _react2.default.createElement(_reactSvgPathline.PathLine, {
                                                 id: 'svgId',
                                                 key: i + '-' + ai,
-                                                points: _lodash2.default.reverse(pathPoints),
+                                                points: _this2.translateSvgPoints(_lodash2.default.reverse(pathPoints)),
                                                 stroke: 'red',
                                                 strokeWidth: '4',
                                                 fill: 'none',
@@ -88403,7 +88404,7 @@ exports = module.exports = __webpack_require__(27)(undefined);
 
 
 // module
-exports.push([module.i, ".appBar {\n  width:100%;\n  height:58px;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n/*add and delete buttons*/\n.addAndClearBtns {\n  float: left;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 2px solid rgb(51,51,51);\n  border-radius: 50%;\n  background-color: #FFD000;\n}\n\n#createTableBtn {\n  /*color: white;*/\n  background-color: rgba(30,130,76,1);\n}\n\n#createTableBtn:hover {\n  color: rgba(30,130,76,1);\n  background-color: white;\n  border-color: white;\n}\n\n#clearBtn {\n  background-color: rgba(166,0,0,1);\n}\n\n#clearBtn:hover {\n  color: rgba(166,0,0,1);\n  background-color: white;\n  border-color: white;\n}\n\n.save {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.save:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n.test {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.test:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}", ""]);
+exports.push([module.i, ".appBar {\n  width:100%;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n/*add and delete buttons*/\n.addAndClearBtns {\n  float: left;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 2px solid rgb(51,51,51);\n  border-radius: 50%;\n  background-color: #FFD000;\n}\n\n#createTableBtn {\n  /*color: white;*/\n  background-color: rgba(30,130,76,1);\n}\n\n#createTableBtn:hover {\n  color: rgba(30,130,76,1);\n  background-color: white;\n  border-color: white;\n}\n\n#clearBtn {\n  background-color: rgba(166,0,0,1);\n}\n\n#clearBtn:hover {\n  color: rgba(166,0,0,1);\n  background-color: white;\n  border-color: white;\n}\n\n.save {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.save:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n.test {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.test:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}", ""]);
 
 // exports
 
@@ -88448,7 +88449,7 @@ exports = module.exports = __webpack_require__(27)(undefined);
 
 
 // module
-exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 10000px;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    margin: 10px;\n    border-top: 10px solid #BD9A63; /* need border-top to even out top border */\n    border-radius: 15px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n}\n\n.table td, .table th {\n    border: 8px solid #BD9A63;\n    padding: 0px;\n    background-color: #977359;\n    width: 100%;\n    border-spacing: 1px;\n}\n\n\n.redTable {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate;\n    margin: 10px;\n    border-top:3px solid red;\n    border-radius: 15px;\n    position: relative;\n}\n\n.redTable td, .redTable th {\n    border: 1px solid red;\n    padding: 8px;\n    background-color: #977359;\n}\n\n\n.alert {\n    font-size:20px;\n    color:red\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n/*add delete and save buttons*/\n.toolPanel {\n    /*border: 2px solid red;*/\n    padding-top: 5px;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 20px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 20px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 90px;\n    border-radius: 4px;\n    background-color: #9FA767; /*rgba(30,130,76,0.4); */ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: white;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgba(30,130,76,0.4);\n}\n\n.typetd {\n    /*width:180px;*/\n    /*text-align: center;*/\n}\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 3px;\n    color: white;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.Select-input {\n    width:100px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
+exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 10000px;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    border-top: 10px solid #BD9A63; /* need border-top to even out top border */\n    border-radius: 15px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n    margin: 0px;\n}\n\n.table td, .table th {\n    border: 8px solid #BD9A63;\n    padding: 0px;\n    background-color: #977359;\n    width: 100%;\n    border-spacing: 1px;\n}\n\n\n.redTable {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate;\n    border-top:3px solid red;\n    border-radius: 15px;\n    position: relative;\n}\n\n.redTable td, .redTable th {\n    border: 1px solid red;\n    padding: 8px;\n    background-color: #977359;\n}\n\n\n.alert {\n    font-size:20px;\n    color:red\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n/*add delete and save buttons*/\n.toolPanel {\n    /*border: 2px solid red;*/\n    padding-top: 5px;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 20px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 20px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 90px;\n    border-radius: 4px;\n    background-color: #9FA767; /*rgba(30,130,76,0.4); */ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: white;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgba(30,130,76,0.4);\n}\n\n.typetd {\n    /*width:180px;*/\n    /*text-align: center;*/\n}\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 3px;\n    color: white;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.Select-input {\n    width:100px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
 
 // exports
 

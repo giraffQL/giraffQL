@@ -22,15 +22,3 @@ ReactDOM.render(
         <Divider />
     </BrowserRouter>,
     document.getElementById('root'));
-// import { BrowserRouter, Switch, Route } from 'react-router-dom'
-// import Contact from './components/Contact'
-
-
-// ReactDOM.render((
-//   <BrowserRouter>
-//   <div>
-//     <Route exact path="/" component={App}/>
-//     <Route path="/contact" component={Contact}/>
-//   </div>
-//   </BrowserRouter>
-//   ), document.getElementById('root'));

@@ -400,7 +400,7 @@ class App extends Component {
           const attr = table.attributes[j]
           if (attr.field !== '') {
             code += `        ${attr.field}: {\n`
-              + `            type: GraphQL${attr.type}\n`
+              + `            type: ${!attr.relatedToTableId ? 'GraphQL' : ''}${attr.type}${attr.relatedToTableId ? 'Type' : ''}\n`
               + `        }`
           }
           if (j < table.attributes.length - 1 && attr.field !== '') {
@@ -419,7 +419,6 @@ class App extends Component {
   render() {
     const { data } = this.state;
     return [
-
       <MuiThemeProvider>
         <div className="App">
           <Fullscreen style={{ height: '2000px', backgroundColor: 'rgb(51,51,51)' }}
