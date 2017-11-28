@@ -66,8 +66,7 @@ function manhattanPath(attribute, table, allTables) {
     starts.forEach(point => visited[matrixIndex(point.x, point.y)] = { px: null, py: null })
     // check if point is overlapping other tables
     function isNotOverlappingTables(x, y) {
-        let tablesNotNull = allTables.filter((table, i) => table !== null);
-        return _.every(tablesNotNull, table => (x <= table.x) || ((table.x + table.w) <= x) || (y <= table.y) || ((table.y + table.h) <= y))
+        return _.every(allTables, table => (x <= table.x) || ((table.x + table.w) <= x) || (y <= table.y) || ((table.y + table.h) <= y))
     }
     // finds end points which satisfies the condition that's less than step afar from x and y
     function nearValidResult(x, y) {

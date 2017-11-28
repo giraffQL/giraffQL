@@ -31,8 +31,21 @@ class Home extends Component {
 
   render() {
     const muiStyles = {
+      // menuItem: {
+      //   'color': '#FFD000',
+      appBar: {
+        'background-color': '#9FA767',
+        'border-bottom': '4px solid white',
+        'line-height': '20px',
+        color: '#fbe4a1'
+      },
+      drawer: {
+        'background-color': '#9FA767',
+        'color': 'white'
+      },
       menuItem: {
-        'color': '#FFD000'
+        'color': 'white',
+        'font-size': '20px'
       }
     }
 
@@ -53,18 +66,10 @@ class Home extends Component {
           >
 
             <div className ='drawertop'>GiraffQL</div>
-            <Link to='/'>
-              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem>
-            </Link>
-            <Link to='/feature'>
-              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem>
-            </Link>
-            <Link to='/app'>
-              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem>
-            </Link>
-            <Link to='/aboutus'>
-              <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem>
-            </Link>
+            <Link to='/'><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>
+            <Link to='/feature'><MenuItem onClick={this.handleClose}>Feature</MenuItem></Link>
+            <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
+            <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
 
           <FlatButton className='gitbutton'
@@ -110,7 +115,7 @@ class Home extends Component {
         </div>
       </div>
       </MuiThemeProvider>
-    )
+    );
   }
 }
 
