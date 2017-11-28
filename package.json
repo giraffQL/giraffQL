@@ -31,7 +31,6 @@
   },
   "scripts": {
     "build": "webpack -w",
-    //to change it to electron copy and paste it - "start":"electron ."
     "start": "nodemon server.js",
     "test": "jest",
     "test:watch": "jest --watch",

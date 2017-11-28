@@ -11,17 +11,15 @@ import MenuItem from 'material-ui/MenuItem';
 // button for drawer
 import FlatButton from 'material-ui/FlatButton';
 // import APP component
-import App from './App.js';
+import App from './app/App.js'
 // import Link from react router for redirection
 import { Link } from 'react-router-dom';
 // import fonticon for github icon
 import FontIcon from 'material-ui/FontIcon';
 // import css for Home component
-import './homestyle.css'
+import '../../css/home.css'
 // import panel from react-bootstrap
 import { Panel } from 'react-bootstrap';
-// import our logo from local folder
-import graff from './graff.png'
 //import materail ui 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import button style from material ui for tryit button
@@ -43,6 +41,8 @@ class Home extends Component {
   render() {
     // drawer style
     const muiStyles = {
+      // menuItem: {
+      //   'color': '#FFD000',
       appBar: {
         'background-color': '#9FA767',
         'border-bottom': '4px solid white',
@@ -60,7 +60,7 @@ class Home extends Component {
     }
 
     return (
-      <MuiThemeProvider>      
+      <MuiThemeProvider>
       <div className='mainpage'>
 
       {/* adding header, drawer button */}
@@ -72,6 +72,7 @@ class Home extends Component {
 
          {/* adding drawer */}
           <Drawer
+            containerStyle={{'background-color':'rgb(51,51,51'}}
             docked={false}
             width={200}
             open={this.state.open}

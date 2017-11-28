@@ -7,17 +7,17 @@ import MenuItem from 'material-ui/MenuItem';
 // for drawer naviagation
 import FlatButton from 'material-ui/FlatButton';
 // import app component
-import App from './App.js'
+import App from './app/App.js'
 // import Link 
 import { Link } from 'react-router-dom'
 // for github button
 import FontIcon from 'material-ui/FontIcon';
 // css for aboutus component
-import './homestyle.css'
+import '../../css/home.css'
 // bootstrap css
-import './../aboutusstyle/bootstrap.min.css'
+import './../../aboutusstyle/bootstrap.min.css'
 // bootstrap css
-import './../aboutusstyle/style.css'
+import './../../aboutusstyle/style.css'
 
 
 

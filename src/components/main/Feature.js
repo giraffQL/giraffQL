@@ -7,13 +7,13 @@ import MenuItem from 'material-ui/MenuItem';
 // BUTTON FOR DRAWER
 import FlatButton from 'material-ui/FlatButton';
 // IMPORT APP
-import App from './App.js'
+import App from './app/App.js'
 // IMPORT LINK PROP FROM REACT ROUTER
 import { Link } from 'react-router-dom'
 // IMPORT ICON FOR GITHUB BUTTON
 import FontIcon from 'material-ui/FontIcon';
 // CSS
-import './homestyle.css'
+import '../../css/home.css'
 // PANEL FROM REACT-BOOTSTRAP (FEATURE PART)
 import { Panel } from 'react-bootstrap';
 
@@ -198,7 +198,7 @@ class Feature extends Component {
       </div>
     </div>
   </section>
-         
+
       </div>
     );
   }

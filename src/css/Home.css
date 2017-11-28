@@ -1,34 +1,41 @@
 #root {
     width:100%;
     height:1200px;;
+    overflow: scroll;
 }
 #routed-component {
     width:100%;
     height:100%;
+    overflow: scroll;
 }
 .mainpage {
     display:flex;
     width:100%;
     height:100%;
     flex-direction:column;
-    align-items: center;    
+    align-items: center;
+    overflow: scroll;
 }
 .header {
     width:100%;
     height:6%;
     display:flex;
     justify-content: space-between;
-    background-color:green;
-    align-items: center;    
+    background-color: green; /*#86E2D5;*/
+    align-items: center;
     position:fixed;
     z-index:1000
 }
 .navbutton {
-    align-items: center;    
-    
+    align-items: center;
 }
+
+.navbutton:hover {
+    color: white;
+}
+
 .gitbutton {
-    align-items: center;    
+    align-items: center;
 }
 .mainimage{
     display:flex;
@@ -38,32 +45,32 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-size: contain
-    
-    
     
 }
+
+/*.coremain {
+    display: flex;
+    height:55%;
+    background-size: contain
+}*/
 .coremain {
     margin-top:2%;
-    display: flex;    
+    display: flex;
     height:60%;
     width:50%;
     flex-direction:row;
     align-items: center;
     justify-content:center;
-    
 }
-
 .image {
     align-self:center;
     justify-content:center;
-    
 }
 .text {
     align-self:center;
     justify-content: flex-end;
-    flex-direction:center;    
-    
+    flex-direction:center;
+
 }
 .maintext {
     margin-top:20px;
@@ -71,12 +78,12 @@
 .grafql {
     font-size:70px;
     justify-content:center;
-    
+
 }
 .second {
     width:100%;
     height:20%;
-    background-color:#E9D460;
+    background-color: #FFD000;/*#E9D460;*/
     display:flex;
     justify-content:center;
     flex-direction:column;
@@ -95,13 +102,11 @@
     display:flex;
     align-items:center;
     margin-top:10px;
-    
 }
 .trytext{
     margin:0px;
     font-weight:bold
 }
-
 .third {
     display:flex;
     flex-direction: row;
@@ -109,15 +114,12 @@
     height:500px;
     justify-content:space-around;
     align-items:center;
-    
 }
-
 .featurebox {
     width:30%;
     height:200px;
     justify-content:space-around;
     align-items:flex-start;
-    
 }
 img {
     max-width:100%;

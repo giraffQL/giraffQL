@@ -7,19 +7,19 @@ import { render } from 'react-dom';
 // REACT-DOM
 import ReactDOM from 'react-dom';
 // IMPORT ABOUTUS COMPONENT
-import Aboutus from './Aboutus.js'
+import Aboutus from '../main/Aboutus.js'
 // IMPORT FEATURE COMPONENT
-import Feature from './Feature.js'
+import Feature from '../main/Feature.js'
 // IMPORT HOME COMPONENT
-import Home from './Home.js'
+import Home from '../main/Home.js'
 // IMPORT APP COMPONENT
-import App from './app.js'
+import App from '../main/app/App.js'
 // IMPORT REACT-ROUTER REDIRECT
 import { Redirect } from 'react-router'
 
 
 class RoutedComponent extends Component {
-  
+
   render() {
     return (
       <div id='routed-component'>
