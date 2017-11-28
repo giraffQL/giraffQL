@@ -2428,7 +2428,9 @@ var App = function (_Component) {
           table.attributes[state.clickedRow.rowIndex].type = state.data.tables[tableIndex].name;
           return {
             clickedRow: null,
-            data: state.data
+            data: state.data,
+            schemaCode: _this.getTextFromModel(state.data),
+            jsCode: _this.getExpressCode(state.data)
           };
         });
       }
@@ -83350,6 +83352,13 @@ var Table = function (_React$Component) {
             );
         };
 
+        _this.isDuplicateTableName = function (tableIndex, tables) {
+            var tableName = tables[tableIndex].name;
+            return tableName && !!tables.find(function (table, index) {
+                return table.name === tableName && index !== tableIndex;
+            });
+        };
+
         _this.propertyRowRefs = [];
         _this.tableRef = null;
         return _this;
@@ -83435,7 +83444,7 @@ var Table = function (_React$Component) {
                         _react2.default.createElement(
                             'tbody',
                             null,
-                            this.startsWithNumber(table.name) ? _react2.default.createElement(
+                            _react2.default.createElement(
                                 'tr',
                                 null,
                                 _react2.default.createElement(
@@ -83456,32 +83465,15 @@ var Table = function (_React$Component) {
                                         { className: 'drag-handle' },
                                         _react2.default.createElement('img', { className: 'img', src: 'https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg' })
                                     ),
-                                    _react2.default.createElement(
+                                    this.startsWithNumber(table.name) && _react2.default.createElement(
                                         'p',
                                         { className: 'alert' },
                                         ' Table name can not start with number '
-                                    )
-                                )
-                            ) : _react2.default.createElement(
-                                'tr',
-                                null,
-                                _react2.default.createElement(
-                                    'th',
-                                    { colSpan: 2, style: style },
-                                    _react2.default.createElement(_reactBootstrap.FormControl, { className: 'tableName', type: 'text', value: table.name, placeholder: 'Table Name', onChange: function onChange(e) {
-                                            return updateTableName(tableIndex, e.target.value);
-                                        } }),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'deletetablebutton', onClick: function onClick() {
-                                                return deleteTable(tableIndex);
-                                            } },
-                                        'x'
                                     ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'drag-handle' },
-                                        _react2.default.createElement('img', { className: 'img', src: 'https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg' })
+                                    this.isDuplicateTableName(tableIndex, tables) && _react2.default.createElement(
+                                        'p',
+                                        { className: 'alert' },
+                                        ' Tables can not have the same name '
                                     )
                                 )
                             ),

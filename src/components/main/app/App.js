@@ -279,7 +279,9 @@ class App extends Component {
         table.attributes[state.clickedRow.rowIndex].type = state.data.tables[tableIndex].name
         return {
           clickedRow: null,
-          data: state.data
+          data: state.data,
+          schemaCode: this.getTextFromModel(state.data),
+          jsCode: this.getExpressCode(state.data)
         }
       })
     }
