@@ -2661,7 +2661,18 @@ var App = function (_Component) {
                   'div',
                   { className: 'TextEditor' },
                   _react2.default.createElement(_TextEditor2.default, { code: this.state.schemaCode, onChange: this.onSchemaCodeChange }),
-                  _react2.default.createElement(_ExpressCode2.default, { code: this.state.jsCode, onChange: this.onJsCodeChange })
+                  _react2.default.createElement(_ExpressCode2.default, { code: this.state.jsCode, onChange: this.onJsCodeChange }),
+                  _react2.default.createElement(
+                    _reactBootstrap.Popover,
+                    {
+                      id: 'popover-basic',
+                      placement: 'right',
+                      positionLeft: 300,
+                      positionTop: 500,
+                      title: 'Express code'
+                    },
+                    'This express code you can export to your editor.'
+                  )
                 )
               )
             )
@@ -55879,6 +55890,16 @@ var MenuComp = function (_Component) {
           'color': '#FFD300'
         }
       };
+      var tooltipCT = _react2.default.createElement(
+        _reactBootstrap.Tooltip,
+        { id: 'tooltip' },
+        'Create Table'
+      );
+      var tooltipCA = _react2.default.createElement(
+        _reactBootstrap.Tooltip,
+        { id: 'tooltip' },
+        'Clear All'
+      );
       return _react2.default.createElement(
         'div',
         null,
@@ -55897,14 +55918,22 @@ var MenuComp = function (_Component) {
             'div',
             { className: 'toolPanel' },
             _react2.default.createElement(
-              _reactBootstrap.Button,
-              { id: 'createTableBtn', className: 'addAndClearBtns', bsSize: 'large', onClick: onAddTable },
-              '+'
+              _reactBootstrap.OverlayTrigger,
+              { placement: 'left', overlay: tooltipCT },
+              _react2.default.createElement(
+                _reactBootstrap.Button,
+                { id: 'createTableBtn', className: 'addAndClearBtns', bsSize: 'large', onClick: onAddTable },
+                '+'
+              )
             ),
             _react2.default.createElement(
-              _reactBootstrap.Button,
-              { id: 'clearBtn', className: 'addAndClearBtns', bsSize: 'large', onClick: deleteAllTables },
-              'x'
+              _reactBootstrap.OverlayTrigger,
+              { placement: 'bottom', overlay: tooltipCA },
+              _react2.default.createElement(
+                _reactBootstrap.Button,
+                { id: 'clearBtn', className: 'addAndClearBtns', bsSize: 'large', onClick: deleteAllTables },
+                'x'
+              )
             ),
             _react2.default.createElement(
               'button',
@@ -88396,7 +88425,7 @@ exports = module.exports = __webpack_require__(27)(undefined);
 
 
 // module
-exports.push([module.i, ".appBar {\n  width:100%;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n/*add and delete buttons*/\n.addAndClearBtns {\n  float: left;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 2px solid rgb(51,51,51);\n  border-radius: 50%;\n  background-color: #FFD000;\n}\n\n#createTableBtn {\n  /*color: white;*/\n  background-color: rgba(30,130,76,1);\n}\n\n#createTableBtn:hover {\n  color: rgba(30,130,76,1);\n  background-color: white;\n  border-color: white;\n}\n\n#clearBtn {\n  background-color: rgba(166,0,0,1);\n}\n\n#clearBtn:hover {\n  color: rgba(166,0,0,1);\n  background-color: white;\n  border-color: white;\n}\n\n.save {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.save:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n.test {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.test:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}", ""]);
+exports.push([module.i, ".appBar {\n  width:100%;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n/*add and delete buttons*/\n.addAndClearBtns {\n  float: left;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 2px solid rgb(51,51,51);\n  border-radius: 50%;\n  background-color: #FFD000;\n}\n\n#createTableBtn {\n  /*color: white;*/\n  background-color: rgba(30,130,76,1);\n}\n\n#createTableBtn:hover {\n  color: rgba(30,130,76,1);\n  background-color: white;\n  border-color: white;\n}\n\n#clearBtn {\n  background-color: rgba(166,0,0,1);\n}\n\n#clearBtn:hover {\n  color: rgba(166,0,0,1);\n  background-color: white;\n  border-color: white;\n}\n\n.save {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.save:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n.test {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.test:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n#tooltip {\n  font-size: 20px;\n}", ""]);
 
 // exports
 

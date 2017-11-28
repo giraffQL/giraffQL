@@ -216,15 +216,6 @@ class Visualization extends React.Component {
             <div className='visualization' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove}>
             <Scrollbars style={{ height: '100%', width: '100%' }}>
                 <div className='toolbar'>
-                    {/* <div class="button_base b02_slide_in">
-                    {/* <div class="button_base b02_slide_in">
-                        <div bsStyle="success" bsSize="large" onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
-                    <div className="button_base b02_slide_in">
-                        <div onClick={onAddTable}><p className ='buttonone'>Create Table</p></div>
-
-                        <div></div>
-                        {<div onClick={onAddTable}><p className ='buttontwo'>Create Table</p></div>}
-                    </div>*/}
                 </div>
                 <div>
                     <svg className="relations" ref={e => { this.svgPosition = e && e.getBoundingClientRect() }}>

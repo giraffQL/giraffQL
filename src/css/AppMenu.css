@@ -62,3 +62,7 @@
   background-color: white;
   color: rgb(51,51,51);
 }
+
+#tooltip {
+  font-size: 20px;
+}

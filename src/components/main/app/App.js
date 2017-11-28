@@ -7,7 +7,7 @@ import Fullscreen from 'react-full-screen';
 // MATERIAL UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // REACT-BOOTSTRAP
-import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+import { FormControl, Button, ButtonGroup, Nav, Popover } from 'react-bootstrap';
 //FILE SERVER
 import FileSaver from 'file-saver';
 //COMPONENTS
@@ -15,6 +15,7 @@ import MenuComp from './AppMenu';
 import Visualization from './table/Visualization';
 import TextEditor from './code/TextEditor'
 import ExpressCode from './code/ExpressCode'
+
 
 
 
@@ -437,6 +438,15 @@ class App extends Component {
                 <div className="TextEditor">
                   <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
                   <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
+                  <Popover
+                    id="popover-basic"
+                    placement="right"
+                    positionLeft={300}
+                    positionTop={500}
+                    title="Express code"
+                  >
+                    This express code you can export to your editor.
+                  </Popover>
                 </div>
               </SplitPane>
             </div>
