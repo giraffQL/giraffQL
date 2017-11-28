@@ -10,7 +10,6 @@
 /*add and delete buttons*/
 .addAndClearBtns {
   float: left;
-  margin-top: 8px;
   color: rgb(51,51,51);
   font-weight: bold;
   border: 2px solid rgb(51,51,51);
@@ -41,7 +40,6 @@
 
 .save {
   color: rgb(51,51,51);
-  margin-top: 10px;
   background-color: #FFD000;
   font-size: 18px;
   font-weight: bold;
@@ -55,7 +53,6 @@
 
 .test {
   color: rgb(51,51,51);
-  margin-top: 10px;
   background-color: #FFD000;
   font-size: 18px;
   font-weight: bold;
