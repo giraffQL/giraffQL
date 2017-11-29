@@ -1,7 +1,6 @@
 #root {
     width:100%;
-    height:1200px;;
-    overflow: scroll;
+    height:1200px;
 }
 #routed-component {
     width:100%;

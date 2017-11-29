@@ -18,7 +18,7 @@ body {
 }
 
 .full-screenable-node { /* make fullscreen background same color as body */
-  color: #9FA767;
+  color: #2d2d2d;
   font-weight: 600;
   height: 100%;
 }
