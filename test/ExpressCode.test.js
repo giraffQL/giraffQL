@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TextEditor from '../src/components/main/app/code/TextEditor'
+import ExpressCode from '../src/components/main/app/code/ExpressCode'
 import { shallow, mount, render } from "enzyme";
 import { wrap } from 'module';
 
@@ -14,26 +14,26 @@ const dataProps = {
 }
 const test = [{ x: 1, y: 2, tables: [1, 2, 3] }]
 
-describe('TextEditor Rendering properly', () => {
+describe('ExpressCode Rendering properly', () => {
 
-  it('TextEditor renders', () => {
-    const wrapper = shallow(<TextEditor data={test[0]} />);
+  it('ExpressCode renders', () => {
+    const wrapper = shallow(<ExpressCode data={test[0]} />);
     const inst = wrapper.instance();
     expect(inst).toBeTruthy();
   })
 
-  it('TextEditor should mount', () => {
-    expect(mount(<TextEditor data={dataProps.data} />)
-      .find('TextEditor').length).toBe(1);
+  it('ExpressCode should mount', () => {
+    expect(mount(<ExpressCode data={dataProps.data} />)
+      .find('ExpressCode').length).toBe(1);
   });
 
-  it('TextEditor should contain TextEditor', () => {
-    const wrapper = mount(<TextEditor data={dataProps.data} />);
-    expect(wrapper.find('TextEditor').exists()).toBe(true);
+  it('ExpressCode should contain ExpressCode', () => {
+    const wrapper = mount(<ExpressCode data={dataProps.data} />);
+    expect(wrapper.find('ExpressCode').exists()).toBe(true);
   });
 
   it('onChange should fire', () => {
-    const wrapper = mount(<TextEditor data={dataProps.data} onChange={jestMock} />);
+    const wrapper = mount(<ExpressCode data={dataProps.data} onChange={jestMock} />);
     wrapper.simulate('change')
     expect(jestMock).toBeCalled();
   });

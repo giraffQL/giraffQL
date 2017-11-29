@@ -36,7 +36,7 @@ class MenuComp extends Component {
       download: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'font-weight': '400',
+        'fontWeight': '400',
         'textAlign': 'center',
         'borderBottom': '1px dashed #fdd217'
       },
@@ -96,7 +96,7 @@ class MenuComp extends Component {
           open={state.open}
           onRequestChange={onRequestChange}
         >
-        <div className ='drawertop'>GiraffQL</div>
+        <div className ='drawertop' style={{'font-weight': 'bold'}}>GiraffQL</div>
           <Link to="/">
             <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
               Home
@@ -114,12 +114,7 @@ class MenuComp extends Component {
           </Link>
           <Link to="/aboutus">
             <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
-              About
-                </MenuItem>
-          </Link>
-          <Link to="/download">
-            <MenuItem style={muiStyles.download} onClick={menuClose}>
-              Download
+              About us
                 </MenuItem>
           </Link>
           <MenuItem style={muiStyles.menuItem} onClick={fullscreenToggle}>

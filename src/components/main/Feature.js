@@ -12,8 +12,6 @@ import App from './app/App.js'
 import { Link } from 'react-router-dom'
 // IMPORT ICON FOR GITHUB BUTTON
 import FontIcon from 'material-ui/FontIcon';
-// CSS
-import '../../css/home.css'
 // PANEL FROM REACT-BOOTSTRAP (FEATURE PART)
 import { Panel } from 'react-bootstrap';
 
@@ -34,12 +32,12 @@ class Feature extends Component {
   render() {
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(0,0,0)',
+        'backgroundColor': '#2d2d2d',
         'lineHeight': '20px',
         'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': 'rgb(0,0,0)',
+        'backgroundColor': '#2d2d2d',
       },
       menuItem: {
         'color': '#fdd217',
@@ -56,7 +54,7 @@ class Feature extends Component {
         <div className='header' style={muiStyles.appBar}>
           <FlatButton style={muiStyles.menuIcon} className='navbutton'
             onClick={this.handleToggle}
-            icon={<i class="material-icons">list</i>}
+            icon={<i className="material-icons">list</i>}
              />
           <Drawer className ='drawer'
             containerStyle={muiStyles.drawer}

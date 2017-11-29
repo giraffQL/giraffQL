@@ -12,13 +12,6 @@ import App from './app/App.js'
 import { Link } from 'react-router-dom'
 // for github button
 import FontIcon from 'material-ui/FontIcon';
-// css for aboutus component
-import '../../css/home.css'
-// bootstrap css
-// import './../../aboutusstyle/bootstrap.min.css'
-// bootstrap css
-// import './../../aboutusstyle/style.css'
-
 
 
 class Aboutus extends Component {
@@ -36,17 +29,18 @@ class Aboutus extends Component {
   render() {
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(0,0,0)',
+        'backgroundColor': 'rgb(45,45,45)',
         'lineHeight': '20px',
         'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': 'rgb(0,0,0)',
+        'backgroundColor': 'rgb(45,45,45)',
       },
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'textAlign': 'center'
+        'textAlign': 'center',
+        'margin-top': '10px'
       },
       download: {
         'color': '#fdd217',
@@ -94,7 +88,7 @@ class Aboutus extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-lg-8 col-lg-offset-2">
-                  <h2>ABOUT US</h2>
+                  <h2>OUR TEAM</h2>
 
                     <div className="wow bounceInDown" data-wow-delay="0.4s">
                     </div>
@@ -120,7 +114,7 @@ class Aboutus extends Component {
                         <h5>Jelena Gruica</h5>
 
                     {/* description */}
-                        <p className="subtitle">hello worldr</p>
+                        <p className="subtitle">Software Engineer</p>
                       </div>
                     </div>
                   </div>
@@ -134,7 +128,7 @@ class Aboutus extends Component {
                         <h5>Scott Rosen</h5>
 
                         {/* description */}
-                        <p className="subtitle">Ruby on Rails</p>
+                        <p className="subtitle">Software Engineer</p>
                         <div className="avatar"><img src="./../img/team/2.jpg" alt="" className="img-responsive img-circle" /></div>
         
                       </div>
@@ -150,7 +144,7 @@ class Aboutus extends Component {
                         <h5>Harry Cam</h5>
 
                         {/* description */}
-                        <p className="subtitle">jQuery Ninja</p>
+                        <p className="subtitle">Software Engineer</p>
                         <div className="avatar"><img src="./../img/team/3.jpg" alt="" className="img-responsive img-circle" /></div>
                       </div>
                     </div>
@@ -165,7 +159,7 @@ class Aboutus extends Component {
                         <h5>Woojun Choi</h5>
 
                         {/* description */}
-                        <p className="subtitle">Typographer</p>
+                        <p className="subtitle">Software Engineer</p>
                         <div className="avatar"><img src="./../img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
         
                       </div>

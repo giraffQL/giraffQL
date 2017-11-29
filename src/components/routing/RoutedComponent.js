@@ -11,8 +11,6 @@ import App from '../main/app/App.js'
 import Home from '../main/Home.js'
 import Aboutus from '../main/Aboutus.js'
 import Feature from '../main/Feature.js'
-// IMPORT HOME COMPONENT
-
 
 
 class RoutedComponent extends Component {
