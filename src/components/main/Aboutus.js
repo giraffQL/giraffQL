@@ -10,7 +10,7 @@ import 'typeface-roboto'
 // import './../aboutusstyle/bootstrap.css'
 // import './../aboutusstyle/bootstrap.min.css'
 // import './../aboutusstyle/style.css'
-import picone from '../../img/team/jelena.jpg'
+import picone from '../../assets/img/team/jelena.jpg'
 
 
 class Aboutus extends Component {

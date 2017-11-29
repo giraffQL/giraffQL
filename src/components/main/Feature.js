@@ -9,7 +9,7 @@ import 'typeface-roboto'
 // COMPONENTS
 import App from '../main/app/App.js'
 // STATIC FILES
-import picone from '../../img/team/jelena.jpg'
+import picone from '../../assets/img/team/jelena.jpg'
 // import './homestyle.css'
 
 

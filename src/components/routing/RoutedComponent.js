@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import App from '../main/app/App.js'
 import Home from '../main/Home.js'
 import Aboutus from '../main/Aboutus.js'
-import Feature from './Feature.js'
+import Feature from '../main/Feature.js'
 
 
 class RoutedComponent extends Component {
