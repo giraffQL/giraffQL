@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import SplitPane from "react-split-pane"
-//TEXT CSS
-// import '../css/index.css';
-// import '../css/App.css';
 import Fullscreen from 'react-full-screen';
 // MATERIAL UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -59,15 +56,6 @@ class App extends Component {
         s4() + '-' + s4() + s4() + s4();
     }
 
-    // let newstate = Object.assign({}, this.state);
-    // let tables = newstate.data.tables;
-    // newstate.data.tables.push({
-    //       id: guid(),
-    //       name: '',
-    //       attributes: [
-    //         { field: '', type: '' }
-    //       ],
-    //       defaultPosition: 210 * tables.length
     let newstate = this.state.data.tables.slice()
     const newData = {
       tables: newstate.concat({

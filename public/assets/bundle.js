@@ -1635,10 +1635,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-//TEXT CSS
-// import '../css/index.css';
-// import '../css/App.css';
-
 // MATERIAL UI
 
 // REACT-BOOTSTRAP
@@ -1665,15 +1661,6 @@ var App = function (_Component) {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
       }
 
-      // let newstate = Object.assign({}, this.state);
-      // let tables = newstate.data.tables;
-      // newstate.data.tables.push({
-      //       id: guid(),
-      //       name: '',
-      //       attributes: [
-      //         { field: '', type: '' }
-      //       ],
-      //       defaultPosition: 210 * tables.length
       var newstate = _this.state.data.tables.slice();
       var newData = {
         tables: newstate.concat({
@@ -17008,12 +16995,6 @@ __webpack_require__(517);
 __webpack_require__(519);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import './aboutusstyle/animate.css'
-// // import './aboutusstyle/bootstrap.css' 
-// import './aboutusstyle/bootstrap.min.css'
-// import './aboutusstyle/style.css'
-
 
 //CSS
 _reactDom2.default.render(_react2.default.createElement(
@@ -42187,9 +42168,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 //COMPONENTS
 
 
-// IMPORT HOME COMPONENT
-
-
 var RoutedComponent = function (_Component) {
   _inherits(RoutedComponent, _Component);
 
@@ -55811,7 +55789,7 @@ var MenuComp = function (_Component) {
           },
           _react2.default.createElement(
             'div',
-            { className: 'drawertop' },
+            { className: 'drawertop', style: { 'font-weight': 'bold' } },
             'GiraffQL'
           ),
           _react2.default.createElement(
@@ -55847,16 +55825,7 @@ var MenuComp = function (_Component) {
             _react2.default.createElement(
               _MenuItem2.default,
               { style: muiStyles.menuItem, onClick: menuClose },
-              'About'
-            )
-          ),
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: '/download' },
-            _react2.default.createElement(
-              _MenuItem2.default,
-              { style: muiStyles.download, onClick: menuClose },
-              'Download'
+              'About us'
             )
           ),
           _react2.default.createElement(
@@ -64268,9 +64237,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 // COMPONENTS
-
-
-// import css from '../../css/Table.css'
 
 
 // creating a grid because we have to have track what we visited before
@@ -87040,8 +87006,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // import fonticon for github icon
 
-// import css for Home component
-// import '../../css/home.css'
 // import panel from react-bootstrap
 
 //import materail ui 
@@ -87082,7 +87046,6 @@ var Home = function (_Component) {
         appBar: {
           'backgroundColor': 'rgba(0,0,0,0)',
           'lineHeight': '20px'
-          // 'borderBottom': '3px solid #f6f6f7'
         },
         drawer: {
           'backgroundColor': 'rgb(45,45,45)'
@@ -87090,6 +87053,7 @@ var Home = function (_Component) {
         menuItem: {
           'color': '#fdd217',
           'fontSize': '16px',
+          'font-weight': '400',
           'textAlign': 'center'
         },
         menuIcon: {
@@ -87127,7 +87091,7 @@ var Home = function (_Component) {
               },
               _react2.default.createElement(
                 'div',
-                { className: 'drawertop' },
+                { className: 'drawertop', style: { 'font-weight': 'bold' } },
                 'GiraffQL'
               ),
               _react2.default.createElement(
@@ -87373,14 +87337,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // import Link 
 
 // for github button
-
-
-// css for aboutus component
-// import '../../css/Home.css'
-// bootstrap css
-// import './../src/aboutusstyle/bootstrap.min.css'
-// bootstrap css
-// import './../../aboutusstyle/style.css'
 
 
 var Aboutus = function (_Component) {
@@ -87746,8 +87702,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // IMPORT ICON FOR GITHUB BUTTON
 
-// // CSS
-// import '../../css/Home.css'
 // PANEL FROM REACT-BOOTSTRAP (FEATURE PART)
 
 

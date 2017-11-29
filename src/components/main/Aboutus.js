@@ -12,13 +12,6 @@ import App from './app/App.js'
 import { Link } from 'react-router-dom'
 // for github button
 import FontIcon from 'material-ui/FontIcon';
-// css for aboutus component
-// import '../../css/Home.css'
-// bootstrap css
-// import './../src/aboutusstyle/bootstrap.min.css'
-// bootstrap css
-// import './../../aboutusstyle/style.css'
-
 
 
 class Aboutus extends Component {
