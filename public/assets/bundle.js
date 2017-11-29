@@ -87523,7 +87523,7 @@ var Aboutus = function (_Component) {
                         _react2.default.createElement('img', { src: 'https://github.com/giraffQL/giraffQL/blob/master/src/img/team/jelena.jpg?raw=true', alt: '', className: 'img-responsive img-circle' })
                       ),
                       _react2.default.createElement(
-                        'h5',
+                        'h3',
                         null,
                         'Jelena Gruica'
                       ),
@@ -87560,7 +87560,7 @@ var Aboutus = function (_Component) {
                       'div',
                       { className: 'inner' },
                       _react2.default.createElement(
-                        'h5',
+                        'h3',
                         null,
                         'Scott Rosen'
                       ),
@@ -87602,7 +87602,7 @@ var Aboutus = function (_Component) {
                       'div',
                       { className: 'inner' },
                       _react2.default.createElement(
-                        'h5',
+                        'h3',
                         null,
                         'Harry Cam'
                       ),
@@ -87644,7 +87644,7 @@ var Aboutus = function (_Component) {
                       'div',
                       { className: 'inner' },
                       _react2.default.createElement(
-                        'h5',
+                        'h3',
                         null,
                         'Woojun Choi'
                       ),

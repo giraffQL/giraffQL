@@ -111,7 +111,7 @@ class Aboutus extends Component {
                     <div className="inner">
                       <div className="avatar"><img src="https://github.com/giraffQL/giraffQL/blob/master/src/img/team/jelena.jpg?raw=true" alt="" className="img-responsive img-circle" /></div>
 
-                      <h5>Jelena Gruica</h5>
+                      <h3>Jelena Gruica</h3>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/jelena-gruica/">Linkedin</a>/
@@ -128,7 +128,7 @@ class Aboutus extends Component {
                 <div className="wow bounceInUp" data-wow-delay="0.5s">
                   <div className="team boxed-grey">
                     <div className="inner">
-                      <h5>Scott Rosen</h5>
+                      <h3>Scott Rosen</h3>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/scott-rosen/">Linkedin</a>/
@@ -146,7 +146,7 @@ class Aboutus extends Component {
                 <div className="wow bounceInUp" data-wow-delay="0.8s">
                   <div className="team boxed-grey">
                     <div className="inner">
-                      <h5>Harry Cam</h5>
+                      <h3>Harry Cam</h3>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/harry-cam/">Linkedin</a>/
@@ -163,7 +163,7 @@ class Aboutus extends Component {
                 <div className="wow bounceInUp" data-wow-delay="1s">
                   <div className="team boxed-grey">
                     <div className="inner">
-                      <h5>Woojun Choi</h5>
+                      <h3>Woojun Choi</h3>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/woojunchoi/">Linkedin</a>/
