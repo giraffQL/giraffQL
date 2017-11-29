@@ -88,6 +88,17 @@
     color: rgba(45,45,45,45);
 }
 
+.linePort {
+  margin-top: 17.5px;
+  padding: 0;
+  width: 12px;
+  height: 24px;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+  position: absolute;
+  background-color: #fdd217;
+  border: 1px solid #fdd217;
+}
 
 .deletetablebutton {
     color: rgb(166, 0, 0);
