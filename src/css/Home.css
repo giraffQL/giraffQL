@@ -35,7 +35,8 @@
     color: white;
 }
 .material-icons {
-    color:#FDD217
+    color:#FDD217;
+    size:60px;
 }
 
 .gitbutton {

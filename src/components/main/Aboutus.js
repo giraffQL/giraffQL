@@ -15,6 +15,7 @@ import FontIcon from 'material-ui/FontIcon';
 // css for aboutus component
 import '../../css/home.css'
 // bootstrap css
+import './../src/aboutstyle/style.css'
 // import './../../aboutusstyle/bootstrap.min.css'
 // bootstrap css
 // import './../../aboutusstyle/style.css'
