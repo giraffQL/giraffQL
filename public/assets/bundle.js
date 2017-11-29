@@ -2845,7 +2845,7 @@ var App = function (_Component) {
               _react2.default.createElement(_AppMenu2.default, { state: this.state, menuToggle: this.menuToggle, menuClose: this.menuClose, onRequestChange: this.onRequestChange, fullscreenToggle: this.fullscreenToggle, onAddTable: this.onAddTable, deleteAllTables: this.deleteAllTables, saveTextAsFile: this.saveTextAsFile, submitSchemaCode: this.submitSchemaCode }),
               _react2.default.createElement(
                 _reactSplitPane2.default,
-                { style: { 'backgroundColor': 'rgb(45,45,45)' }, split: 'vertical', defaultSize: '50%' },
+                { style: { 'backgroundColor': 'rgb(45,45,45)' }, split: 'vertical', defaultSize: '70%' },
                 _react2.default.createElement(_Visualization2.default, { data: this.state.data, clickedRow: this.state.clickedRow, onAddRow: this.onAddRow, onAddTable: this.onAddTable,
                   updateTableName: this.updateTableName, updateRowProp: this.updateRowProp, updateRowType: this.updateRowType, onDragTable: this.onDragTable, refreshTablePositions: this.refreshTablePositions, deleteTable: this.deleteTable, deleteRow: this.deleteRow, deleteAllTables: this.deleteAllTables, onTableMouseUp: this.onTableMouseUp, onRowMouseDown: this.onRowMouseDown }),
                 _react2.default.createElement(
