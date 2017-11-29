@@ -34,7 +34,8 @@
     color: white;
 }
 .material-icons {
-    color:#FDD217
+    color:#FDD217;
+    size:60px;
 }
 
 .gitbutton {
@@ -67,7 +68,7 @@
 .coremain {
     margin-top:2%;
     display: flex;
-    height:100%;
+    height:50%;
     width:100%;
     flex-direction:column;
     align-items: center;
@@ -140,8 +141,10 @@
 }
 .featurebox {
     width:30%;
-    height:350px;
-    justify-content:space-around;
+    height:85%;
+    text-align: center;
+    background-color: #2D2D2D;
+    border-color: #2D2D2D;
 }
 img {
     max-width:100%;
@@ -193,4 +196,18 @@ img {
 
 .container {
     margin-top: 50px;
+}
+.panelcontent {
+    width:100%;
+    height:100%;
+    text-align: center;
+    cursor:pointer;
+    z-index:-1
+}
+.panelheader {
+    font-size:19px;
+    font-weight:bold;
+}
+.panel-body {
+    padding:0;
 }
