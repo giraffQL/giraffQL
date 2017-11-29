@@ -16,8 +16,6 @@ import App from './app/App.js'
 import { Link } from 'react-router-dom';
 // import fonticon for github icon
 import FontIcon from 'material-ui/FontIcon';
-// import css for Home component
-// import '../../css/home.css'
 // import panel from react-bootstrap
 import { Panel } from 'react-bootstrap';
 //import materail ui 
@@ -45,7 +43,6 @@ class Home extends Component {
       appBar: {
         'backgroundColor': 'rgba(0,0,0,0)',
         'lineHeight': '20px'
-        // 'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
         'backgroundColor': 'rgb(45,45,45)',
@@ -53,6 +50,7 @@ class Home extends Component {
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
+        'font-weight': '400',
         'textAlign': 'center'
       },
       menuIcon: {
@@ -79,7 +77,7 @@ class Home extends Component {
           >
 
           {/* drawer menu with react router */}
-            <div className ='drawertop'>GiraffQL</div>
+            <div className ='drawertop' style={{'font-weight': 'bold'}}>GiraffQL</div>
             <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
             <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
             <Link to='/app'> <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem></Link>
