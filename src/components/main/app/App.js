@@ -424,7 +424,7 @@ class App extends Component {
     return [
       <MuiThemeProvider>
         <div className="App">
-          <Fullscreen style={{ height: '2000px', backgroundColor: 'rgb(51,51,51)' }}
+          <Fullscreen style={{ height: '100%'}}
             enabled={this.state.isFullscreenEnabled}
             onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
           >

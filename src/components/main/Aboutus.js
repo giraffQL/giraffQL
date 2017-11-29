@@ -1,16 +1,24 @@
+// import react
 import React, { Component } from 'react';
+// import drawer from react-bootstrap
 import Drawer from 'material-ui/Drawer';
+// for drawer 
 import MenuItem from 'material-ui/MenuItem';
+// for drawer naviagation
 import FlatButton from 'material-ui/FlatButton';
+// import app component
+import App from './app/App.js'
+// import Link 
 import { Link } from 'react-router-dom'
+// for github button
 import FontIcon from 'material-ui/FontIcon';
-import { Panel } from 'react-bootstrap';
-import 'typeface-roboto'
-// import './../aboutusstyle/animate.css'
-// import './../aboutusstyle/bootstrap.css'
-// import './../aboutusstyle/bootstrap.min.css'
-// import './../aboutusstyle/style.css'
-import picone from '../../img/team/jelena.jpg'
+// css for aboutus component
+import '../../css/home.css'
+// bootstrap css
+// import './../../aboutusstyle/bootstrap.min.css'
+// bootstrap css
+// import './../../aboutusstyle/style.css'
+
 
 
 class Aboutus extends Component {
@@ -18,6 +26,8 @@ class Aboutus extends Component {
     super(props)
     this.state = { open: false };
   }
+  // state for drawer (open or closed)
+
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
@@ -26,12 +36,12 @@ class Aboutus extends Component {
   render() {
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'rgb(0,0,0)',
         'lineHeight': '20px',
         'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'rgb(0,0,0)',
       },
       menuItem: {
         'color': '#fdd217',
@@ -55,7 +65,7 @@ class Aboutus extends Component {
           <FlatButton className='navbutton'
             style={muiStyles.menuIcon}
             onClick={this.handleToggle}
-            icon={<i class="material-icons">list</i>}
+            icon={<i className="material-icons">list</i>}
              />
           <Drawer className ='drawer'
             containerStyle={muiStyles.drawer}
@@ -64,6 +74,8 @@ class Aboutus extends Component {
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
+
+          {/* drawer menu with react-router */}
             <div className ='drawertop'>GiraffQL</div>
             <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
             <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
@@ -72,77 +84,90 @@ class Aboutus extends Component {
           </Drawer>
           <FlatButton style={muiStyles.menuIcon} className ='gitbutton'
             href="https://github.com/callemall/giraffql"
-            icon={<i class="material-icons">account_circle</i>}
+            icon={<i className="material-icons">account_circle</i>}
             />
         </div>
 
-        <div className='meetteam'>
-
-        </div>
-
-          <section id="about" class="home-section text-center">
-            <div class="heading-about">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-8 col-lg-offset-2">
+        {/* about us container */}
+          <section id="about" className="home-section text-center">
+            <div className="heading-about">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-8 col-lg-offset-2">
                   <h2>ABOUT US</h2>
 
-                    <div class="wow bounceInDown" data-wow-delay="0.4s">
+                    <div className="wow bounceInDown" data-wow-delay="0.4s">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="container">
-
-              <div class="row">
-                <div class="col-lg-2 col-lg-offset-5">
+            <div className="container">
+        
+              <div className="row">
+                <div className="col-lg-2 col-lg-offset-5">
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="wow bounceInUp" data-wow-delay="0.2s">
-                    <div class="team boxed-grey">
-                      <div class="inner">
-                      <div class="avatar"><img src={picone} alt="" class="img-responsive img-circle" /></div>
+              <div className="row">
+
+              {/* person 1 */}
+                <div className="col-md-3">
+                  <div className="wow bounceInUp" data-wow-delay="0.2s">
+                    <div className="team boxed-grey">
+                      <div className="inner">
+                      <div className="avatar"><img src="https://github.com/giraffQL/giraffQL/blob/master/src/img/team/jelena.jpg?raw=true" alt="" className="img-responsive img-circle" /></div>
 
                         <h5>Jelena Gruica</h5>
-                        <p class="subtitle">hello worldr</p>
+
+                    {/* description */}
+                        <p className="subtitle">hello worldr</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="wow bounceInUp" data-wow-delay="0.5s">
-                    <div class="team boxed-grey">
-                      <div class="inner">
+
+                {/* person 2 */}
+                <div className="col-md-3">
+                  <div className="wow bounceInUp" data-wow-delay="0.5s">
+                    <div className="team boxed-grey">
+                      <div className="inner">
                         <h5>Scott Rosen</h5>
-                        <p class="subtitle">Ruby on Rails</p>
-                        <div class="avatar"><img src="./../img/team/2.jpg" alt="" class="img-responsive img-circle" /></div>
 
+                        {/* description */}
+                        <p className="subtitle">Ruby on Rails</p>
+                        <div className="avatar"><img src="./../img/team/2.jpg" alt="" className="img-responsive img-circle" /></div>
+        
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="wow bounceInUp" data-wow-delay="0.8s">
-                    <div class="team boxed-grey">
-                      <div class="inner">
+
+                {/* person 3 */}
+                <div className="col-md-3">
+                  <div className="wow bounceInUp" data-wow-delay="0.8s">
+                    <div className="team boxed-grey">
+                      <div className="inner">
                         <h5>Harry Cam</h5>
-                        <p class="subtitle">jQuery Ninja</p>
-                        <div class="avatar"><img src="./../img/team/3.jpg" alt="" class="img-responsive img-circle" /></div>
+
+                        {/* description */}
+                        <p className="subtitle">jQuery Ninja</p>
+                        <div className="avatar"><img src="./../img/team/3.jpg" alt="" className="img-responsive img-circle" /></div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="wow bounceInUp" data-wow-delay="1s">
-                    <div class="team boxed-grey">
-                      <div class="inner">
-                        <h5>Woojun Choi</h5>
-                        <p class="subtitle">Typographer</p>
-                        <div class="avatar"><img src="./../img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
 
+                {/* person 4 */}
+                <div className="col-md-3">
+                  <div className="wow bounceInUp" data-wow-delay="1s">
+                    <div className="team boxed-grey">
+                      <div className="inner">
+                        <h5>Woojun Choi</h5>
+
+                        {/* description */}
+                        <p className="subtitle">Typographer</p>
+                        <div className="avatar"><img src="./../img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+        
                       </div>
                     </div>
                   </div>
