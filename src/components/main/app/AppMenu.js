@@ -20,28 +20,31 @@ class MenuComp extends Component {
 
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(51,51,51)',
+        'backgroundColor': 'rgb(45,45,45)',
         'lineHeight': '20px',
-        'borderBottom': '3px solid white'
+        'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': 'rgb(51,51,51)',
+        'backgroundColor': 'rgb(45,45,45)',
       },
       menuItem: {
-        'color': '#FFD300',
-        'fontSize': '16px',
+        'color': '#fdd217',
+        // 'fontSize': '16px',
+        'font-weight': '400',
         'textAlign': 'left'
       },
       download: {
-        'color': '#FFD300',
+        'color': '#fdd217',
         'fontSize': '16px',
+        'font-weight': '400',
         'textAlign': 'left',
-        'borderBottom': '1px dashed #FFD300'
+        'borderBottom': '1px dashed #fdd217'
       },
       menuIcon: {
-        'color': '#FFD300'
+        'color': '#fdd217' /*'#FFD300'*/
       }
     }
+
     const tooltipCT = (
       <Tooltip id="tooltip">Create Table</Tooltip>
     )
@@ -93,6 +96,7 @@ class MenuComp extends Component {
           open={state.open}
           onRequestChange={onRequestChange}
         >
+        <div className ='drawertop'>GiraffQL</div>
           <Link to="/">
             <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
               Home

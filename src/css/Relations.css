@@ -1,7 +1,7 @@
 .relations {
   width: 100%;
   /*height: 100%;*/
-  height: 100%;
+  height: 10000px;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
 
 .relation {
   width: 100%;
-  height: 100%;
+  height: 10000px;
   position: absolute;
   top: 0;
   left: 0;

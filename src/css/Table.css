@@ -14,17 +14,16 @@
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: separate; /* changed from collapse to get border-radius to work */
-    border-top: 10px solid #BD9A63; /* need border-top to even out top border */
-    border-radius: 15px; /* added border-radius */
+    border-top: 10px solid #f6f6f7; /*#BD9A63;*/ /* need border-top to even out top border */
+    border-radius: 10px; /* added border-radius */
     position: absolute;
     border-spacing: 0px;
     margin: 0px;
 }
 
 .table td, .table th {
-    border: 8px solid #BD9A63;
     padding: 0px;
-    background-color: #977359;
+    background-color: #f6f6f7; /*#977359;*/
     width: 100%;
     border-spacing: 1px;
 }
@@ -68,23 +67,23 @@
 }
 
 .addRowWrap {
-    border-bottom-left-radius: 20px; /* need this to round the bottom borders */
-    border-bottom-right-radius: 20px; /* need this to round the bottom borders */
+    border-bottom-left-radius: 10px; /* need this to round the bottom borders */
+    border-bottom-right-radius: 10px; /* need this to round the bottom borders */
 }
 
 .addRow {
-    padding: 8px 90px;
+    padding: 8px 30px;
     border-radius: 4px;
-    background-color: #9FA767; /*rgba(30,130,76,0.4); */ /* made green color translucent */
+    background-color: rgb(45,45,45); /*#9FA767;*/ /* made green color translucent */
     border: none;
     font-weight: bold;
     font-size: 16px;
-    color: white;
+    color: #f6f6f7;
 }
 
 .addRow:hover {
     background-color: white;
-    color: rgba(30,130,76,0.4);
+    color: rgb(45,45,45); /*rgba(30,130,76,0.8);*/
 }
 
 .typetd {
@@ -122,7 +121,7 @@
     cursor:pointer;
     margin-top:6px;
     margin-left: 3px;
-    color: white;
+    color: rgba(166,0,0,1);;
 }
 
 .deleterowbutton:hover { /* change color on hover */

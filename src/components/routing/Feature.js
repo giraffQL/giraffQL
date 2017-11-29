@@ -24,28 +24,47 @@ class Feature extends Component {
 
 
   render() {
+    const muiStyles = {
+      appBar: {
+        'backgroundColor': 'rgb(45,45,45)',
+        'lineHeight': '20px',
+        'borderBottom': '3px solid #f6f6f7'
+      },
+      drawer: {
+        'backgroundColor': 'rgb(45,45,45)',
+      },
+      menuItem: {
+        'color': '#fdd217',
+        'fontSize': '16px',
+        'textAlign': 'left'
+      },
+      menuIcon: {
+        'color': '#fdd217' /*'#FFD300'*/
+      }
+    }
 
     return (
       <div className='mainpage'>
-        <div className='header'>
-          <FlatButton className='navbutton'
+        <div className='header' style={muiStyles.appBar}>
+          <FlatButton style={muiStyles.menuIcon} className='navbutton'
             onClick={this.handleToggle}
             icon={<i class="material-icons">list</i>}
              />
           <Drawer className ='drawer'
+            containerStyle={muiStyles.drawer}
             docked={false}
             width={200}
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
             <div className ='drawertop'>GiraffQL</div>
-            <Link to='/'><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>
-            <Link to='/feature'><MenuItem onClick={this.handleClose}>Feature</MenuItem></Link>
-            <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
-            <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
-            <MenuItem onClick={this.handleClose}>Download</MenuItem>
+            <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
+            <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
+            <Link to='/app'> <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem></Link>
+            <Link to='/aboutus'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem></Link>
+            <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Download</MenuItem>
           </Drawer>
-          <FlatButton className ='gitbutton'
+          <FlatButton style={muiStyles.menuIcon} className ='gitbutton'
             href="https://github.com/callemall/giraffql"
             icon={<i class="material-icons">account_circle</i>}
             />
