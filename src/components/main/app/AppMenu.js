@@ -36,7 +36,7 @@ class MenuComp extends Component {
       download: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'font-weight': '400',
+        'fontWeight': '400',
         'textAlign': 'center',
         'borderBottom': '1px dashed #fdd217'
       },

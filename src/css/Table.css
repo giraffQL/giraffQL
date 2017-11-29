@@ -2,7 +2,7 @@
 .tables {
   margin-top: 10px;
   width: 100%;
-  height: 10000px;
+  height: 100%;
   /*height: 100%;*/
   position: absolute;
   top: 0;
@@ -14,7 +14,7 @@
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: separate; /* changed from collapse to get border-radius to work */
-    border-top: 10px solid #f6f6f7; /*#BD9A63;*/ /* need border-top to even out top border */
+    border-top: 10px solid #f6f6f7; /* need border-top to even out top border */
     border-radius: 10px; /* added border-radius */
     position: absolute;
     border-spacing: 0px;
@@ -23,10 +23,11 @@
 
 .table td, .table th {
     padding: 0px;
-    background-color: #f6f6f7; /*#977359;*/
+    background-color: #f6f6f7;
     width: 100%;
-    border: none;
     border-spacing: 0px;
+    border:none
+
 }
 
 .alert {
@@ -75,22 +76,18 @@
 .addRow {
     padding: 8px 30px;
     border-radius: 4px;
-    background-color: rgb(45,45,45); /*#9FA767;*/ /* made green color translucent */
+    background-color: rgb(45,45,45); /*rgba(30,130,76,0.4); */ /* made green color translucent */
     border: none;
     font-weight: bold;
     font-size: 16px;
-    color: #f6f6f7;
+    color: #f6f6f7
 }
 
 .addRow:hover {
     background-color: white;
-    color: rgb(45,45,45); /*rgba(30,130,76,0.8);*/
+    color: rgba(45,45,45,45);
 }
 
-.typetd {
-    /*width:180px;*/
-    /*text-align: center;*/
-}
 
 .deletetablebutton {
     color: rgb(166, 0, 0);
@@ -122,7 +119,7 @@
     cursor:pointer;
     margin-top:6px;
     margin-left: 3px;
-    color: rgba(166,0,0,1);;
+    color:rgba(166,0,0,1);
 }
 
 .deleterowbutton:hover { /* change color on hover */
