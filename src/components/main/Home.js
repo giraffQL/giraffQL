@@ -99,7 +99,7 @@ class Home extends Component {
         <div className='coremain'>
            <h1 className ='grafql'> <img className ='logo' src={Logo} /> GiraffQL</h1> <br/>
            <div className='maintext'>
-            <p> A Set of React Components that Implement Google's Material Design DEMO</p>
+            <p> Interactive GraphQL exploration tool built with React</p>
           </div><br/>
           <div className ='tryit'>
 
@@ -112,18 +112,19 @@ class Home extends Component {
 
     {/* app features with picture with panel from react-bootstrap*/}
         <div className='third'>
-          <Panel className='featurebox' header="Giraffql do this shit">
+          <Panel className='featurebox' header="Create tables">
             <img src='https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' />
           </Panel>
-          <Panel className='featurebox' header='harry made it'>
+          <Panel className='featurebox' header='Create relations'>
             <img src='https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' />
           </Panel>
-          <Panel className='featurebox' header='scott made it'>
+          <Panel className='featurebox' header='GraphiQL integration'>
             <img src='https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' />
           </Panel>
         </div>
         <div className='bottompart'>
-
+            We'd love to hear your comments and suggestions. <br/>
+            You can find us on<a href="https://github.com/giraffQL"> GitHub</a>.
         </div>
       </div>
       </MuiThemeProvider>

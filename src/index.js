@@ -12,7 +12,7 @@ import './css/Table.css'
 import './css/Relations.css';
 // import './aboutusstyle/animate.css'
 // // import './aboutusstyle/bootstrap.css' 
-// // import './aboutusstyle/bootstrap.min.css'
+// import './aboutusstyle/bootstrap.min.css'
 // import './aboutusstyle/style.css'
 
 
