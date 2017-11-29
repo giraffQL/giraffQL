@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 // for github button
 import FontIcon from 'material-ui/FontIcon';
 // css for aboutus component
-import '../../css/Home.css'
+// import '../../css/Home.css'
 // bootstrap css
 // import './../../aboutusstyle/bootstrap.min.css'
 // bootstrap css
