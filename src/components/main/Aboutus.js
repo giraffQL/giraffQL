@@ -11,7 +11,11 @@ import App from './app/App.js'
 // import Link 
 import { Link } from 'react-router-dom'
 // for github button
-import FontIcon from 'material-ui/FontIcon';
+import FontIcon from 'material-ui/FontIcon'
+import Woojun from '../../img/team/woojun.jpg'
+import Jelena from '../../img/team/jelena.jpg'
+import Harry from '../../img/team/harry.jpg'
+import Scott from '../../img/team/scott.jpg'
 
 
 class Aboutus extends Component {
@@ -109,7 +113,7 @@ class Aboutus extends Component {
                 <div className="wow bounceInUp" data-wow-delay="0.2s">
                   <div className="team boxed-grey">
                     <div className="inner">
-                      <div className="avatar"><img src="https://github.com/giraffQL/giraffQL/blob/master/src/img/team/jelena.jpg?raw=true" alt="" className="img-responsive img-circle" /></div>
+                      <div className="avatar"><img src={Jelena} alt="" className="img-responsive img-circle" /></div>
 
                       <h3>Jelena Gruica</h3>
 
@@ -128,13 +132,14 @@ class Aboutus extends Component {
                 <div className="wow bounceInUp" data-wow-delay="0.5s">
                   <div className="team boxed-grey">
                     <div className="inner">
+                    <div className="avatar"><img src={Scott} alt="" className="img-responsive img-circle" /></div>
+
                       <h3>Scott Rosen</h3>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/scott-rosen/">Linkedin</a>/
                         <a href="https://github.com/scottrosen14">GitHub</a>
                       <p className="subtitle">Software Engineer</p>
-                      <div className="avatar"><img src="./../img/team/2.jpg" alt="" className="img-responsive img-circle" /></div>
 
                     </div>
                   </div>
@@ -146,6 +151,8 @@ class Aboutus extends Component {
                 <div className="wow bounceInUp" data-wow-delay="0.8s">
                   <div className="team boxed-grey">
                     <div className="inner">
+                    <div className="avatar"><img src={Harry} alt="" className="img-responsive img-circle" /></div>
+
                       <h3>Harry Cam</h3>
 
                       {/* description */}
@@ -163,13 +170,13 @@ class Aboutus extends Component {
                 <div className="wow bounceInUp" data-wow-delay="1s">
                   <div className="team boxed-grey">
                     <div className="inner">
+                    <div className="avatar"><img src={Woojun} alt="" className="img-responsive img-circle" /></div>
                       <h3>Woojun Choi</h3>
-
+                        
                       {/* description */}
                       <a href="https://www.linkedin.com/in/woojunchoi/">Linkedin</a>/
                         <a href="https://github.com/woojunchoi">GitHub</a>
                       <p className="subtitle">Software Engineer</p>
-                      <div className="avatar"><img src="./../img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
 
                     </div>
                   </div>
