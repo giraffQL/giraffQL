@@ -57,8 +57,6 @@
     "nodemon": "^1.12.1",
     "path": "^0.12.7",
     "raf": "^3.4.0",
-    "react-bootstrap": "^0.31.5",
-    "react-split-pane": "^0.1.68",
     "react-test-renderer": "^16.1.1",
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
