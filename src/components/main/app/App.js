@@ -431,22 +431,13 @@ class App extends Component {
             <div className='full-screenable-node'>
               <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} submitSchemaCode={this.submitSchemaCode} />
 
-              <SplitPane style={{ 'backgroundColor': 'rgb(51,51,51)' }} split="vertical" defaultSize="50%">
+              <SplitPane style={{ 'backgroundColor': 'rgb(45,45,45)' }} split="vertical" defaultSize="70%">
                 <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
                   updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
 
                 <div className="TextEditor">
                   <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
                   <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
-                  <Popover
-                    id="popover-basic"
-                    placement="right"
-                    positionLeft={300}
-                    positionTop={500}
-                    title="Express code"
-                  >
-                    This express code you can export to your editor.
-                  </Popover>
                 </div>
               </SplitPane>
             </div>

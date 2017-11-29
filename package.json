@@ -33,7 +33,7 @@
   },
   "scripts": {
     "build": "webpack -w",
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
