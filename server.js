@@ -56,7 +56,7 @@ app.use(webpackDevMiddleware(compiler, {
   historyApiFallback: true,
 }));
  
-const server = app.listen(8000, function() {
+const server = app.listen(process.env.PORT || 8000, function() {
   const port = server.address().port;
   console.log(`Is it over ${port}?!?!`);
 });
