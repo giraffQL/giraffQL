@@ -178,7 +178,7 @@ class Home extends Component {
         </div>
         <div className='bottompart'>
             We'd love to hear your comments and suggestions. <br/>
-            You can find us on<a href="https://github.com/giraffQL"> GitHub</a>.
+            You can find us on<a href="https://github.com/giraffQL/giraffQL"> GitHub</a>.
         </div>
       </div>
       </MuiThemeProvider>
