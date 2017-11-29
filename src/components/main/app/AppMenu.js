@@ -33,7 +33,7 @@ class MenuComp extends Component {
         'font-weight': '400',
         'textAlign': 'center'
       },
-      download: {
+      aboutUs: {
         'color': '#fdd217',
         'fontSize': '16px',
         'fontWeight': '400',
@@ -113,7 +113,7 @@ class MenuComp extends Component {
                 </MenuItem>
           </Link>
           <Link to="/aboutus">
-            <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
+            <MenuItem style={muiStyles.aboutUs} onClick={menuClose}>
               About us
                 </MenuItem>
           </Link>
