@@ -3,6 +3,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config.js');
 const app = express();
+const path = require('path')
 const bodyParser = require('body-parser');
 const graphQLHTTP = require('express-graphql');
 const { GraphQLSchema, buildSchema, printSchema } = require('graphql');
@@ -11,6 +12,7 @@ const { buildDummySchema } = require('./src/components/graphql/buildDummySchema'
  
 const compiler = webpack(webpackConfig);
 const blobStore = new InMemoryBlobStore();
+
 
 app.use(express.static(__dirname + '/public'));
 
