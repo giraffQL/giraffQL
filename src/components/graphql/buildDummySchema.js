@@ -1,3 +1,5 @@
+const faker = require('faker');
+
 const {
     graphql,
     buildSchema,
@@ -16,11 +18,11 @@ const {
 } = require('graphql');
 
 const scalarGenerators = {
-    Int: () => 1,
-    Float: () => 0.5,
-    String: () => 'string',
-    Boolean: () => true,
-    ID: () => 'id'
+    Int: () => faker.random.number(),
+    Float: () => faker.finance.amount(1,10,1),
+    String: () => faker.hacker.verb(),
+    Boolean: () => faker.random.boolean(),
+    ID: () => faker.random.number()
 }
 
 function customScalarGenerator(type) {
