@@ -6,7 +6,7 @@ body {
   width:100%;
   height:100%;
   padding:0;
-  /* background-color: rgb(51,51,51); #fbe4a1; */
+  background-color: none;
   font-size:17px;  
 }
 
@@ -14,7 +14,7 @@ body {
   text-align: center;
   width:100%;
   height:100%;
-  /* background-color: rgb(51,51,51); */
+  background-color: rgb(51,51,51);
 }
 
 .full-screenable-node { /* make fullscreen background same color as body */

@@ -1,6 +1,5 @@
 .appBar {
   width:100%;
-  height:58px;
   display:flex;
   justify-content: space-between;
   align-items: center;
@@ -62,4 +61,8 @@
 .test:hover {
   background-color: white;
   color: rgb(51,51,51);
+}
+
+#tooltip {
+  font-size: 20px;
 }

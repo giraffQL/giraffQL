@@ -24,7 +24,8 @@ import { Panel } from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import button style from material ui for tryit button
 import RaisedButton from 'material-ui/RaisedButton';
-
+import Background from '../../assets/background.jpg'
+import Logo from '../../assets/logo.png'
 
 class Home extends Component {
   constructor(props) {
@@ -96,28 +97,20 @@ class Home extends Component {
 
      {/* app name, logo, description */}
        <div className='mainimage'>
+       <img className='background' src = {Background}/>
         <div className='coremain'>
-          <img className ='image' src="https://github.com/giraffQL/giraffQL/blob/master/src/components/graff.png?raw=true" />
-           <h1 className ='grafql'>GiraffQL</h1> 
-        </div>
-
-      {/* description */}
-          <div className='maintext'>
+           <h1 className ='grafql'> <img className ='logo' src={Logo} /> GiraffQL</h1> <br/>
+           <div className='maintext'>
             <p> A Set of React Components that Implement Google's Material Design DEMO</p>
-          </div>
-        </div>
-
-      {/* short explanation about app */}
-        <div className='second'>
-          <p className='secondtxt'> ame about from our love of Reactl Design. We're currently using it on  </p>
-          <p className='secondtxt'> Material-ogle's Material Design. We're currently using it on a project a] </p>
-          <p className='secondtxt'> Material-UI came agn. We're currently using it on a project at Call-Em-All  </p>
+          </div><br/>
           <div className ='tryit'>
 
       {/* tryit button */}
-            <Link to='/app'><RaisedButton className='tryitbutton' label="try it" labelColor='green' /></Link>          
+            <Link to='/app'><button className='tryitbutton'>TRY IT</button></Link>          
         </div>
         </div>
+        </div>
+
 
     {/* app features with picture with panel from react-bootstrap*/}
         <div className='third'>

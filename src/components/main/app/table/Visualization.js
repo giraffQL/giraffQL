@@ -31,7 +31,7 @@ function manhattanPath(attribute, table, allTables) {
         return []
     }
     // n is grid max
-    const step = 50
+    const step = 20
     const destinations = [
         { x: table.x, y: table.y },
         { x: table.x + table.w, y: table.y },
@@ -141,6 +141,12 @@ class Visualization extends React.Component {
             end: null,
         }
         this.tableRefs = []
+        this.svgPosition = {
+            top: 0,
+            left: 0,
+            width: 0,
+            height: 0
+        }
     }
 
     // when we click on row we're taking row DOM cordinates
@@ -192,6 +198,13 @@ class Visualization extends React.Component {
         )
     }
 
+    translateSvgPoints = (points) => {
+        return points.map(point => ({ 
+            x: point.x - this.svgPosition.left, 
+            y: point.y - this.svgPosition.top, 
+        }))
+    }
+
     render() {
         const { start, end } = this.state
 
@@ -204,9 +217,8 @@ class Visualization extends React.Component {
             <Scrollbars style={{ height: '100%', width: '100%' }}>
                 <div className='toolbar'>
                 </div>
-
                 <div>
-                    <svg className="relations" >
+                    <svg className="relations" ref={e => { this.svgPosition = e && e.getBoundingClientRect() }}>
                         <defs>
                             <marker id="triangle" viewBox="0 0 10 10" refX="1" refY="5"
                                 markerWidth="5" markerHeight="5" orient="auto">
@@ -217,48 +229,41 @@ class Visualization extends React.Component {
                             </marker>
 
                         </defs>
-
                         {start !== null && end !== null && clickedRow &&
                             <PathLine
-                                points={[start, end]}
+                                points={this.translateSvgPoints([start, end])}
                                 stroke="red"
                                 strokeWidth="3"
                                 fill="none"
                                 r={10}
                                 markerEnd="url(#triangle)" markerStart="url(#circle)" />
                         }
-
-                    </svg>
-                    <svg className="relation">
-                        {
-                            data.tables.map((table, i) => {
-                                if (table) {
-                                    return table.attributes.map((attr, ai) => {
-                                        const relatedTable = data.tables.find(t => {
-                                            if (t) {
-                                                return t.id === attr.relatedToTableId
-                                            }
-                                        })
-                                        if (relatedTable) {
-                                            const pathPoints = manhattanPath(attr, relatedTable, data.tables)
-                                            return (
-                                                pathPoints.length &&
-                                                <PathLine
-                                                    id="svgId"
-                                                    key={`${i}-${ai}`}
-                                                    points={_.reverse(pathPoints)}
-                                                    stroke="red"
-                                                    strokeWidth="4"
-                                                    fill="none"
-                                                    r={10}
-                                                    markerEnd="url(#triangle)" markerStart="url(#circle)" />
-                                            )
+                        {data.tables.map((table, i) => {
+                            if (table) {
+                                return table.attributes.map((attr, ai) => {
+                                    const relatedTable = data.tables.find(t => {
+                                        if (t) {
+                                            return t.id === attr.relatedToTableId
                                         }
                                     })
-                                }
-                            })
-                        }
-
+                                    if (relatedTable) {
+                                        const pathPoints = manhattanPath(attr, relatedTable, data.tables)
+                                        return (
+                                            pathPoints.length &&
+                                            <PathLine
+                                                id="svgId"
+                                                key={`${i}-${ai}`}
+                                                points={this.translateSvgPoints(_.reverse(pathPoints))}
+                                                stroke="red"
+                                                strokeWidth="4"
+                                                fill="none"
+                                                r={10}
+                                                markerEnd="url(#triangle)" markerStart="url(#circle)" />
+                                        )
+                                    }
+                                })
+                            }
+                        })}
                     </svg>
 
                     <div className="tables">

@@ -7,7 +7,7 @@ import Fullscreen from 'react-full-screen';
 // MATERIAL UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // REACT-BOOTSTRAP
-import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+import { FormControl, Button, ButtonGroup, Nav, Popover } from 'react-bootstrap';
 //FILE SERVER
 import FileSaver from 'file-saver';
 //COMPONENTS
@@ -15,6 +15,7 @@ import MenuComp from './AppMenu';
 import Visualization from './table/Visualization';
 import TextEditor from './code/TextEditor'
 import ExpressCode from './code/ExpressCode'
+
 
 
 
@@ -279,7 +280,9 @@ class App extends Component {
         table.attributes[state.clickedRow.rowIndex].type = state.data.tables[tableIndex].name
         return {
           clickedRow: null,
-          data: state.data
+          data: state.data,
+          schemaCode: this.getTextFromModel(state.data),
+          jsCode: this.getExpressCode(state.data)
         }
       })
     }
@@ -400,7 +403,7 @@ class App extends Component {
           const attr = table.attributes[j]
           if (attr.field !== '') {
             code += `        ${attr.field}: {\n`
-              + `            type: GraphQL${attr.type}\n`
+              + `            type: ${!attr.relatedToTableId ? 'GraphQL' : ''}${attr.type}${attr.relatedToTableId ? 'Type' : ''}\n`
               + `        }`
           }
           if (j < table.attributes.length - 1 && attr.field !== '') {
@@ -419,7 +422,6 @@ class App extends Component {
   render() {
     const { data } = this.state;
     return [
-
       <MuiThemeProvider>
         <div className="App">
           <Fullscreen style={{ height: '100%'}}
@@ -434,8 +436,17 @@ class App extends Component {
                   updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
 
                 <div className="TextEditor">
-                  <TextEditor className='righthalf' code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
-                  <ExpressCode className='righthalf' code={this.state.jsCode} onChange={this.onJsCodeChange} />
+                  <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
+                  <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
+                  <Popover
+                    id="popover-basic"
+                    placement="right"
+                    positionLeft={300}
+                    positionTop={500}
+                    title="Express code"
+                  >
+                    This express code you can export to your editor.
+                  </Popover>
                 </div>
               </SplitPane>
             </div>

@@ -1,21 +1,18 @@
 // REACT ROUTER
 import { Switch, Route } from 'react-router-dom'
 // REACT
-import React, { Component } from 'react';
+import React, { Component,Redirect } from 'react';
 // REACT-DOM
 import { render } from 'react-dom';
 // REACT-DOM
 import ReactDOM from 'react-dom';
-// IMPORT ABOUTUS COMPONENT
+//COMPONENTS
+import App from '../main/app/App.js'
+import Home from '../main/Home.js'
 import Aboutus from '../main/Aboutus.js'
-// IMPORT FEATURE COMPONENT
 import Feature from '../main/Feature.js'
 // IMPORT HOME COMPONENT
-import Home from '../main/Home.js'
-// IMPORT APP COMPONENT
-import App from '../main/app/App.js'
-// IMPORT REACT-ROUTER REDIRECT
-import { Redirect } from 'react-router'
+
 
 
 class RoutedComponent extends Component {

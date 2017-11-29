@@ -7,7 +7,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton';
 // REACT-BOOTSTRAP
-import { FormControl, Button, ButtonGroup, Nav } from 'react-bootstrap';
+import { FormControl, Button, ButtonGroup, Nav, Tooltip, OverlayTrigger} from 'react-bootstrap';
 
 
 class MenuComp extends Component {
@@ -42,6 +42,12 @@ class MenuComp extends Component {
         'color': '#FFD300'
       }
     }
+    const tooltipCT = (
+      <Tooltip id="tooltip">Create Table</Tooltip>
+      )
+      const tooltipCA = (
+        <Tooltip id="tooltip">Clear All</Tooltip>
+        )
     return (
       <div>
           <div style={muiStyles.appBar} className="appBar">
@@ -49,13 +55,18 @@ class MenuComp extends Component {
               onClick={menuToggle}
               icon={<i className="material-icons">list</i>}
                />
+              
                <div className="toolPanel">
+               <OverlayTrigger placement="left" overlay={tooltipCT}>
                  <Button id="createTableBtn" className="addAndClearBtns" bsSize="large" onClick={onAddTable}>
                   +
                  </Button>
+                 </OverlayTrigger>
+                 <OverlayTrigger placement="bottom" overlay={tooltipCA}>
                  <Button id="clearBtn" className="addAndClearBtns" bsSize="large" onClick={deleteAllTables}>
                   x
                  </Button>
+                 </OverlayTrigger>
                  <button className="test" onClick={submitSchemaCode}> 
                  TEST YOUR SCHEMA CODE
                  </button>
