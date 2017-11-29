@@ -93,14 +93,14 @@ describe('Functionality', () => {
     expect(jestMock).toHaveBeenCalled();
   });
 
-  it('handleMouseDown fires when clicked', () => {
-    vis.simulate('mouseDown');
-    expect(jestMock).toHaveBeenCalled();
-  });
+  // it('handleMouseDown fires when clicked', () => {
+  //   vis.simulate('mouseDown');
+  //   expect(jestMock).toHaveBeenCalled();
+  // });
 
-  it('handleMouseUp fires when clicked', () => {
-    vis.simulate('mouseup');
-    expect(jestMock).toHaveBeenCalled();
-  });
+  // it('handleMouseUp fires when clicked', () => {
+  //   vis.simulate('mouseup');
+  //   expect(jestMock).toHaveBeenCalled();
+  // });
 
 })

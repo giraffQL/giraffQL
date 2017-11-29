@@ -10,9 +10,5 @@ describe('App renders properly to div', () => {
   it('renders without crashing', () => {
     expect(app.instance).toBeTruthy();
   });
-
-  // it('contains className of App', () => {
-  //   expect(app.find('.App').length).toEqual(1);
-  // })
   
 })
