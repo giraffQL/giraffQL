@@ -87,6 +87,9 @@
     ],
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy"
-    }
+    },
+    "coveragePathIgnorePatterns": [
+      "/test/"
+    ]
   }
 }
