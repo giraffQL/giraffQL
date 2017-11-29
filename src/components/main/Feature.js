@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 // IMPORT ICON FOR GITHUB BUTTON
 import FontIcon from 'material-ui/FontIcon';
 // CSS
-import '../../css/home.css'
+import '../../css/Home.css'
 // PANEL FROM REACT-BOOTSTRAP (FEATURE PART)
 import { Panel } from 'react-bootstrap';
 
