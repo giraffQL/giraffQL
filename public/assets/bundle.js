@@ -87528,6 +87528,17 @@ var Aboutus = function (_Component) {
                         'Jelena Gruica'
                       ),
                       _react2.default.createElement(
+                        'a',
+                        { href: 'https://www.linkedin.com/in/jelena-gruica/' },
+                        'Linkedin'
+                      ),
+                      '/',
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'https://github.com/jgruica' },
+                        'GitHub'
+                      ),
+                      _react2.default.createElement(
                         'p',
                         { className: 'subtitle' },
                         'Software Engineer'
@@ -87552,6 +87563,17 @@ var Aboutus = function (_Component) {
                         'h5',
                         null,
                         'Scott Rosen'
+                      ),
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'https://www.linkedin.com/in/scott-rosen/' },
+                        'Linkedin'
+                      ),
+                      '/',
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'https://github.com/scottrosen14' },
+                        'GitHub'
                       ),
                       _react2.default.createElement(
                         'p',
@@ -87585,6 +87607,17 @@ var Aboutus = function (_Component) {
                         'Harry Cam'
                       ),
                       _react2.default.createElement(
+                        'a',
+                        { href: 'https://www.linkedin.com/in/harry-cam/' },
+                        'Linkedin'
+                      ),
+                      '/',
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'https://github.com/hcam05' },
+                        'GitHub'
+                      ),
+                      _react2.default.createElement(
                         'p',
                         { className: 'subtitle' },
                         'Software Engineer'
@@ -87614,6 +87647,17 @@ var Aboutus = function (_Component) {
                         'h5',
                         null,
                         'Woojun Choi'
+                      ),
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'https://www.linkedin.com/in/woojunchoi/' },
+                        'Linkedin'
+                      ),
+                      '/',
+                      _react2.default.createElement(
+                        'a',
+                        { href: 'https://github.com/woojunchoi' },
+                        'GitHub'
                       ),
                       _react2.default.createElement(
                         'p',
