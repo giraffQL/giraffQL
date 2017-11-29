@@ -25,7 +25,8 @@
     padding: 0px;
     background-color: #f6f6f7; /*#977359;*/
     width: 100%;
-    border-spacing: 1px;
+    border: none;
+    border-spacing: 0px;
 }
 
 .alert {

@@ -32,9 +32,9 @@ class Home extends Component {
   render() {
     const muiStyles = {
       appBar: {
-        'backgroundColor': '#fdd217',
-        'lineHeight': '20px',
-        'borderBottom': '3px solid #f6f6f7'
+        'backgroundColor': 'rgba(0,0,0,0)',
+        'lineHeight': '20px'
+        // 'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
         'backgroundColor': 'rgb(45,45,45)',
@@ -42,7 +42,7 @@ class Home extends Component {
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'textAlign': 'left'
+        'textAlign': 'center'
       },
       menuIcon: {
         'color': '#fdd217' /*'#FFD300'*/

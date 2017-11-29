@@ -36,7 +36,7 @@ class Feature extends Component {
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'textAlign': 'left'
+        'textAlign': 'center'
       },
       menuIcon: {
         'color': '#fdd217' /*'#FFD300'*/

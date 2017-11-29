@@ -36,7 +36,7 @@ class Aboutus extends Component {
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'textAlign': 'left'
+        'textAlign': 'center'
       },
       download: {
         'color': '#fdd217',

@@ -2852,18 +2852,7 @@ var App = function (_Component) {
                   'div',
                   { className: 'TextEditor' },
                   _react2.default.createElement(_TextEditor2.default, { code: this.state.schemaCode, onChange: this.onSchemaCodeChange }),
-                  _react2.default.createElement(_ExpressCode2.default, { code: this.state.jsCode, onChange: this.onJsCodeChange }),
-                  _react2.default.createElement(
-                    _reactBootstrap.Popover,
-                    {
-                      id: 'popover-basic',
-                      placement: 'right',
-                      positionLeft: 600,
-                      positionTop: 500,
-                      title: 'Express code'
-                    },
-                    'This express code you can export to your editor.'
-                  )
+                  _react2.default.createElement(_ExpressCode2.default, { code: this.state.jsCode, onChange: this.onJsCodeChange })
                 )
               )
             )
@@ -73087,15 +73076,15 @@ var MenuComp = function (_Component) {
         },
         menuItem: {
           'color': '#fdd217',
-          // 'fontSize': '16px',
+          'fontSize': '16px',
           'font-weight': '400',
-          'textAlign': 'left'
+          'textAlign': 'center'
         },
         download: {
           'color': '#fdd217',
           'fontSize': '16px',
           'font-weight': '400',
-          'textAlign': 'left',
+          'textAlign': 'center',
           'borderBottom': '1px dashed #fdd217'
         },
         menuIcon: {
@@ -87345,9 +87334,9 @@ var Home = function (_Component) {
 
       var muiStyles = {
         appBar: {
-          'backgroundColor': '#fdd217',
-          'lineHeight': '20px',
-          'borderBottom': '3px solid #f6f6f7'
+          'backgroundColor': 'rgba(0,0,0,0)',
+          'lineHeight': '20px'
+          // 'borderBottom': '3px solid #f6f6f7'
         },
         drawer: {
           'backgroundColor': 'rgb(45,45,45)'
@@ -87355,7 +87344,7 @@ var Home = function (_Component) {
         menuItem: {
           'color': '#fdd217',
           'fontSize': '16px',
-          'textAlign': 'left'
+          'textAlign': 'center'
         },
         menuIcon: {
           'color': '#fdd217' /*'#FFD300'*/
@@ -87830,7 +87819,7 @@ var Aboutus = function (_Component) {
         menuItem: {
           'color': '#fdd217',
           'fontSize': '16px',
-          'textAlign': 'left'
+          'textAlign': 'center'
         },
         download: {
           'color': '#fdd217',
@@ -88193,7 +88182,7 @@ var Feature = function (_Component) {
         menuItem: {
           'color': '#fdd217',
           'fontSize': '16px',
-          'textAlign': 'left'
+          'textAlign': 'center'
         },
         menuIcon: {
           'color': '#fdd217' /*'#FFD300'*/
@@ -88646,7 +88635,7 @@ exports = module.exports = __webpack_require__(26)(undefined);
 
 
 // module
-exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: rgb(45,45,45); /*#fbe4a1;*/\n  font-size:17px;\n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n  background-color: rgb(45,45,45);\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: #9FA767;\n  font-weight: 600;\n  height: 100%;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white;\n  /*overflow: scroll;*/\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  text-align:center;\n  background-color: rgb(45, 45, 45);\n  overflow: scroll;\n}\n\n\n.Resizer {\n  background: #000;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid rgba(255, 255, 255, 0);\n  border-bottom: 5px solid rgba(255, 255, 255, 0);\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid rgba(0, 0, 0, 0.5);\n  border-bottom: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid rgba(255, 255, 255, 0);\n  border-right: 5px solid rgba(255, 255, 255, 0);\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid rgba(0, 0, 0, 0.5);\n  border-right: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n.schemaCode {\n  background-color: rgb(45, 45, 45);\n  color: #f6f6f7;\n  margin-top: 5px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  border-bottom: 1px solid #f6f6f7;\n  border-radius: .3em;\n}\n\n\n.expressCode {\n  background-color: rgb(45,45,45);\n  color: #f6f6f7;\n  border-radius: .3em;\n  margin-top: 20px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  border-top: 1px solid #f6f6f7;\n}", ""]);
+exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: #f6f6f7; /*rgb(45,45,45)*/ /*#fbe4a1;*/\n  font-size:17px;\n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n  background-color: rgb(45,45,45);\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: #9FA767;\n  font-weight: 600;\n  height: 100%;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white;\n  /*overflow: scroll;*/\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  text-align:center;\n  background-color: rgb(45, 45, 45);\n  overflow: scroll;\n}\n\n\n.Resizer {\n  background: #000;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid rgba(255, 255, 255, 0);\n  border-bottom: 5px solid rgba(255, 255, 255, 0);\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid rgba(0, 0, 0, 0.5);\n  border-bottom: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid rgba(255, 255, 255, 0);\n  border-right: 5px solid rgba(255, 255, 255, 0);\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid rgba(0, 0, 0, 0.5);\n  border-right: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n.schemaCode {\n  background-color: rgb(45, 45, 45);\n  color: #f6f6f7;\n  margin-top: 5px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  border-bottom: 1px solid #f6f6f7;\n  border-radius: .3em;\n}\n\n\n.expressCode {\n  background-color: rgb(45,45,45);\n  color: #f6f6f7;\n  border-radius: .3em;\n  margin-top: 20px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  border-top: 1px solid #f6f6f7;\n}", ""]);
 
 // exports
 
@@ -88781,7 +88770,7 @@ exports = module.exports = __webpack_require__(26)(undefined);
 
 
 // module
-exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 10000px;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    border-top: 10px solid #f6f6f7; /*#BD9A63;*/ /* need border-top to even out top border */\n    border-radius: 10px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n    margin: 0px;\n}\n\n.table td, .table th {\n    padding: 0px;\n    background-color: #f6f6f7; /*#977359;*/\n    width: 100%;\n    border-spacing: 1px;\n}\n\n.alert {\n    font-size:20px;\n    color:red;\n    width:300px;\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n/*add delete and save buttons*/\n.toolPanel {\n    /*border: 2px solid red;*/\n    padding-top: 5px;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 10px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 10px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 30px;\n    border-radius: 4px;\n    background-color: rgb(45,45,45); /*#9FA767;*/ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: #f6f6f7;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgb(45,45,45); /*rgba(30,130,76,0.8);*/\n}\n\n.typetd {\n    /*width:180px;*/\n    /*text-align: center;*/\n}\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 3px;\n    color: rgba(166,0,0,1);;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.Select-input {\n    width:100px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
+exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 10000px;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    border-top: 10px solid #f6f6f7; /*#BD9A63;*/ /* need border-top to even out top border */\n    border-radius: 10px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n    margin: 0px;\n}\n\n.table td, .table th {\n    padding: 0px;\n    background-color: #f6f6f7; /*#977359;*/\n    width: 100%;\n    border: none;\n    border-spacing: 0px;\n}\n\n.alert {\n    font-size:20px;\n    color:red;\n    width:300px;\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n/*add delete and save buttons*/\n.toolPanel {\n    /*border: 2px solid red;*/\n    padding-top: 5px;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 10px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 10px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 30px;\n    border-radius: 4px;\n    background-color: rgb(45,45,45); /*#9FA767;*/ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: #f6f6f7;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgb(45,45,45); /*rgba(30,130,76,0.8);*/\n}\n\n.typetd {\n    /*width:180px;*/\n    /*text-align: center;*/\n}\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 3px;\n    color: rgba(166,0,0,1);;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.Select-input {\n    width:100px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
 
 // exports
 

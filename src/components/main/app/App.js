@@ -438,15 +438,6 @@ class App extends Component {
                 <div className="TextEditor">
                   <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
                   <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
-                  <Popover
-                    id="popover-basic"
-                    placement="right"
-                    positionLeft={600}
-                    positionTop={500}
-                    title="Express code"
-                  >
-                    This express code you can export to your editor.
-                  </Popover>
                 </div>
               </SplitPane>
             </div>

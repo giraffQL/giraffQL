@@ -29,15 +29,15 @@ class MenuComp extends Component {
       },
       menuItem: {
         'color': '#fdd217',
-        // 'fontSize': '16px',
+        'fontSize': '16px',
         'font-weight': '400',
-        'textAlign': 'left'
+        'textAlign': 'center'
       },
       download: {
         'color': '#fdd217',
         'fontSize': '16px',
         'font-weight': '400',
-        'textAlign': 'left',
+        'textAlign': 'center',
         'borderBottom': '1px dashed #fdd217'
       },
       menuIcon: {
