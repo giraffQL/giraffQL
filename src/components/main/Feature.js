@@ -34,12 +34,12 @@ class Feature extends Component {
   render() {
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'rgb(0,0,0)',
         'lineHeight': '20px',
         'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'rgb(0,0,0)',
       },
       menuItem: {
         'color': '#fdd217',

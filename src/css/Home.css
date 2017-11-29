@@ -160,7 +160,7 @@ img {
     display:flex;
     justify-content: center;
     align-items:center;
-    background-color: rgb(45,45,45);
+    /* background-color: rgb(45,45,45); */
     color: #fdd217; /*#E9D460*/
     font-weight: 400;
 }
