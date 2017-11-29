@@ -13,7 +13,6 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import App from '../App'
 import Table from './Table'
 import colors from './colors';
-// import css from '../../css/Table.css'
 
 
 // creating a grid because we have to have track what we visited before

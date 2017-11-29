@@ -96,7 +96,7 @@ class Feature extends Component {
 
             <div>
               <h3>
-                  Custom Design
+                  
                 </h3>
 
               <p>
