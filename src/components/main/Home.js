@@ -42,30 +42,28 @@ class Home extends Component {
   render() {
     // drawer style
     const muiStyles = {
-      // menuItem: {
-      //   'color': '#FFD000',
       appBar: {
-        'backgroundColor': '#9FA767',
-        'borderBottom': '4px solid white',
-        'lineHeight': '20px',
-        'color': '#fbe4a1'
+        'backgroundColor': 'rgba(0,0,0,0)',
+        'lineHeight': '20px'
+        // 'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': '#9FA767',
-        'color': 'white'
+        'backgroundColor': 'rgb(45,45,45)',
       },
       menuItem: {
-        'color': 'white',
-        'fontSize': '20px'
+        'color': '#fdd217',
+        'fontSize': '16px',
+        'textAlign': 'center'
+      },
+      menuIcon: {
+        'color': '#fdd217' /*'#FFD300'*/
       }
     }
 
     return (
       <MuiThemeProvider>
       <div className='mainpage'>
-
-      {/* adding header, drawer button */}
-        <div className='header'>
+        <div className='header' style={muiStyles.appBar}>
           <FlatButton className='navbutton'
             onClick={this.handleToggle}
             icon={<i className="material-icons">list</i>}
@@ -73,7 +71,7 @@ class Home extends Component {
 
          {/* adding drawer */}
           <Drawer
-            containerStyle={{'backgroundColor':'rgb(51,51,51'}}
+            containerStyle={muiStyles.drawer}
             docked={false}
             width={200}
             open={this.state.open}
@@ -82,10 +80,10 @@ class Home extends Component {
 
           {/* drawer menu with react router */}
             <div className ='drawertop'>GiraffQL</div>
-            <Link to='/'><MenuItem onClick={this.handleClose}>Home</MenuItem></Link>
-            <Link to ='/feature'><MenuItem onClick={this.handleClose}>Feature</MenuItem></Link>
-            <Link to='/app'> <MenuItem onClick={this.handleClose}>App</MenuItem></Link>
-            <Link to='/aboutus'><MenuItem onClick={this.handleClose}>About us</MenuItem></Link>
+            <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
+            <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
+            <Link to='/app'> <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem></Link>
+            <Link to='/aboutus'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
 
         {/* added github button */}

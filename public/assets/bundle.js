@@ -2087,25 +2087,14 @@ var App = function (_Component) {
               _react2.default.createElement(_AppMenu2.default, { state: this.state, menuToggle: this.menuToggle, menuClose: this.menuClose, onRequestChange: this.onRequestChange, fullscreenToggle: this.fullscreenToggle, onAddTable: this.onAddTable, deleteAllTables: this.deleteAllTables, saveTextAsFile: this.saveTextAsFile, submitSchemaCode: this.submitSchemaCode }),
               _react2.default.createElement(
                 _reactSplitPane2.default,
-                { split: 'vertical', defaultSize: '70%' },
-                _react2.default.createElement(_Visualization2.default, { className: 'lefthalf', data: this.state.data, clickedRow: this.state.clickedRow, onAddRow: this.onAddRow, onAddTable: this.onAddTable,
+                { style: { 'backgroundColor': 'rgb(45,45,45)' }, split: 'vertical', defaultSize: '70%' },
+                _react2.default.createElement(_Visualization2.default, { data: this.state.data, clickedRow: this.state.clickedRow, onAddRow: this.onAddRow, onAddTable: this.onAddTable,
                   updateTableName: this.updateTableName, updateRowProp: this.updateRowProp, updateRowType: this.updateRowType, onDragTable: this.onDragTable, refreshTablePositions: this.refreshTablePositions, deleteTable: this.deleteTable, deleteRow: this.deleteRow, deleteAllTables: this.deleteAllTables, onTableMouseUp: this.onTableMouseUp, onRowMouseDown: this.onRowMouseDown }),
                 _react2.default.createElement(
                   'div',
                   { className: 'TextEditor' },
                   _react2.default.createElement(_TextEditor2.default, { code: this.state.schemaCode, onChange: this.onSchemaCodeChange }),
-                  _react2.default.createElement(_ExpressCode2.default, { code: this.state.jsCode, onChange: this.onJsCodeChange }),
-                  _react2.default.createElement(
-                    _reactBootstrap.Popover,
-                    {
-                      id: 'popover-basic',
-                      placement: 'right',
-                      positionLeft: 300,
-                      positionTop: 500,
-                      title: 'Express code'
-                    },
-                    'This express code you can export to your editor.'
-                  )
+                  _react2.default.createElement(_ExpressCode2.default, { code: this.state.jsCode, onChange: this.onJsCodeChange })
                 )
               )
             )
@@ -16981,7 +16970,7 @@ exports.default = colors;
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(506);
+var content = __webpack_require__(508);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -17031,13 +17020,11 @@ var _Divider = __webpack_require__(227);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _registerServiceWorker = __webpack_require__(508);
+var _registerServiceWorker = __webpack_require__(510);
 
 var _registerServiceWorker2 = _interopRequireDefault(_registerServiceWorker);
 
 var _reactRouterDom = __webpack_require__(33);
-
-__webpack_require__(509);
 
 __webpack_require__(511);
 
@@ -17048,6 +17035,8 @@ __webpack_require__(515);
 __webpack_require__(517);
 
 __webpack_require__(519);
+
+__webpack_require__(521);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42204,11 +42193,11 @@ var _Home = __webpack_require__(503);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Aboutus = __webpack_require__(505);
+var _Aboutus = __webpack_require__(507);
 
 var _Aboutus2 = _interopRequireDefault(_Aboutus);
 
-var _Feature = __webpack_require__(507);
+var _Feature = __webpack_require__(509);
 
 var _Feature2 = _interopRequireDefault(_Feature);
 
@@ -55741,28 +55730,31 @@ var MenuComp = function (_Component) {
 
       var muiStyles = {
         appBar: {
-          'backgroundColor': 'rgb(51,51,51)',
+          'backgroundColor': 'rgb(45,45,45)',
           'lineHeight': '20px',
-          'borderBottom': '3px solid white'
+          'borderBottom': '3px solid #f6f6f7'
         },
         drawer: {
-          'backgroundColor': 'rgb(51,51,51)'
+          'backgroundColor': 'rgb(45,45,45)'
         },
         menuItem: {
-          'color': '#FFD300',
+          'color': '#fdd217',
           'fontSize': '16px',
-          'textAlign': 'left'
+          'font-weight': '400',
+          'textAlign': 'center'
         },
         download: {
-          'color': '#FFD300',
+          'color': '#fdd217',
           'fontSize': '16px',
-          'textAlign': 'left',
-          'borderBottom': '1px dashed #FFD300'
+          'font-weight': '400',
+          'textAlign': 'center',
+          'borderBottom': '1px dashed #fdd217'
         },
         menuIcon: {
-          'color': '#FFD300'
+          'color': '#fdd217' /*'#FFD300'*/
         }
       };
+
       var tooltipCT = _react2.default.createElement(
         _reactBootstrap.Tooltip,
         { id: 'tooltip' },
@@ -55772,6 +55764,16 @@ var MenuComp = function (_Component) {
         _reactBootstrap.Tooltip,
         { id: 'tooltip' },
         'Clear All'
+      );
+      var tooltipTest = _react2.default.createElement(
+        _reactBootstrap.Tooltip,
+        { id: 'tooltip' },
+        ' Test schema with GraphiQL'
+      );
+      var tooltipSave = _react2.default.createElement(
+        _reactBootstrap.Tooltip,
+        { id: 'tooltip' },
+        ' Save express schema.js file '
       );
       return _react2.default.createElement(
         'div',
@@ -55809,14 +55811,22 @@ var MenuComp = function (_Component) {
               )
             ),
             _react2.default.createElement(
-              'button',
-              { className: 'test', onClick: submitSchemaCode },
-              'TEST YOUR SCHEMA CODE'
+              _reactBootstrap.OverlayTrigger,
+              { placement: 'bottom', overlay: tooltipTest },
+              _react2.default.createElement(
+                'button',
+                { className: 'test', onClick: submitSchemaCode },
+                'TEST SCHEMA'
+              )
             ),
             _react2.default.createElement(
-              'button',
-              { className: 'save', onClick: saveTextAsFile },
-              'SAVE JS SCHEMA CODE'
+              _reactBootstrap.OverlayTrigger,
+              { placement: 'bottom', overlay: tooltipSave },
+              _react2.default.createElement(
+                'button',
+                { className: 'save', onClick: saveTextAsFile },
+                'SAVE SCHEMA'
+              )
             )
           )
         ),
@@ -64531,17 +64541,17 @@ var Visualization = function (_React$Component) {
                                     'marker',
                                     { id: 'triangle', viewBox: '0 0 10 10', refX: '1', refY: '5',
                                         markerWidth: '5', markerHeight: '5', orient: 'auto' },
-                                    _react2.default.createElement('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: 'red' })
+                                    _react2.default.createElement('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: '#fdd217' })
                                 ),
                                 _react2.default.createElement(
                                     'marker',
                                     { id: 'circle', markerWidth: '10', markerHeight: '10', refX: '5', refY: '5', orient: 'auto' },
-                                    _react2.default.createElement('circle', { cx: '5', cy: '5', r: '2', fill: 'red' })
+                                    _react2.default.createElement('circle', { cx: '5', cy: '5', r: '2', fill: '#fdd217' })
                                 )
                             ),
                             start !== null && end !== null && clickedRow && _react2.default.createElement(_reactSvgPathline.PathLine, {
                                 points: this.translateSvgPoints([start, end]),
-                                stroke: 'red',
+                                stroke: '#fdd217',
                                 strokeWidth: '3',
                                 fill: 'none',
                                 r: 10,
@@ -64560,7 +64570,7 @@ var Visualization = function (_React$Component) {
                                                 id: 'svgId',
                                                 key: i + '-' + ai,
                                                 points: _this2.translateSvgPoints(_lodash2.default.reverse(pathPoints)),
-                                                stroke: 'red',
+                                                stroke: '#fdd217',
                                                 strokeWidth: '4',
                                                 fill: 'none',
                                                 r: 10,
@@ -83332,6 +83342,18 @@ var Table = function (_React$Component) {
 
             var className = this.startsWithNumber(table.name) ? 'table redTable' : 'table';
 
+            var ttDeleteTable = _react2.default.createElement(
+                _reactBootstrap.Tooltip,
+                { id: 'tooltip' },
+                ' Delete table'
+            );
+
+            var ttDeleteRow = _react2.default.createElement(
+                _reactBootstrap.Tooltip,
+                { id: 'tooltip' },
+                ' Delete row '
+            );
+
             return _react2.default.createElement(
                 _reactDraggable2.default,
                 { bounds: 'parent', handle: '.drag-handle', defaultPosition: { x: 0, y: table.defaultPosition },
@@ -83361,11 +83383,15 @@ var Table = function (_React$Component) {
                                             return updateTableName(tableIndex, e.target.value);
                                         } }),
                                     _react2.default.createElement(
-                                        'div',
-                                        { className: 'deletetablebutton', onClick: function onClick() {
-                                                return deleteTable(tableIndex);
-                                            } },
-                                        'x'
+                                        _reactBootstrap.OverlayTrigger,
+                                        { placement: 'right', overlay: ttDeleteTable },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'deletetablebutton', onClick: function onClick() {
+                                                    return deleteTable(tableIndex);
+                                                } },
+                                            'x'
+                                        )
                                     ),
                                     _react2.default.createElement(
                                         'div',
@@ -83373,15 +83399,29 @@ var Table = function (_React$Component) {
                                         _react2.default.createElement('img', { className: 'img', src: 'https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg' })
                                     ),
                                     this.startsWithNumber(table.name) && _react2.default.createElement(
-                                        'p',
-                                        { className: 'alert' },
-                                        ' Table name can not start with number '
-                                    ),
-                                    this.isDuplicateTableName(tableIndex, tables) && _react2.default.createElement(
-                                        'p',
-                                        { className: 'alert' },
-                                        ' Tables can not have the same name '
+                                        _reactBootstrap.Popover,
+                                        {
+                                            id: 'popover-basic',
+                                            className: 'alert',
+                                            positionLeft: 300,
+                                            title: 'ERROR'
+                                        },
+                                        'Table name can not start with number'
                                     )
+                                    // <p className='alert'> Table name can not start with number </p>
+                                    ,
+                                    this.isDuplicateTableName(tableIndex, tables) && _react2.default.createElement(
+                                        _reactBootstrap.Popover,
+                                        {
+                                            id: 'popover-basic',
+                                            className: 'alert',
+                                            positionLeft: 300,
+                                            title: 'ERROR'
+                                        },
+                                        'Tables can not have the same name'
+                                    )
+                                    // <p className='alert'> Tables can not have the same name </p>
+
                                 )
                             ),
                             table.attributes.map(function (_ref, i) {
@@ -83409,11 +83449,15 @@ var Table = function (_React$Component) {
                                         'td',
                                         { className: 'typetd' },
                                         _react2.default.createElement(
-                                            'div',
-                                            { className: 'deleterowbutton', onClick: function onClick() {
-                                                    return deleteRow(tableIndex, i);
-                                                } },
-                                            'x'
+                                            _reactBootstrap.OverlayTrigger,
+                                            { placement: 'right', overlay: ttDeleteRow },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'deleterowbutton', onClick: function onClick() {
+                                                        return deleteRow(tableIndex, i);
+                                                    } },
+                                                'x'
+                                            )
                                         ),
                                         _react2.default.createElement(
                                             'div',
@@ -86995,11 +87039,11 @@ var _RaisedButton = __webpack_require__(114);
 
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
-var _background = __webpack_require__(521);
+var _background = __webpack_require__(505);
 
 var _background2 = _interopRequireDefault(_background);
 
-var _logo = __webpack_require__(522);
+var _logo = __webpack_require__(506);
 
 var _logo2 = _interopRequireDefault(_logo);
 
@@ -87066,21 +87110,21 @@ var Home = function (_Component) {
 
       // drawer style
       var muiStyles = {
-        // menuItem: {
-        //   'color': '#FFD000',
         appBar: {
-          'backgroundColor': '#9FA767',
-          'borderBottom': '4px solid white',
-          'lineHeight': '20px',
-          'color': '#fbe4a1'
+          'backgroundColor': 'rgba(0,0,0,0)',
+          'lineHeight': '20px'
+          // 'borderBottom': '3px solid #f6f6f7'
         },
         drawer: {
-          'backgroundColor': '#9FA767',
-          'color': 'white'
+          'backgroundColor': 'rgb(45,45,45)'
         },
         menuItem: {
-          'color': 'white',
-          'fontSize': '20px'
+          'color': '#fdd217',
+          'fontSize': '16px',
+          'textAlign': 'center'
+        },
+        menuIcon: {
+          'color': '#fdd217' /*'#FFD300'*/
         }
       };
 
@@ -87092,7 +87136,7 @@ var Home = function (_Component) {
           { className: 'mainpage' },
           _react2.default.createElement(
             'div',
-            { className: 'header' },
+            { className: 'header', style: muiStyles.appBar },
             _react2.default.createElement(_FlatButton2.default, { className: 'navbutton',
               onClick: this.handleToggle,
               icon: _react2.default.createElement(
@@ -87104,7 +87148,7 @@ var Home = function (_Component) {
             _react2.default.createElement(
               _Drawer2.default,
               {
-                containerStyle: { 'backgroundColor': 'rgb(51,51,51' },
+                containerStyle: muiStyles.drawer,
                 docked: false,
                 width: 200,
                 open: this.state.open,
@@ -87122,7 +87166,7 @@ var Home = function (_Component) {
                 { to: '/' },
                 _react2.default.createElement(
                   _MenuItem2.default,
-                  { onClick: this.handleClose },
+                  { style: muiStyles.menuItem, onClick: this.handleClose },
                   'Home'
                 )
               ),
@@ -87131,7 +87175,7 @@ var Home = function (_Component) {
                 { to: '/feature' },
                 _react2.default.createElement(
                   _MenuItem2.default,
-                  { onClick: this.handleClose },
+                  { style: muiStyles.menuItem, onClick: this.handleClose },
                   'Feature'
                 )
               ),
@@ -87141,7 +87185,7 @@ var Home = function (_Component) {
                 ' ',
                 _react2.default.createElement(
                   _MenuItem2.default,
-                  { onClick: this.handleClose },
+                  { style: muiStyles.menuItem, onClick: this.handleClose },
                   'App'
                 )
               ),
@@ -87150,7 +87194,7 @@ var Home = function (_Component) {
                 { to: '/aboutus' },
                 _react2.default.createElement(
                   _MenuItem2.default,
-                  { onClick: this.handleClose },
+                  { style: muiStyles.menuItem, onClick: this.handleClose },
                   'About us'
                 )
               )
@@ -87282,6 +87326,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "0558adfb6a337f9ed4032d707a57ccb9.jpg";
+
+/***/ }),
+/* 506 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "3a573e91dd74fde8e74b9e257a979828.png";
+
+/***/ }),
+/* 507 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -87374,13 +87430,39 @@ var Aboutus = function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var muiStyles = {
+        appBar: {
+          'backgroundColor': 'rgb(45,45,45)',
+          'lineHeight': '20px',
+          'borderBottom': '3px solid #f6f6f7'
+        },
+        drawer: {
+          'backgroundColor': 'rgb(45,45,45)'
+        },
+        menuItem: {
+          'color': '#fdd217',
+          'fontSize': '16px',
+          'textAlign': 'center'
+        },
+        download: {
+          'color': '#fdd217',
+          'fontSize': '16px',
+          'textAlign': 'left',
+          'borderBottom': '1px dashed #fdd217'
+        },
+        menuIcon: {
+          'color': '#fdd217' /*'#FFD300'*/
+        }
+      };
+
       return _react2.default.createElement(
         'div',
         { className: 'mainpage' },
         _react2.default.createElement(
           'div',
-          { className: 'header' },
+          { className: 'header', style: muiStyles.appBar },
           _react2.default.createElement(_FlatButton2.default, { className: 'navbutton',
+            style: muiStyles.menuIcon,
             onClick: this.handleToggle,
             icon: _react2.default.createElement(
               'i',
@@ -87391,6 +87473,7 @@ var Aboutus = function (_Component) {
           _react2.default.createElement(
             _Drawer2.default,
             { className: 'drawer',
+              containerStyle: muiStyles.drawer,
               docked: false,
               width: 200,
               open: this.state.open,
@@ -87408,7 +87491,7 @@ var Aboutus = function (_Component) {
               { to: '/' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'Home'
               )
             ),
@@ -87417,7 +87500,7 @@ var Aboutus = function (_Component) {
               { to: '/feature' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'Feature'
               )
             ),
@@ -87427,7 +87510,7 @@ var Aboutus = function (_Component) {
               ' ',
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'App'
               )
             ),
@@ -87436,12 +87519,12 @@ var Aboutus = function (_Component) {
               { to: '/aboutus' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'About us'
               )
             )
           ),
-          _react2.default.createElement(_FlatButton2.default, { className: 'gitbutton',
+          _react2.default.createElement(_FlatButton2.default, { style: muiStyles.menuIcon, className: 'gitbutton',
             href: 'https://github.com/callemall/giraffql',
             icon: _react2.default.createElement(
               'i',
@@ -87623,7 +87706,7 @@ var Aboutus = function (_Component) {
 exports.default = Aboutus;
 
 /***/ }),
-/* 506 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(31)(undefined);
@@ -87631,13 +87714,13 @@ exports = module.exports = __webpack_require__(31)(undefined);
 
 
 // module
-exports.push([module.i, "#root {\n    width:100%;\n    height:1200px;;\n    overflow: scroll;\n}\n#routed-component {\n    width:100%;\n    height:100%;\n    overflow: scroll;\n}\n.mainpage {\n    display:flex;\n    width:100%;\n    height:100%;\n    flex-direction:column;\n    align-items: center;\n    overflow: scroll;\n}\n.header {\n    width:100%;\n    height:65px;\n    display:flex;\n    justify-content: space-between;\n    background-color: rgba(0,0,0,0); /*#86E2D5;*/\n    align-items: center;\n    position:fixed;\n    z-index:1000\n}\n.navbutton {\n    align-items: center;\n    /* color:#FDD217 */\n}\n\n.navbutton:hover {\n    color: white;\n}\n.material-icons {\n    color:#FDD217\n}\n\n.gitbutton {\n    align-items: center;\n}\n.mainimage{\n    display:flex;\n    width:100%;\n    height:100%;\n    background-color: white;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;  \n    background:rgba(0,0,0, 1);\n    \n}\n.mainimage .background{\n    height:100%;\n    width:100%;\n    z-index:1;\n    opacity:0.2;\n    \n}\n\n/*.coremain {\n    display: flex;\n    height:55%;\n    background-size: contain\n}*/\n.coremain {\n    margin-top:2%;\n    display: flex;\n    height:100%;\n    width:100%;\n    flex-direction:column;\n    align-items: center;\n    justify-content:center;\n    z-index:2;\n    position:absolute;\n}\n.image {\n    align-self:center;\n    justify-content:center;\n}\n.text {\n    align-self:center;\n    justify-content: flex-end;\n    flex-direction:center;\n\n}\n.maintext {\n    margin-top:20px;\n    font-size:20px;\n    color:#F6F6F6\n}\n.grafql {\n    font-size:70px;\n    justify-content:center;\n    color:#F6F6F6;\n}\n.tryit {\n    flex-direction:row;\n    justify-content:center;\n    display:flex;\n    align-items:center;\n    margin-top:10px;\n}\n.tryitbutton {\n    background-color: Transparent;\n    background-repeat:no-repeat;\n    border: 1px solid #FDD217;\n    cursor:pointer;\n    padding-top:10px;\n    padding-bottom:10px;\n    padding-right:35px;\n    padding-left:35px;\n    border-width: medium;\n    font-size:20px;\n    color:#F6F6F6\n}\n.logo {\n    width:150px;\n    height:150px;\n}\n.trytext{\n    margin:0px;\n    font-weight:bold\n}\n.third {\n    display:flex;\n    flex-direction: row;\n    width:100%;\n    height:100%;\n    justify-content:space-around;\n    align-items:center;\n    background-color:#2D2D2D\n}\n.featurebox {\n    width:30%;\n    height:350px;\n    justify-content:space-around;\n}\nimg {\n    max-width:100%;\n}\n.bottompart {\n    background-color: #F6F6F7;\n    width:100%;\n    height:300px;\n}\n.secondtxt {\n    text-align:center;\n}\n.meetteam {\n    background-color:red;\n    width:100%;\n}\n\n.drawertop {\n    width:100%;\n    height:6%;\n    display:flex;\n    justify-content: center;\n    align-items:center;\n    background-color:black;\n    color:#E9D460\n}\n.features {\n    margin-top:3%;\n}\n\n@media all and (max-width:1000px) {\n    .mainimage {\n        width:100%;\n    }\n}\n", ""]);
+exports.push([module.i, "#root {\n    width:100%;\n    height:1200px;;\n    overflow: scroll;\n}\n#routed-component {\n    width:100%;\n    height:100%;\n    overflow: scroll;\n}\n.mainpage {\n    display:flex;\n    width:100%;\n    height:100%;\n    flex-direction:column;\n    align-items: center;\n    overflow: scroll;\n}\n.header {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: space-between;\n    background-color: rgba(0,0,0,0); /*#86E2D5;*/\n    align-items: center;\n    position:fixed;\n    z-index:1000\n}\n.navbutton {\n    align-items: center;\n    /* color:#FDD217 */\n}\n\n.navbutton:hover {\n    color: white;\n}\n.material-icons {\n    color:#FDD217\n}\n\n.gitbutton {\n    align-items: center;\n}\n.mainimage{\n    display:flex;\n    width:100%;\n    height:100%;\n    background-color: white;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;  \n    background:rgba(0,0,0, 1);\n    \n}\n.mainimage .background{\n    height:100%;\n    width:100%;\n    z-index:1;\n    opacity:0.2;\n    \n}\n\n/*.coremain {\n    display: flex;\n    height:55%;\n    background-size: contain\n}*/\n.coremain {\n    margin-top:2%;\n    display: flex;\n    height:100%;\n    width:100%;\n    flex-direction:column;\n    align-items: center;\n    justify-content:center;\n    z-index:2;\n    position:absolute;\n}\n.image {\n    align-self:center;\n    justify-content:center;\n}\n.text {\n    align-self:center;\n    justify-content: flex-end;\n    flex-direction:center;\n\n}\n.maintext {\n    margin-top:20px;\n    font-size:20px;\n    color:#F6F6F6\n}\n.grafql {\n    font-size:70px;\n    justify-content:center;\n    color:#F6F6F6;\n}\n.tryit {\n    flex-direction:row;\n    justify-content:center;\n    display:flex;\n    align-items:center;\n    margin-top:10px;\n}\n.tryitbutton {\n    background-color: Transparent;\n    background-repeat:no-repeat;\n    border: 1px solid #FDD217;\n    cursor:pointer;\n    padding-top:10px;\n    padding-bottom:10px;\n    padding-right:35px;\n    padding-left:35px;\n    border-width: medium;\n    font-size:20px;\n    color:#F6F6F6\n}\n.logo {\n    width:150px;\n    height:150px;\n}\n.trytext{\n    margin:0px;\n    font-weight:bold\n}\n.third {\n    display:flex;\n    flex-direction: row;\n    width:100%;\n    height:100%;\n    justify-content:space-around;\n    align-items:center;\n    background-color:#2D2D2D\n}\n.featurebox {\n    width:30%;\n    height:350px;\n    justify-content:space-around;\n}\nimg {\n    max-width:100%;\n}\n.bottompart {\n    background-color: #F6F6F7;\n    width:100%;\n    height:300px;\n}\n.secondtxt {\n    text-align:center;\n}\n.meetteam {\n    background-color:red;\n    width:100%;\n}\n\n.drawertop {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: center;\n    align-items:center;\n    background-color: rgb(45,45,45);\n    color: #fdd217; /*#E9D460*/\n    font-weight: 400;\n}\n.features {\n    margin-top:3%;\n}\n\n@media all and (max-width:1000px) {\n    .mainimage {\n        width:100%;\n    }\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 507 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87733,23 +87816,43 @@ var Feature = function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var muiStyles = {
+        appBar: {
+          'backgroundColor': 'rgb(45,45,45)',
+          'lineHeight': '20px',
+          'borderBottom': '3px solid #f6f6f7'
+        },
+        drawer: {
+          'backgroundColor': 'rgb(45,45,45)'
+        },
+        menuItem: {
+          'color': '#fdd217',
+          'fontSize': '16px',
+          'textAlign': 'center'
+        },
+        menuIcon: {
+          'color': '#fdd217' /*'#FFD300'*/
+        }
+      };
+
       return _react2.default.createElement(
         'div',
         { className: 'mainpage' },
         _react2.default.createElement(
           'div',
-          { className: 'header' },
-          _react2.default.createElement(_FlatButton2.default, { className: 'navbutton',
+          { className: 'header', style: muiStyles.appBar },
+          _react2.default.createElement(_FlatButton2.default, { style: muiStyles.menuIcon, className: 'navbutton',
             onClick: this.handleToggle,
             icon: _react2.default.createElement(
               'i',
-              { className: 'material-icons' },
+              { 'class': 'material-icons' },
               'list'
             )
           }),
           _react2.default.createElement(
             _Drawer2.default,
-            {
+            { className: 'drawer',
+              containerStyle: muiStyles.drawer,
               docked: false,
               width: 200,
               open: this.state.open,
@@ -87767,7 +87870,7 @@ var Feature = function (_Component) {
               { to: '/' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'Home'
               )
             ),
@@ -87776,7 +87879,7 @@ var Feature = function (_Component) {
               { to: '/feature' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'Feature'
               )
             ),
@@ -87786,7 +87889,7 @@ var Feature = function (_Component) {
               ' ',
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'App'
               )
             ),
@@ -87795,29 +87898,34 @@ var Feature = function (_Component) {
               { to: '/aboutus' },
               _react2.default.createElement(
                 _MenuItem2.default,
-                { onClick: this.handleClose },
+                { style: muiStyles.menuItem, onClick: this.handleClose },
                 'About us'
               )
+            ),
+            _react2.default.createElement(
+              _MenuItem2.default,
+              { style: muiStyles.menuItem, onClick: this.handleClose },
+              'Download'
             )
           ),
-          _react2.default.createElement(_FlatButton2.default, { className: 'gitbutton',
-            href: 'https://github.com/giraffql/giraffql',
+          _react2.default.createElement(_FlatButton2.default, { style: muiStyles.menuIcon, className: 'gitbutton',
+            href: 'https://github.com/callemall/giraffql',
             icon: _react2.default.createElement(
               'i',
-              { className: 'material-icons' },
+              { 'class': 'material-icons' },
               'account_circle'
             )
           })
         ),
         _react2.default.createElement(
           'section',
-          { className: 'features', id: 'features' },
+          { 'class': 'features', id: 'features' },
           _react2.default.createElement(
             'div',
-            { className: 'container' },
+            { 'class': 'container' },
             _react2.default.createElement(
               'h2',
-              { className: 'text-center' },
+              { 'class': 'text-center' },
               'FEATURES'
             ),
             _react2.default.createElement(
@@ -88026,7 +88134,7 @@ var Feature = function (_Component) {
 exports.default = Feature;
 
 /***/ }),
-/* 508 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88134,13 +88242,13 @@ function unregister() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ }),
-/* 509 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(510);
+var content = __webpack_require__(512);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -88165,51 +88273,6 @@ if(false) {
 }
 
 /***/ }),
-/* 510 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(31)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 2em;\n  /* background: #333; */\n  font-family: sans-serif;\n  width:100%;\n  height:100%;\n  overflow: scroll;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 511 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(512);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(32)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./App.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./App.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
 /* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -88218,7 +88281,7 @@ exports = module.exports = __webpack_require__(31)(undefined);
 
 
 // module
-exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: none;\n  font-size:17px;  \n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n  background-color: rgb(51,51,51);\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: #9FA767;\n  font-weight: 600;\n  height: 100%;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white;\n  overflow: scroll;\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  display:flex;\n  flex-direction:column;\n  justify-content: space-between;  \n  background-color: rgb(51,51,51);\n  overflow:scroll;\n}\n\n\n.Resizer {\n  background: #000;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid rgba(255, 255, 255, 0);\n  border-bottom: 5px solid rgba(255, 255, 255, 0);\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid rgba(0, 0, 0, 0.5);\n  border-bottom: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid rgba(255, 255, 255, 0);\n  border-right: 5px solid rgba(255, 255, 255, 0);\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid rgba(0, 0, 0, 0.5);\n  border-right: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n.schemaCode {\n  background-color: rgb(51,51,51);\n  color: white;\n  margin-top: 5px;\n  border-radius: .3em;\n  font-size: 16px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n}\n\n\n.expressCode {\n  background-color: rgb(51,51,51);\n  color: white;\n  border-radius: .3em;\n  margin-top: 20px;\n  font-size: 16px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n}\n", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 2em;\n  /* background: #333; */\n  font-family: sans-serif;\n  width:100%;\n  height:100%;\n  overflow: scroll;\n}\n", ""]);
 
 // exports
 
@@ -88244,8 +88307,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./Home.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./Home.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./App.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./App.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -88263,7 +88326,7 @@ exports = module.exports = __webpack_require__(31)(undefined);
 
 
 // module
-exports.push([module.i, "#root {\n    width:100%;\n    height:1200px;;\n    overflow: scroll;\n}\n#routed-component {\n    width:100%;\n    height:100%;\n    overflow: scroll;\n}\n.mainpage {\n    display:flex;\n    width:100%;\n    height:100%;\n    flex-direction:column;\n    align-items: center;\n    overflow: scroll;\n}\n.header {\n    width:100%;\n    height:65px;\n    display:flex;\n    justify-content: space-between;\n    background-color: rgba(0,0,0,0); /*#86E2D5;*/\n    align-items: center;\n    position:fixed;\n    z-index:1000\n}\n.navbutton {\n    align-items: center;\n    /* color:#FDD217 */\n}\n\n.navbutton:hover {\n    color: white;\n}\n.material-icons {\n    color:#FDD217\n}\n\n.gitbutton {\n    align-items: center;\n}\n.mainimage{\n    display:flex;\n    width:100%;\n    height:100%;\n    background-color: white;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;  \n    background:rgba(0,0,0, 1);\n    \n}\n.mainimage .background{\n    height:100%;\n    width:100%;\n    z-index:1;\n    opacity:0.2;\n    \n}\n\n/*.coremain {\n    display: flex;\n    height:55%;\n    background-size: contain\n}*/\n.coremain {\n    margin-top:2%;\n    display: flex;\n    height:100%;\n    width:100%;\n    flex-direction:column;\n    align-items: center;\n    justify-content:center;\n    z-index:2;\n    position:absolute;\n}\n.image {\n    align-self:center;\n    justify-content:center;\n}\n.text {\n    align-self:center;\n    justify-content: flex-end;\n    flex-direction:center;\n\n}\n.maintext {\n    margin-top:20px;\n    font-size:20px;\n    color:#F6F6F6\n}\n.grafql {\n    font-size:70px;\n    justify-content:center;\n    color:#F6F6F6;\n}\n.tryit {\n    flex-direction:row;\n    justify-content:center;\n    display:flex;\n    align-items:center;\n    margin-top:10px;\n}\n.tryitbutton {\n    background-color: Transparent;\n    background-repeat:no-repeat;\n    border: 1px solid #FDD217;\n    cursor:pointer;\n    padding-top:10px;\n    padding-bottom:10px;\n    padding-right:35px;\n    padding-left:35px;\n    border-width: medium;\n    font-size:20px;\n    color:#F6F6F6\n}\n.logo {\n    width:150px;\n    height:150px;\n}\n.trytext{\n    margin:0px;\n    font-weight:bold\n}\n.third {\n    display:flex;\n    flex-direction: row;\n    width:100%;\n    height:100%;\n    justify-content:space-around;\n    align-items:center;\n    background-color:#2D2D2D\n}\n.featurebox {\n    width:30%;\n    height:350px;\n    justify-content:space-around;\n}\nimg {\n    max-width:100%;\n}\n.bottompart {\n    background-color: #F6F6F7;\n    width:100%;\n    height:300px;\n}\n.secondtxt {\n    text-align:center;\n}\n.meetteam {\n    background-color:red;\n    width:100%;\n}\n\n.drawertop {\n    width:100%;\n    height:6%;\n    display:flex;\n    justify-content: center;\n    align-items:center;\n    background-color:black;\n    color:#E9D460\n}\n.features {\n    margin-top:3%;\n}\n\n@media all and (max-width:1000px) {\n    .mainimage {\n        width:100%;\n    }\n}\n", ""]);
+exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: #f6f6f7; /*rgb(45,45,45)*/ /*#fbe4a1;*/\n  font-size:17px;\n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n  background-color: rgb(45,45,45);\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: #9FA767;\n  font-weight: 600;\n  height: 100%;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white;\n  /*overflow: scroll;*/\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  text-align:center;\n  background-color: rgb(45, 45, 45);\n  overflow: scroll;\n}\n\n\n.Resizer {\n  background: #000;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid rgba(255, 255, 255, 0);\n  border-bottom: 5px solid rgba(255, 255, 255, 0);\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid rgba(0, 0, 0, 0.5);\n  border-bottom: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid rgba(255, 255, 255, 0);\n  border-right: 5px solid rgba(255, 255, 255, 0);\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid rgba(0, 0, 0, 0.5);\n  border-right: 5px solid rgba(0, 0, 0, 0.5);\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n.schemaCode {\n  background-color: rgb(45, 45, 45);\n  color: #f6f6f7;\n  margin-top: 5px;\n  font-size: 16px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  border-bottom: 1px solid #f6f6f7;\n  border-radius: .3em;\n}\n\n\n.expressCode {\n  background-color: rgb(45,45,45);\n  color: #f6f6f7;\n  border-radius: .3em;\n  margin-top: 20px;\n  font-size: 16px;\n  width:100%;\n  height: 50%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  border-top: 1px solid #f6f6f7;\n}\n", ""]);
 
 // exports
 
@@ -88289,8 +88352,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./AppMenu.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./AppMenu.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./Home.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./Home.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -88308,7 +88371,7 @@ exports = module.exports = __webpack_require__(31)(undefined);
 
 
 // module
-exports.push([module.i, ".appBar {\n  width:100%;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n/*add and delete buttons*/\n.addAndClearBtns {\n  float: left;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 2px solid rgb(51,51,51);\n  border-radius: 50%;\n  background-color: #FFD000;\n}\n\n#createTableBtn {\n  /*color: white;*/\n  background-color: rgba(30,130,76,1);\n}\n\n#createTableBtn:hover {\n  color: rgba(30,130,76,1);\n  background-color: white;\n  border-color: white;\n}\n\n#clearBtn {\n  background-color: rgba(166,0,0,1);\n}\n\n#clearBtn:hover {\n  color: rgba(166,0,0,1);\n  background-color: white;\n  border-color: white;\n}\n\n.save {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.save:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n.test {\n  color: rgb(51,51,51);\n  background-color: #FFD000;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px\n}\n\n.test:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n#tooltip {\n  font-size: 20px;\n}", ""]);
+exports.push([module.i, "#root {\n    width:100%;\n    height:1200px;;\n    overflow: scroll;\n}\n#routed-component {\n    width:100%;\n    height:100%;\n    overflow: scroll;\n}\n.mainpage {\n    display:flex;\n    width:100%;\n    height:100%;\n    flex-direction:column;\n    align-items: center;\n    overflow: scroll;\n}\n.header {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: space-between;\n    background-color: rgba(0,0,0,0); /*#86E2D5;*/\n    align-items: center;\n    position:fixed;\n    z-index:1000\n}\n.navbutton {\n    align-items: center;\n    /* color:#FDD217 */\n}\n\n.navbutton:hover {\n    color: white;\n}\n.material-icons {\n    color:#FDD217\n}\n\n.gitbutton {\n    align-items: center;\n}\n.mainimage{\n    display:flex;\n    width:100%;\n    height:100%;\n    background-color: white;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;  \n    background:rgba(0,0,0, 1);\n    \n}\n.mainimage .background{\n    height:100%;\n    width:100%;\n    z-index:1;\n    opacity:0.2;\n    \n}\n\n/*.coremain {\n    display: flex;\n    height:55%;\n    background-size: contain\n}*/\n.coremain {\n    margin-top:2%;\n    display: flex;\n    height:100%;\n    width:100%;\n    flex-direction:column;\n    align-items: center;\n    justify-content:center;\n    z-index:2;\n    position:absolute;\n}\n.image {\n    align-self:center;\n    justify-content:center;\n}\n.text {\n    align-self:center;\n    justify-content: flex-end;\n    flex-direction:center;\n\n}\n.maintext {\n    margin-top:20px;\n    font-size:20px;\n    color:#F6F6F6\n}\n.grafql {\n    font-size:70px;\n    justify-content:center;\n    color:#F6F6F6;\n}\n.tryit {\n    flex-direction:row;\n    justify-content:center;\n    display:flex;\n    align-items:center;\n    margin-top:10px;\n}\n.tryitbutton {\n    background-color: Transparent;\n    background-repeat:no-repeat;\n    border: 1px solid #FDD217;\n    cursor:pointer;\n    padding-top:10px;\n    padding-bottom:10px;\n    padding-right:35px;\n    padding-left:35px;\n    border-width: medium;\n    font-size:20px;\n    color:#F6F6F6\n}\n.logo {\n    width:150px;\n    height:150px;\n}\n.trytext{\n    margin:0px;\n    font-weight:bold\n}\n.third {\n    display:flex;\n    flex-direction: row;\n    width:100%;\n    height:100%;\n    justify-content:space-around;\n    align-items:center;\n    background-color:#2D2D2D\n}\n.featurebox {\n    width:30%;\n    height:350px;\n    justify-content:space-around;\n}\nimg {\n    max-width:100%;\n}\n.bottompart {\n    background-color: #F6F6F7;\n    width:100%;\n    height:300px;\n}\n.secondtxt {\n    text-align:center;\n}\n.meetteam {\n    background-color:red;\n    width:100%;\n}\n\n.drawertop {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: center;\n    align-items:center;\n    background-color: rgb(45,45,45);\n    color: #fdd217; /*#E9D460*/\n    font-weight: 400;\n}\n.features {\n    margin-top:3%;\n}\n\n@media all and (max-width:1000px) {\n    .mainimage {\n        width:100%;\n    }\n}\n", ""]);
 
 // exports
 
@@ -88334,8 +88397,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./Table.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./Table.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./AppMenu.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./AppMenu.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -88353,7 +88416,7 @@ exports = module.exports = __webpack_require__(31)(undefined);
 
 
 // module
-exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 100%;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    border-top: 10px solid #BD9A63; /* need border-top to even out top border */\n    border-radius: 15px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n    margin: 0px;\n}\n\n.table td, .table th {\n    border: 8px solid #BD9A63;\n    padding: 0px;\n    background-color: #977359;\n    width: 100%;\n    border-spacing: 1px;\n}\n\n\n.redTable {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate;\n    border-top:3px solid red;\n    border-radius: 15px;\n    position: relative;\n}\n\n.redTable td, .redTable th {\n    border: 1px solid red;\n    padding: 8px;\n    background-color: #977359;\n}\n\n\n.alert {\n    font-size:20px;\n    color:red\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n/*add delete and save buttons*/\n.toolPanel {\n    /*border: 2px solid red;*/\n    padding-top: 5px;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 20px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 20px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 90px;\n    border-radius: 4px;\n    background-color: #9FA767; /*rgba(30,130,76,0.4); */ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: white;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgba(30,130,76,0.4);\n}\n\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 3px;\n    color: white;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.Select-input {\n    width:100px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
+exports.push([module.i, ".appBar {\n  width:100%;\n  height: 65px;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n/*add and delete buttons*/\n.addAndClearBtns {\n  float: left;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 1px solid rgb(45,45,45);\n  border-radius: 50%;\n  background-color: #FFD000;\n  margin-right: 7px;\n}\n\n#createTableBtn {\n  /*color: white;*/\n  background-color: rgba(30,130,76,1);\n}\n\n#createTableBtn:hover {\n  color: rgba(30,130,76,1);\n  background-color: white;\n  border-color: white;\n}\n\n#clearBtn {\n  background-color: rgba(166,0,0,1);\n}\n\n#clearBtn:hover {\n  color: rgba(166,0,0,1);\n  background-color: white;\n  border-color: white;\n}\n\n.save {\n  color: rgb(51,51,51);\n  background-color: #fdd217; /*#FFD000;*/\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px;\n  margin-right:10px;\n}\n\n.save:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n.test {\n  color: rgb(51,51,51);\n  background-color: #fdd217; /*#FFD000;*/\n  font-size: 18px;\n  font-weight: bold;\n  padding: 10px;\n  margin-right:10px;\n}\n\n.test:hover {\n  background-color: white;\n  color: rgb(51,51,51);\n}\n\n#tooltip {\n  font-size: 20px;\n}", ""]);
 
 // exports
 
@@ -88379,8 +88442,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./Relations.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./Relations.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./Table.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./Table.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -88398,7 +88461,7 @@ exports = module.exports = __webpack_require__(31)(undefined);
 
 
 // module
-exports.push([module.i, ".relations {\n  width: 100%;\n  /*height: 100%;*/\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.relation {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.drawArea {\n  width: 400px;\n  height: 400px;\n  border: 1px solid orange;\n  float: left;\n  cursor: crosshair;\n}\n\n.path {\n  fill: none;\n  stroke-width: 1px;\n  stroke: black;\n  stroke-linejoin: round;\n  stroke-linecap: round;\n}\n\n.drawing {\n  width: 100%;\n  height: 100%;\n}", ""]);
+exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 100%;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    border-top: 10px solid #f6f6f7; /*#BD9A63;*/ /* need border-top to even out top border */\n    border-radius: 10px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n    margin: 0px;\n}\n\n.table td, .table th {\n    padding: 0px;\n    background-color: #f6f6f7; /*#977359;*/\n    width: 100%;\n    border: none;\n    border-spacing: 0px;\n}\n\n.alert {\n    font-size:20px;\n    color:red;\n    width:300px;\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #EFD962;\n    color: white;\n}\n\n.tableName {\n    display: block;\n    float:right;\n    height:34px; /* changed from 29px to match select box*/\n    width: 300px;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n/*add delete and save buttons*/\n.toolPanel {\n    /*border: 2px solid red;*/\n    padding-top: 5px;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 10px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 10px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 30px;\n    border-radius: 4px;\n    background-color: rgb(45,45,45); /*#9FA767;*/ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: #f6f6f7;\n}\n\n.addRow:hover {\n    background-color: white;\n    color: rgb(45,45,45); /*rgba(30,130,76,0.8);*/\n}\n\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    width:7%;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 3px;\n    color: rgba(166,0,0,1);;\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:90%;\n}\n\n.Select-input {\n    width:100px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    width:30px;\n    height: 29px;\n    float:left;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 30px;\n    height: 29px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
 
 // exports
 
@@ -88407,13 +88470,46 @@ exports.push([module.i, ".relations {\n  width: 100%;\n  /*height: 100%;*/\n  he
 /* 521 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "0558adfb6a337f9ed4032d707a57ccb9.jpg";
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(522);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(32)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./Relations.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./Relations.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "3a573e91dd74fde8e74b9e257a979828.png";
+exports = module.exports = __webpack_require__(31)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".relations {\n  width: 100%;\n  /*height: 100%;*/\n  height: 10000px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.relation {\n  width: 100%;\n  height: 10000px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.drawArea {\n  width: 400px;\n  height: 400px;\n  border: 1px solid orange;\n  float: left;\n  cursor: crosshair;\n}\n\n.path {\n  fill: none;\n  stroke-width: 1px;\n  stroke: black;\n  stroke-linejoin: round;\n  stroke-linecap: round;\n}\n\n.drawing {\n  width: 100%;\n  height: 100%;\n}", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

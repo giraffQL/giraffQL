@@ -199,9 +199,9 @@ class Visualization extends React.Component {
     }
 
     translateSvgPoints = (points) => {
-        return points.map(point => ({ 
-            x: point.x - this.svgPosition.left, 
-            y: point.y - this.svgPosition.top, 
+        return points.map(point => ({
+            x: point.x - this.svgPosition.left,
+            y: point.y - this.svgPosition.top,
         }))
     }
 
@@ -222,17 +222,17 @@ class Visualization extends React.Component {
                         <defs>
                             <marker id="triangle" viewBox="0 0 10 10" refX="1" refY="5"
                                 markerWidth="5" markerHeight="5" orient="auto">
-                                <path d="M 0 0 L 10 5 L 0 10 z" fill="red" />
+                                <path d="M 0 0 L 10 5 L 0 10 z" fill="#fdd217" />
                             </marker>
                             <marker id="circle" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
-                                <circle cx="5" cy="5" r="2" fill="red" />
+                                <circle cx="5" cy="5" r="2" fill="#fdd217" />
                             </marker>
 
                         </defs>
                         {start !== null && end !== null && clickedRow &&
                             <PathLine
                                 points={this.translateSvgPoints([start, end])}
-                                stroke="red"
+                                stroke="#fdd217"
                                 strokeWidth="3"
                                 fill="none"
                                 r={10}
@@ -254,7 +254,7 @@ class Visualization extends React.Component {
                                                 id="svgId"
                                                 key={`${i}-${ai}`}
                                                 points={this.translateSvgPoints(_.reverse(pathPoints))}
-                                                stroke="red"
+                                                stroke="#fdd217"
                                                 strokeWidth="4"
                                                 fill="none"
                                                 r={10}

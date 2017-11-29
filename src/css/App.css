@@ -6,15 +6,15 @@ body {
   width:100%;
   height:100%;
   padding:0;
-  background-color: none;
-  font-size:17px;  
+  background-color: #f6f6f7; /*rgb(45,45,45)*/ /*#fbe4a1;*/
+  font-size:17px;
 }
 
 .App {
   text-align: center;
   width:100%;
   height:100%;
-  background-color: rgb(51,51,51);
+  background-color: rgb(45,45,45);
 }
 
 .full-screenable-node { /* make fullscreen background same color as body */
@@ -33,7 +33,7 @@ body {
   width:100%;
   height:100%;
   border-right:1px solid white;
-  overflow: scroll;
+  /*overflow: scroll;*/
 }
 
 .editorbutton {
@@ -42,11 +42,9 @@ body {
 
 .TextEditor{
   height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content: space-between;  
-  background-color: rgb(51,51,51);
-  overflow:scroll;
+  text-align:center;
+  background-color: rgb(45, 45, 45);
+  overflow: scroll;
 }
 
 
@@ -133,22 +131,24 @@ body {
 }
 
 .schemaCode {
-  background-color: rgb(51,51,51);
-  color: white;
+  background-color: rgb(45, 45, 45);
+  color: #f6f6f7;
   margin-top: 5px;
-  border-radius: .3em;
   font-size: 16px;
   width:100%;
   height: 50%;
   overflow: auto;
   position: relative;
   font-family: 'Consolas', 'monaco', monospace;
+  border: none;
+  border-bottom: 1px solid #f6f6f7;
+  border-radius: .3em;
 }
 
 
 .expressCode {
-  background-color: rgb(51,51,51);
-  color: white;
+  background-color: rgb(45,45,45);
+  color: #f6f6f7;
   border-radius: .3em;
   margin-top: 20px;
   font-size: 16px;
@@ -157,4 +157,6 @@ body {
   overflow: auto;
   position: relative;
   font-family: 'Consolas', 'monaco', monospace;
+  border: none;
+  border-top: 1px solid #f6f6f7;
 }
