@@ -6,7 +6,7 @@
 #routed-component {
     width:100%;
     height:100%;
-    overflow: scroll;
+
 }
 .mainpage {
     display:flex;
@@ -14,7 +14,7 @@
     height:100%;
     flex-direction:column;
     align-items: center;
-    overflow: scroll;
+
 }
 .header {
     width:100%;

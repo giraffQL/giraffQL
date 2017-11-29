@@ -44,7 +44,7 @@ body {
   height:100%;
   text-align:center;
   background-color: rgb(45, 45, 45);
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 
