@@ -80,14 +80,17 @@
   },
   "jest": {
     "setupFiles": [
-      "./test/jestsetup.js",
-      "raf/polyfill"
+      "./test/tempPolyfills.js",
+      "./test/jestsetup.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
     "moduleNameMapper": {
       "^.+\\.(css|scss)$": "identity-obj-proxy"
-    }
+    },
+    "coveragePathIgnorePatterns": [
+      "/test/"
+    ]
   }
 }

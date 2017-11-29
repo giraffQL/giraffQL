@@ -1,9 +1,11 @@
 # GiraffQL
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)]([![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/giraffQL/giraffQL))
+
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/giraffQL/giraffQL)
 [![David](https://img.shields.io/david/expressjs/express.svg)](https://github.com/giraffQL/giraffQL)
 [![Github commits (since latest release)](https://img.shields.io/github/commits-since/SubtitleEdit/subtitleedit/latest.svg)](https://github.com/giraffQL/giraffQL)
 
+### Getting Started
+---
 
 Start Exploring GraphQL with our Schema Building App.
 
@@ -11,47 +13,49 @@ Build your schema using our visualization tool.
 
 Generate schema code layout
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Building Your Schema
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+---
+Click on menu button at the top right corner and select App. <br/>
 
 ```
-Give the example
 ```
 
-And repeat
+Full Demo <br/>
 
-```
-until finished
-```
+Table Creation
 
-### GraphiQL with Mock Data
+![Screenshot](/src/img/gifs/giraffQL-table-creation.gif)
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
+Click Add Field Button
 
 
-End with an example of getting some data out of the system or using it for a little demo
+Creating Relations
 
-## Running the tests
+![Screenshot](/src/img/gifs/giraffQL-relation.gif)
 
+GraphiQL Integration
+
+![Screenshot](/src/img/gifs/giraffQL-graphiql.gif)
+
+### GraphiQL
+---
+
+In the menu directory, click on GraphiQL.
+
+Currently we have a GraphiQL mapped to a Mock Fighter API.
+
+The Data is generated with the Faker.js Library.
+
+Current Schema has two types Fighter and Team.
+
+#### Mock Data
+---
+Mock data provided through faker.js library.
+
+Each type is 
+
+### Running the tests
+---
 Explain how to run the automated tests for this system
 
 ### Break down into end to end tests
@@ -61,48 +65,23 @@ Explain what these tests test and why
 ```
 Give an example
 ```
+### Built With
+---
+* [GraphQL](https://www.github.com.io/graphql/) - API Query Language
+* [Faker.js](https://github.com/marak/Faker.js/) - Mock Data Generation
 
-### And coding style tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
+### Authors
+---
 * **Jelena Gruica** - [Github](https://github.com/jgruica)
 * **Woojun Choi** - [Github](https://github.com/woojunchoi)
 * **Scott Rosen** - [Github](https://github.com/scottrosen14)
 * **Harry Cam** - [Github](https://github.com/hcam05)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
+### License
+---
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+### Acknowledgments
+---
+* **Kristopher Bowles** - [Github](https://github.com)
