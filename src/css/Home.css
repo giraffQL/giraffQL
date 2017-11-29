@@ -88,7 +88,7 @@
 }
 .maintext {
     margin-top:20px;
-    font-size:20px;
+    font-size:25px;
     color:#F6F6F6
 }
 .grafql {
@@ -115,6 +115,12 @@
     border-width: medium;
     font-size:20px;
     color:#F6F6F6
+}
+
+.tryitbutton:hover {
+    background-color: #FDD217;
+    color: #F6F6F6;
+    font-weight: bold;
 }
 .logo {
     width:150px;
@@ -176,4 +182,16 @@ img {
     .mainimage {
         width:100%;
     }
+}
+
+#about {
+    margin-top: 50px
+}
+
+.row {
+    margin-top: 20px;
+}
+
+.container {
+    margin-top: 50px;
 }

@@ -17011,7 +17011,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // import './aboutusstyle/animate.css'
 // // import './aboutusstyle/bootstrap.css' 
-// // import './aboutusstyle/bootstrap.min.css'
+// import './aboutusstyle/bootstrap.min.css'
 // import './aboutusstyle/style.css'
 
 
@@ -87223,17 +87223,17 @@ var Home = function (_Component) {
             { className: 'third' },
             _react2.default.createElement(
               _reactBootstrap.Panel,
-              { className: 'featurebox', header: 'Giraffql do this shit' },
+              { className: 'featurebox', header: 'Create tables' },
               _react2.default.createElement('img', { src: 'https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' })
             ),
             _react2.default.createElement(
               _reactBootstrap.Panel,
-              { className: 'featurebox', header: 'harry made it' },
+              { className: 'featurebox', header: 'Create relations' },
               _react2.default.createElement('img', { src: 'https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' })
             ),
             _react2.default.createElement(
               _reactBootstrap.Panel,
-              { className: 'featurebox', header: 'scott made it' },
+              { className: 'featurebox', header: 'GraphiQL integration' },
               _react2.default.createElement('img', { src: 'https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' })
             )
           ),
@@ -87247,7 +87247,8 @@ var Home = function (_Component) {
               'a',
               { href: 'https://github.com/giraffQL' },
               ' GitHub'
-            )
+            ),
+            '.'
           )
         )
       );
@@ -87377,7 +87378,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // css for aboutus component
 // import '../../css/Home.css'
 // bootstrap css
-// import './../../aboutusstyle/bootstrap.min.css'
+// import './../src/aboutusstyle/bootstrap.min.css'
 // bootstrap css
 // import './../../aboutusstyle/style.css'
 
@@ -87420,7 +87421,8 @@ var Aboutus = function (_Component) {
         menuItem: {
           'color': '#fdd217',
           'fontSize': '16px',
-          'textAlign': 'center'
+          'textAlign': 'center',
+          'margin-top': '10px'
         },
         download: {
           'color': '#fdd217',
@@ -87529,7 +87531,7 @@ var Aboutus = function (_Component) {
                   _react2.default.createElement(
                     'h2',
                     null,
-                    'ABOUT US'
+                    'OUR TEAM'
                   ),
                   _react2.default.createElement('div', { className: 'wow bounceInDown', 'data-wow-delay': '0.4s' })
                 )
@@ -87572,7 +87574,7 @@ var Aboutus = function (_Component) {
                       _react2.default.createElement(
                         'p',
                         { className: 'subtitle' },
-                        'hello worldr'
+                        'Software Engineer'
                       )
                     )
                   )
@@ -87598,7 +87600,7 @@ var Aboutus = function (_Component) {
                       _react2.default.createElement(
                         'p',
                         { className: 'subtitle' },
-                        'Ruby on Rails'
+                        'Software Engineer'
                       ),
                       _react2.default.createElement(
                         'div',
@@ -87629,7 +87631,7 @@ var Aboutus = function (_Component) {
                       _react2.default.createElement(
                         'p',
                         { className: 'subtitle' },
-                        'jQuery Ninja'
+                        'Software Engineer'
                       ),
                       _react2.default.createElement(
                         'div',
@@ -87660,7 +87662,7 @@ var Aboutus = function (_Component) {
                       _react2.default.createElement(
                         'p',
                         { className: 'subtitle' },
-                        'Typographer'
+                        'Software Engineer'
                       ),
                       _react2.default.createElement(
                         'div',
@@ -88333,7 +88335,7 @@ exports = module.exports = __webpack_require__(32)(undefined);
 
 
 // module
-exports.push([module.i, "#root {\n    width:100%;\n    height:1200px;;\n    overflow: scroll;\n}\n#routed-component {\n    width:100%;\n    height:100%;\n\n}\n.mainpage {\n    display:flex;\n    width:100%;\n    height:100%;\n    flex-direction:column;\n    align-items: center;\n\n}\n.header {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: space-between;\n    background-color: rgba(0,0,0,0); /*#86E2D5;*/\n    align-items: center;\n    position:fixed;\n    z-index:1000\n}\n.navbutton {\n    align-items: center;\n    /* color:#FDD217 */\n}\n\n.navbutton:hover {\n    color: white;\n}\n.material-icons {\n    color:#FDD217\n}\n\n.gitbutton {\n    align-items: center;\n}\n.mainimage{\n    display:flex;\n    width:100%;\n    height:100%;\n    background-color: white;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;  \n    background:rgba(0,0,0, 1);\n    \n}\n.mainimage .background{\n    height:100%;\n    width:100%;\n    z-index:1;\n    opacity:0.2;\n    \n}\n\n/*.coremain {\n    display: flex;\n    height:55%;\n    background-size: contain\n}*/\n.coremain {\n    margin-top:2%;\n    display: flex;\n    height:100%;\n    width:100%;\n    flex-direction:column;\n    align-items: center;\n    justify-content:center;\n    z-index:2;\n    position:absolute;\n}\n.image {\n    align-self:center;\n    justify-content:center;\n}\n.text {\n    align-self:center;\n    justify-content: flex-end;\n    flex-direction:center;\n\n}\n.maintext {\n    margin-top:20px;\n    font-size:20px;\n    color:#F6F6F6\n}\n.grafql {\n    font-size:70px;\n    justify-content:center;\n    color:#F6F6F6;\n}\n.tryit {\n    flex-direction:row;\n    justify-content:center;\n    display:flex;\n    align-items:center;\n    margin-top:10px;\n}\n.tryitbutton {\n    background-color: Transparent;\n    background-repeat:no-repeat;\n    border: 1px solid #FDD217;\n    cursor:pointer;\n    padding-top:10px;\n    padding-bottom:10px;\n    padding-right:35px;\n    padding-left:35px;\n    border-width: medium;\n    font-size:20px;\n    color:#F6F6F6\n}\n.logo {\n    width:150px;\n    height:150px;\n}\n.trytext{\n    margin:0px;\n    font-weight:bold\n}\n.third {\n    display:flex;\n    flex-direction: row;\n    width:100%;\n    height:100%;\n    justify-content:space-around;\n    align-items:center;\n    background-color:#2D2D2D\n}\n.featurebox {\n    width:30%;\n    height:350px;\n    justify-content:space-around;\n}\nimg {\n    max-width:100%;\n}\n.bottompart {\n    background-color: #F6F6F7;\n    width:100%;\n    height:300px;\n    font-size: 25px;\n    color: #2d2d2d;\n    text-align:center;\n    margin-top:50px;\n}\n.secondtxt {\n    text-align:center;\n}\n.meetteam {\n    background-color:red;\n    width:100%;\n}\n\n.drawertop {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: center;\n    align-items:center;\n    /* background-color: rgb(45,45,45); */\n    color: #fdd217; /*#E9D460*/\n    font-weight: 400;\n}\n.features {\n    margin-top:3%;\n}\n\n@media all and (max-width:1000px) {\n    .mainimage {\n        width:100%;\n    }\n}\n", ""]);
+exports.push([module.i, "#root {\n    width:100%;\n    height:1200px;;\n    overflow: scroll;\n}\n#routed-component {\n    width:100%;\n    height:100%;\n\n}\n.mainpage {\n    display:flex;\n    width:100%;\n    height:100%;\n    flex-direction:column;\n    align-items: center;\n\n}\n.header {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: space-between;\n    background-color: rgba(0,0,0,0); /*#86E2D5;*/\n    align-items: center;\n    position:fixed;\n    z-index:1000\n}\n.navbutton {\n    align-items: center;\n    /* color:#FDD217 */\n}\n\n.navbutton:hover {\n    color: white;\n}\n.material-icons {\n    color:#FDD217\n}\n\n.gitbutton {\n    align-items: center;\n}\n.mainimage{\n    display:flex;\n    width:100%;\n    height:100%;\n    background-color: white;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;  \n    background:rgba(0,0,0, 1);\n    \n}\n.mainimage .background{\n    height:100%;\n    width:100%;\n    z-index:1;\n    opacity:0.2;\n    \n}\n\n/*.coremain {\n    display: flex;\n    height:55%;\n    background-size: contain\n}*/\n.coremain {\n    margin-top:2%;\n    display: flex;\n    height:100%;\n    width:100%;\n    flex-direction:column;\n    align-items: center;\n    justify-content:center;\n    z-index:2;\n    position:absolute;\n}\n.image {\n    align-self:center;\n    justify-content:center;\n}\n.text {\n    align-self:center;\n    justify-content: flex-end;\n    flex-direction:center;\n\n}\n.maintext {\n    margin-top:20px;\n    font-size:25px;\n    color:#F6F6F6\n}\n.grafql {\n    font-size:70px;\n    justify-content:center;\n    color:#F6F6F6;\n}\n.tryit {\n    flex-direction:row;\n    justify-content:center;\n    display:flex;\n    align-items:center;\n    margin-top:10px;\n}\n.tryitbutton {\n    background-color: Transparent;\n    background-repeat:no-repeat;\n    border: 1px solid #FDD217;\n    cursor:pointer;\n    padding-top:10px;\n    padding-bottom:10px;\n    padding-right:35px;\n    padding-left:35px;\n    border-width: medium;\n    font-size:20px;\n    color:#F6F6F6\n}\n\n.tryitbutton:hover {\n    background-color: #FDD217;\n    color: #F6F6F6;\n    font-weight: bold;\n}\n.logo {\n    width:150px;\n    height:150px;\n}\n.trytext{\n    margin:0px;\n    font-weight:bold\n}\n.third {\n    display:flex;\n    flex-direction: row;\n    width:100%;\n    height:100%;\n    justify-content:space-around;\n    align-items:center;\n    background-color:#2D2D2D\n}\n.featurebox {\n    width:30%;\n    height:350px;\n    justify-content:space-around;\n}\nimg {\n    max-width:100%;\n}\n.bottompart {\n    background-color: #F6F6F7;\n    width:100%;\n    height:300px;\n    font-size: 25px;\n    color: #2d2d2d;\n    text-align:center;\n    margin-top:50px;\n}\n.secondtxt {\n    text-align:center;\n}\n.meetteam {\n    background-color:red;\n    width:100%;\n}\n\n.drawertop {\n    width:100%;\n    height: 65px; /*6%;*/\n    display:flex;\n    justify-content: center;\n    align-items:center;\n    /* background-color: rgb(45,45,45); */\n    color: #fdd217; /*#E9D460*/\n    font-weight: 400;\n}\n.features {\n    margin-top:3%;\n}\n\n@media all and (max-width:1000px) {\n    .mainimage {\n        width:100%;\n    }\n}\n\n#about {\n    margin-top: 50px\n}\n\n.row {\n    margin-top: 20px;\n}\n\n.container {\n    margin-top: 50px;\n}\n", ""]);
 
 // exports
 
