@@ -1,35 +1,46 @@
+//import react
 import React, { Component } from 'react';
+//import react-router for setting different routers
+import { Switch, Route } from 'react-router-dom'
+//import redirect from react router to set the first page route
+import { Redirect } from 'react-router'
+//import drawer from material-ui for navigation
 import Drawer from 'material-ui/Drawer';
+// menu for drawer
 import MenuItem from 'material-ui/MenuItem';
+// button for drawer
 import FlatButton from 'material-ui/FlatButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
-import AppBar from 'material-ui/AppBar';
-import { Link } from 'react-router-dom'
+// import APP component
+import App from './app/App.js'
+// import Link from react router for redirection
+import { Link } from 'react-router-dom';
+// import fonticon for github icon
 import FontIcon from 'material-ui/FontIcon';
-import ActionAndroid from 'material-ui/svg-icons/action/android';
+// import css for Home component
+// import '../../css/home.css'
+// import panel from react-bootstrap
 import { Panel } from 'react-bootstrap';
-import 'typeface-roboto'
-// COMPONENTS
-import App from './app/App.js';
-//STATIC FILES
-import graff from '../../assets/graff.png'
-import main from '../../assets/mainimage.png'
-import Octocat from '../GitHub-Mark-32px.png';
-
-
+//import materail ui 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+//import button style from material ui for tryit button
+import RaisedButton from 'material-ui/RaisedButton';
+import Background from '../../assets/background.jpg'
+import Logo from '../../assets/logo.png'
 
 class Home extends Component {
   constructor(props) {
     super(props)
+    // STATE FOR DRAER
     this.state = { open: false };
   }
+  //METHOD FOR DRAWER (open or closed)
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
 
 
   render() {
+    // drawer style
     const muiStyles = {
       appBar: {
         'backgroundColor': 'rgba(0,0,0,0)',
@@ -57,6 +68,8 @@ class Home extends Component {
             onClick={this.handleToggle}
             icon={<i className="material-icons">list</i>}
           />
+
+         {/* adding drawer */}
           <Drawer
             containerStyle={muiStyles.drawer}
             docked={false}
@@ -65,6 +78,7 @@ class Home extends Component {
             onRequestChange={(open) => this.setState({ open })}
           >
 
+          {/* drawer menu with react router */}
             <div className ='drawertop'>GiraffQL</div>
             <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
             <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
@@ -72,33 +86,31 @@ class Home extends Component {
             <Link to='/aboutus'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
 
+        {/* added github button */}
           <FlatButton className='gitbutton'
             href="https://github.com/giraffql/giraffql"
             icon={<i className="material-icons">account_circle</i>}
           />
       </div>
+
+     {/* app name, logo, description */}
        <div className='mainimage'>
+       <img className='background' src = {Background}/>
         <div className='coremain'>
-          <img className ='image' src={graff} />
-           <h1 className ='grafql'>GiraffQL</h1>
-          {/* <FlatButton className='gitbutton'
-            href="https://github.com/giraffql/giraffql"
-            // icon={<i class="material-icons">account_circle</i>}
-          /> */}
-        </div>
-          <div className='maintext'>
+           <h1 className ='grafql'> <img className ='logo' src={Logo} /> GiraffQL</h1> <br/>
+           <div className='maintext'>
             <p> A Set of React Components that Implement Google's Material Design DEMO</p>
-          </div>
-        </div>
-        <div className='second'>
-          <p className='secondtxt'> ame about from our love of Reactl Design. We're currently using it on  </p>
-          <p className='secondtxt'> Material-ogle's Material Design. We're currently using it on a project a] </p>
-          <p className='secondtxt'> Material-UI came agn. We're currently using it on a project at Call-Em-All  </p>
+          </div><br/>
           <div className ='tryit'>
-            {/* <p className ='trytext'>Try it</p> */}
-            <Link to='/app'><RaisedButton className='tryitbutton' label="try it" labelColor='green' /></Link>
+
+      {/* tryit button */}
+            <Link to='/app'><button className='tryitbutton'>TRY IT</button></Link>          
         </div>
         </div>
+        </div>
+
+
+    {/* app features with picture with panel from react-bootstrap*/}
         <div className='third'>
           <Panel className='featurebox' header="Giraffql do this shit">
             <img src='https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' />

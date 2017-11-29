@@ -1,23 +1,31 @@
+// IMPORT REACT
 import React, { Component } from 'react';
+// DRAWER FROM MATERIAL UI 
 import Drawer from 'material-ui/Drawer';
+// MENU FOR DRAWER
 import MenuItem from 'material-ui/MenuItem';
+// BUTTON FOR DRAWER
 import FlatButton from 'material-ui/FlatButton';
+// IMPORT APP
+import App from './app/App.js'
+// IMPORT LINK PROP FROM REACT ROUTER
 import { Link } from 'react-router-dom'
+// IMPORT ICON FOR GITHUB BUTTON
 import FontIcon from 'material-ui/FontIcon';
+// CSS
+import '../../css/home.css'
+// PANEL FROM REACT-BOOTSTRAP (FEATURE PART)
 import { Panel } from 'react-bootstrap';
-import 'typeface-roboto'
-// COMPONENTS
-import App from '../main/app/App.js'
-// STATIC FILES
-import picone from '../../img/team/jelena.jpg'
-// import './homestyle.css'
 
 
 class Feature extends Component {
   constructor(props) {
     super(props)
+    // STATE FOR DRAWER
     this.state = { open: false };
   }
+  
+    // METHOD FOR DRAWER 
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
@@ -26,12 +34,12 @@ class Feature extends Component {
   render() {
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'rgb(0,0,0)',
         'lineHeight': '20px',
         'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'rgb(0,0,0)',
       },
       menuItem: {
         'color': '#fdd217',
@@ -57,6 +65,8 @@ class Feature extends Component {
             open={this.state.open}
             onRequestChange={(open) => this.setState({ open })}
           >
+
+          {/* DRAWER MENU WITH REACT ROUTER */}
             <div className ='drawertop'>GiraffQL</div>
             <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
             <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
@@ -75,12 +85,12 @@ class Feature extends Component {
           FEATURES
         </h2>
 
-      <div class="row">
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+      <div className="row">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-rocket"></span>
+              <div className="feature-icon">
+                <span className="fa fa-rocket"></span>
               </div>
             </div>
 
@@ -96,11 +106,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-envelope"></span>
+              <div className="feature-icon">
+                <span className="fa fa-envelope"></span>
               </div>
             </div>
 
@@ -116,11 +126,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-bell"></span>
+              <div className="feature-icon">
+                <span className="fa fa-bell"></span>
               </div>
             </div>
 
@@ -137,12 +147,12 @@ class Feature extends Component {
         </div>
       </div>
 
-      <div class="row">
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+      <div className="row">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-database"></span>
+              <div className="feature-icon">
+                <span className="fa fa-database"></span>
               </div>
             </div>
 
@@ -158,11 +168,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-cutlery"></span>
+              <div className="feature-icon">
+                <span className="fa fa-cutlery"></span>
               </div>
             </div>
 
@@ -178,11 +188,11 @@ class Feature extends Component {
           </div>
         </div>
 
-        <div class="feature-col col-lg-4 col-xs-12">
-          <div class="card card-block text-center">
+        <div className="feature-col col-lg-4 col-xs-12">
+          <div className="card card-block text-center">
             <div>
-              <div class="feature-icon">
-                <span class="fa fa-dashboard"></span>
+              <div className="feature-icon">
+                <span className="fa fa-dashboard"></span>
               </div>
             </div>
 
