@@ -75,7 +75,7 @@ function addResolvers(schema, type) {
     }
 }
 
-function buildDummySchema(schemaString) {
+function mockSchema(schemaString) {
     const schema = buildSchema(schemaString);
     const typeMap = schema.getTypeMap();
     Object.keys(typeMap).forEach((typeName) => {
@@ -84,4 +84,4 @@ function buildDummySchema(schemaString) {
     return schema;
 }
 
-module.exports.buildDummySchema = buildDummySchema
+module.exports.mockSchema = mockSchema

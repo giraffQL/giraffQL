@@ -2,7 +2,7 @@ const { createHash } = require('crypto');
 
 const maxBlobs = 1000;
 
-class InMemoryBlobStore {
+class memoryBlobStore {
   constructor() {
     this._storage = {};
     this._keys = [];
@@ -24,4 +24,4 @@ class InMemoryBlobStore {
   }
 }
 
-module.exports.InMemoryBlobStore = InMemoryBlobStore
+module.exports.memoryBlobStore = memoryBlobStore
