@@ -124,7 +124,6 @@ class Home extends Component {
           {/* drawer menu with react router */}
             <div className ='drawertop' style={{'font-weight': 'bold'}}>GiraffQL</div>
             <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
-            <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
             <Link to='/app'> <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem></Link>
             <Link to='/aboutus'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
@@ -157,6 +156,7 @@ class Home extends Component {
         <div className='third'>
           <Panel className='featurebox' header={<p className='panelheader'>CREATE TABLE</p>}>
             <img className='panelcontent' onClick={this.openone} src={Tablecreation} />
+  
             <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -165,15 +165,16 @@ class Home extends Component {
           contentLabel="Example Modal"
         >
           <img src={images[this.state.picnum]}/>
-          <p>blah blah</p>
 
         </Modal>
           </Panel>
-          <Panel className='featurebox' header={<p className='panelheader'>CREATE REALATION</p>}>
+          <Panel className='featurebox' header={<p className='panelheader'>CREATE RELATION</p>}>
             <img className='panelcontent'src={Relation} onClick={this.opentwo} />
+   
           </Panel>
           <Panel className='featurebox' header={<p className='panelheader'>GRAPHIQL INTEGRATION</p>}>
             <img className='panelcontent' src={Intro} onClick={this.openthree} />
+
           </Panel>
         </div>
         <div className='bottompart'>

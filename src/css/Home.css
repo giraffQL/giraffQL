@@ -149,6 +149,7 @@
 img {
     max-width:100%;
 }
+
 .bottompart {
     background-color: #F6F6F7;
     width:100%;
@@ -191,11 +192,12 @@ img {
 }
 
 .row {
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
-.container {
-    margin-top: 50px;
+.containerFeatures {
+    margin-top: 100px;
+    width: 90%
 }
 .panelcontent {
     width:100%;

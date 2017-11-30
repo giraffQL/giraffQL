@@ -102,11 +102,6 @@ class MenuComp extends Component {
               Home
                 </MenuItem>
           </Link>
-          <Link to="/feature">
-            <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
-              Feature
-                </MenuItem>
-          </Link>
           <Link to="/app">
             <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
               App
