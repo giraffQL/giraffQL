@@ -3,6 +3,7 @@ import SplitPane from "react-split-pane"
 import Fullscreen from 'react-full-screen';
 // MATERIAL UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
 // REACT-BOOTSTRAP
 import { FormControl, Button, ButtonGroup, Nav, Popover } from 'react-bootstrap';
 //FILE SERVER
@@ -12,6 +13,7 @@ import MenuComp from './AppMenu';
 import Visualization from './table/Visualization';
 import TextEditor from './code/TextEditor'
 import ExpressCode from './code/ExpressCode'
+
 
 
 
@@ -412,7 +414,7 @@ class App extends Component {
     return [
       <MuiThemeProvider>
         <div className="App">
-          <Fullscreen style={{ height: '100%'}}
+          <Fullscreen style={{ 'height': '100%' }}
             enabled={this.state.isFullscreenEnabled}
             onChange={isFullscreenEnabled => this.setState({ isFullscreenEnabled })}
           >
@@ -420,9 +422,15 @@ class App extends Component {
               <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} submitSchemaCode={this.submitSchemaCode} />
 
               <SplitPane style={{ 'backgroundColor': 'rgb(45,45,45)' }} split="vertical" defaultSize="70%">
-                <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
-                  updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
-
+                {data.tables.length === 0 ?
+                  <div className="firstShow">
+                    <p className="textClick"> Click on <Button id="createTableBtn" bsSize="large" onClick={() => this.onAddTable()}>
+                      +
+                 </Button> to add table </p>
+                  </div> :
+                  <Visualization data={this.state.data} clickedRow={this.state.clickedRow} onAddRow={this.onAddRow} onAddTable={this.onAddTable}
+                    updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
+                }
                 <div className="TextEditor">
                   <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
                   <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />

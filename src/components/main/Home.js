@@ -95,7 +95,7 @@ class Home extends Component {
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'font-weight': '400',
+        'fontWeight': '400',
         'textAlign': 'center'
       },
       menuIcon: {
@@ -122,7 +122,7 @@ class Home extends Component {
           >
 
           {/* drawer menu with react router */}
-            <div className ='drawertop' style={{'font-weight': 'bold'}}>GiraffQL</div>
+            <div className ='drawertop' style={{'fontWeight': 'bold'}}>GiraffQL</div>
             <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
             <Link to='/app'> <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem></Link>
             <Link to='/aboutus'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem></Link>
