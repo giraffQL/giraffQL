@@ -88917,53 +88917,6 @@ var Aboutus = function (_Component) {
                         'p',
                         { className: 'subtitle' },
                         'Software Engineer'
-                      ),
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'avatar' },
-                        _react2.default.createElement('img', { src: './../img/team/3.jpg', alt: '', className: 'img-responsive img-circle' })
-                      )
-                    )
-                  )
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'col-md-3' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'wow bounceInUp', 'data-wow-delay': '1s' },
-                  _react2.default.createElement(
-                    'div',
-                    { className: 'team boxed-grey' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'inner' },
-                      _react2.default.createElement(
-                        'div',
-                        { className: 'avatar' },
-                        _react2.default.createElement('img', { src: _woojun2.default, alt: '', className: 'img-responsive img-circle' })
-                      ),
-                      _react2.default.createElement(
-                        'h3',
-                        null,
-                        'Woojun Choi'
-                      ),
-                      _react2.default.createElement(
-                        'a',
-                        { href: 'https://www.linkedin.com/in/woojunchoi/' },
-                        'Linkedin'
-                      ),
-                      '/',
-                      _react2.default.createElement(
-                        'a',
-                        { href: 'https://github.com/woojunchoi' },
-                        'GitHub'
-                      ),
-                      _react2.default.createElement(
-                        'p',
-                        { className: 'subtitle' },
-                        'Software Engineer'
                       )
                     )
                   )

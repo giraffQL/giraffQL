@@ -159,25 +159,6 @@ class Aboutus extends Component {
                       <a href="https://www.linkedin.com/in/harry-cam/">Linkedin</a>/
                         <a href="https://github.com/hcam05">GitHub</a>
                       <p className="subtitle">Software Engineer</p>
-                      <div className="avatar"><img src="./../img/team/3.jpg" alt="" className="img-responsive img-circle" /></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* person 4 */}
-              <div className="col-md-3">
-                <div className="wow bounceInUp" data-wow-delay="1s">
-                  <div className="team boxed-grey">
-                    <div className="inner">
-                    <div className="avatar"><img src={Woojun} alt="" className="img-responsive img-circle" /></div>
-                      <h3>Woojun Choi</h3>
-                        
-                      {/* description */}
-                      <a href="https://www.linkedin.com/in/woojunchoi/">Linkedin</a>/
-                        <a href="https://github.com/woojunchoi">GitHub</a>
-                      <p className="subtitle">Software Engineer</p>
-
                     </div>
                   </div>
                 </div>
