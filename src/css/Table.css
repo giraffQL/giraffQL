@@ -171,7 +171,8 @@
     position: relative;
     width:30px;
     height: 29px;
-    float:left;
+    text-align: center;
+    cursor: move;
 }
 .drag {
     display: block;
@@ -186,8 +187,8 @@
 
 /* giraffe icon */
 .img {
-    width: 30px;
-    height: 29px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     pointer-events: none;
     user-select:none;
