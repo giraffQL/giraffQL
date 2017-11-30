@@ -141,8 +141,17 @@ class Home extends Component {
         <div className='coremain'>
            <h1 className ='grafql'> <img className ='logo' src={Logo} /> GiraffQL</h1> <br/>
            <div className='maintext'>
-            <p> Interactive GraphQL exploration tool built with React</p>
-          </div><br/>
+            <p> An interactive GraphQL exploration tool built with React</p>
+          </div>
+          <br/>
+          <div className='secondtext'>
+            <p className="exp"> 
+              Create your schema, set up relations, generate and save your schema files and test your schema by writing some basic
+              queries with 
+              <a href="https://github.com/graphql/graphiql"> GraphiQL</a> <br/>
+              Start exploring the capabilities of GraphQL with our App </p>
+            </div>
+          <br/>
           <div className ='tryit'>
 
       {/* tryit button */}
