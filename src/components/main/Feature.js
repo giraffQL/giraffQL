@@ -12,6 +12,8 @@ import App from './app/App.js'
 import { Link } from 'react-router-dom'
 // IMPORT ICON FOR GITHUB BUTTON
 import FontIcon from 'material-ui/FontIcon';
+// // CSS
+// import '../../css/Home.css'
 // PANEL FROM REACT-BOOTSTRAP (FEATURE PART)
 import { Panel } from 'react-bootstrap';
 
@@ -94,7 +96,7 @@ class Feature extends Component {
 
             <div>
               <h3>
-                  Custom Design
+                  
                 </h3>
 
               <p>
