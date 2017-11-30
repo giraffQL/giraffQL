@@ -7,11 +7,11 @@ const path = require('path')
 const bodyParser = require('body-parser');
 const graphQLHTTP = require('express-graphql');
 const { GraphQLSchema, buildSchema, printSchema } = require('graphql');
-const { InMemoryBlobStore } = require('./src/components/graphql/InMemoryBlobStore');
-const { buildDummySchema } = require('./src/components/graphql/buildDummySchema');
+const { memoryBlobStore } = require('./src/components/graphql/memoryBlobStore');
+const { mockSchema } = require('./src/components/graphql/mockSchema');
  
 const compiler = webpack(webpackConfig);
-const blobStore = new InMemoryBlobStore();
+const blobStore = new memoryBlobStore();
 
 
 app.use(express.static(__dirname + '/public'));
@@ -28,7 +28,7 @@ app.all('/schemas/:schemaId/graphql', (req, res) => {
   } else {
     blobStore.fetch(req.params.schemaId).then((blob) => {
       if (blob) {
-        const schema = buildDummySchema(blob);
+        const schema = mockSchema(blob);
         graphQLHTTP({schema: schema, graphiql: true})(req, res);
       } else {
         res.send(404);

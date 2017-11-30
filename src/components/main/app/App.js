@@ -432,7 +432,13 @@ class App extends Component {
                     updateTableName={this.updateTableName} updateRowProp={this.updateRowProp} updateRowType={this.updateRowType} onDragTable={this.onDragTable} refreshTablePositions={this.refreshTablePositions} deleteTable={this.deleteTable} deleteRow={this.deleteRow} deleteAllTables={this.deleteAllTables} onTableMouseUp={this.onTableMouseUp} onRowMouseDown={this.onRowMouseDown} />
                 }
                 <div className="TextEditor">
+                  <div className="editorTxt">
+                      Fill tables and test schema
+                  </div>
                   <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
+                  <div className="editorTxt">
+                      Save express schema code
+                  </div>
                   <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
                 </div>
               </SplitPane>
