@@ -87561,7 +87561,7 @@ var Aboutus = function (_Component) {
                       _react2.default.createElement(
                         'div',
                         { className: 'avatar' },
-                        _react2.default.createElement('img', { src: './../img/team/2.jpg', alt: '', className: 'img-responsive img-circle' })
+                        _react2.default.createElement('img', { src: './../img/team/scott.jpg', alt: '', className: 'img-responsive img-circle' })
                       )
                     )
                   )
@@ -87592,7 +87592,7 @@ var Aboutus = function (_Component) {
                       _react2.default.createElement(
                         'div',
                         { className: 'avatar' },
-                        _react2.default.createElement('img', { src: './../img/team/3.jpg', alt: '', className: 'img-responsive img-circle' })
+                        _react2.default.createElement('img', { src: './../img/team/harry.jpg', alt: '', className: 'img-responsive img-circle' })
                       )
                     )
                   )
@@ -87623,7 +87623,7 @@ var Aboutus = function (_Component) {
                       _react2.default.createElement(
                         'div',
                         { className: 'avatar' },
-                        _react2.default.createElement('img', { src: './../img/team/4.jpg', alt: '', 'class': 'img-responsive img-circle' })
+                        _react2.default.createElement('img', { src: './../img/team/woojun.jpg', alt: '', 'class': 'img-responsive img-circle' })
                       )
                     )
                   )

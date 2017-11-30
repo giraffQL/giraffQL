@@ -129,7 +129,7 @@ class Aboutus extends Component {
 
                         {/* description */}
                         <p className="subtitle">Software Engineer</p>
-                        <div className="avatar"><img src="./../img/team/2.jpg" alt="" className="img-responsive img-circle" /></div>
+                        <div className="avatar"><img src="./../img/team/scott.jpg" alt="" className="img-responsive img-circle" /></div>
         
                       </div>
                     </div>
@@ -145,7 +145,7 @@ class Aboutus extends Component {
 
                         {/* description */}
                         <p className="subtitle">Software Engineer</p>
-                        <div className="avatar"><img src="./../img/team/3.jpg" alt="" className="img-responsive img-circle" /></div>
+                        <div className="avatar"><img src="./../img/team/harry.jpg" alt="" className="img-responsive img-circle" /></div>
                       </div>
                     </div>
                   </div>
@@ -160,7 +160,7 @@ class Aboutus extends Component {
 
                         {/* description */}
                         <p className="subtitle">Software Engineer</p>
-                        <div className="avatar"><img src="./../img/team/4.jpg" alt="" class="img-responsive img-circle" /></div>
+                        <div className="avatar"><img src="./../img/team/woojun.jpg" alt="" class="img-responsive img-circle" /></div>
         
                       </div>
                     </div>
