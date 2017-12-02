@@ -1,4 +1,5 @@
-# GiraffQL
+# [GiraffQL](www.giraffql.com)
+
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/giraffQL/giraffQL)
 [![David](https://img.shields.io/david/giraffQL/giraffQL.svg)](https://github.com/giraffQL/giraffQL)
