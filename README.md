@@ -10,7 +10,7 @@
  An interactive GraphQL schema visualization tool built with React.  Create your schema, set up relations, generate and save your schema files and test your schema by writing some basic queries with Graphiql. Start exploring the capabilities of GraphQL with our App. 
 <br />
 
-### Geting Started
+### Getting Started
 ---
 
 Create a GraphQL Schema
