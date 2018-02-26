@@ -46,6 +46,8 @@
   font-weight: bold;
   padding: 10px;
   margin-right:10px;
+  margin-top: 2px;
+  border-radius: 5px;
 }
 
 .save:hover {
@@ -60,6 +62,8 @@
   font-weight: bold;
   padding: 10px;
   margin-right:10px;
+  margin-top: 2px;
+  border-radius: 5px;
 }
 
 .test:hover {
