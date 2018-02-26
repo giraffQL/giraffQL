@@ -47,16 +47,16 @@
     background-color: white;
     justify-content: center;
     align-items: center;
-    flex-direction: column;  
+    flex-direction: column;
     background:rgba(0,0,0, 1);
-    
+
 }
 .mainimage .background{
     height:100%;
     width:100%;
     z-index:1;
     opacity:0.2;
-    
+
 }
 
 /*.coremain {
