@@ -1,75 +1,55 @@
-# GiraffQL
+# [GiraffQL](www.giraffql.com)
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/giraffQL/giraffQL)
-[![David](https://img.shields.io/david/expressjs/express.svg)](https://github.com/giraffQL/giraffQL)
-[![Github commits (since latest release)](https://img.shields.io/github/commits-since/SubtitleEdit/subtitleedit/latest.svg)](https://github.com/giraffQL/giraffQL)
+
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/giraffQL/giraffQL)
+[![David](https://img.shields.io/david/giraffQL/giraffQL.svg)](https://github.com/giraffQL/giraffQL)
+
+<br/>
+<center><img src="./src/img/giraffQL-logo-white.png" /></center>
+
+ An interactive GraphQL schema visualization tool built with React.  Create your schema, set up relations, generate and save your schema files and test your schema by writing some basic queries with Graphiql. Start exploring the capabilities of GraphQL with our App. 
+<br />
 
 ### Getting Started
 ---
 
-Start Exploring GraphQL with our Schema Building App.
+Create a GraphQL Schema
 
-Build your schema using our visualization tool.
+<br/>
 
-Generate schema code layout
+<center><img src="./src/img/gifs/giraffQL-table-relation.gif" /></center>
 
-### Building Your Schema
----
-Click on menu button at the top right corner and select App. <br/>
-
-```
-```
-
-Full Demo <br/>
-
-Table Creation
-
-![Screenshot](/src/img/gifs/giraffQL-table-creation.gif)
-
-Click Add Field Button
+* Create tables with the green button
+* Clear all tables with red button
+* Fill in each property of your schema and select each property class
+* Create relations between tables by dragging a line and connecting a table to a row
+* Save your schema file by clicking "Save Schema"
 
 
-Creating Relations
-
-![Screenshot](/src/img/gifs/giraffQL-relation.gif)
-
-GraphiQL Integration
-
-![Screenshot](/src/img/gifs/giraffQL-graphiql.gif)
-
-### GraphiQL
+### Exploring Queries
 ---
 
-In the menu directory, click on GraphiQL.
+Explore with Graphiql and Mock Data
 
-Currently we have a GraphiQL mapped to a Mock Fighter API.
+<br />
 
-The Data is generated with the Faker.js Library.
+<center><img src="./src/img/gifs/giraffQL-graphiql.gif"/></center>
 
-Current Schema has two types Fighter and Team.
+* Once your tables are created click on "Test Schema"
+* This will launch GraphiQL and faker.js provides random data for you to send queries against your schema
+<br/>
 
-#### Mock Data
----
-Mock data provided through faker.js library.
-
-Each type is 
-
-### Running the tests
----
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 ### Built With
 ---
-* [GraphQL](https://www.github.com.io/graphql/) - API Query Language
-* [Faker.js](https://github.com/marak/Faker.js/) - Mock Data Generation
+* [React](https://reactjs.org/)
+* [GraphQL](https://www.github.com.io/graphql/)
+* [Faker.js](https://github.com/marak/Faker.js/)
 
+### Resources
+---
+* [GraphQL Docs](https://www.graphql.com/) - GraphQL Official Docs
+* [How To GraphQL](https://www.howtographql.com/) - Great Fullstack GraphQL Resource
+* [Awesome-Graphql](https://github.com/chentsulin/awesome-graphql) - Awesome List of GraphQL Resources
 
 ### Authors
 ---
@@ -81,7 +61,3 @@ Give an example
 ### License
 ---
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-### Acknowledgments
----
-* **Kristopher Bowles** - [Github](https://github.com)

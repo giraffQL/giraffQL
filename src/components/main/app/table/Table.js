@@ -94,7 +94,7 @@ class Table extends React.Component {
                                         <div className='deletetablebutton' onClick={() => deleteTable(tableIndex)}>x</div>
                                     </OverlayTrigger>
 
-                                    <div className='drag-handle'><img className='img' src="https://i.pinimg.com/236x/05/c3/22/05c32290526fb5c507329afd43a58fbc--jungle-animals-farm-animals.jpg" /></div>
+                                    <div className='drag-handle'><img className='img' src="https://cdn1.iconfinder.com/data/icons/interface-4/96/Cursor-Move-512.png"/></div>
 
                                     {this.startsWithNumber(table.name) &&
                                         <Popover

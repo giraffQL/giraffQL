@@ -30,7 +30,7 @@ class MenuComp extends Component {
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'font-weight': '400',
+        'fontWeight': '400',
         'textAlign': 'center'
       },
       aboutUs: {
@@ -96,15 +96,10 @@ class MenuComp extends Component {
           open={state.open}
           onRequestChange={onRequestChange}
         >
-        <div className ='drawertop' style={{'font-weight': 'bold'}}>GiraffQL</div>
+        <div className ='drawertop' style={{'fontWeight': 'bold'}}>GiraffQL</div>
           <Link to="/">
             <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
               Home
-                </MenuItem>
-          </Link>
-          <Link to="/feature">
-            <MenuItem style={muiStyles.menuItem} onClick={menuClose}>
-              Feature
                 </MenuItem>
           </Link>
           <Link to="/app">

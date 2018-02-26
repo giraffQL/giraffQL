@@ -24,20 +24,65 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Background from '../../assets/background.jpg'
 import Logo from '../../assets/logo.png'
+import Relation from '../../img/works/giraffQL-relation.gif'
+import Intro from '../../img/works/giraffQL-graphiql.gif'
+import Tablecreation from '../../img/works/giraffQL-table-creation.gif'
+import Tablecreationlarge from '../../img/works/giraffQL-table-creation-large.gif'
+import Relationlarge from '../../img/works/giraffQL-realtion-large.gif'
+import Introlarge from '../../img/works/giraffQL-graphiql-large.gif'
+import Modal from 'react-modal';
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 class Home extends Component {
   constructor(props) {
     super(props)
     // STATE FOR DRAER
-    this.state = { open: false };
+    this.state = { 
+      open: false ,
+      modalIsOpen: false,
+      picnum:0
+    };
   }
   //METHOD FOR DRAWER (open or closed)
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
 
+  // openModal = () => {
+  //   this.setState({modalIsOpen: true});
+  // }
+  openone = () => {
+    this.setState(
+      {picnum:0,
+      modalIsOpen: true})
+  }
+  opentwo = () => {
+    this.setState(
+      {picnum:1,
+      modalIsOpen: true})
+  }
+  openthree = () => {
+    this.setState(
+      {picnum:2,
+      modalIsOpen: true})
+  }
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  }
 
   render() {
+
+    let images = [Tablecreationlarge, Relationlarge, Introlarge]
     // drawer style
     const muiStyles = {
       appBar: {
@@ -50,7 +95,7 @@ class Home extends Component {
       menuItem: {
         'color': '#fdd217',
         'fontSize': '16px',
-        'font-weight': '400',
+        'fontWeight': '400',
         'textAlign': 'center'
       },
       menuIcon: {
@@ -77,9 +122,8 @@ class Home extends Component {
           >
 
           {/* drawer menu with react router */}
-            <div className ='drawertop' style={{'font-weight': 'bold'}}>GiraffQL</div>
+            <div className ='drawertop' style={{'fontWeight': 'bold'}}>GiraffQL</div>
             <Link to='/'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Home</MenuItem></Link>
-            <Link to='/feature'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>Feature</MenuItem></Link>
             <Link to='/app'> <MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>App</MenuItem></Link>
             <Link to='/aboutus'><MenuItem style={muiStyles.menuItem} onClick={this.handleClose}>About us</MenuItem></Link>
           </Drawer>
@@ -110,19 +154,32 @@ class Home extends Component {
 
     {/* app features with picture with panel from react-bootstrap*/}
         <div className='third'>
-          <Panel className='featurebox' header="Create tables">
-            <img src='https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' />
+          <Panel className='featurebox' header={<p className='panelheader'>CREATE TABLE</p>}>
+            <img className='panelcontent' onClick={this.openone} src={Tablecreation} />
+  
+            <Modal
+          isOpen={this.state.modalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <img src={images[this.state.picnum]}/>
+
+        </Modal>
           </Panel>
-          <Panel className='featurebox' header='Create relations'>
-            <img src='https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' />
+          <Panel className='featurebox' header={<p className='panelheader'>CREATE RELATION</p>}>
+            <img className='panelcontent'src={Relation} onClick={this.opentwo} />
+   
           </Panel>
-          <Panel className='featurebox' header='GraphiQL integration'>
-            <img src='https://d31v04zdn5vmni.cloudfront.net/blog/wp-content/uploads/2012/02/featured-image-snippets-1-690x362.png' />
+          <Panel className='featurebox' header={<p className='panelheader'>GRAPHIQL INTEGRATION</p>}>
+            <img className='panelcontent' src={Intro} onClick={this.openthree} />
+
           </Panel>
         </div>
         <div className='bottompart'>
             We'd love to hear your comments and suggestions. <br/>
-            You can find us on<a href="https://github.com/giraffQL"> GitHub</a>.
+            You can find us on<a href="https://github.com/giraffQL/giraffQL"> GitHub</a>.
         </div>
       </div>
       </MuiThemeProvider>
