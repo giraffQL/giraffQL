@@ -29,14 +29,12 @@ class MenuComp extends Component {
       },
       menuItem: {
         color: '#fdd217',
-        fontFamily: 'Verdana',
         fontSize: '16px',
         fontWeight: '400',
         textAlign: 'center'
       },
       aboutUs: {
         color: '#fdd217',
-        fontFamily: 'Verdana',
         fontSize: '16px',
         fontWeight: '400',
         textAlign: 'center',
