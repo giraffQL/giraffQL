@@ -146,6 +146,7 @@
     background-color:#2D2D2D
 }
 .featurebox {
+    color: #f6f6f7;
     width:30%;
     height:85%;
     text-align: center;
@@ -213,6 +214,7 @@ img {
     z-index:-1
 }
 .panelheader {
+    color: #f6f6f7;
     font-size:19px;
     font-weight:bold;
 }
