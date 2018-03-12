@@ -270,7 +270,7 @@ class Visualization extends React.Component {
                             data.tables.map((table, i) => {
                                 if (table) {
                                     return (
-                                        <Table style={{ "backgroundColor": colors[i] }} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
+                                        <Table style={{ "backgroundColor": i % 2 === 0 ? colors[0] : colors[1] }} key={table.id} data={data} value={value} tables={data.tables} draggable={!clickedRow} tableIndex={i} table={table} onAddRow={onAddRow} updateTableName={updateTableName}
                                             updateRowProp={updateRowProp} updateRowType={updateRowType} deleteTable={deleteTable} deleteRow={deleteRow}
                                             onDragTable={this.onDragTable} dataEvent={dataEvent} refreshTableRefs={this.refreshTableRefs} onTableMouseUp={onTableMouseUp} onRowMouseDown={onRowMouseDown} />
                                     );

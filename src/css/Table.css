@@ -14,7 +14,7 @@
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: separate; /* changed from collapse to get border-radius to work */
-    border-top: 10px solid #f6f6f7; /* need border-top to even out top border */
+    border-top: 10px solid /*#f6f6f7;*/ rgb(247,247,240); /* need border-top to even out top border */
     border-radius: 10px; /* added border-radius */
     position: absolute;
     border-spacing: 0px;
@@ -23,7 +23,7 @@
 
 .table td, .table th {
     padding: 0px;
-    background-color: #f6f6f7;
+    background-color: /*#f6f6f7;*/ rgb(247,247,240);
     width: 100%;
     border-spacing: 0px;
     border:none
@@ -43,15 +43,16 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #EFD962;
+    background-color: #fdd217;
     color: white;
 }
 
-.tableName {
+.table th .tableName {
     display: block;
-    float:right;
+    float: right;
+    margin-right: 0.5rem;
     height:34px; /* changed from 29px to match select box*/
-    width: 300px;
+    width: 85%;
     padding:0px;
     font-size:16px;
     border-color: solid black;
@@ -76,16 +77,15 @@
 .addRow {
     padding: 8px 30px;
     border-radius: 4px;
-    background-color: rgb(45,45,45); /*rgba(30,130,76,0.4); */ /* made green color translucent */
+    background-color: rgb(90,90,90); /*rgba(30,130,76,0.4); */ /* made green color translucent */
     border: none;
     font-weight: bold;
     font-size: 16px;
-    color: #f6f6f7
+    color: rgb(247,247,240);
 }
 
 .addRow:hover {
-    background-color: white;
-    color: rgba(45,45,45,45);
+    background-color: rgb(45,45,45);;
 }
 
 .linePort {
@@ -124,12 +124,13 @@
 }
 
 .deleterowbutton {
-    width:7%;
+    /*width:7%;*/
+    position:absolute;
     font-size: 18px;
     float:right;
     cursor:pointer;
     margin-top:6px;
-    margin-left: 3px;
+    margin-left: 110px;
     color:rgba(166,0,0,1);
 }
 
@@ -145,6 +146,7 @@
     margin-top:1px;
     border-color: solid black;
     width: 95%;
+    right: 0;
 }
 
 /*property type dropdown*/
@@ -154,11 +156,13 @@
  }
 
 .Select-control {
-    width:90%;
+    width:50%;
+    margin-right: 20px;
 }
 
 .Select-input {
-    width:100px;
+    width:80px;
+    margin-right: 10px;
 }
 
 .select-placeholder {
@@ -169,8 +173,10 @@
 /*dragging feature*/
 .drag-handle {
     position: relative;
-    width:30px;
-    height: 29px;
+    margin-left: 0.5rem;
+    margin-top: 2px;
+    width: 32px;
+    height: 32px;
     text-align: center;
     cursor: move;
 }

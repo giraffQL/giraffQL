@@ -20,25 +20,27 @@ class MenuComp extends Component {
 
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(45,45,45)',
-        'lineHeight': '20px',
-        'borderBottom': '3px solid #f6f6f7'
+        backgroundColor: 'rgb(45,45,45)',
+        lineHeight: '20px',
+        borderBottom: '2px solid rgb(247,247,240)'
       },
       drawer: {
-        'backgroundColor': 'rgb(45,45,45)',
+        backgroundColor: 'rgb(45,45,45)',
       },
       menuItem: {
-        'color': '#fdd217',
-        'fontSize': '16px',
-        'fontWeight': '400',
-        'textAlign': 'center'
+        color: '#fdd217',
+        fontFamily: 'Verdana',
+        fontSize: '16px',
+        fontWeight: '400',
+        textAlign: 'center'
       },
       aboutUs: {
-        'color': '#fdd217',
-        'fontSize': '16px',
-        'fontWeight': '400',
-        'textAlign': 'center',
-        'borderBottom': '1px dashed #fdd217'
+        color: '#fdd217',
+        fontFamily: 'Verdana',
+        fontSize: '16px',
+        fontWeight: '400',
+        textAlign: 'center',
+        borderBottom: '1px dashed #fdd217'
       },
       menuIcon: {
         'color': '#fdd217' /*'#FFD300'*/
