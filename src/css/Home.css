@@ -91,6 +91,12 @@
     font-size:25px;
     color:#F6F6F6
 }
+
+.exp {
+    text-align: center;
+    color:#F6F6F6;
+    font-size:18px;
+}
 .grafql {
     font-size:70px;
     justify-content:center;
