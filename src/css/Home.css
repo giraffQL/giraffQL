@@ -153,15 +153,17 @@
       height:100%;
       justify-content:space-around;
       align-items:center;
-      background-color:#2D2D2D
+      /*background-color:#2D2D2D;*/
+      background-color: rgb(76,151,181);
   }
   .featurebox {
       color: #f6f6f7;
       width:30%;
       height:85%;
       text-align: center;
-      background-color: #2D2D2D;
-      border-color: #2D2D2D;
+      /*background-color: #2D2D2D;*/
+      background-color: rgb(76,151,181);
+      /*border-color: #2D2D2D;*/
   }
   img {
       max-width:100%;
