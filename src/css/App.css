@@ -185,9 +185,8 @@ body {
   font-size: 50px;
 }
 #createTableBtn {
-  color: rgb(51,51,51);
+  color: rgb(45, 45, 45);
   font-weight: bold;
-  border: 1px solid rgb(45,45,45);
+  border: 1px solid #fdd217;
   border-radius: 50%;
-  background-color: rgba(30,130,76,1);
 }

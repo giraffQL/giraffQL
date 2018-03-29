@@ -21,19 +21,22 @@
 
 #createTableBtn {
   /*color: white;*/
-  background-color: rgba(30,130,76,1);
+  /*background-color: rgba(30,130,76,1);*/
+  background: #fdd217;
 }
 
 #createTableBtn:hover {
-  background-color: rgba(30,130,76,.6);
+  /*background-color: rgba(30,130,76,.6);*/
 }
 
 #clearBtn {
-  background-color: rgba(166,0,0,1);
+  /*background-color: rgba(166,0,0,1);*/
+  background: #fdd217;
+  border: 1px solid #fdd217;
 }
 
 #clearBtn:hover {
-  background-color: rgba(166,0,0,.6);
+  /*background-color: rgba(166,0,0,.6);*/
 }
 
 .save {
