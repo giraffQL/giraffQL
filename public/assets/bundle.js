@@ -2202,7 +2202,7 @@ var App = function (_Component) {
               _react2.default.createElement(_AppMenu2.default, { state: this.state, menuToggle: this.menuToggle, menuClose: this.menuClose, onRequestChange: this.onRequestChange, fullscreenToggle: this.fullscreenToggle, onAddTable: this.onAddTable, deleteAllTables: this.deleteAllTables, saveTextAsFile: this.saveTextAsFile, submitSchemaCode: this.submitSchemaCode }),
               _react2.default.createElement(
                 _reactSplitPane2.default,
-                { style: { 'backgroundColor': '#4585D5' }, split: 'vertical', defaultSize: '70%' },
+                { style: { 'backgroundColor': 'rgb(45, 45, 45)' }, split: 'vertical', defaultSize: '70%' },
                 data.tables.length === 0 ? _react2.default.createElement(
                   'div',
                   { className: 'firstShow' },
