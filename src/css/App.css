@@ -190,3 +190,10 @@ body {
   border: 1px solid #fdd217;
   border-radius: 50%;
 }
+
+@media screen and (max-width: 500px) {
+  .textClick {
+    padding-top: 250px;
+    font-size: 25px;
+  }
+}

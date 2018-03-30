@@ -7,6 +7,10 @@
   color: white;
 }
 
+.toolPanel {
+  /*float: right;*/
+  width: 235px;
+}
 /*add and delete buttons*/
 .addAndClearBtns {
   float: left;
@@ -26,7 +30,7 @@
 }
 
 #createTableBtn:hover {
-  /*background-color: rgba(30,130,76,.6);*/
+  background-color: rgba(253,210,23, .7);
 }
 
 #clearBtn {
@@ -36,12 +40,14 @@
 }
 
 #clearBtn:hover {
-  /*background-color: rgba(166,0,0,.6);*/
+  background-color: rgba(253,210,23, .7);
 }
 
 .save {
+  float: left;
   color: rgb(51,51,51);
   background-color: #fdd217;
+  border: #fdd217;
   font-size: 1rem;
   font-weight: 600;
   padding: 6px;
@@ -51,24 +57,46 @@
 }
 
 .save:hover {
+  border: #fdd217;
   background-color: rgba(253,210,23, .7);
   color: rgb(51,51,51);
+  cursor: pointer;
 }
 
 .test {
+  float: left;
   color: rgb(51,51,51);
   background-color: #fdd217;
+  border: #fdd217;
   font-size: 1rem;
   font-weight: 600;
   padding: 6px;
   margin-right:10px;
   margin-top: 2px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .test:hover {
+  border: #fdd217;
   background-color: rgba(253,210,23, .7);;
   color: rgb(51,51,51);
+}
+
+.btnDescription {
+  position: absolute;
+  display: none;
+}
+
+#clearBtn:hover + .btnDescription {
+  display: block;
+  position: absolute;
+  font-size: 12px;
+  color: red;
+  top: 50px;
+  margin-top: 3px;
+  margin-left: 5px;
+  z-index: 3;
 }
 
 #tooltip {
