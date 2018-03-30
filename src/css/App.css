@@ -197,3 +197,10 @@ body {
     font-size: 25px;
   }
 }
+
+@media screen and (min-width: 501px) and (max-width: 740px) {
+  .textClick {
+    padding-top: 175px;
+    font-size: 25px;
+  }
+}

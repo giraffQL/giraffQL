@@ -200,6 +200,20 @@
     user-select:none;
 }
 
+/* -----BEGIN MOBILE SIZING-----*/
+@media screen and (max-width: 740px) {
+  .table {
+    width: 30%;
+  }
+  .table th .tableName {
+    width: 70%;
+  }
+  .propertyinput {
+    width: 95%;
+  }
+}
+
+
 /*toolbar not currently used*/
 .button_base {
   border-color: solid #fbe4a1
