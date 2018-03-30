@@ -9,7 +9,7 @@
 
 .toolPanel {
   /*float: right;*/
-  width: 235px;
+  width: 225px;
 }
 /*add and delete buttons*/
 .addAndClearBtns {
@@ -51,7 +51,7 @@
   font-size: 1rem;
   font-weight: 600;
   padding: 6px;
-  margin-right:10px;
+  margin-right:7px;
   margin-top: 2px;
   border-radius: 5px;
 }
@@ -71,7 +71,7 @@
   font-size: 1rem;
   font-weight: 600;
   padding: 6px;
-  margin-right:10px;
+  margin-right:7px;
   margin-top: 2px;
   border-radius: 5px;
   cursor: pointer;
@@ -101,4 +101,20 @@
 
 #tooltip {
   font-size: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .toolPanel {
+  /*float: right;*/
+    width: 205px;
+  }
+  .addAndClearBtns {
+    margin-right: 3px;
+  }
+  .save {
+    margin-right: 3px;
+  }
+  .test {
+    margin-right: 3px;
+  }
 }

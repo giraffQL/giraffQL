@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 import FontIcon from 'material-ui/FontIcon';
 // import panel from react-bootstrap
 import { Panel } from 'react-bootstrap';
-//import materail ui 
+//import materail ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import button style from material ui for tryit button
 import RaisedButton from 'material-ui/RaisedButton';
@@ -47,7 +47,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     // STATE FOR DRAER
-    this.state = { 
+    this.state = {
       open: false ,
       modalIsOpen: false,
       picnum:0
@@ -143,11 +143,11 @@ class Home extends Component {
            <div className='maintext'>
             <p> An interactive GraphQL exploration tool built with React</p>
           </div>
-          <br/>
+
           <div className='secondtext'>
-            <p className="exp"> 
+            <p className="exp">
               Create your schema, set up relations, generate and save your schema files and test your schema by writing some basic
-              queries with 
+              queries with
               <a href="https://github.com/graphql/graphiql"> GraphiQL</a> <br/>
               Start exploring the capabilities of GraphQL with our App </p>
             </div>
@@ -155,7 +155,7 @@ class Home extends Component {
           <div className ='tryit'>
 
       {/* tryit button */}
-            <Link to='/app'><button className='tryitbutton'>TRY IT</button></Link>          
+            <Link to='/app'><button className='tryitbutton'>TRY IT</button></Link>
         </div>
         </div>
         </div>
@@ -165,7 +165,7 @@ class Home extends Component {
         <div className='third'>
           <Panel className='featurebox' header={<p className='panelheader'>CREATE TABLE</p>}>
             <img className='panelcontent' onClick={this.openone} src={Tablecreation} />
-  
+
             <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -179,7 +179,7 @@ class Home extends Component {
           </Panel>
           <Panel className='featurebox' header={<p className='panelheader'>CREATE RELATION</p>}>
             <img className='panelcontent'src={Relation} onClick={this.opentwo} />
-   
+
           </Panel>
           <Panel className='featurebox' header={<p className='panelheader'>GRAPHIQL INTEGRATION</p>}>
             <img className='panelcontent' src={Intro} onClick={this.openthree} />
