@@ -106,9 +106,9 @@
 @media screen and (max-width: 500px) {
   .toolPanel {
   /*float: right;*/
-    width: 205px;
+    width: 220px;
   }
-  .addAndClearBtns {
+/*  .addAndClearBtns {
     margin-right: 3px;
   }
   .save {
@@ -116,5 +116,5 @@
   }
   .test {
     margin-right: 3px;
-  }
+  }*/
 }
