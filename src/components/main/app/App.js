@@ -433,11 +433,11 @@ class App extends Component {
                 }
                 <div className="TextEditor">
                   <div className="editorTxt">
-                      Fill tables and test schema
+                      Test Schema
                   </div>
                   <TextEditor code={this.state.schemaCode} onChange={this.onSchemaCodeChange} />
                   <div className="editorTxt">
-                      Save express schema code
+                      Save Code
                   </div>
                   <ExpressCode code={this.state.jsCode} onChange={this.onJsCodeChange} />
                 </div>

@@ -64,29 +64,31 @@ class MenuComp extends Component {
             onClick={menuToggle}
             icon={<i className="material-icons">list</i>}
           />
-
-          <div className="toolPanel">
-            <OverlayTrigger placement="left" overlay={tooltipCT}>
-              <Button id="createTableBtn" className="addAndClearBtns" bsSize="default" onClick={onAddTable}>
-                +
-                 </Button>
-            </OverlayTrigger>
-            <OverlayTrigger placement="bottom" overlay={tooltipCA}>
-              <Button id="clearBtn" className="addAndClearBtns" bsSize="default" onClick={deleteAllTables}>
-                x
-                 </Button>
-            </OverlayTrigger>
-            <OverlayTrigger placement="bottom" overlay={tooltipTest}>
-            <button className="test" onClick={submitSchemaCode}>
-              TEST SCHEMA
+            <div className="toolPanel">
+              <OverlayTrigger placement="left" overlay={tooltipCT}>
+                <Button id="createTableBtn" className="addAndClearBtns" bsSize="default" onClick={onAddTable}>
+                  +
+                   </Button>
+              </OverlayTrigger>
+              <OverlayTrigger placement="bottom" overlay={tooltipCA}>
+                  <Button id="clearBtn" className="addAndClearBtns" bsSize="default" onClick={deleteAllTables}>
+                    x
+                  </Button>
+                  {/*<div className="btnDescription">
+                    Clear All
+                  </div>*/}
+              </OverlayTrigger>
+              <OverlayTrigger placement="bottom" overlay={tooltipTest}>
+                  <button className="test" onClick={submitSchemaCode}>
+                    TEST
+                  </button>
+              </OverlayTrigger>
+              <OverlayTrigger placement="bottom" overlay={tooltipSave}>
+              <button className="save" onClick={saveTextAsFile}>
+                SAVE
               </button>
-            </OverlayTrigger>
-            <OverlayTrigger placement="bottom" overlay={tooltipSave}>
-            <button className="save" onClick={saveTextAsFile}>
-              SAVE SCHEMA
-            </button>
-            </OverlayTrigger>
-          </div>
+              </OverlayTrigger>
+            </div>
         </div>
         <Drawer
           className='drawer'

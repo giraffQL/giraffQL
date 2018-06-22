@@ -14,7 +14,7 @@
 .table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: separate; /* changed from collapse to get border-radius to work */
-    border-top: 10px solid /*#f6f6f7;*/ rgb(247,247,240); /* need border-top to even out top border */
+    border-top: 10px solid rgb(247,247,240); /*rgb(76,151,181);*/ /* need border-top to even out top border */
     border-radius: 10px; /* added border-radius */
     position: absolute;
     border-spacing: 0px;
@@ -23,7 +23,7 @@
 
 .table td, .table th {
     padding: 0px;
-    background-color: /*#f6f6f7;*/ rgb(247,247,240);
+    background-color: rgb(247,247,240); /*rgb(76,151,181);*/
     width: 100%;
     border-spacing: 0px;
     border:none
@@ -43,7 +43,7 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #fdd217;
+    background-color: /*#fdd217;*/ rgb(247,247,240);
     color: white;
 }
 
@@ -199,6 +199,25 @@
     pointer-events: none;
     user-select:none;
 }
+
+/* -----BEGIN MOBILE SIZING-----*/
+@media screen and (max-width: 740px) {
+  .table {
+    width: 30%;
+  }
+  .table th .tableName {
+    width: 70%;
+  }
+  .propertyinput {
+    width: 95%;
+  }
+}
+
+
+
+
+
+
 
 /*toolbar not currently used*/
 .button_base {
