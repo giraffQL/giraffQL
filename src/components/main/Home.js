@@ -1,27 +1,17 @@
 //import react
 import React, { Component } from 'react';
-//import react-router for setting different routers
-import { Switch, Route } from 'react-router-dom'
-//import redirect from react router to set the first page route
-import { Redirect } from 'react-router'
 //import drawer from material-ui for navigation
 import Drawer from 'material-ui/Drawer';
 // menu for drawer
 import MenuItem from 'material-ui/MenuItem';
 // button for drawer
 import FlatButton from 'material-ui/FlatButton';
-// import APP component
-import App from './app/App.js'
 // import Link from react router for redirection
 import { Link } from 'react-router-dom';
-// import fonticon for github icon
-import FontIcon from 'material-ui/FontIcon';
 // import panel from react-bootstrap
 import { Panel } from 'react-bootstrap';
 //import materail ui 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import button style from material ui for tryit button
-import RaisedButton from 'material-ui/RaisedButton';
 import Background from '../../assets/background.jpg'
 import Logo from '../../assets/logo.png'
 import Relation from '../../img/works/giraffQL-relation.gif'
@@ -31,6 +21,7 @@ import Tablecreationlarge from '../../img/works/giraffQL-table-creation-large.gi
 import Relationlarge from '../../img/works/giraffQL-realtion-large.gif'
 import Introlarge from '../../img/works/giraffQL-graphiql-large.gif'
 import Modal from 'react-modal';
+import Style from '../../css/Home.css'
 
 const customStyles = {
   content : {
@@ -90,7 +81,7 @@ class Home extends Component {
         'lineHeight': '20px'
       },
       drawer: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'black',
       },
       menuItem: {
         'color': '#fdd217',
@@ -139,23 +130,25 @@ class Home extends Component {
        <div className='mainimage'>
        <img className='background' src = {Background}/>
         <div className='coremain'>
-           <h1 className ='grafql'> <img className ='logo' src={Logo} /> GiraffQL</h1> <br/>
+        <div className ='logoandgiraff'>
+          <img className ='logo' src={Logo} /> 
+           <h1 className ='grafql'>GiraffQL</h1>
+        </div>
            <div className='maintext'>
             <p> An interactive GraphQL exploration tool built with React</p>
           </div>
-          <br/>
           <div className='secondtext'>
             <p className="exp"> 
               Create your schema, set up relations, generate and save your schema files and test your schema by writing some basic
               queries with 
-              <a href="https://github.com/graphql/graphiql"> GraphiQL</a> <br/>
+              <a className='graphiql' href="https://github.com/graphql/graphiql"> GraphiQL</a> <br/>
               Start exploring the capabilities of GraphQL with our App </p>
             </div>
           <br/>
           <div className ='tryit'>
 
       {/* tryit button */}
-            <Link to='/app'><button className='tryitbutton'>TRY IT</button></Link>          
+            <Link to='/app'><button className='tryitbutton'>BUILD YOUR SCHEMA</button></Link>          
         </div>
         </div>
         </div>

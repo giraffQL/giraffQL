@@ -60,11 +60,6 @@
 
 }
 
-/*.coremain {
-    display: flex;
-    height:55%;
-    background-size: contain
-}*/
 .coremain {
     margin-top:2%;
     display: flex;
@@ -87,27 +82,36 @@
 
 }
 .maintext {
-    margin-top:20px;
-    font-size:25px;
-    color:#F6F6F6
+    margin-top:30px;
+    font-size:20px;
+    color:#F6F6F6;
+    text-align:center;
 }
 
 .exp {
     text-align: center;
     color:#F6F6F6;
-    font-size:18px;
+    font-size:15px;
 }
 .grafql {
-    font-size:70px;
+    font-size:50px;
     justify-content:center;
     color:#F6F6F6;
+    display:inline-block
 }
+
+.graphiql {
+    text-decoration: none;
+    color:#FDD217;
+}
+
 .tryit {
     flex-direction:row;
     justify-content:center;
     display:flex;
     align-items:center;
     margin-top:10px;
+    margin-bottom:30px;
 }
 .tryitbutton {
     background-color: Transparent;
@@ -119,18 +123,19 @@
     padding-right:35px;
     padding-left:35px;
     border-width: medium;
-    font-size:20px;
+    font-size:15px;
     color:#F6F6F6
 }
 
 .tryitbutton:hover {
     background-color: #FDD217;
     color: #F6F6F6;
-    font-weight: bold;
 }
+
 .logo {
     width:150px;
     height:150px;
+    display: inline-block;
 }
 .trytext{
     margin:0px;
@@ -140,18 +145,19 @@
     display:flex;
     flex-direction: row;
     width:100%;
-    height:100%;
+    height:60%;
     justify-content:space-around;
-    align-items:center;
-    background-color:#2D2D2D
+    background-color:black;
+    padding-top:20px;
+    padding-bottom:20px;
 }
 .featurebox {
     color: #f6f6f7;
     width:30%;
-    height:85%;
+    height:50%;
     text-align: center;
-    background-color: #2D2D2D;
-    border-color: #2D2D2D;
+    background-color: black;
+    border-color: black;
 }
 img {
     max-width:100%;
@@ -160,11 +166,11 @@ img {
 .bottompart {
     background-color: #F6F6F7;
     width:100%;
-    height:300px;
-    font-size: 25px;
+    height:50px;
+    font-size: 10px;
     color: #2d2d2d;
     text-align:center;
-    margin-top:50px;
+    padding:10px;
 }
 .secondtxt {
     text-align:center;
@@ -188,9 +194,31 @@ img {
     margin-top:3%;
 }
 
-@media all and (max-width:1000px) {
+@media all and (max-width:640px) {
     .mainimage {
         width:100%;
+        height:60%;
+    }
+    .exp {
+        font-size:10px;
+    }
+    .third {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:70%;
+        padding-bottom:20px;
+    }
+    .featurebox {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+        width:30%;
+    }
+    .panelheader {
+        font-size:10px;
     }
 }
 
@@ -206,6 +234,12 @@ img {
     margin-top: 100px;
     width: 90%
 }
+.logoandgiraff {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height:100%;
+}
 .panelcontent {
     width:100%;
     height:100%;
@@ -215,8 +249,7 @@ img {
 }
 .panelheader {
     color: #f6f6f7;
-    font-size:19px;
-    font-weight:bold;
+    font-size:15px;
 }
 .panel-body {
     padding:0;
