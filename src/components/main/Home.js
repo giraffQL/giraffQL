@@ -48,7 +48,6 @@ class Home extends Component {
   handleToggle = () => this.setState({ open: !this.state.open });
 
   handleClose = () => this.setState({ open: false });
-
   // openModal = () => {
   //   this.setState({modalIsOpen: true});
   // }
