@@ -20,12 +20,12 @@ class MenuComp extends Component {
 
     const muiStyles = {
       appBar: {
-        backgroundColor: 'rgb(45,45,45)',
+        backgroundColor: 'black',
         lineHeight: '20px',
         borderBottom: '2px solid rgb(247,247,240)'
       },
       drawer: {
-        backgroundColor: 'rgb(45,45,45)',
+        backgroundColor: 'black',
       },
       menuItem: {
         color: '#fdd217',
