@@ -215,10 +215,11 @@ img {
         flex-direction: column;
         justify-content: center;
         align-items:center;
-        width:30%;
+        width:60%
     }
     .panelheader {
         font-size:10px;
+        margin-bottom:0;
     }
 }
 
