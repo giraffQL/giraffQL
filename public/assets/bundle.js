@@ -57565,7 +57565,7 @@ var MenuComp = function (_Component) {
               { placement: 'left', overlay: tooltipCT },
               _react2.default.createElement(
                 _reactBootstrap.Button,
-                { id: 'createTableBtn', className: 'addAndClearBtns', bsSize: 'default', onClick: onAddTable },
+                { id: 'createTableBtn', className: 'addAndClearBtns', bsSize: 'small', onClick: onAddTable },
                 '+'
               )
             ),
@@ -57574,7 +57574,7 @@ var MenuComp = function (_Component) {
               { placement: 'bottom', overlay: tooltipCA },
               _react2.default.createElement(
                 _reactBootstrap.Button,
-                { id: 'clearBtn', className: 'addAndClearBtns', bsSize: 'default', onClick: deleteAllTables },
+                { id: 'clearBtn', className: 'addAndClearBtns', bsSize: 'small', onClick: deleteAllTables },
                 'x'
               )
             ),
@@ -88744,7 +88744,7 @@ var Aboutus = function (_Component) {
                 'div',
                 { className: 'aboutheader' },
                 _react2.default.createElement(
-                  'h5',
+                  'h4',
                   null,
                   'OUR TEAM'
                 )
@@ -88754,11 +88754,7 @@ var Aboutus = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'container' },
-            _react2.default.createElement(
-              'div',
-              { className: 'row' },
-              _react2.default.createElement('div', { className: 'col-lg-2 col-lg-offset-5' })
-            ),
+            _react2.default.createElement('div', { className: 'col-lg-2 col-lg-offset-5' }),
             _react2.default.createElement(
               'div',
               { className: 'row' },
@@ -88780,8 +88776,8 @@ var Aboutus = function (_Component) {
                         _react2.default.createElement('img', { src: _jelena2.default, alt: '', className: 'img-responsive img-circle' })
                       ),
                       _react2.default.createElement(
-                        'h3',
-                        null,
+                        'h5',
+                        { className: 'abouth5' },
                         'Jelena Gruica'
                       ),
                       _react2.default.createElement(
@@ -88822,8 +88818,8 @@ var Aboutus = function (_Component) {
                         _react2.default.createElement('img', { src: _scott2.default, alt: '', className: 'img-responsive img-circle' })
                       ),
                       _react2.default.createElement(
-                        'h3',
-                        null,
+                        'h5',
+                        { className: 'abouth5' },
                         'Scott Rosen'
                       ),
                       _react2.default.createElement(
@@ -88864,8 +88860,8 @@ var Aboutus = function (_Component) {
                         _react2.default.createElement('img', { src: _harry2.default, alt: '', className: 'img-responsive img-circle' })
                       ),
                       _react2.default.createElement(
-                        'h3',
-                        null,
+                        'h5',
+                        { className: 'abouth5' },
                         'Harry Cam'
                       ),
                       _react2.default.createElement(
@@ -88911,8 +88907,8 @@ var Aboutus = function (_Component) {
                         _react2.default.createElement('img', { src: _woojun2.default, alt: '', className: 'img-responsive img-circle' })
                       ),
                       _react2.default.createElement(
-                        'h3',
-                        null,
+                        'h5',
+                        { className: 'abouth5' },
                         'Woojun Choi'
                       ),
                       _react2.default.createElement(
@@ -89344,7 +89340,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, ".aboutheader {\n    display:flex;\n    align-items: center;\n    justify-content: center;\n    margin-top:40px\n}", ""]);
+exports.push([module.i, ".aboutheader {\n    display:flex;\n    align-items: center;\n    justify-content: center;\n    margin-top:40px\n}\n\n.abouth5 {\n    margin-top:10px;\n}", ""]);
 
 // exports
 

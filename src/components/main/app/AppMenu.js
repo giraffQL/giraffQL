@@ -66,12 +66,12 @@ class MenuComp extends Component {
           />
             <div className="toolPanel">
               <OverlayTrigger placement="left" overlay={tooltipCT}>
-                <Button id="createTableBtn" className="addAndClearBtns" bsSize="default" onClick={onAddTable}>
+                <Button id="createTableBtn" className="addAndClearBtns" bsSize="small" onClick={onAddTable}>
                   +
                    </Button>
               </OverlayTrigger>
               <OverlayTrigger placement="bottom" overlay={tooltipCA}>
-                  <Button id="clearBtn" className="addAndClearBtns" bsSize="default" onClick={deleteAllTables}>
+                  <Button id="clearBtn" className="addAndClearBtns" bsSize="small" onClick={deleteAllTables}>
                     x
                   </Button>
                   {/*<div className="btnDescription">
