@@ -13,7 +13,6 @@
     height:1200px;
     flex-direction:column;
     align-items: center;
-
 }
 .header {
     width:100%;
@@ -215,10 +214,11 @@ img {
         flex-direction: column;
         justify-content: center;
         align-items:center;
-        width:30%;
+        width:60%
     }
     .panelheader {
         font-size:10px;
+        margin-bottom:0;
     }
 }
 
