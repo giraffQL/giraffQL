@@ -220,6 +220,9 @@ img {
         font-size:10px;
         margin-bottom:0;
     }
+    .maintext {
+        margin-top:55px;
+    }
 }
 
 #about {
