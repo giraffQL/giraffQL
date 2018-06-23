@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  padding: 2em;
+  padding: 40px;
   /* background: #333; */
   font-family: 'Verdana', sans-serif;
-  width:100%;
+  width:85%;
   height:100%;
   overflow: scroll;
 }
