@@ -421,7 +421,7 @@ class App extends Component {
             <div className='full-screenable-node'>
               <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} submitSchemaCode={this.submitSchemaCode} />
 
-              <SplitPane style={{ 'backgroundColor': 'rgb(76,151,181)' }} split="vertical" defaultSize="70%">
+              <SplitPane split="vertical" defaultSize="70%">
                 {data.tables.length === 0 ?
                   <div className="firstShow">
                     <p className="textClick"> Click on <Button id="createTableBtn" bsSize="large" onClick={() => this.onAddTable()}>

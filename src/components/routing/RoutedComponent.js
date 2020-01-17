@@ -2,10 +2,6 @@
 import { Switch, Route } from 'react-router-dom'
 // REACT
 import React, { Component,Redirect } from 'react';
-// REACT-DOM
-import { render } from 'react-dom';
-// REACT-DOM
-import ReactDOM from 'react-dom';
 //COMPONENTS
 import App from '../main/app/App.js'
 import Home from '../main/Home.js'

@@ -16,7 +16,7 @@ import Woojun from '../../img/team/woojun.jpg'
 import Jelena from '../../img/team/jelena.jpg'
 import Harry from '../../img/team/harry.jpg'
 import Scott from '../../img/team/scott.jpg'
-
+import Style from '../../css/About.css'
 
 class Aboutus extends Component {
   constructor(props) {
@@ -33,12 +33,12 @@ class Aboutus extends Component {
   render() {
     const muiStyles = {
       appBar: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'black',
         'lineHeight': '20px',
         'borderBottom': '3px solid #f6f6f7'
       },
       drawer: {
-        'backgroundColor': 'rgb(45,45,45)',
+        'backgroundColor': 'black',
       },
       menuItem: {
         'color': '#fdd217',
@@ -89,22 +89,15 @@ class Aboutus extends Component {
         <section id="about" className="home-section text-center">
           <div className="heading-about">
             <div className="container">
-              <div className="row">
-                <div className="col-lg-8 col-lg-offset-2">
-                  <h2>OUR TEAM</h2>
-
-                  <div className="wow bounceInDown" data-wow-delay="0.4s">
-                  </div>
+                <div className='aboutheader'>
+                  <h4>OUR TEAM</h4>
                 </div>
-              </div>
             </div>
           </div>
           <div className="container">
 
-            <div className="row">
               <div className="col-lg-2 col-lg-offset-5">
               </div>
-            </div>
             <div className="row">
 
               {/* person 1 */}
@@ -114,7 +107,7 @@ class Aboutus extends Component {
                     <div className="inner">
                       <div className="avatar"><img src={Jelena} alt="" className="img-responsive img-circle" /></div>
 
-                      <h3>Jelena Gruica</h3>
+                      <h5 className='abouth5'>Jelena Gruica</h5>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/jelena-gruica/">Linkedin</a>/
@@ -133,7 +126,7 @@ class Aboutus extends Component {
                     <div className="inner">
                     <div className="avatar"><img src={Scott} alt="" className="img-responsive img-circle" /></div>
 
-                      <h3>Scott Rosen</h3>
+                      <h5 className='abouth5'>Scott Rosen</h5>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/scott-rosen/">Linkedin</a>/
@@ -152,7 +145,7 @@ class Aboutus extends Component {
                     <div className="inner">
                     <div className="avatar"><img src={Harry} alt="" className="img-responsive img-circle" /></div>
 
-                      <h3>Harry Cam</h3>
+                      <h5 className='abouth5'>Harry Cam</h5>
 
                       {/* description */}
                       <a href="https://www.linkedin.com/in/harry-cam/">Linkedin</a>/
@@ -170,7 +163,7 @@ class Aboutus extends Component {
                   <div className="team boxed-grey">
                     <div className="inner">
                     <div className="avatar"><img src={Woojun} alt="" className="img-responsive img-circle" /></div>
-                      <h3>Woojun Choi</h3>
+                      <h5 className='abouth5'>Woojun Choi</h5>
                         
                       {/* description */}
                       <a href="https://www.linkedin.com/in/woojunchoi/">Linkedin</a>/

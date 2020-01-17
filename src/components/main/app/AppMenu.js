@@ -20,12 +20,12 @@ class MenuComp extends Component {
 
     const muiStyles = {
       appBar: {
-        backgroundColor: 'rgb(45,45,45)',
+        backgroundColor: 'black',
         lineHeight: '20px',
         borderBottom: '2px solid rgb(247,247,240)'
       },
       drawer: {
-        backgroundColor: 'rgb(45,45,45)',
+        backgroundColor: 'black',
       },
       menuItem: {
         color: '#fdd217',
@@ -66,12 +66,12 @@ class MenuComp extends Component {
           />
             <div className="toolPanel">
               <OverlayTrigger placement="left" overlay={tooltipCT}>
-                <Button id="createTableBtn" className="addAndClearBtns" bsSize="default" onClick={onAddTable}>
+                <Button id="createTableBtn" className="addAndClearBtns" bsSize="small" onClick={onAddTable}>
                   +
                    </Button>
               </OverlayTrigger>
               <OverlayTrigger placement="bottom" overlay={tooltipCA}>
-                  <Button id="clearBtn" className="addAndClearBtns" bsSize="default" onClick={deleteAllTables}>
+                  <Button id="clearBtn" className="addAndClearBtns" bsSize="small" onClick={deleteAllTables}>
                     x
                   </Button>
                   {/*<div className="btnDescription">
