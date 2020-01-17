@@ -18,7 +18,7 @@
     border-radius: 10px; /* added border-radius */
     position: absolute;
     border-spacing: 0px;
-    margin: 0px;
+    margin: 0 0 0 10px;
 }
 
 .table td, .table th {
@@ -61,12 +61,6 @@
 .form-group {
     margin: auto 0;
     text-align: center;
-}
-
-/*add delete and save buttons*/
-.toolPanel {
-    /*border: 2px solid red;*/
-    padding-top: 5px;
 }
 
 .addRowWrap {

@@ -6,9 +6,7 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton';
-// REACT-BOOTSTRAP
 import { FormControl, Button, ButtonGroup, Nav, Tooltip, OverlayTrigger } from 'react-bootstrap';
-
 
 class MenuComp extends Component {
   constructor(props) {
@@ -66,27 +64,27 @@ class MenuComp extends Component {
           />
             <div className="toolPanel">
               <OverlayTrigger placement="left" overlay={tooltipCT}>
-                <Button id="createTableBtn" className="addAndClearBtns" bsSize="small" onClick={onAddTable}>
+                <button className="addAndClearBtns" onClick={onAddTable}>
                   +
-                   </Button>
+                </button>
               </OverlayTrigger>
               <OverlayTrigger placement="bottom" overlay={tooltipCA}>
-                  <Button id="clearBtn" className="addAndClearBtns" bsSize="small" onClick={deleteAllTables}>
+                  <button className="addAndClearBtns" onClick={deleteAllTables}>
                     x
-                  </Button>
+                  </button>
                   {/*<div className="btnDescription">
                     Clear All
                   </div>*/}
               </OverlayTrigger>
-              <OverlayTrigger placement="bottom" overlay={tooltipTest}>
-                  <button className="test" onClick={submitSchemaCode}>
-                    TEST
-                  </button>
-              </OverlayTrigger>
               <OverlayTrigger placement="bottom" overlay={tooltipSave}>
-              <button className="save" onClick={saveTextAsFile}>
-                SAVE
-              </button>
+                <button className="save" onClick={saveTextAsFile}>
+                    SAVE
+                </button>
+              </OverlayTrigger>
+              <OverlayTrigger placement="bottom" overlay={tooltipTest}>
+                <button className="test" onClick={submitSchemaCode}>
+                    TEST
+                </button>
               </OverlayTrigger>
             </div>
         </div>

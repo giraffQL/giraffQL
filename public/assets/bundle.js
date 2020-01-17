@@ -2241,6 +2241,10 @@ var App = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
+    _this.onResize = function () {
+      _this.setState({ isMobile: window.innerWidth <= 768 });
+    };
+
     _this.onAddTable = function () {
       //function which is making random string for ID
       function guid() {
@@ -2570,6 +2574,7 @@ var App = function (_Component) {
     };
 
     _this.state = {
+      isMobile: window.innerWidth <= 768,
       clickedRow: null,
       // our data have tables which is object of tables
       // {
@@ -2593,50 +2598,55 @@ var App = function (_Component) {
     return _this;
   }
 
-  // when we click to make new table call this function
-
-
-  // function which is calling when we're adding new row
-
-
-  // every time when we change or add table name we're setting up state with thoose new values
-
-  // same for row prop and row type
-
-
-  // function which is calling when we click for delete row
-
-
-  // function which is calling when we click for delete table
-
-
-  // function which is calling when we click for clear board
-
-
-  // function which is calling when we drag tables
-  // every time when we drag table we are keeping track of table position, and row position
-
-
-  // clickedRow is null at the beginning but when we click on row we are setting state to
-  // know which row is clicked, in which table...
-
-
-  // storing to which table is row connected
-
-
-  // function which is called when you click for save schema js code
-
-
-  // function to check is input string contains number
-
-
-  // function which is creating text in schema text area
-
-
-  // function which is creating schema js code in textarea
-
-
   _createClass(App, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.addEventListener('resize', this.onResize);
+    }
+
+    // when we click to make new table call this function
+
+
+    // function which is calling when we're adding new row
+
+
+    // every time when we change or add table name we're setting up state with thoose new values
+
+    // same for row prop and row type
+
+
+    // function which is calling when we click for delete row
+
+
+    // function which is calling when we click for delete table
+
+
+    // function which is calling when we click for clear board
+
+
+    // function which is calling when we drag tables
+    // every time when we drag table we are keeping track of table position, and row position
+
+
+    // clickedRow is null at the beginning but when we click on row we are setting state to
+    // know which row is clicked, in which table...
+
+
+    // storing to which table is row connected
+
+
+    // function which is called when you click for save schema js code
+
+
+    // function to check is input string contains number
+
+
+    // function which is creating text in schema text area
+
+
+    // function which is creating schema js code in textarea
+
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -2663,7 +2673,7 @@ var App = function (_Component) {
               _react2.default.createElement(_AppMenu2.default, { state: this.state, menuToggle: this.menuToggle, menuClose: this.menuClose, onRequestChange: this.onRequestChange, fullscreenToggle: this.fullscreenToggle, onAddTable: this.onAddTable, deleteAllTables: this.deleteAllTables, saveTextAsFile: this.saveTextAsFile, submitSchemaCode: this.submitSchemaCode }),
               _react2.default.createElement(
                 _reactSplitPane2.default,
-                { split: 'vertical', defaultSize: '70%' },
+                { split: 'vertical', defaultSize: this.state.isMobile ? '60%' : '70%' },
                 data.tables.length === 0 ? _react2.default.createElement(
                   'div',
                   { className: 'firstShow' },
@@ -16634,23 +16644,23 @@ var _Divider = __webpack_require__(225);
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _registerServiceWorker = __webpack_require__(529);
+var _registerServiceWorker = __webpack_require__(531);
 
 var _registerServiceWorker2 = _interopRequireDefault(_registerServiceWorker);
 
 var _reactRouterDom = __webpack_require__(32);
 
-__webpack_require__(530);
-
 __webpack_require__(532);
 
-__webpack_require__(212);
-
 __webpack_require__(534);
+
+__webpack_require__(212);
 
 __webpack_require__(536);
 
 __webpack_require__(538);
+
+__webpack_require__(540);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57469,8 +57479,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// REACT-BOOTSTRAP
-
 
 var MenuComp = function (_Component) {
   _inherits(MenuComp, _Component);
@@ -57564,8 +57572,8 @@ var MenuComp = function (_Component) {
               _reactBootstrap.OverlayTrigger,
               { placement: 'left', overlay: tooltipCT },
               _react2.default.createElement(
-                _reactBootstrap.Button,
-                { id: 'createTableBtn', className: 'addAndClearBtns', bsSize: 'small', onClick: onAddTable },
+                'button',
+                { className: 'addAndClearBtns', onClick: onAddTable },
                 '+'
               )
             ),
@@ -57573,18 +57581,9 @@ var MenuComp = function (_Component) {
               _reactBootstrap.OverlayTrigger,
               { placement: 'bottom', overlay: tooltipCA },
               _react2.default.createElement(
-                _reactBootstrap.Button,
-                { id: 'clearBtn', className: 'addAndClearBtns', bsSize: 'small', onClick: deleteAllTables },
-                'x'
-              )
-            ),
-            _react2.default.createElement(
-              _reactBootstrap.OverlayTrigger,
-              { placement: 'bottom', overlay: tooltipTest },
-              _react2.default.createElement(
                 'button',
-                { className: 'test', onClick: submitSchemaCode },
-                'TEST'
+                { className: 'addAndClearBtns', onClick: deleteAllTables },
+                'x'
               )
             ),
             _react2.default.createElement(
@@ -57594,6 +57593,15 @@ var MenuComp = function (_Component) {
                 'button',
                 { className: 'save', onClick: saveTextAsFile },
                 'SAVE'
+              )
+            ),
+            _react2.default.createElement(
+              _reactBootstrap.OverlayTrigger,
+              { placement: 'bottom', overlay: tooltipTest },
+              _react2.default.createElement(
+                'button',
+                { className: 'test', onClick: submitSchemaCode },
+                'TEST'
               )
             )
           )
@@ -88585,7 +88593,7 @@ var _scott = __webpack_require__(528);
 
 var _scott2 = _interopRequireDefault(_scott);
 
-var _About = __webpack_require__(540);
+var _About = __webpack_require__(529);
 
 var _About2 = _interopRequireDefault(_About);
 
@@ -88971,6 +88979,51 @@ module.exports = __webpack_require__.p + "f8cbae77a626a681878c13a07ff08439.jpg";
 /* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(530);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(31)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./About.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./About.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 530 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(30)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".aboutheader {\n    display:flex;\n    align-items: center;\n    justify-content: center;\n    margin-top:40px\n}\n\n.abouth5 {\n    margin-top:10px;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 531 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -89076,13 +89129,13 @@ function unregister() {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ }),
-/* 530 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(531);
+var content = __webpack_require__(533);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -89107,51 +89160,6 @@ if(false) {
 }
 
 /***/ }),
-/* 531 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(30)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "body {\n  margin: 0;\n  padding: 40px;\n  /* background: #333; */\n  font-family: 'Verdana', sans-serif;\n  width:85%;\n  height:100%;\n  overflow: scroll;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 532 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(533);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(31)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./App.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./App.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
 /* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -89160,7 +89168,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: #f6f6f7; /*rgb(45,45,45)*/ /*#fbe4a1;*/\n  font-size:17px;\n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n  background-color: black;\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: black;\n  font-weight: 600;\n  height: 100%;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white;\n  /*overflow: scroll;*/\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  text-align:center;\n  background-color: black;\n  /* overflow: scroll; */\n}\n\n\n.Resizer {\n  background: black;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid black;\n  border-bottom: 5px solid black;\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid black;\n  border-bottom: 5px solid black;\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid black;\n  border-right: 5px solid black;\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid black;\n  border-right: 5px solid black;\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n.SplitPane {\n  background-color:black;\n}\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n.schemaCode {\n  background-color: black;\n  /*color: #f6f6f7;*/\n  color: rgb(247,247,240);\n  margin-top: 5px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  /*border: 1px solid #f6f6f7;*/\n  border: 1px solid rgb(247,247,240);\n  border-radius: .3em;\n}\n\n\n.expressCode {\n  background-color: black;\n  /*color: #f6f6f7;*/\n  color: rgb(247,247,240);\n  border-radius: .3em;\n  margin-top: 5px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  /*border: 1px solid #f6f6f7;*/\n  border: 1px solid rgb(247,247,240);\n}\n\n.editorTxt {\n  /*color:#f6f6f7;*/\n  color: rgb(247,247,240);\n  font-weight: 600;\n  font-size: 1.1rem;\n}\n.firstShow {\n  width:100%;\n  height: 100%;\n  border-right:1px solid rgb(247,247,240);\n}\n\n.textClick {\n  padding-top: 380px;\n  /*margin-top: 37%;*/\n  /*color: #f6f6f7;*/\n  color: rgb(247,247,240);\n  font-size: 50px;\n}\n#createTableBtn {\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 1px solid black;\n  border-radius: 50%;\n  background-color: rgba(30,130,76,1);\n}", ""]);
+exports.push([module.i, "body {\n  margin: 0;\n  padding: 40px;\n  /* background: #333; */\n  font-family: 'Verdana', sans-serif;\n  width:85%;\n  height:100%;\n  overflow: scroll;\n}\n", ""]);
 
 // exports
 
@@ -89186,8 +89194,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./AppMenu.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./AppMenu.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./App.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./App.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -89205,7 +89213,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, ".appBar {\n  width:100%;\n  height: 65px;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n.toolPanel {\n  /*float: right;*/\n  width: 225px;\n}\n/*add and delete buttons*/\n.addAndClearBtns {\n  float: left;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  font-size: 1rem;\n  border: 1px solid rgb(45,45,45);\n  border-radius: 50%;\n  background-color: #FFD000;\n  margin-right: 7px;\n}\n\n#createTableBtn {\n  /*color: white;*/\n  /*background-color: rgba(30,130,76,1);*/\n  background: #fdd217;\n}\n\n#createTableBtn:hover {\n  background-color: rgba(253,210,23, .7);\n}\n\n#clearBtn {\n  /*background-color: rgba(166,0,0,1);*/\n  background: #fdd217;\n  border: 1px solid #fdd217;\n}\n\n#clearBtn:hover {\n  background-color: rgba(253,210,23, .7);\n}\n\n.save {\n  float: left;\n  color: rgb(51,51,51);\n  background-color: #fdd217;\n  border: #fdd217;\n  font-size: 1rem;\n  font-weight: 600;\n  padding: 6px;\n  margin-right:7px;\n  margin-top: 2px;\n  border-radius: 5px;\n}\n\n.save:hover {\n  border: #fdd217;\n  background-color: rgba(253,210,23, .7);\n  color: rgb(51,51,51);\n  cursor: pointer;\n}\n\n.test {\n  float: left;\n  color: rgb(51,51,51);\n  background-color: #fdd217;\n  border: #fdd217;\n  font-size: 1rem;\n  font-weight: 600;\n  padding: 6px;\n  margin-right:7px;\n  margin-top: 2px;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.test:hover {\n  border: #fdd217;\n  background-color: rgba(253,210,23, .7);;\n  color: rgb(51,51,51);\n}\n\n.btnDescription {\n  position: absolute;\n  display: none;\n}\n\n#clearBtn:hover + .btnDescription {\n  display: block;\n  position: absolute;\n  font-size: 12px;\n  color: red;\n  top: 50px;\n  margin-top: 3px;\n  margin-left: 5px;\n  z-index: 3;\n}\n\n#tooltip {\n  font-size: 20px;\n}\n\n@media screen and (max-width: 500px) {\n  .toolPanel {\n  /*float: right;*/\n    width: 220px;\n  }\n/*  .addAndClearBtns {\n    margin-right: 3px;\n  }\n  .save {\n    margin-right: 3px;\n  }\n  .test {\n    margin-right: 3px;\n  }*/\n}", ""]);
+exports.push([module.i, "html {\n  width:100%;\n  height:100%;\n}\nbody {\n  width:100%;\n  height:100%;\n  padding:0;\n  background-color: #f6f6f7; /*rgb(45,45,45)*/ /*#fbe4a1;*/\n  font-size:17px;\n}\n\n.App {\n  text-align: center;\n  width:100%;\n  height:100%;\n  background-color: black;\n}\n\n.full-screenable-node { /* make fullscreen background same color as body */\n  color: black;\n  font-weight: 600;\n  height: 100%;\n}\n\n.toolbar {\n  position: relative;\n  z-index:3;\n}\n\n/*includes relations, tables, and scrollbar*/\n.visualization {\n  width:100%;\n  height:100%;\n  border-right:1px solid white;\n  /*overflow: scroll;*/\n}\n\n.editorbutton {\n  text-align:center;\n}\n\n.TextEditor{\n  height:100%;\n  text-align:center;\n  background-color: black;\n  /* overflow: scroll; */\n}\n\n\n.Resizer {\n  background: black;\n  opacity: .2;\n  z-index: 1;\n  -moz-box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  box-sizing: border-box;\n  -moz-background-clip: padding;\n  -webkit-background-clip: padding;\n  background-clip: padding-box;\n}\n\n.Resizer:hover {\n  -webkit-transition: all 2s ease;\n  transition: all 2s ease;\n}\n\n.Resizer.horizontal {\n  height: 11px;\n  margin: -5px 0;\n  border-top: 5px solid black;\n  border-bottom: 5px solid black;\n  cursor: row-resize;\n  width: 100%;\n}\n\n.Resizer.horizontal:hover {\n  border-top: 5px solid black;\n  border-bottom: 5px solid black;\n}\n\n.Resizer.vertical {\n  width: 11px;\n  margin: 0 -5px;\n  border-left: 5px solid black;\n  border-right: 5px solid black;\n  cursor: col-resize;\n}\n\n.Resizer.vertical:hover {\n  border-left: 5px solid black;\n  border-right: 5px solid black;\n}\n\n.Resizer.disabled {\n  cursor: not-allowed;\n}\n\n.Resizer.disabled:hover {\n  border-color: transparent;\n}\n\n/*.typeinput {\n  width:80%;\n  float:left;\n}*/\n.SplitPane {\n  background-color:black;\n}\n.react-draggable {\n width: 372px;\n }\n\n.back {\n  width: 33%;\n  height: 200px;\n  float: left;\n  background-color: #eeeeee;\n  border: 10px;\n  border-color: #ffffff;\n  border-style: solid;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  counter-increment: bc;\n  padding: 0px 5px 5px 5px;\n}\n\n.back:before {\n  content: counter(bc) \"_\";\n  position: absolute;\n  padding: 10px;\n}\n\n.schemaCode {\n  background-color: black;\n  /*color: #f6f6f7;*/\n  color: rgb(247,247,240);\n  margin-top: 5px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  /*border: 1px solid #f6f6f7;*/\n  border: 1px solid rgb(247,247,240);\n  border-radius: .3em;\n}\n\n\n.expressCode {\n  background-color: black;\n  /*color: #f6f6f7;*/\n  color: rgb(247,247,240);\n  border-radius: .3em;\n  margin-top: 5px;\n  font-size: 16px;\n  width:100%;\n  height: 45%;\n  overflow: auto;\n  position: relative;\n  font-family: 'Consolas', 'monaco', monospace;\n  border: none;\n  /*border: 1px solid #f6f6f7;*/\n  border: 1px solid rgb(247,247,240);\n}\n\n.editorTxt {\n  /*color:#f6f6f7;*/\n  color: rgb(247,247,240);\n  font-weight: 600;\n  font-size: 1.1rem;\n}\n.firstShow {\n  width:100%;\n  height: 100%;\n  border-right:1px solid rgb(247,247,240);\n}\n\n.textClick {\n  margin: 380px 30px 0 30px;\n  color: rgb(247,247,240);\n  font-size: 50px;\n}\n\n#createTableBtn {\n  color: rgb(51,51,51);\n  font-weight: bold;\n  border: 1px solid black;\n  border-radius: 50%;\n  background-color: rgba(30,130,76,1);\n}\n\n@media screen and (max-width: 768px) {\n  .textClick {\n      margin-top: 250px;\n      font-size: 25px;\n  }\n}", ""]);
 
 // exports
 
@@ -89231,8 +89239,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./Table.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./Table.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./AppMenu.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./AppMenu.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -89250,7 +89258,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 100%;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    border-top: 10px solid rgb(247,247,240); /*rgb(76,151,181);*/ /* need border-top to even out top border */\n    border-radius: 10px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n    margin: 0px;\n}\n\n.table td, .table th {\n    padding: 0px;\n    background-color: rgb(247,247,240); /*rgb(76,151,181);*/\n    width: 100%;\n    border-spacing: 0px;\n    border:none\n\n}\n\n.alert {\n    font-size:20px;\n    color:red;\n    width:300px;\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: /*#fdd217;*/ rgb(247,247,240);\n    color: white;\n}\n\n.table th .tableName {\n    display: block;\n    float: right;\n    margin-right: 0.5rem;\n    height:34px; /* changed from 29px to match select box*/\n    width: 85%;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n/*add delete and save buttons*/\n.toolPanel {\n    /*border: 2px solid red;*/\n    padding-top: 5px;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 10px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 10px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 30px;\n    border-radius: 4px;\n    background-color: rgb(90,90,90); /*rgba(30,130,76,0.4); */ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: rgb(247,247,240);\n}\n\n.addRow:hover {\n    background-color: rgb(45,45,45);;\n}\n\n.linePort {\n  margin-top: 9px;\n  padding: 0;\n  width: 12px;\n  height: 24px;\n  border-bottom-right-radius: 12px;\n  border-top-right-radius: 12px;\n  position: absolute;\n  background-color: #fdd217;\n  border: 1px solid #fdd217;\n}\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    /*width:7%;*/\n    position:absolute;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 110px;\n    color:rgba(166,0,0,1);\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n    right: 0;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:50%;\n    margin-right: 20px;\n}\n\n.Select-input {\n    width:80px;\n    margin-right: 10px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    margin-left: 0.5rem;\n    margin-top: 2px;\n    width: 32px;\n    height: 32px;\n    text-align: center;\n    cursor: move;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 20px;\n    height: 20px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/* -----BEGIN MOBILE SIZING-----*/\n@media screen and (max-width: 740px) {\n  .table {\n    width: 30%;\n  }\n  .table th .tableName {\n    width: 70%;\n  }\n  .propertyinput {\n    width: 95%;\n  }\n}\n\n\n\n\n\n\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
+exports.push([module.i, ".appBar {\n  width:100%;\n  height: 65px;\n  display:flex;\n  justify-content: space-between;\n  align-items: center;\n  color: white;\n}\n\n.toolPanel {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 225px;\n}\n\n.addAndClearBtns {\n  height: 33px;\n  width: 33px;\n  color: rgb(51,51,51);\n  font-weight: bold;\n  font-size: 14px;\n  border-color: #ffd000;\n  border-radius: 50%;\n  background-color: #FFD000;\n  margin-right: 5px;\n  cursor: pointer;\n}\n\n.addAndClearBtns:hover {\n  background-color: rgba(253,210,23, .7);\n}\n\n#createTableBtn {\n  background: #fdd217;\n}\n\n#createTableBtn:hover {\n  background-color: rgba(253,210,23, .7);\n}\n\n.save {\n  float: left;\n  color: rgb(51,51,51);\n  background-color: #fdd217;\n  border: #fdd217;\n  font-size: 14px;\n  font-weight: 600;\n  padding: 6px;\n  margin-right:5px;\n  border-radius: 5px;\n}\n\n.save:hover {\n  border: #fdd217;\n  background-color: rgba(253,210,23, .7);\n  color: rgb(51,51,51);\n  cursor: pointer;\n}\n\n.test {\n  float: left;\n  color: rgb(51,51,51);\n  background-color: #fdd217;\n  border: #fdd217;\n  font-size: 14px;\n  font-weight: 600;\n  padding: 6px;\n  margin-right:5px;\n  border-radius: 5px;\n  cursor: pointer;\n}\n\n.test:hover {\n  border: #fdd217;\n  background-color: rgba(253,210,23, .7);;\n  color: rgb(51,51,51);\n}\n\n.btnDescription {\n  position: absolute;\n  display: none;\n}\n\n#clearBtn:hover + .btnDescription {\n  display: block;\n  position: absolute;\n  font-size: 12px;\n  color: red;\n  top: 50px;\n  margin-top: 3px;\n  margin-left: 5px;\n  z-index: 3;\n}\n\n#tooltip {\n  font-size: 20px;\n}\n\n@media screen and (max-width: 500px) {\n  .toolPanel {\n  /*float: right;*/\n    width: 220px;\n  }\n/*  .addAndClearBtns {\n    margin-right: 3px;\n  }\n  .save {\n    margin-right: 3px;\n  }\n  .test {\n    margin-right: 3px;\n  }*/\n}", ""]);
 
 // exports
 
@@ -89276,8 +89284,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./Relations.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./Relations.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./Table.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./Table.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -89295,7 +89303,7 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, ".relations {\n  width: 100%;\n  /*height: 100%;*/\n  height: 10000px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.relation {\n  width: 100%;\n  height: 10000px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.drawArea {\n  width: 400px;\n  height: 400px;\n  border: 1px solid orange;\n  float: left;\n  cursor: crosshair;\n}\n\n.path {\n  fill: none;\n  stroke-width: 1px;\n  stroke: black;\n  stroke-linejoin: round;\n  stroke-linecap: round;\n}\n\n.drawing {\n  width: 100%;\n  height: 100%;\n}", ""]);
+exports.push([module.i, "/*tables container*/\n.tables {\n  margin-top: 10px;\n  width: 100%;\n  height: 100%;\n  /*height: 100%;*/\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:2;\n  /*overflow: scroll;*/\n}\n\n.table {\n    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;\n    border-collapse: separate; /* changed from collapse to get border-radius to work */\n    border-top: 10px solid rgb(247,247,240); /*rgb(76,151,181);*/ /* need border-top to even out top border */\n    border-radius: 10px; /* added border-radius */\n    position: absolute;\n    border-spacing: 0px;\n    margin: 0 0 0 10px;\n}\n\n.table td, .table th {\n    padding: 0px;\n    background-color: rgb(247,247,240); /*rgb(76,151,181);*/\n    width: 100%;\n    border-spacing: 0px;\n    border:none\n\n}\n\n.alert {\n    font-size:20px;\n    color:red;\n    width:300px;\n}\n\n\n.table tr:hover {background-color: #ddd;}\n\n.table th {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: /*#fdd217;*/ rgb(247,247,240);\n    color: white;\n}\n\n.table th .tableName {\n    display: block;\n    float: right;\n    margin-right: 0.5rem;\n    height:34px; /* changed from 29px to match select box*/\n    width: 85%;\n    padding:0px;\n    font-size:16px;\n    border-color: solid black;\n}\n\n.form-group {\n    margin: auto 0;\n    text-align: center;\n}\n\n.addRowWrap {\n    border-bottom-left-radius: 10px; /* need this to round the bottom borders */\n    border-bottom-right-radius: 10px; /* need this to round the bottom borders */\n}\n\n.addRow {\n    padding: 8px 30px;\n    border-radius: 4px;\n    background-color: rgb(90,90,90); /*rgba(30,130,76,0.4); */ /* made green color translucent */\n    border: none;\n    font-weight: bold;\n    font-size: 16px;\n    color: rgb(247,247,240);\n}\n\n.addRow:hover {\n    background-color: rgb(45,45,45);;\n}\n\n.linePort {\n  margin-top: 9px;\n  padding: 0;\n  width: 12px;\n  height: 24px;\n  border-bottom-right-radius: 12px;\n  border-top-right-radius: 12px;\n  position: absolute;\n  background-color: #fdd217;\n  border: 1px solid #fdd217;\n}\n\n.deletetablebutton {\n    color: rgb(166, 0, 0);\n    border: none;\n    background-color: white; /* made color translucent */\n    border-radius: 20px;\n    width: 20px;\n    height: 20px;\n    line-height: 20px;\n    text-align: center;;\n    position: absolute;\n    top: -15px;\n    right: -15px;\n    padding: 0;\n    margin: 0;\n    font-weight: bold;\n    cursor: pointer;\n  }\n\n.deletetablebutton:hover {\n    color: white;\n    background-color: rgb(166, 0, 0);\n}\n\n.deleterowbutton {\n    /*width:7%;*/\n    position:absolute;\n    font-size: 18px;\n    float:right;\n    cursor:pointer;\n    margin-top:6px;\n    margin-left: 110px;\n    color:rgba(166,0,0,1);\n}\n\n.deleterowbutton:hover { /* change color on hover */\n    color: rgb(51, 51, 51);\n}\n\n.propertyinput {\n    height:34px; /*changed from 29px to match select box*/\n    padding:0px;\n    font-size:16px;\n    text-align: center;\n    margin-top:1px;\n    border-color: solid black;\n    width: 95%;\n    right: 0;\n}\n\n/*property type dropdown*/\n.dropdown {\n    width:90%;\n    line-height: 1;\n }\n\n.Select-control {\n    width:50%;\n    margin-right: 20px;\n}\n\n.Select-input {\n    width:80px;\n    margin-right: 10px;\n}\n\n.select-placeholder {\n    margin-top:2px;\n    font-size:16px\n}\n\n/*dragging feature*/\n.drag-handle {\n    position: relative;\n    margin-left: 0.5rem;\n    margin-top: 2px;\n    width: 32px;\n    height: 32px;\n    text-align: center;\n    cursor: move;\n}\n.drag {\n    display: block;\n    margin-top:21px;\n    width: 30px;\n    height: 29px;\n}\n\n.react-draggable {\n    width: 372px;\n}\n\n/* giraffe icon */\n.img {\n    width: 20px;\n    height: 20px;\n    border-radius: 50%;\n    pointer-events: none;\n    user-select:none;\n}\n\n/* -----BEGIN MOBILE SIZING-----*/\n@media screen and (max-width: 740px) {\n  .table {\n    width: 30%;\n  }\n  .table th .tableName {\n    width: 70%;\n  }\n  .propertyinput {\n    width: 95%;\n  }\n}\n\n\n\n\n\n\n\n/*toolbar not currently used*/\n.button_base {\n  border-color: solid #fbe4a1\n}\n.button_base:hover {\n  cursor: pointer;\n  border-color: solid #fbe4a1;\n}\n.b02_slide_in {\n  overflow: hidden;\n  border: #000000 solid 1px;\n}\n\n.b02_slide_in div {\n  position: absolute;\n  text-align: center;\n  width: 20%;\n  height: 55px;\n  box-sizing: border-box;\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  padding: 10px;\n  border-radius:15px;\n}\n\n.b02_slide_in div:nth-child(1) {\n  margin-top:1px;\n  color:#F5ECB1 ;\n  background-color: #6F4A38 ;\n}\n\n.b02_slide_in div:nth-child(2) {\n  margin-top:2px;\n  background-color: #F0ECE1     ;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n  top: -60px;\n  border-radius:15px;\n\n}\n\n.b02_slide_in div:nth-child(3) {\n  color: #977359;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n  opacity: 0;\n}\n\n.b02_slide_in:hover div:nth-child(2) {\n  top: 0px;\n  transition: top 0.1s ease;\n  -webkit-transition: top 0.1s ease;\n  -moz-transition: top 0.1s ease;\n}\n\n.b02_slide_in:hover div:nth-child(3) {\n  opacity: 1;\n  transition: opacity 0.1s ease;\n  -webkit-transition: opacity 0.1s ease;\n  -moz-transition: opacity 0.1s ease;\n}\n\n", ""]);
 
 // exports
 
@@ -89321,8 +89329,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!./About.css", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!./About.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!./Relations.css", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!./Relations.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -89340,10 +89348,11 @@ exports = module.exports = __webpack_require__(30)(undefined);
 
 
 // module
-exports.push([module.i, ".aboutheader {\n    display:flex;\n    align-items: center;\n    justify-content: center;\n    margin-top:40px\n}\n\n.abouth5 {\n    margin-top:10px;\n}", ""]);
+exports.push([module.i, ".relations {\n  width: 100%;\n  /*height: 100%;*/\n  height: 10000px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.relation {\n  width: 100%;\n  height: 10000px;\n  position: absolute;\n  top: 0;\n  left: 0;\n  z-index:1;\n}\n\n.drawArea {\n  width: 400px;\n  height: 400px;\n  border: 1px solid orange;\n  float: left;\n  cursor: crosshair;\n}\n\n.path {\n  fill: none;\n  stroke-width: 1px;\n  stroke: black;\n  stroke-linejoin: round;\n  stroke-linecap: round;\n}\n\n.drawing {\n  width: 100%;\n  height: 100%;\n}", ""]);
 
 // exports
 
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=bundle.js.map

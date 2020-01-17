@@ -22,6 +22,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      isMobile: window.innerWidth <= 768,
       clickedRow: null,
       // our data have tables which is object of tables
       // {
@@ -44,6 +45,14 @@ class App extends Component {
       jsCode: ''
     };
   };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+  }
+
+  onResize = () => {
+    this.setState({ isMobile: window.innerWidth <= 768})
+  }
 
   // when we click to make new table call this function
   onAddTable = () => {
@@ -421,7 +430,7 @@ class App extends Component {
             <div className='full-screenable-node'>
               <MenuComp state={this.state} menuToggle={this.menuToggle} menuClose={this.menuClose} onRequestChange={this.onRequestChange} fullscreenToggle={this.fullscreenToggle} onAddTable={this.onAddTable} deleteAllTables={this.deleteAllTables} saveTextAsFile={this.saveTextAsFile} submitSchemaCode={this.submitSchemaCode} />
 
-              <SplitPane split="vertical" defaultSize="70%">
+              <SplitPane split="vertical" defaultSize={this.state.isMobile ? '60%' : '70%'}>
                 {data.tables.length === 0 ?
                   <div className="firstShow">
                     <p className="textClick"> Click on <Button id="createTableBtn" bsSize="large" onClick={() => this.onAddTable()}>
