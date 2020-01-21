@@ -69,10 +69,12 @@
     "webpack-dev-server": "^2.4.5"
   },
   "engines": {
-    "node": "6.10.0"
+    "node": "12.14.1",
+    "npm": "6.13.4"
   },
   "scripts": {
-    "build": "webpack -w",
+    "build": "webpack",
+    "build:watch": "webpack -w",
     "start": "node server.js",
     "test": "jest",
     "test:watch": "jest --watch",
