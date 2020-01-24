@@ -17,6 +17,7 @@
 .addAndClearBtns {
   height: 33px;
   width: 33px;
+  line-height: 31px;
   color: rgb(51,51,51);
   font-weight: bold;
   font-size: 14px;
