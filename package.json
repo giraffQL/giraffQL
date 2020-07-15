@@ -37,7 +37,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^21.2.1",
     "less-loader": "^4.0.5",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "material-design-icons": "^3.0.1",
     "material-ui": "^0.19.4",
     "nodemon": "^1.12.1",
